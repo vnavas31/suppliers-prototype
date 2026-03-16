@@ -211,6 +211,7 @@ export type TenderSimpleItem = {
   description?: string;
   optional?: boolean;
   weight?: string | number;
+  subcriteria?: TenderSimpleItem[];
 };
 
 export type TenderDetailData = {
