@@ -210,6 +210,7 @@ export type TenderSimpleItem = {
   title: string;
   description?: string;
   optional?: boolean;
+  weight?: string | number;
 };
 
 export type TenderDetailData = {
