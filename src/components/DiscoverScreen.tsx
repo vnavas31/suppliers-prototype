@@ -139,12 +139,12 @@ function MetricBadge({
   const tone = getScoreTone(score);
 
   return (
-    <div className={`rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right shadow-sm ${tone.badge}`}>
-      <div className="flex items-center justify-end gap-2">
+    <div className="text-right">
+      <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-base font-semibold leading-none ${tone.badge}`}>
         <span className={`h-2.5 w-2.5 rounded-full ${tone.dot}`} />
-        <span className="text-lg font-bold leading-none">{score}%</span>
+        <span>{score}%</span>
       </div>
-      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] opacity-80">{label}</p>
+      <p className="mt-1.5 pr-1 text-[11px] font-medium text-slate-500">{label}</p>
     </div>
   );
 }
