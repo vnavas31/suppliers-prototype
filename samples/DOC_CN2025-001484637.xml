@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ContractNotice xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns="urn:dgpe:names:draft:codice:schema:xsd:ContractNotice-2" xmlns:cbc-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonBasicComponents-2" xmlns:cac-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonAggregateComponents-2">
+    <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+    <cbc:CustomizationID>CODICE 2.8.0</cbc:CustomizationID>
+    <cbc:ProfileID>CiP 2.1</cbc:ProfileID>
+    <cbc:ID>0000017908313</cbc:ID>
+    <cbc:UUID>2025-001484637</cbc:UUID>
+    <cbc:ContractFolderID>30899/2025</cbc:ContractFolderID>
+    <cbc:IssueDate>2025-12-28+01:00</cbc:IssueDate>
+    <cbc:IssueTime>12:27:12.961</cbc:IssueTime>
+    <cac:ContractingParty>
+        <cbc:ContractingPartyTypeCode listVersionID="2.10" name="Autoridad local" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ContractingAuthorityCode-2.10.gc">3</cbc:ContractingPartyTypeCode>
+        <cbc:ActivityCode listVersionID="2.10" name="Servicios públicos generales" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ContractingAuthorityActivityCode-2.10.gc">1</cbc:ActivityCode>
+        <cbc:BuyerProfileURIID>https://contrataciondelestado.es/wps/poc?uri=deeplink:perfilContratante&amp;idBp=BMPSgND91WcQK2TEfXGy%2BA%3D%3D</cbc:BuyerProfileURIID>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="ID_PLATAFORMA">31018490145609</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="NIF">P1404200F</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyName>
+                <cbc:Name>Alcaldía del Ayuntamiento de Montilla</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Montilla</cbc:CityName>
+                <cbc:PostalZone>14550</cbc:PostalZone>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:AddressLine>
+                    <cbc:Line>Puerta de Aguilar, 10 -   </cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:Contact>
+                <cbc:Name>Alcaldía del Ayuntamiento de Montilla</cbc:Name>
+                <cbc:Telephone>+34 957650150</cbc:Telephone>
+                <cbc:Telefax>+34 957652428</cbc:Telefax>
+                <cbc:ElectronicMail>contratacion@montilla.es</cbc:ElectronicMail>
+            </cac:Contact>
+            <cac:Person>
+                <cbc:JobTitle>Alcalde del Ayuntamiento de Montilla</cbc:JobTitle>
+            </cac:Person>
+        </cac:Party>
+    </cac:ContractingParty>
+    <cac:TenderingTerms>
+        <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        <cbc:VariantConstraintIndicator>false</cbc:VariantConstraintIndicator>
+        <cbc:PriceRevisionFormulaDescription>No se permite la revisión de precios</cbc:PriceRevisionFormulaDescription>
+        <cbc:FundingProgramCode listVersionID="2.08" name="No hay financiación con fondos de la UE" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/FundingProgramCode-2.08.gc">NO-EU</cbc:FundingProgramCode>
+        <cbc:EcatalogIndicator>false</cbc:EcatalogIndicator>
+        <cbc:EorderingIndicator>false</cbc:EorderingIndicator>
+        <cbc:EpaymentMeansIndicator>true</cbc:EpaymentMeansIndicator>
+        <cbc:ProcurementNationalLegislationCode listVersionID="2.08" name="Ley 9/2017" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ProcurementNationalLegislationCode-2.08.gc">3</cbc:ProcurementNationalLegislationCode>
+        <cbc:CVDScopeCode listVersionID="2.10" name="No aplica la Directiva de Vehículos Limpios" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/CVDScope-2.10.gc">no-CVD</cbc:CVDScopeCode>
+        <cac:ProcurementLegislationDocumentReference>
+            <cbc:ID>2014/24/EU</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>2014/24/EU</cbc:UUID>
+        </cac:ProcurementLegislationDocumentReference>
+        <cac:TendererQualificationRequest>
+            <cac:TechnicalEvaluationCriteria>
+                <cbc:EvaluationCriteriaTypeCode listVersionID="2.0" name="Trabajos realizados" listURI="http://contrataciondelestado.es/codice/cl/2.0/TechnicalCapabilityTypeCode-2.0.gc">OSR-COMPTASK</cbc:EvaluationCriteriaTypeCode>
+                <cbc:Description>Lote 1: - La solvencia técnica del empresario deberá ser acreditada con la presentación de una relación de las obras ejecutadas en el curso de los cinco últimos años, que sean de igual o similar naturaleza a los que constituyen el objeto del contrato, cuyo importe anual acumulado en el año de mayor ejecución sea igual o superior al 70% del valor estimado del contrato al que licita, la relación deberá incluir importes, fechas y el destinatario de los trabajos y vendrá avalada por certificados de buena ejecución.&#xD;
+Lote 2 al 8: Para demostrar la solvencia técnica, el empresario aportará la siguiente documentación: Acreditar un volumen total de suministros realizados por el licitador en el curso de los tres últimos años, de igual o similar naturaleza de los que constituyen el objeto del contrato, que incluya importe, fechas y destinatario, público o privado, de los mismos, siendo el requisito mínimo que el importe anual acumulado en el año de mayor ejecución sea igual o superior al setenta por ciento de la anualidad media de cada uno de los lotes a los que se presente.&#xD;
+La buena ejecución de suministros quedará avalada mediante certificados expedidos o visados por el órgano competente, cuando el destinatario sea una entidad del sector público; cuando el destinatario sea un sujeto privado, mediante un certificado expedido por este o, a falta de este certificado, mediante una declaración del empresario acompañado de los documentos obrantes en poder del mismo que acrediten la realización de la prestación, en los que se indique se indique el importe, la fecha y el destinatario, público o privado de los mismos.&#xD;
+&#xD;
+&#xD;
+&#xD;
+No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al Documento Europeo Único de Contratación, Anexo I del PCAP.</cbc:Description>
+                <cbc:Expression>euros suministros realizados</cbc:Expression>
+                <cac:DurationPeriod>
+                    <cbc:Description>(año de mayor volumen acumulado)</cbc:Description>
+                </cac:DurationPeriod>
+            </cac:TechnicalEvaluationCriteria>
+            <cac:FinancialEvaluationCriteria>
+                <cbc:EvaluationCriteriaTypeCode listVersionID="2.0" name="Cifra anual de negocio" listURI="http://contrataciondelestado.es/codice/cl/2.0/FinancialCapabilityTypeCode-2.0.gc">5</cbc:EvaluationCriteriaTypeCode>
+                <cbc:Description>Para demostrar la solvencia económica y financiera, se estará al volumen anual de negocios del licitador, que referido al año de mayor volumen de negocio de los tres últimos concluidos sea al menos igual o superior a una vez y media el valor anual medio de cada uno de los lotes.&#xD;
+&#xD;
+Se acreditará por medio de sus cuentas anuales aprobadas y depositadas en el Registro Mercantil, si el empresario estuviera inscrito en dicho registro, y en caso contrario por las depositadas en el registro oficial en que deba estar inscrito. Los empresarios individuales no inscritos en el Registro Mercantil acreditarán su volumen anual de negocios mediante sus libros de inventarios y cuentas anuales legalizados por el Registro Mercantil. No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al modelo del Anexo nº I del PCAP.</cbc:Description>
+                <cbc:Expression>Euros de volumen de negocio</cbc:Expression>
+                <cac:DurationPeriod>
+                    <cbc:Description>3 años (año de mayor volumen de negocio)</cbc:Description>
+                </cac:DurationPeriod>
+            </cac:FinancialEvaluationCriteria>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="Capacidad de obrar" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">1</cbc:RequirementTypeCode>
+                <cbc:Description>Sólo podrán contratar con el Ayuntamiento las personas naturales o jurídicas, españolas o extranjeras, que tengan plena capacidad de obrar. Los candidatos o los licitadores deberán acreditar su personalidad jurídica y capacidad de obrar. Cuando fueran personas jurídicas deberán justificar que el objeto social de la entidad comprende el desarrollo de todas las actividades que constituyen el objeto del contrato al que concurren. La acreditación se realizará mediante la presentación de los estatutos sociales inscritos en el Registro mercantil o en aquel otro registro oficial que corresponda en función del tipo de entidad social. La acreditación de los datos relativos a la personalidad jurídica y a la capacidad de obrar podrá realizarse mediante la certificación de la inscripción en el Registro Oficial de Licitadores y Empresas Clasificadas. No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al modelo de declaración responsable que figura como Anexo nº I del PCAP.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="No prohibición para contratar" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">2</cbc:RequirementTypeCode>
+                <cbc:Description>Los licitadores no podrán estar incursos, a la fecha de conclusión del plazo de presentación de proposiciones, en ninguna de las prohibiciones para contratar con el sector público establecidas en el artículo 71 LCSP. Tampoco deberán estar incursos en tal situación cuando se proceda a la adjudicación del contrato. La prueba por parte de los licitadores de no estar incursos en las prohibiciones para contratar podrá realizarse mediante testimonio judicial o certificación administrativa, según los casos, y cuando dicho documento no pueda ser expedido por la autoridad competente podrá ser sustituido por una declaración responsable otorgada ante una autoridad administrativa, notario público u organismo profesional cualificado. Esta declaración se realizará sin perjuicio de la facultad del órgano de contratación y el Órgano de asistencia de comprobar que los datos y circunstancias de la misma son coincidentes con los que recoja el Registro Oficial de Licitadores y Empresas Clasificadas del Estado y/o Registro de Licitadores de la Junta de Andalucía, así como de obtener aquellos certificados que resulten necesarios para la adjudicación, cuando hubiera sido autorizado para ello por el licitador. No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al modelo de declaración responsable que figura como Anexo nº I del PCAP.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="No estar incurso en incompatibilidades" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">3</cbc:RequirementTypeCode>
+                <cbc:Description>Los licitadores deberán declarar que no se hallan incursos en alguna causa de incompatibilidad, especialmente cuando, habiendo participado en la elaboración de las prescripciones técnicas y/o en alguna consulta preliminar de mercado objeto del presente contrato, su participación pueda falsear u obstaculizar una efectiva competencia. No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al modelo de declaración responsable que figura como Anexo nº I del PCAP.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="Cumplimiento con las obligaciones con la Seguridad Social" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">4</cbc:RequirementTypeCode>
+                <cbc:Description>Los licitadores deberán hallarse al corriente en el cumplimiento de sus obligaciones con la Seguridad Social, lo cual se acreditará mediante certificación expedida por la Tesorería Territorial de la Seguridad Social, pudiendo serlo por medios electrónicos, informáticos o telemáticos. No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al modelo de declaración responsable que figura como Anexo nº I del PCAP.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="Cumplimiento con las obligaciones tributarias" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">5</cbc:RequirementTypeCode>
+                <cbc:Description>Los licitadores deberán hallarse al corriente de las obligaciones tributarias con las Haciendas Estatal, autonómica y local, desde la finalización del plazo de presentación de ofertas hasta la adjudicación del contrato. Su cumplimiento se acreditará mediante certificación positiva, expedida por la Agencia Estatal de Administración Tributaria y por la Administración Tributaria de la Junta de Andalucía, de hallarse al corriente en el cumplimiento de sus obligaciones tributarias, que podrá obtenerse mediante autorización de cesión de información según Anexo nº I o, en su caso, declaración responsable de no estar obligado a presentarla. Los correspondientes certificados podrán ser expedidos por medios electrónicos, informáticos o telemáticos. Esta documentación podrá suplirse por la autorización, que consta en el Anexo nº I de este PCAP, por la que se autoriza al órgano de contratación a obtener de forma directa la acreditación del cumplimiento de las obligaciones tributarias. No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al modelo de declaración responsable que figura como Anexo nº I del PCAP.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="Para las empresas extranjeras, declaración de sometimiento a la legislación española." languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">9</cbc:RequirementTypeCode>
+                <cbc:Description>Las empresas extranjeras deberán aportar una declaración de sometimiento a la jurisdicción de los juzgados y tribunales españoles de cualquier orden, para todas las incidencias que de modo directo o indirecto pudieran surgir del contrato, con renuncia, en su caso, al fuero jurisdiccional extranjero que pudiera corresponder al licitante. No obstante lo anterior, a efectos de concurrir a la licitación este requisito se considerará cumplido mediante la declaración responsable que se ajusta al modelo de declaración responsable que figura como Anexo nº I del PCAP.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+        </cac:TendererQualificationRequest>
+        <cac:AllowedSubcontractTerms>
+            <cbc:UnknownPriceIndicator>true</cbc:UnknownPriceIndicator>
+        </cac:AllowedSubcontractTerms>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 1</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Documentación administrativa" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">1</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>1</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>2</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>3</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>4</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>5</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>6</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>7</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>8</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>9</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>10</cbc:ProcurementProjectLotID>
+            <cbc:ProcurementProjectLotID>11</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la declaración responsable acreditativa de reunir los requisitos para optar a la adjudicación del contrato.</cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Declaración para empresarios extranjeros</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Para las empresas extranjeras, declaración de sometimiento a la legislación española.</cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Declaración de integrar solvencia con medios externos</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Si el empresario licitador tiene la intención de integrar su solvencia recurriendo a la capacidad de otra/s entidad/es, no incursa/s en prohibición de contratar, para satisfacer los criterios de solvencia y adscripción de medios contemplados en el PCAP, deberá presentar declaración/es responsable/s firmada/s por cada una de las referidas entidades en la que figure la información pertinente para estos casos, al menos, la declaración de no incurrir en prohibición de contratar y de comprometerse efectivamente a poner a disposición del contrato de esa solvencia y medios durante toda la ejecución del contrato.</cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 1</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>1</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO II del Pliego de Cláusulas Administrativas Particulares.</cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_II.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 10</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>10</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO XI del Pliego de Cláusulas Administrativas Particulares. &#xD;
+</cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_XI.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 11</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>11</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO XII del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_XII.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 2</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>2</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO III del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_III.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 3</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>3</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO IV del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_IV.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 4</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>4</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO V del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_V.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 5</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>5</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO VI del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_VI.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 6</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>6</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO VII del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_VII.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 7</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>7</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO VIII del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_VIII.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 8</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>8</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO IX del Pliego de Cláusulas Administrativas Particulares. </cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_IX.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Lote 9</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:ProcurementProjectLotID>9</cbc:ProcurementProjectLotID>
+            <cbc:Description>Sobre que contiene la oferta de criterios valorables en cifras o porcentajes, debidamente firmada y redactada conforme al modelo que se recoge en el ANEXO X del Pliego de Cláusulas Administrativas Particulares.</cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Deberá descargar la plantilla que se le facilita en formato editable .doc, cumplimentando el modelo, transformarlo a PDF y cargarlo en la herramienta de preparación y presentación de ofertas. Posteriormente, deberá firmar el documento a través de dicha herramienta mediante un certificado de firma electrónica avanzada admitido por la Administración General del Estado (@firma), que será: de persona física, si el que la firma es un empresario individual o autónomo (persona física); de representante de persona jurídica, si el que firma es un representante del empresario persona jurídica (administrador, apoderado, etc., de una sociedad de capital o similar) o del empresario persona física.</cbc:Description>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexo_X.doc</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:ContractExecutionRequirement>
+            <cbc:Name>Cumplimiento de las Convenciones fundamentales de la Organización Mundial del Trabajo</cbc:Name>
+            <cbc:ExecutionRequirementCode listVersionID="2.08" name="Cumplimiento de las Convenciones fundamentales de la Organización Mundial del Trabajo" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ExecutionRequirementCode-2.08.gc">7</cbc:ExecutionRequirementCode>
+            <cbc:Description>Cumplimiento de normativa vigente en materia laboral y de Seguridad Social</cbc:Description>
+        </cac:ContractExecutionRequirement>
+        <cac:ContractExecutionRequirement>
+            <cbc:Name>Consideraciones de tipo social</cbc:Name>
+            <cbc:ExecutionRequirementCode listVersionID="2.08" name="Consideraciones de tipo social" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ExecutionRequirementCode-2.08.gc">2</cbc:ExecutionRequirementCode>
+            <cbc:Description>El contratista esta obligado al cumplimiento de la normativa vigente en materia laboral y&#xD;
+de seguridad social. Asimismo, esta obligado al cumplimiento del Texto Refundido de la Ley General de derechos de las&#xD;
+personas con discapacidad y de su inclusión social, aprobado por Real Decreto Legislativo 1/2013, de 29 de noviembre.</cbc:Description>
+        </cac:ContractExecutionRequirement>
+        <cac:ContractExecutionRequirement>
+            <cbc:Name>Eliminar desigualdades entre el hombre y la mujer</cbc:Name>
+            <cbc:ExecutionRequirementCode listVersionID="2.08" name="Eliminar desigualdades entre el hombre y la mujer" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ExecutionRequirementCode-2.08.gc">4</cbc:ExecutionRequirementCode>
+            <cbc:Description>El contratista está obligado al cumplimiento de la Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres.</cbc:Description>
+        </cac:ContractExecutionRequirement>
+        <cac:AwardingTerms>
+            <cac:AwardingCriteria>
+                <cbc:ID>2468438</cbc:ID>
+                <cbc:AwardingCriteriaTypeCode listVersionID="2.0" name="Cuantificables Automáticamente" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.0/AwardingCriteriaCode-2.0.gc">OBJ</cbc:AwardingCriteriaTypeCode>
+                <cbc:Description>Oferta económica</cbc:Description>
+                <cbc:Note>El criterio de la oferta económica tiene carácter obligatorio y todos los licitadores deberán presentar oferta económica, ajustada al modelo oficial que figura como ANEXO II, ANEXO III, ANEXO IV, ANEXO V, ANEXO VI, ANEXO VII, ANEXO VIII y ANEXO IX del Pliego de Cláusulas Administrativas Particulares dependiendo del lote o lotes al que se presenten y conforme a los criterios establecidos como mejor oferta económica.</cbc:Note>
+                <cbc:AwardingCriteriaSubTypeCode listVersionID="2.09" name="Precio" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/AwardingCriteriaAutomaticallyEvaluatedSubTypeCode-2.09.gc">1</cbc:AwardingCriteriaSubTypeCode>
+                <cbc:WeightNumeric>100</cbc:WeightNumeric>
+                <cbc:CalculationExpression>importe oferta económica en euros. El licitador deberá introducir un valor o un texto.</cbc:CalculationExpression>
+                <cbc:MinimumQuantity>0</cbc:MinimumQuantity>
+                <cbc:MaximumQuantity>100</cbc:MaximumQuantity>
+                <cbc:StructuredValueIndicator>true</cbc:StructuredValueIndicator>
+            </cac:AwardingCriteria>
+        </cac:AwardingTerms>
+        <cac:AdditionalInformationParty>
+            <cac:PartyName>
+                <cbc:Name>Alcaldía del Ayuntamiento de Montilla</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Montilla</cbc:CityName>
+                <cbc:PostalZone>14550</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Puerta de Aguilar, 10 -   </cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:AdditionalInformationParty>
+        <cac:DocumentProviderParty>
+            <cac:PartyName>
+                <cbc:Name>Alcaldía del Ayuntamiento de Montilla</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Montilla</cbc:CityName>
+                <cbc:PostalZone>14550</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Puerta de Aguilar, 10 -   </cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:DocumentProviderParty>
+        <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://contrataciondelestado.es</cbc:EndpointID>
+            <cac:PartyName>
+                <cbc:Name>Alcaldía del Ayuntamiento de Montilla</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Montilla</cbc:CityName>
+                <cbc:PostalZone>14550</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Puerta de Aguilar, 10 -   </cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:TenderRecipientParty>
+        <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="ANN">1</cbc:DurationMeasure>
+        </cac:TenderValidityPeriod>
+        <cac:AppealTerms>
+            <cac:PresentationPeriod>
+                <cbc:Description>Conforme a la cláusula 38 del PCAP</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+                <cac:PartyName>
+                    <cbc:Name>Alcaldía Ayuntamiento de Montilla</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                    <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Montilla</cbc:CityName>
+                    <cbc:PostalZone>14550</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Puerta de Aguilar, 10 -   </cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:PostalAddress>
+                <cac:Contact>
+                    <cbc:Telephone>957650150</cbc:Telephone>
+                </cac:Contact>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+                <cbc:WebsiteURI>https://www.juntadeandalucia.es/organismos/tarc.html</cbc:WebsiteURI>
+                <cac:PartyName>
+                    <cbc:Name>Tribunal Administrativo de Recursos Contractuales de la Junta de Andalucía</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                    <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Sevilla</cbc:CityName>
+                    <cbc:PostalZone>41001</cbc:PostalZone>
+                    <cbc:CountrySubentity>Sevilla</cbc:CountrySubentity>
+                    <cbc:CountrySubentityCode listVersionID="2.12" name="Sevilla" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES618</cbc:CountrySubentityCode>
+                    <cac:AddressLine>
+                        <cbc:Line>Castelar, nº 22</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:PostalAddress>
+                <cac:Contact>
+                    <cbc:Telephone>+34 671530856</cbc:Telephone>
+                </cac:Contact>
+            </cac:AppealReceiverParty>
+        </cac:AppealTerms>
+        <cac:Language>
+            <cbc:ID>es</cbc:ID>
+        </cac:Language>
+        <cac:InvoicingTerms>
+            <cbc:ElectronicInvoicingIndicator>true</cbc:ElectronicInvoicingIndicator>
+        </cac:InvoicingTerms>
+        <cac:ExclusionGrounds>
+            <cbc:ExclusionGroundTypeCode listName="exclusion-ground" listVersionID="2.10" name="Motivos de exclusión exclusivamente nacionales" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ExclusionGrounds-2.10.gc">nati-ground</cbc:ExclusionGroundTypeCode>
+            <cbc:Description>Rigen las prohibiciones de contratar del artículo 71 de la LCSP.</cbc:Description>
+        </cac:ExclusionGrounds>
+        <cac:ExclusionGrounds>
+            <cbc:ExclusionGroundTypeCode listName="exclusion-ground" listVersionID="2.10" name="Participación directa o indirecta en la preparación de este procedimiento de contratación" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ExclusionGrounds-2.10.gc">prep-confl</cbc:ExclusionGroundTypeCode>
+            <cbc:Description>Rigen las condiciones especiales de incompatibilidad del artículo 70 de la LCSP.</cbc:Description>
+        </cac:ExclusionGrounds>
+        <cac:ExclusionGrounds>
+            <cbc:ExclusionGroundTypeCode listName="exclusion-ground" listVersionID="2.10" name="Conflicto de intereses debido a su participación en este procedimiento de contratación" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ExclusionGrounds-2.10.gc">partic-confl</cbc:ExclusionGroundTypeCode>
+            <cbc:Description>Rigen las condiciones especiales de incompatibilidad del artículo 70 de la LCSP.</cbc:Description>
+        </cac:ExclusionGrounds>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+        <cbc:Description>De conformidad con lo dispuesto en el artículo 131 de la LCSP, el presente contrato mixto de suministros se adjudicará por procedimiento abierto y su adjudicación se realizará utilizando un único criterio de adjudicación basado en el mejor precio de conformidad con los Pliegos y los artículos 145.1 y 156.1 de la LCSP.</cbc:Description>
+        <cbc:ProcedureCode listVersionID="2.08" name="Abierto" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderingProcessCode-2.08.gc">1</cbc:ProcedureCode>
+        <cbc:UrgencyCode listVersionID="2006" name="Ordinaria" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/DiligenceTypeCode-1.04.gc">1</cbc:UrgencyCode>
+        <cbc:ExpenseCode listVersionID="2006" name="Ordinaria" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/ExpenseTypeCode-1.04.gc">1</cbc:ExpenseCode>
+        <cbc:PartPresentationCode listVersionID="2006" name="A uno o varios lotes" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/TenderPresentationCode-1.04.gc">3</cbc:PartPresentationCode>
+        <cbc:ContractingSystemCode listVersionID="2.08" name="No aplica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractingSystemTypeCode-2.08.gc">0</cbc:ContractingSystemCode>
+        <cbc:SubmissionMethodCode listVersionID="2006" name="Electrónica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/TenderDeliveryCode-1.04.gc">1</cbc:SubmissionMethodCode>
+        <cbc:GovernmentProcurementAgreementConstraintIndicator>false</cbc:GovernmentProcurementAgreementConstraintIndicator>
+        <cbc:MaximumLotPresentationQuantity>11</cbc:MaximumLotPresentationQuantity>
+        <cbc:MaximumTendererAwardedLotsQuantity>11</cbc:MaximumTendererAwardedLotsQuantity>
+        <cbc:OverThresholdIndicator>true</cbc:OverThresholdIndicator>
+        <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-01-26+01:00</cbc:EndDate>
+            <cbc:EndTime>23:59:00.000</cbc:EndTime>
+            <cbc:Description>Sólo se admitirán ofertas presentadas a través de la herramienta de preparación y presentación que facilita la PLACSP. Para cualquier tipo de duda o incidencia con la descarga, uso y manejo de dicha herramienta, póngase en contacto con los responsables de la Plataforma a través del correo-e licitacionE@hacienda.gob.es, en horario de lunes a jueves de 9:00 a 19:00 y viernes de 9:00 a 15:00, indicando el número de expediente, órgano de contratación y detalle del error, adjuntando captura de pantalla si es posible.</cbc:Description>
+        </cac:TenderSubmissionDeadlinePeriod>
+        <cac:NoticeDocumentReference>
+            <cbc:ID schemeName="ENVIO_CN_DOUE">2025-001484637</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>2025-001484637</cbc:UUID>
+            <cbc:IssueDate>2025-12-26+01:00</cbc:IssueDate>
+            <cbc:DocumentTypeCode listVersionID="2.11" name="Envío de Anuncio de Licitación al DOUE" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.11/TenderingDocumentTypeCode-2.11.gc">ENVIO_CN_DOUE</cbc:DocumentTypeCode>
+        </cac:NoticeDocumentReference>
+        <cac:AdditionalDocumentReference>
+            <cbc:ID>Detalle_Licitacion</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>Detalle_Licitacion</cbc:UUID>
+            <cbc:DocumentTypeCode listVersionID="2.11" name="Documento de detalle del Expediente publicado en la Plataforma" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.11/TenderingDocumentTypeCode-2.11.gc">LINK_EXP_PLACE</cbc:DocumentTypeCode>
+            <cac:Attachment>
+                <cac:ExternalReference>
+                    <cbc:URI>https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&amp;idEvl=3MZ%2B0PLYipqExvMJXBMHHQ%3D%3D</cbc:URI>
+                </cac:ExternalReference>
+            </cac:Attachment>
+        </cac:AdditionalDocumentReference>
+        <cac:OpenTenderEvent>
+            <cbc:IdentificationID>Apertura oferta económica</cbc:IdentificationID>
+            <cbc:OccurrenceDate>2026-01-27+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>09:00:00.000</cbc:OccurrenceTime>
+            <cbc:TypeCode listVersionID="2.09" name="Apertura sobre oferta económica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/EventTypeCode-2.09.gc">4</cbc:TypeCode>
+            <cbc:Description>El día y la hora es aproximada, se publicará en la Plataforma la fecha exacta con antelación suficiente.</cbc:Description>
+            <cac:OccurrenceLocation>
+                <cbc:Description>Sala de Comisiones Ayuntamiento de Montilla</cbc:Description>
+                <cac:Address>
+                    <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Montilla</cbc:CityName>
+                    <cbc:PostalZone>14550</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Calle Puerta de Aguilar 10</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:OccurrenceLocation>
+            <cac:AttendanceConditions>
+                <cbc:AttendanceRestrictionCode listVersionID="2.05" name="Privado" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/AttendanceRestrictionCode-2.05.gc">2</cbc:AttendanceRestrictionCode>
+            </cac:AttendanceConditions>
+        </cac:OpenTenderEvent>
+        <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+        </cac:AuctionTerms>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+        <cbc:Name>Obra de demoliciones y movimientos de tierra y suministro de material necesario para la ejecución de obras de Montilla, incluida en el programa para el fomento del empleo agrario (PFEA 2025)</cbc:Name>
+        <cbc:Description>El objeto de la presente contratación mixta es la obra de demoliciones y movimiento de tierras y el suministro de diversos materiales necesarios para la ejecución de las obras de Montilla, incluidas en el Programa para el fomento del Empleo Agrario (PFEA 2025), el cual está dividido en once lotes y cada lote constituirá un contrato, y cuyo detalle y emplazamiento se indica en el Pliego de Prescripciones Técnicas Particulares.</cbc:Description>
+        <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+        <cbc:SubTypeCode listVersionID="2006" name="Adquisición" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/GoodsContractCode-1.04.gc">2</cbc:SubTypeCode>
+        <cbc:MixContractIndicator>true</cbc:MixContractIndicator>
+        <cac:BudgetAmount>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">308526.34</cbc:EstimatedOverallContractAmount>
+            <cbc:TotalAmount currencyID="EUR">373316.87</cbc:TotalAmount>
+            <cbc:TaxExclusiveAmount currencyID="EUR">308526.34</cbc:TaxExclusiveAmount>
+        </cac:BudgetAmount>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Arbustos." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">03451300</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Grava, arena, piedras machacadas y agregados." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">14210000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Máquinas, aparatos, equipo y productos consumibles eléctricos; iluminación." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">31000000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Equipo de emergencia y seguridad." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">35100000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Materiales de construcción y elementos afines." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44100000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Hormigón." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44114000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Materiales de fontanería." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44115210</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Trabajos de excavación y movimiento de tierras." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">45112000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Trabajos de pavimentación y asfaltado." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">45233222</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Alquiler de maquinaria para movimiento de tierras con maquinista." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">45520000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RealizedLocation>
+            <cbc:Description>Montilla, según lo establecido en el pliego de prescripciones técnicas. Para las obras PFEA 2025.&#xD;
+</cbc:Description>
+            <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+            <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+            <cac:Address>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Montilla</cbc:CityName>
+                <cbc:PostalZone>14550</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Municipio de Montilla</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:Address>
+        </cac:RealizedLocation>
+        <cac:PlannedPeriod>
+            <cbc:StartDate>2026-02-26+01:00</cbc:StartDate>
+            <cbc:EndDate>2026-12-31+01:00</cbc:EndDate>
+            <cbc:Description>La duración del contrato, de conformidad con el artículo 29 de la LCSP, se fija desde el día siguiente a la formalización del mismo hasta el 31 de diciembre de 2026 o hasta que se agote la partida presupuestaria de cada lote. Los suministros se deberá de entregar en el plazo máximo de 24 horas desde el momento de cada uno de los pedidos y las obras conforme al pliego</cbc:Description>
+        </cac:PlannedPeriod>
+        <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>0</cbc:MaximumNumberNumeric>
+        </cac:ContractExtension>
+        <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="environmental-impact" listVersionID="2.10" name="Otros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/EnvironmentalImpact-2.10.gc">other</cbc:ProcurementTypeCode>
+        </cac:ProcurementAdditionalType>
+        <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="innovative-acquisition" listVersionID="2.12" name="Las obras, suministros o servicios contratados son novedosos o mejoran significativamente en comparación con otras obras, suministros o servicios ya presentes en el mercado." languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.12/InnovativeAcquisition-2.12.gc">mar-nov</cbc:ProcurementTypeCode>
+        </cac:ProcurementAdditionalType>
+        <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement" listVersionID="2.10" name="Ninguno" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/StrategicProcurement-2.10.gc">none</cbc:ProcurementTypeCode>
+        </cac:ProcurementAdditionalType>
+        <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="social-objective" listVersionID="2.10" name="Otros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/SocialObjective-2.10.gc">other</cbc:ProcurementTypeCode>
+        </cac:ProcurementAdditionalType>
+    </cac:ProcurementProject>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">1</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">1</cbc:ID>
+            <cbc:Name>Lote 1.Demoliciones y movimiento de tierras</cbc:Name>
+            <cbc:Description>Demoliciones y movimiento de tierras</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">54245</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">65636.45</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">54245</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Alquiler de maquinaria para movimiento de tierras con maquinista." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">45520000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">2</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">2</cbc:ID>
+            <cbc:Name>Lote 2. Hormigones</cbc:Name>
+            <cbc:Description>Hormigones conforme señala el PPTP</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">67345</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">81487.45</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">67345</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Hormigón." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44114000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">3</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">3</cbc:ID>
+            <cbc:Name>Lote 3. Áridos</cbc:Name>
+            <cbc:Description>Áridos conforme al PPTP.</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">75410.9</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">91247.19</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">75410.9</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Materiales de construcción y elementos afines." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44100000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">4</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">4</cbc:ID>
+            <cbc:Name>Lote 4. Aceros</cbc:Name>
+            <cbc:Description>Aceros para la ejecución de las obras</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">10312</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">12477.52</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">10312</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">5</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">5</cbc:ID>
+            <cbc:Name>Lote 5. Material cerámico y de hormigón</cbc:Name>
+            <cbc:Description>Material cerámico y de hormigón necesario para ejecutar las obras</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">54740</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">66235.4</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">54740</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">6</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">6</cbc:ID>
+            <cbc:Name>Lote 6. Morteros</cbc:Name>
+            <cbc:Description>Mortero necesario para ejecutar las obras</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">5850</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">7078.5</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">5850</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Máquinas, aparatos, equipo y productos consumibles eléctricos; iluminación." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">31000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Materiales de construcción y elementos afines." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44100000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">7</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">7</cbc:ID>
+            <cbc:Name>Lote 7. Material electricidad</cbc:Name>
+            <cbc:Description>Material electricidad necesario para la ejecución de las obras</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">13742.11</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">16627.95</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">13742.11</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Máquinas, aparatos, equipo y productos consumibles eléctricos; iluminación." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">31000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">8</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">8</cbc:ID>
+            <cbc:Name>Lote 8. Seguridad y salud</cbc:Name>
+            <cbc:Description>Seguridad y salud necesaria para la ejecución de las obras</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">22482.75</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">27204.13</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">22482.75</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Equipo de emergencia y seguridad." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">35100000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">9</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">9</cbc:ID>
+            <cbc:Name>Lote 9. Jardinería</cbc:Name>
+            <cbc:Description>Jardinería necesaria para obras PFEA 2025</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">180</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">217.8</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">180</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Arbustos." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">03451300</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">10</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">10</cbc:ID>
+            <cbc:Name>Lote 10. Material fontanería</cbc:Name>
+            <cbc:Description>Material fontanería necesaria para obras PFEA 2025</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">148.58</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">179.78</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">148.58</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Materiales de fontanería." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44115210</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="ID_LOTE">11</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        </cac:TenderingTerms>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="ID_LOTE">11</cbc:ID>
+            <cbc:Name>Lote 11. Aglomerado asfáltico</cbc:Name>
+            <cbc:Description>Aglomerado asfáltico para obras PFEA 2025</cbc:Description>
+            <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+            <cac:BudgetAmount>
+                <cbc:EstimatedOverallContractAmount currencyID="EUR">4070</cbc:EstimatedOverallContractAmount>
+                <cbc:TotalAmount currencyID="EUR">4924.7</cbc:TotalAmount>
+                <cbc:TaxExclusiveAmount currencyID="EUR">4070</cbc:TaxExclusiveAmount>
+            </cac:BudgetAmount>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Estructuras y materiales de construcción; productos auxiliares para la construcción (excepto aparatos eléctricos)." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">44000000</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RequiredCommodityClassification>
+                <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Trabajos de pavimentación y asfaltado." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">45233222</cbc:ItemClassificationCode>
+            </cac:RequiredCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:CountrySubentity>Córdoba</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Córdoba" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES613</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+</ContractNotice>

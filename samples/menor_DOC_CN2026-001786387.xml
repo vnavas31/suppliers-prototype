@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ContractNotice xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns="urn:dgpe:names:draft:codice:schema:xsd:ContractNotice-2" xmlns:cac-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonAggregateComponents-2" xmlns:cbc-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonBasicComponents-2">
+    <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+    <cbc:CustomizationID>CODICE 2.8.0</cbc:CustomizationID>
+    <cbc:ProfileID>CiP 2.1</cbc:ProfileID>
+    <cbc:ID>0000018503284</cbc:ID>
+    <cbc:UUID>2026-001786387</cbc:UUID>
+    <cbc:ContractFolderID>3/2026/AY-CME/PRTR</cbc:ContractFolderID>
+    <cbc:IssueDate>2026-03-13+01:00</cbc:IssueDate>
+    <cbc:IssueTime>15:19:34.544</cbc:IssueTime>
+    <cac:ContractingParty>
+        <cbc:ContractingPartyTypeCode listVersionID="2.10" name="Autoridad local" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ContractingAuthorityCode-2.10.gc">3</cbc:ContractingPartyTypeCode>
+        <cbc:ActivityCode listVersionID="2.10" name="Servicios públicos generales" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ContractingAuthorityActivityCode-2.10.gc">1</cbc:ActivityCode>
+        <cbc:BuyerProfileURIID>https://contrataciondelestado.es/wps/poc?uri=deeplink:perfilContratante&amp;idBp=4k5hPuUj9aznSoTX3z%2F7wA%3D%3D</cbc:BuyerProfileURIID>
+        <cac:Party>
+            <cbc:WebsiteURI>http://www.ayto-calahorra.es</cbc:WebsiteURI>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="ID_PLATAFORMA">31094540153214</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="NIF">P2603600D</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno Local del Ayuntamiento de Calahorra</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Calahorra</cbc:CityName>
+                <cbc:PostalZone>26500</cbc:PostalZone>
+                <cbc:CountrySubentity>La Rioja</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="La Rioja" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES230</cbc:CountrySubentityCode>
+                <cac:AddressLine>
+                    <cbc:Line>Glorieta de Quintiliano, 1</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:Contact>
+                <cbc:Name>Junta de Gobierno Local del Ayuntamiento de Calahorra</cbc:Name>
+                <cbc:Telephone>+34 941105052</cbc:Telephone>
+                <cbc:Telefax>+34 941146327</cbc:Telefax>
+                <cbc:ElectronicMail>contratacion@calahorra.es</cbc:ElectronicMail>
+            </cac:Contact>
+            <cac:Person>
+                <cbc:JobTitle>Alcaldesa-Presidenta</cbc:JobTitle>
+            </cac:Person>
+        </cac:Party>
+    </cac:ContractingParty>
+    <cac:TenderingTerms>
+        <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        <cbc:VariantConstraintIndicator>false</cbc:VariantConstraintIndicator>
+        <cbc:FundingProgramCode listVersionID="2.08" name="Financiación con fondos de la UE" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/FundingProgramCode-2.08.gc">EU</cbc:FundingProgramCode>
+        <cbc:FundingProgramCode listVersionID="2.08" name="Asociado al Plan de Recuperación, Transformación y Resiliencia" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/FundingProgramCode-2.08.gc">PRTR</cbc:FundingProgramCode>
+        <cbc:FundingProgram>Fondo Europeo de Recuperación Next Generation EU</cbc:FundingProgram>
+        <cbc:EcatalogIndicator>false</cbc:EcatalogIndicator>
+        <cbc:EorderingIndicator>false</cbc:EorderingIndicator>
+        <cbc:EpaymentMeansIndicator>true</cbc:EpaymentMeansIndicator>
+        <cbc:ProcurementNationalLegislationCode listVersionID="2.08" name="Ley 9/2017" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ProcurementNationalLegislationCode-2.08.gc">3</cbc:ProcurementNationalLegislationCode>
+        <cac:ProcurementLegislationDocumentReference>
+            <cbc:ID>N/A</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>N/A</cbc:UUID>
+        </cac:ProcurementLegislationDocumentReference>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>SOBRE UNICO</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:OpenEventID>Apertura sobre único</cbc:OpenEventID>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>true</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Anexos PRTR</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>05_ANEXOS_PRTR.docx</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>false</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>true</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Certificado Seguridad Social</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Certificado de encontrarse al corriente de pagos con Seguridad Social</cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>false</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>true</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>certifiado de hacienda</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Certificado de encontrarse al corriente de pagos con la Agencia Tributaria </cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>05_ANEXO_III.docx</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>true</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Titulo habilitante </cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Acreditación de que la empresa es instaladora habilitada para instalaciones térmicas, conforme al Reglamento de Instalaciones Térmicas en los Edificios (RITE) aprobado por el Real Decreto 1027/2007, Reglamento de Instalaciones Térmicas en los Edificios.</cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>true</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>DACI PRTR</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>05_ANEXO_Daci_PRTR.docx</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Plantilla" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:AwardingTerms>
+            <cac:AwardingCriteria>
+                <cbc:ID>2554336</cbc:ID>
+                <cbc:AwardingCriteriaTypeCode listVersionID="2.0" name="Cuantificables Automáticamente" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.0/AwardingCriteriaCode-2.0.gc">OBJ</cbc:AwardingCriteriaTypeCode>
+                <cbc:Description>precio</cbc:Description>
+                <cbc:Note>Se valorará con 100 puntos la oferta económica más ventajosa, (la mayor diferencia entre el tipo de licitación y la oferta), con 0 puntos si se ajusta al tipo de licitación y el resto de forma proporcional</cbc:Note>
+                <cbc:AwardingCriteriaSubTypeCode listVersionID="2.09" name="Precio" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/AwardingCriteriaAutomaticallyEvaluatedSubTypeCode-2.09.gc">1</cbc:AwardingCriteriaSubTypeCode>
+                <cbc:WeightNumeric>100</cbc:WeightNumeric>
+                <cbc:MinimumQuantity>0</cbc:MinimumQuantity>
+                <cbc:MaximumQuantity>100</cbc:MaximumQuantity>
+                <cbc:StructuredValueIndicator>true</cbc:StructuredValueIndicator>
+            </cac:AwardingCriteria>
+        </cac:AwardingTerms>
+        <cac:AdditionalInformationParty>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno Local del Ayuntamiento de Calahorra</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Calahorra</cbc:CityName>
+                <cbc:PostalZone>26500</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Glorieta de Quintiliano, 1</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:AdditionalInformationParty>
+        <cac:DocumentProviderParty>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno Local del Ayuntamiento de Calahorra</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Calahorra</cbc:CityName>
+                <cbc:PostalZone>26500</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Glorieta de Quintiliano, 1</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:DocumentProviderParty>
+        <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://contrataciondelestado.es</cbc:EndpointID>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno Local del Ayuntamiento de Calahorra</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Calahorra</cbc:CityName>
+                <cbc:PostalZone>26500</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Glorieta de Quintiliano, 1</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:TenderRecipientParty>
+        <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MON">2</cbc:DurationMeasure>
+        </cac:TenderValidityPeriod>
+        <cac:AppealTerms>
+            <cac:AppealReceiverParty>
+                <cac:PartyName>
+                    <cbc:Name>Ayuntamiento de Calahorra</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                    <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Calahorra</cbc:CityName>
+                    <cbc:PostalZone>26500</cbc:PostalZone>
+                    <cbc:CountrySubentity>La Rioja</cbc:CountrySubentity>
+                    <cbc:CountrySubentityCode listVersionID="2.12" name="La Rioja" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES230</cbc:CountrySubentityCode>
+                    <cac:AddressLine>
+                        <cbc:Line>Glorieta de Quintiliano s/n</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:PostalAddress>
+                <cac:Contact>
+                    <cbc:Telephone>941105052</cbc:Telephone>
+                    <cbc:ElectronicMail>contratacion@calahorra.es</cbc:ElectronicMail>
+                </cac:Contact>
+            </cac:AppealReceiverParty>
+        </cac:AppealTerms>
+        <cac:Language>
+            <cbc:ID>es</cbc:ID>
+        </cac:Language>
+        <cac:InvoicingTerms>
+            <cbc:ElectronicInvoicingIndicator>true</cbc:ElectronicInvoicingIndicator>
+        </cac:InvoicingTerms>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+        <cbc:Description>Contrato menor con un único criterio de adjudicación, conforme consta en el Pliego de Prescripciones Técnicas y en la Memoria-justificación del contrato</cbc:Description>
+        <cbc:ProcedureCode listVersionID="2.08" name="Contrato menor" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderingProcessCode-2.08.gc">6</cbc:ProcedureCode>
+        <cbc:UrgencyCode listVersionID="2006" name="Ordinaria" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/DiligenceTypeCode-1.04.gc">1</cbc:UrgencyCode>
+        <cbc:ExpenseCode listVersionID="2006" name="Ordinaria" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/ExpenseTypeCode-1.04.gc">1</cbc:ExpenseCode>
+        <cbc:ContractingSystemCode listVersionID="2.08" name="No aplica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractingSystemTypeCode-2.08.gc">0</cbc:ContractingSystemCode>
+        <cbc:SubmissionMethodCode listVersionID="2006" name="Electrónica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/TenderDeliveryCode-1.04.gc">1</cbc:SubmissionMethodCode>
+        <cbc:CandidateReductionConstraintIndicator>false</cbc:CandidateReductionConstraintIndicator>
+        <cbc:GovernmentProcurementAgreementConstraintIndicator>false</cbc:GovernmentProcurementAgreementConstraintIndicator>
+        <cbc:OverThresholdIndicator>false</cbc:OverThresholdIndicator>
+        <cac:DocumentAvailabilityPeriod>
+            <cbc:EndDate>2026-03-20+01:00</cbc:EndDate>
+            <cbc:EndTime>23:59:00.000</cbc:EndTime>
+        </cac:DocumentAvailabilityPeriod>
+        <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-03-20+01:00</cbc:EndDate>
+            <cbc:EndTime>23:59:00.000</cbc:EndTime>
+            <cbc:Description>Durante el plazo de 7 días naturales desde la publicación del anuncio en el perfil de contratante del Ayuntamiento de Calahorra (publicado en la Plataforma de Contratación del Sector Público, a través de la cual se realiza la licitación electrónica).  El plazo de presentación de proposiciones finalizará a las 23,59 horas de la fecha señalada</cbc:Description>
+        </cac:TenderSubmissionDeadlinePeriod>
+        <cac:AdditionalDocumentReference>
+            <cbc:ID>Detalle_Licitacion</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>Detalle_Licitacion</cbc:UUID>
+            <cbc:DocumentTypeCode listVersionID="2.11" name="Documento de detalle del Expediente publicado en la Plataforma" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.11/TenderingDocumentTypeCode-2.11.gc">LINK_EXP_PLACE</cbc:DocumentTypeCode>
+            <cac:Attachment>
+                <cac:ExternalReference>
+                    <cbc:URI>https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&amp;idEvl=9ogJtZfRfbn10HRJw8TEnQ%3D%3D</cbc:URI>
+                </cac:ExternalReference>
+            </cac:Attachment>
+        </cac:AdditionalDocumentReference>
+        <cac:OpenTenderEvent>
+            <cbc:IdentificationID>Apertura sobre único</cbc:IdentificationID>
+            <cbc:OccurrenceDate>2026-03-23+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>08:30:00.000</cbc:OccurrenceTime>
+            <cbc:TypeCode listVersionID="2.09" name="Apertura sobre oferta económica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/EventTypeCode-2.09.gc">4</cbc:TypeCode>
+            <cbc:Description>el día siguiente al de finalización del plazo de presentación de ofertas, salvo que por cuestión de agenda se determine otro día distinto</cbc:Description>
+            <cac:OccurrenceLocation>
+                <cbc:Description>Servicio de Contratación, Casa Consistorial</cbc:Description>
+                <cac:Address>
+                    <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Calahorra</cbc:CityName>
+                    <cbc:PostalZone>26500</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Glorieta de Quintiliano s/n</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:OccurrenceLocation>
+            <cac:AttendanceConditions>
+                <cbc:AttendanceRestrictionCode listVersionID="2.05" name="Privado" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/AttendanceRestrictionCode-2.05.gc">2</cbc:AttendanceRestrictionCode>
+            </cac:AttendanceConditions>
+        </cac:OpenTenderEvent>
+        <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+        </cac:AuctionTerms>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+        <cbc:Name>Contrato menor de suministro e instalación de climatización del espacio inmersivo en el edificio del Yacimiento de La Clínica, en desarrollo del PSTD Calahorra Enogastronómica correspondiente al PTSTD La Rioja en el marco del PRTR, financiado por la UE – Nextgeneration EU</cbc:Name>
+        <cbc:Description>suministro e instalación de climatización del espacio inmersivo en el edificio del Yacimiento de La Clínica, en desarrollo del Plan de Sostenibilidad Turística en Destino “Calahorra Enogastronómica” correspondiente al Plan Territorial de Sostenibilidad Turística en Destino La Rioja en el marco del Plan de Recuperación, Transformación y Resiliencia (PRTR), financiado por la Unión Europea – Nextgeneration EU –</cbc:Description>
+        <cbc:TypeCode listVersionID="2.08" name="Suministros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">1</cbc:TypeCode>
+        <cbc:SubTypeCode listVersionID="2006" name="Adquisición" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/GoodsContractCode-1.04.gc">2</cbc:SubTypeCode>
+        <cbc:MixContractIndicator>false</cbc:MixContractIndicator>
+        <cac:BudgetAmount>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">4818</cbc:EstimatedOverallContractAmount>
+            <cbc:TotalAmount currencyID="EUR">5829.78</cbc:TotalAmount>
+            <cbc:TaxExclusiveAmount currencyID="EUR">4818</cbc:TaxExclusiveAmount>
+        </cac:BudgetAmount>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Unidades de climatización." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">42512300</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Equipos de refrigeración y ventilación." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">42500000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RealizedLocation>
+            <cbc:Description>Yacimiento de La Clínica en Calahorra</cbc:Description>
+            <cbc:Conditions>Las establecidas en el PPT</cbc:Conditions>
+            <cbc:CountrySubentity>La Rioja</cbc:CountrySubentity>
+            <cbc:CountrySubentityCode listVersionID="2.12" name="La Rioja" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES230</cbc:CountrySubentityCode>
+            <cac:Address>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Calahorra </cbc:CityName>
+                <cbc:PostalZone>26500</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Calle Eras</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:Address>
+        </cac:RealizedLocation>
+        <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MON">1</cbc:DurationMeasure>
+            <cbc:Description>suministro, instalación y puesta en funcionamiento de un sistema de climatización tipo multisplit, incluyendo los trabajos auxiliares necesarios para su correcta integración en el edificio, con operaciones de suministro de equipos, instalación de unidades interior y exterior, conexión de circuitos frigoríficos y eléctricos y comprobación de funcionamiento</cbc:Description>
+        </cac:PlannedPeriod>
+        <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>0</cbc:MaximumNumberNumeric>
+        </cac:ContractExtension>
+    </cac:ProcurementProject>
+</ContractNotice>

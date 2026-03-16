@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ContractNotice xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns="urn:dgpe:names:draft:codice:schema:xsd:ContractNotice-2" xmlns:cac-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonAggregateComponents-2" xmlns:cbc-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonBasicComponents-2">
+    <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+    <cbc:CustomizationID>CODICE 2.8.0</cbc:CustomizationID>
+    <cbc:ProfileID>CiP 2.1</cbc:ProfileID>
+    <cbc:ID>0000018487107</cbc:ID>
+    <cbc:UUID>2026-001778419</cbc:UUID>
+    <cbc:ContractFolderID>C2025-00047</cbc:ContractFolderID>
+    <cbc:IssueDate>2026-03-13+01:00</cbc:IssueDate>
+    <cbc:IssueTime>09:14:25.871</cbc:IssueTime>
+    <cac:ContractingParty>
+        <cbc:ContractingPartyTypeCode listVersionID="2.10" name="Autoridad estatal" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ContractingAuthorityCode-2.10.gc">1</cbc:ContractingPartyTypeCode>
+        <cbc:ActivityCode listVersionID="2.10" name="Servicios públicos generales" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ContractingAuthorityActivityCode-2.10.gc">1</cbc:ActivityCode>
+        <cbc:ActivityCode listVersionID="2.10" name="Actividades portuarias" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/ContractingAuthorityActivityCode-2.10.gc">105</cbc:ActivityCode>
+        <cbc:BuyerProfileURIID>https://contrataciondelestado.es/wps/poc?uri=deeplink:perfilContratante&amp;idBp=BGAfT1s%2BCl4QK2TEfXGy%2BA%3D%3D</cbc:BuyerProfileURIID>
+        <cac:Party>
+            <cbc:WebsiteURI>http://www.puertosdetenerife.org</cbc:WebsiteURI>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="ID_PLATAFORMA">10874620131222</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="NIF">Q3867002B</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyName>
+                <cbc:Name>Consejo de Administración de la Autoridad Portuaria de Santa Cruz de Tenerife</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                <cbc:PostalZone>38001</cbc:PostalZone>
+                <cbc:CountrySubentity>Canarias</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Canarias" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES70</cbc:CountrySubentityCode>
+                <cac:AddressLine>
+                    <cbc:Line>Avda. Francisco la Roche, 49</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:Contact>
+                <cbc:Name>Consejo de Administración de la Autoridad Portuaria de Santa Cruz de Tenerife</cbc:Name>
+                <cbc:Telephone>+34 922605455</cbc:Telephone>
+                <cbc:ElectronicMail>contratacion@puertosdetenerife.org</cbc:ElectronicMail>
+            </cac:Contact>
+            <cac:Person>
+                <cbc:JobTitle>PRESIDENTE</cbc:JobTitle>
+            </cac:Person>
+        </cac:Party>
+    </cac:ContractingParty>
+    <cac:TenderingTerms>
+        <cbc:VariantConstraintIndicator>true</cbc:VariantConstraintIndicator>
+        <cbc:PriceRevisionFormulaDescription>La fórmula establecida en el apratado F) del cuadro de características del PCAP</cbc:PriceRevisionFormulaDescription>
+        <cbc:FundingProgramCode listVersionID="2.08" name="Financiación con fondos de la UE" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/FundingProgramCode-2.08.gc">EU</cbc:FundingProgramCode>
+        <cbc:FundingProgramCode listVersionID="2.08" name="Fondo Europeo de Desarrollo Regional" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/FundingProgramCode-2.08.gc">FEDER</cbc:FundingProgramCode>
+        <cbc:FundingProgram>Este proyecto es susceptible de ser cofinanciado al 85% con FONDOS FEDER DE LA UNIÓN EUROPEA, EN EL PROGRAMA OPERATIVO PLURIANUAL DE ESPAÑA (POPE) DEL PERIODO DE PROGRAMACIÓN 2021-2027.</cbc:FundingProgram>
+        <cbc:EcatalogIndicator>false</cbc:EcatalogIndicator>
+        <cbc:EorderingIndicator>true</cbc:EorderingIndicator>
+        <cbc:EpaymentMeansIndicator>true</cbc:EpaymentMeansIndicator>
+        <cbc:ProcurementNationalLegislationCode listVersionID="2.08" name="RDL 3/2020" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ProcurementNationalLegislationCode-2.08.gc">1</cbc:ProcurementNationalLegislationCode>
+        <cbc:CVDScopeCode listVersionID="2.10" name="No aplica la Directiva de Vehículos Limpios" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/CVDScope-2.10.gc">no-CVD</cbc:CVDScopeCode>
+        <cac:RequiredFinancialGuarantee>
+            <cbc:GuaranteeTypeCode listVersionID="2006" name="Definitiva" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/GuaranteeTypeCode-1.04.gc">2</cbc:GuaranteeTypeCode>
+            <cbc:AmountRate>5</cbc:AmountRate>
+        </cac:RequiredFinancialGuarantee>
+        <cac:ProcurementLegislationDocumentReference>
+            <cbc:ID>2014/25/EU</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>2014/25/EU</cbc:UUID>
+        </cac:ProcurementLegislationDocumentReference>
+        <cac:PaymentTerms>
+            <cbc:Note>Certificación mensual</cbc:Note>
+        </cac:PaymentTerms>
+        <cac:TendererQualificationRequest>
+            <cbc:CompanyLegalFormCode listName="required" listVersionID="2.10" name="Falso" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.10/Required-2.10.gc">false</cbc:CompanyLegalFormCode>
+            <cac:RequiredBusinessClassificationScheme>
+                <cbc:ID>RequiredBusinessProfileCode</cbc:ID>
+                <cbc:Name>RequiredBusinessProfileCode</cbc:Name>
+                <cbc:AgencyName>Dirección General del Patrimonio del Estado</cbc:AgencyName>
+                <cbc:VersionID>2.05</cbc:VersionID>
+                <cbc:URI>http://contrataciondelestado.es/codice/cl/2.05/RequiredBusinessProfileCode-2.05.gc</cbc:URI>
+                <cbc:SchemeURI>urn:dgpe:names:specification:codice:codelist:gc:RequiredBusinessProfileCode-2.05</cbc:SchemeURI>
+                <cbc:LanguageID>Español</cbc:LanguageID>
+                <cac:ClassificationCategory>
+                    <cbc:Name>Elemento RequiredBusinessProfileCode</cbc:Name>
+                    <cbc:CodeValue>F1-2</cbc:CodeValue>
+                    <cbc:Description>Dragados.(superior a 150.000 euros e inferior o igual a 360.000 euros)</cbc:Description>
+                </cac:ClassificationCategory>
+                <cac:ClassificationCategory>
+                    <cbc:Name>Elemento RequiredBusinessProfileCode</cbc:Name>
+                    <cbc:CodeValue>F2-5</cbc:CodeValue>
+                    <cbc:Description>Escolleras.(superior a 2.400.000 euros e inferior o igual a cinco millones de euros)</cbc:Description>
+                </cac:ClassificationCategory>
+                <cac:ClassificationCategory>
+                    <cbc:Name>Elemento RequiredBusinessProfileCode</cbc:Name>
+                    <cbc:CodeValue>F4-6</cbc:CodeValue>
+                    <cbc:Description>Con cajones de hormigón armado.(superior a cinco millones de euros)</cbc:Description>
+                </cac:ClassificationCategory>
+            </cac:RequiredBusinessClassificationScheme>
+            <cac:TechnicalEvaluationCriteria>
+                <cbc:EvaluationCriteriaTypeCode listVersionID="2.0" name="Maquinaria, material y equipo técnico para la ejecución del contrato" listURI="http://contrataciondelestado.es/codice/cl/2.0/TechnicalCapabilityTypeCode-2.0.gc">OXR-MEDIOS</cbc:EvaluationCriteriaTypeCode>
+                <cbc:Description>Al margen de acreditar su solvencia por los medios indicados o, en su caso, su clasificación, los licitadores deberán asumir el compromiso de adscribir a la ejecución del contrato los medios personales y materiales suficientes para llevarla a cabo adecuadamente y que se indican a continuación.</cbc:Description>
+            </cac:TechnicalEvaluationCriteria>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="Capacidad de obrar" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">1</cbc:RequirementTypeCode>
+                <cbc:Description>Cumplimentar el modelo de DEUC que se adjunta con los pliegos.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="No prohibición para contratar" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">2</cbc:RequirementTypeCode>
+                <cbc:Description>Cumplimentar el modelo de DEUC que se adjunta con los pliegos.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="No estar incurso en incompatibilidades" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">3</cbc:RequirementTypeCode>
+                <cbc:Description>Cumplimentar el modelo de DEUC que se adjunta con los pliegos.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="Cumplimiento con las obligaciones con la Seguridad Social" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">4</cbc:RequirementTypeCode>
+                <cbc:Description>Cumplimentar el modelo de DEUC que se adjunta con los pliegos.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="Cumplimiento con las obligaciones tributarias" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">5</cbc:RequirementTypeCode>
+                <cbc:Description>Cumplimentar el modelo de DEUC que se adjunta con los pliegos.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode listVersionID="2.08" name="No haber sido adjudicatario de los contratos anteriores de dirección y/o supervisión de la obra." languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc">7</cbc:RequirementTypeCode>
+                <cbc:Description>Cumplimentar el modelo de DEUC que se adjunta con los pliegos.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+        </cac:TendererQualificationRequest>
+        <cac:AllowedSubcontractTerms>
+            <cbc:Description>Se admite. Se detallan las condiciones en el PCAP.</cbc:Description>
+        </cac:AllowedSubcontractTerms>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 1. Documentación acreditativa del cumplimiento de los requisitos previos</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Documentación administrativa" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">1</cbc:TenderEnvelopeTypeCode>
+            <cbc:OpenEventID>Apertura sobre administrativo</cbc:OpenEventID>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 2. Criterios no cuantificables mediante la mera aplicación de fórmulas</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta técnica o evaluable mediante juicio de valor" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">2</cbc:TenderEnvelopeTypeCode>
+            <cbc:OpenEventID>Apertura sobre oferta técnica</cbc:OpenEventID>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Documentación relativa a los criterios de adjudicación evaluables mediante juicio de valor</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Documentación señalada en el Anexo 2 del PCAP</cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>Sobre 3. Criterios cuantificables mediante la mera aplicación de fórmulas</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:OpenEventID>Apertura sobre oferta económica</cbc:OpenEventID>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Proposición Económica</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Redactada según anexo 3 del PCAP</cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Documentación relativa al resto de criterios de adjudicación evaluables mediante formulas</cbc:ID>
+                    <cbc:DocumentTypeCode listVersionID="2.07" name="Documento requerido" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Documentación señalada en el Anexo 4 del PCAP</cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:ContractExecutionRequirement>
+            <cbc:Name>Consideraciones de tipo social</cbc:Name>
+            <cbc:ExecutionRequirementCode listVersionID="2.08" name="Consideraciones de tipo social" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ExecutionRequirementCode-2.08.gc">2</cbc:ExecutionRequirementCode>
+            <cbc:Description>Condiciones detalladas en el Cuadro de Características.</cbc:Description>
+        </cac:ContractExecutionRequirement>
+        <cac:AwardingTerms>
+            <cac:AwardingCriteria>
+                <cbc:ID>1773310631588</cbc:ID>
+                <cbc:AwardingCriteriaTypeCode listVersionID="2.0" name="Cuantificables Automáticamente" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.0/AwardingCriteriaCode-2.0.gc">OBJ</cbc:AwardingCriteriaTypeCode>
+                <cbc:Description>Criterios cuantificables mediante la mera aplicación de fórmulas</cbc:Description>
+                <cbc:AwardingCriteriaSubTypeCode listVersionID="2.09" name="Otros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/AwardingCriteriaAutomaticallyEvaluatedSubTypeCode-2.09.gc">2</cbc:AwardingCriteriaSubTypeCode>
+                <cbc:WeightNumeric>51</cbc:WeightNumeric>
+                <cbc:StructuredValueIndicator>false</cbc:StructuredValueIndicator>
+            </cac:AwardingCriteria>
+            <cac:AwardingCriteria>
+                <cbc:ID>1773310631588</cbc:ID>
+                <cbc:AwardingCriteriaTypeCode listVersionID="2.0" name="Juicio de Valor" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.0/AwardingCriteriaCode-2.0.gc">SUBJ</cbc:AwardingCriteriaTypeCode>
+                <cbc:Description>Criterios no cuantificables mediante la mera aplicación de fórmulas</cbc:Description>
+                <cbc:AwardingCriteriaSubTypeCode listVersionID="2.09" name="Otros" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/AwardingCriteriaNotAutomaticallyEvaluatedSubTypeCode-2.09.gc">99</cbc:AwardingCriteriaSubTypeCode>
+                <cbc:WeightNumeric>49</cbc:WeightNumeric>
+                <cbc:StructuredValueIndicator>false</cbc:StructuredValueIndicator>
+            </cac:AwardingCriteria>
+        </cac:AwardingTerms>
+        <cac:AdditionalInformationParty>
+            <cac:PartyName>
+                <cbc:Name>Consejo de Administración de la Autoridad Portuaria de Santa Cruz de Tenerife</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                <cbc:PostalZone>38001</cbc:PostalZone>
+                <cbc:CountrySubentity>Canarias</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Canarias" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES70</cbc:CountrySubentityCode>
+                <cac:AddressLine>
+                    <cbc:Line>Avda. Francisco la Roche, 49</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:AdditionalInformationParty>
+        <cac:DocumentProviderParty>
+            <cac:PartyName>
+                <cbc:Name>Autoridad Portuaria de Santa Cruz de Tenerife</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                <cbc:PostalZone>38001</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Avda. Francisco de la Roche, 49</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:Contact>
+                <cbc:Telephone>+34 922605406</cbc:Telephone>
+            </cac:Contact>
+        </cac:DocumentProviderParty>
+        <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://contrataciondelestado.es</cbc:EndpointID>
+            <cac:PartyName>
+                <cbc:Name>Autoridad Portuaria de Santa Cruz de Tenerife</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                <cbc:PostalZone>38001</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Avda. Francisco de la Roche, 49</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:Contact>
+                <cbc:Telephone>+34 922605406</cbc:Telephone>
+            </cac:Contact>
+        </cac:TenderRecipientParty>
+        <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MON">2</cbc:DurationMeasure>
+        </cac:TenderValidityPeriod>
+        <cac:AppealTerms>
+            <cac:PresentationPeriod>
+                <cbc:Description>El plazo para presentar el recurso especial en materia de contratación es de 15 días hábiles. Dicho plazo se computará a partir del día siguiente de la publicación en el perfil del contratante de las actuaciones o actos de conformidad al art. 44 de la Ley 9/2017 de Contratos del Sector Público.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+                <cac:PartyName>
+                    <cbc:Name>Autoridad Portuaria de Santa Cruz de Tenerife</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                    <cbc:AddressFormatCode listVersionID="2007" name="Spanish Format" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                    <cbc:PostalZone>38001</cbc:PostalZone>
+                    <cbc:CountrySubentityCode listVersionID="2.12" name="Tenerife" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES709</cbc:CountrySubentityCode>
+                    <cac:AddressLine>
+                        <cbc:Line>Avda. Francisco de la Roche, 49</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:PostalAddress>
+                <cac:Contact>
+                    <cbc:Telephone>+34 922605406</cbc:Telephone>
+                </cac:Contact>
+            </cac:AppealReceiverParty>
+        </cac:AppealTerms>
+        <cac:InvoicingTerms>
+            <cbc:ElectronicInvoicingIndicator>true</cbc:ElectronicInvoicingIndicator>
+        </cac:InvoicingTerms>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+        <cbc:Description>El objeto es la ejecución del cierre del muelle de Ribera del Puerto de Granadilla, de 543,31 m longitud. La longitud del muelle es la correspondiente a 11 cajones de 48,25 m de eslora cimentados a la cota -18,00 m, un cierre de hormigón sumergido de 5,78 m en el extremo NE, y un cierre de hormigón sumergido también de 5,78 m en el extremo SO. Además de la habilitación del pavimento.</cbc:Description>
+        <cbc:ProcedureCode listVersionID="2.08" name="Abierto" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderingProcessCode-2.08.gc">1</cbc:ProcedureCode>
+        <cbc:UrgencyCode listVersionID="2006" name="Ordinaria" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/DiligenceTypeCode-1.04.gc">1</cbc:UrgencyCode>
+        <cbc:ExpenseCode listVersionID="2006" name="Ordinaria" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/ExpenseTypeCode-1.04.gc">1</cbc:ExpenseCode>
+        <cbc:ContractingSystemCode listVersionID="2.08" name="No aplica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractingSystemTypeCode-2.08.gc">0</cbc:ContractingSystemCode>
+        <cbc:SubmissionMethodCode listVersionID="2006" name="Electrónica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/TenderDeliveryCode-1.04.gc">1</cbc:SubmissionMethodCode>
+        <cbc:GovernmentProcurementAgreementConstraintIndicator>false</cbc:GovernmentProcurementAgreementConstraintIndicator>
+        <cbc:OverThresholdIndicator>true</cbc:OverThresholdIndicator>
+        <cac:DocumentAvailabilityPeriod>
+            <cbc:EndDate>2026-04-17+02:00</cbc:EndDate>
+            <cbc:EndTime>23:59:00.000</cbc:EndTime>
+        </cac:DocumentAvailabilityPeriod>
+        <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-04-17+02:00</cbc:EndDate>
+            <cbc:EndTime>23:59:00.000</cbc:EndTime>
+            <cbc:Description>Plazo mínimo de presentación de ofertas: TREINTA Y CINCO (35) días naturales.</cbc:Description>
+        </cac:TenderSubmissionDeadlinePeriod>
+        <cac:NoticeDocumentReference>
+            <cbc:ID schemeName="ENVIO_CN_DOUE">2026-001778419</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>2026-001778419</cbc:UUID>
+            <cbc:IssueDate>2026-03-12+01:00</cbc:IssueDate>
+            <cbc:DocumentTypeCode listVersionID="2.11" name="Envío de Anuncio de Licitación al DOUE" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.11/TenderingDocumentTypeCode-2.11.gc">ENVIO_CN_DOUE</cbc:DocumentTypeCode>
+        </cac:NoticeDocumentReference>
+        <cac:AdditionalDocumentReference>
+            <cbc:ID>Detalle_Licitacion</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>Detalle_Licitacion</cbc:UUID>
+            <cbc:DocumentTypeCode listVersionID="2.11" name="Documento de detalle del Expediente publicado en la Plataforma" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.11/TenderingDocumentTypeCode-2.11.gc">LINK_EXP_PLACE</cbc:DocumentTypeCode>
+            <cac:Attachment>
+                <cac:ExternalReference>
+                    <cbc:URI>https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&amp;idEvl=XsSr%2BSUWdZczjChw4z%2FXvw%3D%3D</cbc:URI>
+                </cac:ExternalReference>
+            </cac:Attachment>
+        </cac:AdditionalDocumentReference>
+        <cac:OpenTenderEvent>
+            <cbc:IdentificationID>Apertura sobre administrativo</cbc:IdentificationID>
+            <cbc:OccurrenceDate>2026-04-22+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00.000</cbc:OccurrenceTime>
+            <cbc:TypeCode listVersionID="2.09" name="Apertura sobre administrativo" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/EventTypeCode-2.09.gc">1</cbc:TypeCode>
+            <cac:OccurrenceLocation>
+                <cbc:Description>APTF</cbc:Description>
+                <cbc:CountrySubentity>Canarias</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Canarias" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES70</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                    <cbc:PostalZone>38001</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Avda. Francisco de la Roche, 49</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:OccurrenceLocation>
+            <cac:AttendanceConditions>
+                <cbc:AttendanceRestrictionCode listVersionID="2.05" name="Privado" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/AttendanceRestrictionCode-2.05.gc">2</cbc:AttendanceRestrictionCode>
+            </cac:AttendanceConditions>
+        </cac:OpenTenderEvent>
+        <cac:OpenTenderEvent>
+            <cbc:IdentificationID>Apertura sobre oferta económica</cbc:IdentificationID>
+            <cbc:OccurrenceDate>2026-05-20+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00.000</cbc:OccurrenceTime>
+            <cbc:TypeCode listVersionID="2.09" name="Apertura sobre oferta económica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/EventTypeCode-2.09.gc">4</cbc:TypeCode>
+            <cac:OccurrenceLocation>
+                <cbc:Description>APTF</cbc:Description>
+                <cbc:CountrySubentity>Canarias</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Canarias" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES70</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                    <cbc:PostalZone>38001</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Avda. Francisco de la Roche, 49</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:OccurrenceLocation>
+            <cac:AttendanceConditions>
+                <cbc:AttendanceRestrictionCode listVersionID="2.05" name="Público" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/AttendanceRestrictionCode-2.05.gc">1</cbc:AttendanceRestrictionCode>
+            </cac:AttendanceConditions>
+        </cac:OpenTenderEvent>
+        <cac:OpenTenderEvent>
+            <cbc:IdentificationID>Apertura sobre oferta técnica</cbc:IdentificationID>
+            <cbc:OccurrenceDate>2026-04-29+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00.000</cbc:OccurrenceTime>
+            <cbc:TypeCode listVersionID="2.09" name="Apertura sobre oferta técnica" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/EventTypeCode-2.09.gc">2</cbc:TypeCode>
+            <cac:OccurrenceLocation>
+                <cbc:Description>APTF</cbc:Description>
+                <cbc:CountrySubentity>Canarias</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listVersionID="2.12" name="Canarias" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES70</cbc:CountrySubentityCode>
+                <cac:Address>
+                    <cbc:CityName>Santa Cruz de Tenerife</cbc:CityName>
+                    <cbc:PostalZone>38001</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Avda. Francisco de la Roche, 49</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:OccurrenceLocation>
+            <cac:AttendanceConditions>
+                <cbc:AttendanceRestrictionCode listVersionID="2.05" name="Privado" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/AttendanceRestrictionCode-2.05.gc">2</cbc:AttendanceRestrictionCode>
+            </cac:AttendanceConditions>
+        </cac:OpenTenderEvent>
+        <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+        </cac:AuctionTerms>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+        <cbc:Name>Cierre y habilitación del muelle de ribera del puerto de Granadilla</cbc:Name>
+        <cbc:Description>Cierre y habilitación del muelle de ribera del puerto de Granadilla</cbc:Description>
+        <cbc:TypeCode listVersionID="2.08" name="Obras" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc">3</cbc:TypeCode>
+        <cbc:SubTypeCode listVersionID="2006" name="Obras hidráulicas" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/WorksContractCode-1.04.gc">4524</cbc:SubTypeCode>
+        <cbc:MixContractIndicator>false</cbc:MixContractIndicator>
+        <cac:BudgetAmount>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">39705118.52</cbc:EstimatedOverallContractAmount>
+            <cbc:TotalAmount currencyID="EUR">39311011.62</cbc:TotalAmount>
+            <cbc:TaxExclusiveAmount currencyID="EUR">36739263.2</cbc:TaxExclusiveAmount>
+        </cac:BudgetAmount>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listVersionID="2.04" name="Obras marítimas." listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc">45244000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RealizedLocation>
+            <cbc:Description>Puerto de Granadilla, Santa Cruz de Tenerife</cbc:Description>
+            <cbc:CountrySubentity>España</cbc:CountrySubentity>
+            <cbc:CountrySubentityCode listVersionID="2.12" name="España" listURI="http://contrataciondelestado.es/codice/cl/2.12/NUTS-2024.gc">ES</cbc:CountrySubentityCode>
+            <cac:Address>
+                <cac:Country>
+                    <cbc:IdentificationCode listVersionID="2.08" name="España" languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:Address>
+        </cac:RealizedLocation>
+        <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MON">20</cbc:DurationMeasure>
+        </cac:PlannedPeriod>
+        <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>0</cbc:MaximumNumberNumeric>
+            <cac:OptionValidityPeriod>
+                <cbc:Description>Contrato no sujeto a prórrogas</cbc:Description>
+            </cac:OptionValidityPeriod>
+        </cac:ContractExtension>
+    </cac:ProcurementProject>
+</ContractNotice>

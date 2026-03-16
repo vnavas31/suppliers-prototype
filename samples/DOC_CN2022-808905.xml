@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ContractNotice xmlns="urn:dgpe:names:draft:codice:schema:xsd:ContractNotice-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:cbc-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonBasicComponents-2" xmlns:cac-place-ext="urn:dgpe:names:draft:codice-place-ext:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2">
+    <cbc:UBLVersionID>2.1</cbc:UBLVersionID>
+    <cbc:CustomizationID>CODICE 2.06</cbc:CustomizationID>
+    <cbc:ProfileID>CiP 1.13</cbc:ProfileID>
+    <cbc:ID>0000008755458</cbc:ID>
+    <cbc:UUID>2022-808905</cbc:UUID>
+    <cbc:ContractFolderID>POSDC12/2022</cbc:ContractFolderID>
+    <cbc:IssueDate>2022-05-31+02:00</cbc:IssueDate>
+    <cbc:IssueTime>12:18:52.422+02:00</cbc:IssueTime>
+    <cac:ContractingParty>
+        <cbc:ContractingPartyTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/ContractingAuthorityCode-1.04.gc" listVersionID="2006" name="Administración Local">3</cbc:ContractingPartyTypeCode>
+        <cbc:ActivityCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/ContractingAuthorityActivityCode-2.05.gc" listVersionID="2.05" name="Servicios de Carácter General">22</cbc:ActivityCode>
+        <cbc:BuyerProfileURIID>https://contrataciondelestado.es/wps/poc?uri=deeplink:perfilContratante&amp;idBp=gbNKnyjavTwQK2TEfXGy%2BA%3D%3D</cbc:BuyerProfileURIID>
+        <cac:Party>
+            <cbc:WebsiteURI>http://www.algemesi.es</cbc:WebsiteURI>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="ID_PLATAFORMA">30981290141889</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="NIF">P4602900E</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno del Ayuntamiento de Algemesí</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc" listVersionID="2007" name="Spanish Format">1</cbc:AddressFormatCode>
+                <cbc:CityName>Algemesí</cbc:CityName>
+                <cbc:PostalZone>46680</cbc:PostalZone>
+                <cbc:CountrySubentity>Valencia/València</cbc:CountrySubentity>
+                <cbc:CountrySubentityCode listURI="http://contrataciondelestado.es/codice/cl/2.08/NUTS-2021.gc" listVersionID="2.08" name="Valencia/València">ES523</cbc:CountrySubentityCode>
+                <cac:AddressLine>
+                    <cbc:Line>Plaza Mayor, 3</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:Contact>
+                <cbc:Name>Junta de Gobierno del Ayuntamiento de Algemesí</cbc:Name>
+                <cbc:Telephone>+34 962019000</cbc:Telephone>
+                <cbc:Telefax>+34 962019001</cbc:Telefax>
+                <cbc:ElectronicMail>depcontractacio@algemesi.net</cbc:ElectronicMail>
+            </cac:Contact>
+            <cac:Person>
+                <cbc:JobTitle>Alcaldesa-Presidenta</cbc:JobTitle>
+            </cac:Person>
+        </cac:Party>
+    </cac:ContractingParty>
+    <cac:TenderingTerms>
+        <cbc:RequiredCurriculaIndicator>false</cbc:RequiredCurriculaIndicator>
+        <cbc:VariantConstraintIndicator>false</cbc:VariantConstraintIndicator>
+        <cbc:FundingProgramCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/FundingProgramCode-2.08.gc" listVersionID="2.08" name="No hay financiación con fondos de la UE">NO-EU</cbc:FundingProgramCode>
+        <cbc:EcatalogIndicator>false</cbc:EcatalogIndicator>
+        <cbc:ProcurementNationalLegislationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ProcurementNationalLegislationCode-2.08.gc" listVersionID="2.08" name="Ley 9/2017">3</cbc:ProcurementNationalLegislationCode>
+        <cac:RequiredFinancialGuarantee>
+            <cbc:GuaranteeTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/GuaranteeTypeCode-1.04.gc" listVersionID="2006" name="Definitiva">2</cbc:GuaranteeTypeCode>
+            <cbc:AmountRate>5</cbc:AmountRate>
+        </cac:RequiredFinancialGuarantee>
+        <cac:ProcurementLegislationDocumentReference>
+            <cbc:ID>2014/24/EU</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>2014/24/EU</cbc:UUID>
+        </cac:ProcurementLegislationDocumentReference>
+        <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc" listVersionID="2.08" name="Capacidad de obrar">1</cbc:RequirementTypeCode>
+                <cbc:Description>Según la cláusula 2 del Pliego de Cláusulas Administrativas Particulares</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc" listVersionID="2.08" name="No prohibición para contratar">2</cbc:RequirementTypeCode>
+                <cbc:Description>Según la cláusula 2 del Pliego de Cláusulas Administrativas Particulares</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc" listVersionID="2.08" name="Cumplimiento con las obligaciones con la Seguridad Social">4</cbc:RequirementTypeCode>
+                <cbc:Description>Según la cláusula 2 del Pliego de Cláusulas Administrativas Particulares</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc" listVersionID="2.08" name="Cumplimiento con las obligaciones tributarias">5</cbc:RequirementTypeCode>
+                <cbc:Description>Según la cláusula 2 del Pliego de Cláusulas Administrativas Particulares</cbc:Description>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+                <cbc:RequirementTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/DeclarationTypeCode-2.08.gc" listVersionID="2.08" name="Estar prerregistrado en el ROLECE, y declarar que no ha habido modificaciones en los datos registrados">8</cbc:RequirementTypeCode>
+                <cbc:Description>Según la cláusula 2ª del Pliego de Cláusulas Administrativas Particulares</cbc:Description>
+            </cac:SpecificTendererRequirement>
+        </cac:TendererQualificationRequest>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>A</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc" listVersionID="2.08" name="Documentación administrativa y criterios sometidos a juicios de valor">11</cbc:TenderEnvelopeTypeCode>
+            <cbc:OpenEventID>ARCHIVO ELECTRÓNICO A. Documentación administrativa y criterios juicio de valor </cbc:OpenEventID>
+            <cbc:Description>- DEUC
+- Memoria técnica
+</cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Memoria técnica </cbc:ID>
+                    <cbc:DocumentTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc" listVersionID="2.07" name="Documento requerido">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                    <cbc:Description>Adjuntar memoria técnica donde se detalle los requisitos de la solución propuesta y se demuestre el cumplimiento de los requisitos del pliego técnico.
+El técnico responsable del suministro, citará a los licitadores para que realicen una demo, en la que se pueda comprobar cualquiera de los requisitos establecidos en el PPT. </cbc:Description>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:TenderPreparation>
+            <cbc:TenderEnvelopeID>B</cbc:TenderEnvelopeID>
+            <cbc:TenderEnvelopeTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderEnvelopeTypeCode-2.08.gc" listVersionID="2.08" name="Oferta económica o evaluable mediante fórmulas">3</cbc:TenderEnvelopeTypeCode>
+            <cbc:OpenEventID>ARCHIVO ELECTRÓNICO B. Proposición económica y criterios automáticos </cbc:OpenEventID>
+            <cbc:Description>- Proposición económica</cbc:Description>
+            <cac:DocumentTenderRequirement>
+                <cbc:RequiredSignatureIndicator>true</cbc:RequiredSignatureIndicator>
+                <cbc:MandatoryIndicator>false</cbc:MandatoryIndicator>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Oferta económica</cbc:ID>
+                    <cbc:DocumentTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc" listVersionID="2.07" name="Documento requerido">DOC_REQUIRED</cbc:DocumentTypeCode>
+                    <cbc:DocumentType>PDF</cbc:DocumentType>
+                </cac:TemplateDocumentReference>
+                <cac:TemplateDocumentReference>
+                    <cbc:ID>Model_de_proposicio_economica.docx</cbc:ID>
+                    <cbc:DocumentTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.07/EvidenceDocumentTypeCode-2.07.gc" listVersionID="2.07" name="Plantilla">DOC_TEMPLATE</cbc:DocumentTypeCode>
+                </cac:TemplateDocumentReference>
+            </cac:DocumentTenderRequirement>
+        </cac:TenderPreparation>
+        <cac:ContractExecutionRequirement>
+            <cbc:Name>Consideraciones de tipo social</cbc:Name>
+            <cbc:ExecutionRequirementCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ExecutionRequirementCode-2.08.gc" listVersionID="2.08" name="Consideraciones de tipo social">2</cbc:ExecutionRequirementCode>
+            <cbc:Description>Según la cláusula 24 del Pliego de cláusulas Administrativas Particulares</cbc:Description>
+        </cac:ContractExecutionRequirement>
+        <cac:AwardingTerms>
+            <cbc:PrizeIndicator>false</cbc:PrizeIndicator>
+            <cbc:FollowupContractIndicator>false</cbc:FollowupContractIndicator>
+            <cbc:BindingOnBuyerIndicator>false</cbc:BindingOnBuyerIndicator>
+            <cac:AwardingCriteria>
+                <cbc:ID>1099388</cbc:ID>
+                <cbc:AwardingCriteriaTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.0/AwardingCriteriaCode-2.0.gc" listVersionID="2.0" name="Cuantificables Automáticamente">OBJ</cbc:AwardingCriteriaTypeCode>
+                <cbc:Description>Oferta económica</cbc:Description>
+                <cbc:Note>Según la cláusula 9ª del Pliego de Cláusulas Administrativas Particulares</cbc:Note>
+                <cbc:AwardingCriteriaSubTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/AwardingCriteriaAutomaticallyEvaluatedSubTypeCode-2.09.gc" listVersionID="2.09" name="Precio">1</cbc:AwardingCriteriaSubTypeCode>
+                <cbc:WeightNumeric>50</cbc:WeightNumeric>
+                <cbc:MaximumQuantity>50</cbc:MaximumQuantity>
+                <cbc:StructuredValueIndicator>false</cbc:StructuredValueIndicator>
+            </cac:AwardingCriteria>
+            <cac:AwardingCriteria>
+                <cbc:ID>1099387</cbc:ID>
+                <cbc:AwardingCriteriaTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.0/AwardingCriteriaCode-2.0.gc" listVersionID="2.0" name="Cuantificables Automáticamente">OBJ</cbc:AwardingCriteriaTypeCode>
+                <cbc:Description>Opción de compra</cbc:Description>
+                <cbc:Note>Según la cláusula 9ª del Pliego de Cláusulas Administrativas Particulares</cbc:Note>
+                <cbc:AwardingCriteriaSubTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/AwardingCriteriaAutomaticallyEvaluatedSubTypeCode-2.09.gc" listVersionID="2.09" name="Otros">2</cbc:AwardingCriteriaSubTypeCode>
+                <cbc:WeightNumeric>25</cbc:WeightNumeric>
+                <cbc:MaximumQuantity>25</cbc:MaximumQuantity>
+                <cbc:StructuredValueIndicator>false</cbc:StructuredValueIndicator>
+            </cac:AwardingCriteria>
+            <cac:AwardingCriteria>
+                <cbc:ID>1099386</cbc:ID>
+                <cbc:AwardingCriteriaTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.0/AwardingCriteriaCode-2.0.gc" listVersionID="2.0" name="Juicio de Valor">SUBJ</cbc:AwardingCriteriaTypeCode>
+                <cbc:Description>Juicio de valor</cbc:Description>
+                <cbc:Note>Según la cláusula 9ª del Pliego de Cláusulas Administrativas Particulares</cbc:Note>
+                <cbc:AwardingCriteriaSubTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/AwardingCriteriaNotAutomaticallyEvaluatedSubTypeCode-2.09.gc" listVersionID="2.09" name="Otros">99</cbc:AwardingCriteriaSubTypeCode>
+                <cbc:WeightNumeric>25</cbc:WeightNumeric>
+                <cbc:MaximumQuantity>25</cbc:MaximumQuantity>
+                <cbc:StructuredValueIndicator>false</cbc:StructuredValueIndicator>
+            </cac:AwardingCriteria>
+        </cac:AwardingTerms>
+        <cac:AdditionalInformationParty>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno del Ayuntamiento de Algemesí</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc" listVersionID="2007" name="Spanish Format">1</cbc:AddressFormatCode>
+                <cbc:CityName>Algemesí</cbc:CityName>
+                <cbc:PostalZone>46680</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Plaza Mayor, 3</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:AdditionalInformationParty>
+        <cac:DocumentProviderParty>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno del Ayuntamiento de Algemesí</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc" listVersionID="2007" name="Spanish Format">1</cbc:AddressFormatCode>
+                <cbc:CityName>Algemesí</cbc:CityName>
+                <cbc:PostalZone>46680</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Plaza Mayor, 3</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:DocumentProviderParty>
+        <cac:TenderRecipientParty>
+            <cac:PartyName>
+                <cbc:Name>Junta de Gobierno del Ayuntamiento de Algemesí</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:AddressFormatCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc" listVersionID="2007" name="Spanish Format">1</cbc:AddressFormatCode>
+                <cbc:CityName>Algemesí</cbc:CityName>
+                <cbc:PostalZone>46680</cbc:PostalZone>
+                <cac:AddressLine>
+                    <cbc:Line>Plaza Mayor, 3</cbc:Line>
+                </cac:AddressLine>
+                <cac:Country>
+                    <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:PostalAddress>
+        </cac:TenderRecipientParty>
+        <cac:Language>
+            <cbc:ID>ca-valencia</cbc:ID>
+        </cac:Language>
+        <cac:Language>
+            <cbc:ID>es</cbc:ID>
+        </cac:Language>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+        <cbc:ProcedureCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/TenderingProcessCode-2.08.gc" listVersionID="2.08" name="Abierto simplificado">9</cbc:ProcedureCode>
+        <cbc:UrgencyCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/DiligenceTypeCode-1.04.gc" listVersionID="2006" name="Ordinaria">1</cbc:UrgencyCode>
+        <cbc:ExpenseCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/ExpenseTypeCode-1.04.gc" listVersionID="2006" name="Ordinaria">1</cbc:ExpenseCode>
+        <cbc:ContractingSystemCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractingSystemTypeCode-2.08.gc" listVersionID="2.08" name="No aplica">0</cbc:ContractingSystemCode>
+        <cbc:SubmissionMethodCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/TenderDeliveryCode-1.04.gc" listVersionID="2006" name="Electrónica">1</cbc:SubmissionMethodCode>
+        <cbc:CandidateReductionConstraintIndicator>false</cbc:CandidateReductionConstraintIndicator>
+        <cbc:GovernmentProcurementAgreementConstraintIndicator>false</cbc:GovernmentProcurementAgreementConstraintIndicator>
+        <cbc:OverThresholdIndicator>false</cbc:OverThresholdIndicator>
+        <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2022-06-15+02:00</cbc:EndDate>
+            <cbc:EndTime>23:59:00+02:00</cbc:EndTime>
+            <cbc:Description>Tengan en cuenta el horario de la plataforma (L-J de 9 a 19h; V de 9 a15h)</cbc:Description>
+        </cac:TenderSubmissionDeadlinePeriod>
+        <cac:AdditionalDocumentReference>
+            <cbc:ID>Detalle_Licitacion</cbc:ID>
+            <cbc:CopyIndicator>false</cbc:CopyIndicator>
+            <cbc:UUID>Detalle_Licitacion</cbc:UUID>
+            <cbc:DocumentTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/TenderingDocumentTypeCode-2.09.gc" listVersionID="2.09" name="Documento de detalle del Expediente publicado en la Plataforma">LINK_EXP_PLACE</cbc:DocumentTypeCode>
+            <cac:Attachment>
+                <cac:ExternalReference>
+                    <cbc:URI>https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&amp;idEvl=knhbGX%2FF%2F63nSoTX3z%2F7wA%3D%3D</cbc:URI>
+                </cac:ExternalReference>
+            </cac:Attachment>
+        </cac:AdditionalDocumentReference>
+        <cac:OpenTenderEvent>
+            <cbc:IdentificationID>ARCHIVO ELECTRÓNICO A. Documentación administrativa y criterios juicio de valor </cbc:IdentificationID>
+            <cbc:OccurrenceDate>2022-06-16+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>12:00:00+02:00</cbc:OccurrenceTime>
+            <cbc:TypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/EventTypeCode-2.09.gc" listVersionID="2.09" name="Apertura oferta criterios juicio de valor (art. 159)">7</cbc:TypeCode>
+            <cac:OccurrenceLocation>
+                <cbc:Description>Ayuntamiento de Algemesí</cbc:Description>
+                <cac:Address>
+                    <cbc:AddressFormatCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc" listVersionID="2007" name="Spanish Format">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Algemesí</cbc:CityName>
+                    <cbc:PostalZone>46680</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Pl. Major, 3</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:OccurrenceLocation>
+            <cac:AttendanceConditions>
+                <cbc:AttendanceRestrictionCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/AttendanceRestrictionCode-2.05.gc" listVersionID="2.05" name="Privado">2</cbc:AttendanceRestrictionCode>
+            </cac:AttendanceConditions>
+        </cac:OpenTenderEvent>
+        <cac:OpenTenderEvent>
+            <cbc:IdentificationID>ARCHIVO ELECTRÓNICO B. Proposición económica y criterios automáticos </cbc:IdentificationID>
+            <cbc:OccurrenceDate>2022-06-27+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>12:30:00+02:00</cbc:OccurrenceTime>
+            <cbc:TypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/EventTypeCode-2.09.gc" listVersionID="2.09" name="Apertura sobre oferta económica">4</cbc:TypeCode>
+            <cac:OccurrenceLocation>
+                <cbc:Description>Ayuntamiento de Algemesí</cbc:Description>
+                <cac:Address>
+                    <cbc:AddressFormatCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/AddressFormatCode-1.0.gc" listVersionID="2007" name="Spanish Format">1</cbc:AddressFormatCode>
+                    <cbc:CityName>Algemesí</cbc:CityName>
+                    <cbc:PostalZone>46680</cbc:PostalZone>
+                    <cac:AddressLine>
+                        <cbc:Line>Pl. Major, 3</cbc:Line>
+                    </cac:AddressLine>
+                    <cac:Country>
+                        <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:OccurrenceLocation>
+            <cac:AttendanceConditions>
+                <cbc:AttendanceRestrictionCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.05/AttendanceRestrictionCode-2.05.gc" listVersionID="2.05" name="Privado">2</cbc:AttendanceRestrictionCode>
+            </cac:AttendanceConditions>
+        </cac:OpenTenderEvent>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+        <cbc:Name>Alquiler con opción a compra de 3 cajeros ciudadanos para ofrecer servicios administrativos automatizados</cbc:Name>
+        <cbc:TypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/ContractCode-2.08.gc" listVersionID="2.08" name="Suministros">1</cbc:TypeCode>
+        <cbc:SubTypeCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/1.04/GoodsContractCode-1.04.gc" listVersionID="2006" name="Alquiler">1</cbc:SubTypeCode>
+        <cac:BudgetAmount>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">60000</cbc:EstimatedOverallContractAmount>
+            <cbc:TotalAmount currencyID="EUR">72600</cbc:TotalAmount>
+            <cbc:TaxExclusiveAmount currencyID="EUR">60000</cbc:TaxExclusiveAmount>
+        </cac:BudgetAmount>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc" listVersionID="2.04" name="Sistemas de información.">48810000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RequiredCommodityClassification>
+            <cbc:ItemClassificationCode listName="CPV" listURI="http://contrataciondelestado.es/codice/cl/2.04/CPV2008-2.04.gc" listVersionID="2.04" name="Servicios públicos generales.">75110000</cbc:ItemClassificationCode>
+        </cac:RequiredCommodityClassification>
+        <cac:RealizedLocation>
+            <cbc:CountrySubentity>Valencia/València</cbc:CountrySubentity>
+            <cbc:CountrySubentityCode listURI="http://contrataciondelestado.es/codice/cl/2.08/NUTS-2021.gc" listVersionID="2.08" name="Valencia/València">ES523</cbc:CountrySubentityCode>
+            <cac:Address>
+                <cac:Country>
+                    <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                    <cbc:Name>España</cbc:Name>
+                </cac:Country>
+            </cac:Address>
+        </cac:RealizedLocation>
+        <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="ANN">4</cbc:DurationMeasure>
+        </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+</ContractNotice>
+
