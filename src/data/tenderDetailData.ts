@@ -757,6 +757,115 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
       { id: "td4", title: "DACI PRTR template" },
     ],
   },
+
+  "2026-LOWFIT-001": {
+    id: "2026-LOWFIT-001",
+    aiSummary:
+      "AI assessment indicates a weak strategic fit. The contract size is very small versus the typical portfolio and the category has limited overlap with the core activity profile. It may still be relevant for local presence or tactical pipeline coverage, but it is not a priority pursuit.",
+    objectText:
+      "Framework supply contract for basic office stationery, including paper, folders, envelopes and consumables, for municipal departments with price as the only award criterion.",
+    lastUpdated: "16 Mar 2026",
+    publicationStatus: "Published",
+    procedureType: "Open procedure",
+    contractType: "Supplies",
+    fitScore: 34,
+    fitLabel: "Low fit",
+    sourceUrl: "",
+    headerBadges: [
+      { label: "Published", tone: "teal" },
+      { label: "Price-only award", tone: "neutral" },
+      { label: "Low fit", tone: "amber" },
+      { label: "AI Insights", tone: "purple" },
+    ],
+    overviewCards: [
+      {
+        title: "Contracting authority",
+        lines: [
+          { label: "Entity", value: "Small Municipality of Villacampo", tone: "teal" },
+          { label: "Location", value: "Zamora, Spain" },
+          { label: "Primary CPV", value: "30192000 · Office supplies" },
+        ],
+      },
+      {
+        title: "Commercial snapshot",
+        lines: [
+          { label: "Estimated value", value: "€22K", tone: "strong" },
+          { label: "Total value", value: "€26.6K" },
+          { label: "Duration", value: "12 months" },
+          { label: "Award model", value: "Price only" },
+        ],
+      },
+      {
+        title: "Timeline",
+        topMeta: "Last updated · 16 Mar 2026",
+        lines: [
+          { label: "Publication", value: "16 Mar 2026" },
+          { label: "Submission deadline", value: "03 May 2026", tone: "teal" },
+          { label: "Status", value: "Open" },
+        ],
+      },
+    ],
+    buyerBreadcrumbs: [
+      "Spain",
+      "Castile and León",
+      "Zamora",
+      "Small Municipality of Villacampo",
+    ],
+    supplierSummary:
+      "Low strategic fit for a supplier focused on larger and more specialised opportunities. Limited contract value and generic supplies profile reduce attractiveness.",
+    benchmarkMetrics: [
+      { title: "Buyer type", value: "Local authority" },
+      { title: "Contract value", value: "Low value" },
+      { title: "Award model", value: "Price only" },
+    ],
+    guaranteeMetrics: [
+      { title: "Execution period", value: "12 months" },
+      { title: "Submission", value: "Electronic only" },
+      { title: "Location", value: "Villacampo, Zamora" },
+    ],
+    participants: [
+      {
+        id: "c1",
+        name: "Papelería Sayago S.L.",
+        fiscalId: "B49200111",
+        participations: 9,
+        awards: 4,
+        successRate: "44.4%",
+        avgDiscount: "11.2%",
+        contractsWithBuyer: 3,
+      },
+      {
+        id: "c2",
+        name: "Suministros Duero Office S.A.",
+        fiscalId: "A49077451",
+        participations: 6,
+        awards: 2,
+        successRate: "33.3%",
+        avgDiscount: "9.1%",
+        contractsWithBuyer: 1,
+      },
+    ],
+    requiredDocuments: [
+      { id: "rd1", title: "Administrative declaration" },
+      { id: "rd2", title: "Economic offer template" },
+      { id: "rd3", title: "Tax compliance certificate" },
+      { id: "rd4", title: "Social security certificate" },
+    ],
+    admissionCriteria: [
+      { id: "ac1", title: "Capacity to contract" },
+      { id: "ac2", title: "Tax compliance" },
+      { id: "ac3", title: "Social security compliance" },
+    ],
+    awardCriteria: [
+      { id: "aw1", title: "Price", description: "100 points" },
+    ],
+    tenderDocuments: [
+      { id: "td1", title: "PCAP / administrative specifications" },
+      { id: "td2", title: "PPT / technical specifications" },
+      { id: "td3", title: "Economic offer template" },
+    ],
+  },
+
 };
 
 export function getTenderDetailData(id: string): TenderDetailData | null {

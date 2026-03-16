@@ -36,6 +36,12 @@ export type TenderScenarioMock = {
 
 export const reviewItems: ReviewItem[] = [
   {
+    title: "Supply of office stationery for municipal departments",
+    fit: 34,
+    value: "€22K",
+    deadline: "03 May 2026",
+  },
+  {
     title: "Closure and quay enablement works at Puerto de Granadilla",
     fit: 92,
     value: "€39.71M",
@@ -99,6 +105,21 @@ export const opportunities: Opportunity[] = [
     summary:
       "Supply contract for three citizen self-service kiosks under a rental model with purchase option, including technical memory, demo validation and mixed price / option / judgement criteria.",
   },
+  {
+    id: "2026-LOWFIT-001",
+    title: "Supply of office stationery for municipal departments",
+    buyer: "Small Municipality of Villacampo",
+    value: "€22K",
+    location: "Zamora",
+    deadline: "03 May 2026",
+    score: 34,
+    procedure: "Open procedure",
+    isSeen: false,
+    isDismissed: false,
+    summary:
+      "Framework supply contract for basic office stationery (paper, folders, envelopes and consumables) for municipal departments with price as the only award criterion.",
+  },
+
 ];
 
 export const minorContracts: MinorContract[] = [

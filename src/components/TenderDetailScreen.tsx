@@ -34,12 +34,23 @@ function toneClass(
     case "teal":
       return "bg-[#E8FBF9] text-[#0FB9B1]";
     case "purple":
-      return "bg-violet-50 text-violet-700";
+      return "bg-violet-50 ";
     case "amber":
       return "bg-amber-50 text-amber-700";
     default:
       return "bg-slate-100 text-slate-600";
   }
+}
+
+
+function getFitScoreStyle(score: number) {
+  if (score >= 80) {
+    return "border-emerald-200 bg-emerald-50 text-emerald-700";
+  }
+  if (score >= 60) {
+    return "border-amber-200 bg-amber-50 text-amber-700";
+  }
+  return "border-rose-200 bg-rose-50 text-rose-700";
 }
 
 function SectionList({ items }: { items: TenderSimpleItem[] }) {
@@ -335,7 +346,7 @@ export default function TenderDetailScreen({
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => onOpenSimplifaer(context)}
-            className="inline-flex h-10 items-center gap-2 rounded-xl border border-violet-200 bg-violet-50 px-4 text-sm font-medium text-violet-700 transition-colors hover:bg-violet-100"
+            className="inline-flex h-10 items-center gap-2 rounded-xl border border-violet-200 bg-violet-50 px-4 text-sm font-medium  transition-colors hover:bg-violet-100"
           >
             <Sparkles className="h-4 w-4" />
             Simplifaer
@@ -417,23 +428,23 @@ export default function TenderDetailScreen({
               </div>
             </div>
 
-            <div className="shrink-0 rounded-2xl border border-violet-200 bg-violet-50 p-5 xl:w-[300px]">
+            <div className={`shrink-0 rounded-2xl border p-5 xl:w-[300px] ${getFitScoreStyle(Number(detail.fitScore ?? context.badge.replace("Fit ","").replace("%","")))}`}>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-violet-500">
+                  <p className="text-xs font-semibold uppercase tracking-wide ">
                     AI Fit score
                   </p>
-                  <p className="mt-2 text-4xl font-semibold text-violet-700">
+                  <p className="mt-2 text-4xl font-semibold ">
                     {detail.fitScore ??
                       context.badge.replace("Fit ", "").replace("%", "")}
                     %
                   </p>
-                  <p className="mt-2 text-sm font-medium text-violet-700">
+                  <p className="mt-2 text-sm font-medium ">
                     {detail.fitLabel ?? "Strong fit"}
                   </p>
                 </div>
 
-                <Sparkles className="h-5 w-5 text-violet-500" />
+                <Sparkles className="h-5 w-5 " />
               </div>
             </div>
           </div>
