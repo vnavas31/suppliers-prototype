@@ -58,6 +58,42 @@ function CompanyLink({ children }: { children: ReactNode }) {
   );
 }
 
+
+function parseDisplayDate(value: string) {
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function getDaysLeftLabel(value: string) {
+  const parsed = parseDisplayDate(value);
+  if (!parsed) return null;
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const target = new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+  const diffDays = Math.ceil((target.getTime() - today.getTime()) / 86400000);
+  if (diffDays < 0) return 'Closed';
+  if (diffDays == 0) return 'Last day';
+  if (diffDays == 1) return '1 day left';
+  return `${diffDays} days left`;
+}
+
+function trimLocation(value: string) {
+  return value.split(',')[0].trim();
+}
+
+function MetaStrip({ items, seen }: { items: string[]; seen: boolean }) {
+  return (
+    <div className={getMetaTextClasses(seen)}>
+      {items.filter(Boolean).map((item, index) => (
+        <span key={`${item}-${index}`} className="inline-flex items-center">
+          {index > 0 && <span className="mx-2 text-slate-300">|</span>}
+          <span>{item}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function getScoreTone(score: number) {
   if (score >= 90) {
     return {
@@ -103,14 +139,12 @@ function MetricBadge({
   const tone = getScoreTone(score);
 
   return (
-    <div className="text-center">
-      <div
-        className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${tone.badge}`}
-      >
+    <div className={`rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right shadow-sm ${tone.badge}`}>
+      <div className="flex items-center justify-end gap-2">
         <span className={`h-2.5 w-2.5 rounded-full ${tone.dot}`} />
-        <span>{score}%</span>
+        <span className="text-lg font-bold leading-none">{score}%</span>
       </div>
-      <p className="mt-1 text-xs text-slate-500">{label}</p>
+      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] opacity-80">{label}</p>
     </div>
   );
 }
@@ -118,14 +152,14 @@ function MetricBadge({
 function StatusBadge({ seen }: { seen: boolean }) {
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs font-semibold ${
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${
         seen
-          ? "bg-slate-100 text-slate-500"
-          : "bg-[#DFF9F6] text-[#0B0F3A] ring-1 ring-[#AFEDE5]"
+          ? "border-slate-200 bg-slate-50 text-slate-500"
+          : "border-[#CBEFEB] bg-[#F3FCFB] text-[#0B0F3A]"
       }`}
     >
       <span
-        className={`h-2 w-2 rounded-full ${
+        className={`h-1.5 w-1.5 rounded-full ${
           seen ? "bg-slate-400" : "bg-[#0FB9B1]"
         }`}
       />
@@ -149,8 +183,8 @@ function getCardContainerClasses(seen: boolean, viewMode: ViewMode) {
 
 function getTitleClasses(seen: boolean) {
   return seen
-    ? "text-base font-medium text-slate-800 transition-colors group-hover:text-[#0B0F3A]"
-    : "text-base font-semibold text-[#0B0F3A]";
+    ? "text-lg font-semibold text-slate-800 transition-colors group-hover:text-[#0B0F3A]"
+    : "text-xl font-semibold text-[#0B0F3A]";
 }
 
 function getSummaryClasses(seen: boolean) {
@@ -161,8 +195,8 @@ function getSummaryClasses(seen: boolean) {
 
 function getMetaTextClasses(seen: boolean) {
   return seen
-    ? "flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-400"
-    : "flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600";
+    ? "flex flex-wrap items-center gap-y-2 text-sm text-slate-400"
+    : "flex flex-wrap items-center gap-y-2 text-sm text-slate-600";
 }
 
 function IconActionButton({
@@ -171,12 +205,14 @@ function IconActionButton({
   onClick,
   children,
   accent = "default",
+  label,
 }: {
   title: string;
   ariaLabel: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
   accent?: "default" | "ai" | "negative" | "favourite";
+  label?: string;
 }) {
   const accentClasses =
     accent === "ai"
@@ -192,9 +228,10 @@ function IconActionButton({
       aria-label={ariaLabel}
       title={title}
       onClick={onClick}
-      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-colors duration-150 ${accentClasses}`}
+      className={`inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-slate-500 transition-colors duration-150 ${label ? 'w-auto' : 'w-10'} ${accentClasses}`}
     >
       {children}
+      {label && <span className="text-xs font-medium">{label}</span>}
     </button>
   );
 }
@@ -249,6 +286,7 @@ function CardFooter({
                 onOpenSimplifaer();
               }}
               accent="ai"
+              label={viewMode === "list" ? "AI" : undefined}
             >
               <Sparkles className="h-4 w-4" />
             </IconActionButton>
@@ -260,6 +298,7 @@ function CardFooter({
                 event.stopPropagation();
                 onToggleSeen();
               }}
+              label={viewMode === "list" ? (seen ? "Unsee" : "Seen") : undefined}
             >
               {seen ? (
                 <EyeOff className="h-4 w-4" />
@@ -275,6 +314,7 @@ function CardFooter({
                 event.stopPropagation();
               }}
               accent="favourite"
+              label={viewMode === "list" ? "Save" : undefined}
             >
               <Heart className="h-4 w-4" />
             </IconActionButton>
@@ -287,6 +327,7 @@ function CardFooter({
                 onDismiss();
               }}
               accent="negative"
+              label={viewMode === "list" ? "Hide" : undefined}
             >
               <ThumbsDown className="h-4 w-4" />
             </IconActionButton>
@@ -565,14 +606,14 @@ export default function DiscoverScreen({
           </div>
 
           <div className="shrink-0">
-            <div className="flex items-start gap-3">
-              <MetricBadge score={score} label={scoreLabel} />
+            <div className="flex items-start gap-2">
               {secondaryMetric && (
                 <MetricBadge
                   score={secondaryMetric.score}
                   label={secondaryMetric.label}
                 />
               )}
+              <MetricBadge score={score} label={scoreLabel} />
             </div>
           </div>
         </div>
@@ -583,7 +624,7 @@ export default function DiscoverScreen({
           <CompanyLink>{buyer}</CompanyLink>
         </p>
 
-        <p className={getSummaryClasses(seen)}>{summary}</p>
+        <p className={`${getSummaryClasses(seen)} line-clamp-2`}>{summary}</p>
       </div>
 
       {footer}
@@ -620,10 +661,10 @@ export default function DiscoverScreen({
             seen: interaction.seen,
             badge: (
               <>
-                <span className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-500">
+                <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
                   {op.id}
                 </span>
-                <span className="rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-700">
+                <span className="rounded-full border border-blue-100 bg-blue-50 px-2 py-1 text-[11px] font-medium text-blue-700">
                   Active tender
                 </span>
               </>
@@ -639,13 +680,17 @@ export default function DiscoverScreen({
                 seen={interaction.seen}
                 viewMode={viewMode}
                 meta={
-                  <>
-                    <span className="text-slate-700">{op.value}</span>
-                    <span>{op.location}</span>
-                    <span>Deadline {op.deadline}</span>
-                    <span>{op.procedure}</span>
-                    {op.lots && op.lots > 1 && <span>{op.lots} lots</span>}
-                  </>
+                  <MetaStrip
+                    seen={interaction.seen}
+                    items={[
+                      op.value,
+                      trimLocation(op.location),
+                      `Deadline ${op.deadline}`,
+                      op.procedure,
+                      ...(op.lots && op.lots > 1 ? [`${op.lots} lots`] : []),
+                      ...(getDaysLeftLabel(op.deadline) ? [getDaysLeftLabel(op.deadline)!] : []),
+                    ]}
+                  />
                 }
                 onOpenItem={() => openTender(op.id, context)}
                 onOpenSimplifaer={() => onOpenSimplifaer(context)}
@@ -689,10 +734,10 @@ export default function DiscoverScreen({
             seen: interaction.seen,
             badge: (
               <>
-                <span className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-500">
+                <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
                   {contract.id}
                 </span>
-                <span className="rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-700">
+                <span className="rounded-full border border-orange-100 bg-orange-50 px-2 py-1 text-[11px] font-medium text-orange-700">
                   Minor contract
                 </span>
               </>
@@ -708,17 +753,16 @@ export default function DiscoverScreen({
                 seen={interaction.seen}
                 viewMode={viewMode}
                 meta={
-                  <>
-                    <span className="text-slate-700">
-                      {contract.estimatedValue}
-                    </span>
-                    <span>{contract.location}</span>
-                    <span>Published {contract.publicationDate}</span>
-                    <span>{contract.category}</span>
-                    {contract.lots && contract.lots > 1 && (
-                      <span>{contract.lots} lots</span>
-                    )}
-                  </>
+                  <MetaStrip
+                    seen={interaction.seen}
+                    items={[
+                      contract.estimatedValue,
+                      trimLocation(contract.location),
+                      `Published ${contract.publicationDate}`,
+                      contract.category,
+                      ...(contract.lots && contract.lots > 1 ? [`${contract.lots} lots`] : []),
+                    ]}
+                  />
                 }
                 onOpenItem={() => openTender(contract.id, context)}
                 onOpenSimplifaer={() => onOpenSimplifaer(context)}
@@ -762,10 +806,10 @@ export default function DiscoverScreen({
             seen: interaction.seen,
             badge: (
               <>
-                <span className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-500">
+                <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
                   {contract.id}
                 </span>
-                <span className="rounded-full bg-amber-50 px-2 py-1 text-xs text-amber-700">
+                <span className="rounded-full border border-amber-100 bg-amber-50 px-2 py-1 text-[11px] font-medium text-amber-700">
                   Expiring contract
                 </span>
               </>
@@ -785,15 +829,16 @@ export default function DiscoverScreen({
                 seen={interaction.seen}
                 viewMode={viewMode}
                 meta={
-                  <>
-                    <span className="text-slate-700">{contract.value}</span>
-                    <span>{contract.location}</span>
-                    <span>Ends {contract.contractEnd}</span>
-                    <span>{contract.category}</span>
-                    {contract.lots && contract.lots > 1 && (
-                      <span>{contract.lots} lots</span>
-                    )}
-                  </>
+                  <MetaStrip
+                    seen={interaction.seen}
+                    items={[
+                      contract.value,
+                      trimLocation(contract.location),
+                      `Ends ${contract.contractEnd}`,
+                      contract.category,
+                      ...(contract.lots && contract.lots > 1 ? [`${contract.lots} lots`] : []),
+                    ]}
+                  />
                 }
                 onOpenItem={() => openTender(contract.id, context)}
                 onOpenSimplifaer={() => onOpenSimplifaer(context)}
@@ -837,10 +882,10 @@ export default function DiscoverScreen({
             seen: interaction.seen,
             badge: (
               <>
-                <span className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-500">
+                <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
                   {tender.id}
                 </span>
-                <span className="rounded-full bg-rose-50 px-2 py-1 text-xs text-rose-700">
+                <span className="rounded-full border border-rose-100 bg-rose-50 px-2 py-1 text-[11px] font-medium text-rose-700">
                   Deserted tender
                 </span>
               </>
@@ -856,17 +901,16 @@ export default function DiscoverScreen({
                 seen={interaction.seen}
                 viewMode={viewMode}
                 meta={
-                  <>
-                    <span className="text-slate-700">
-                      {tender.referenceValue}
-                    </span>
-                    <span>{tender.location}</span>
-                    <span>{tender.procedure}</span>
-                    <span>Previous deadline {tender.lastDeadline}</span>
-                    {tender.lots && tender.lots > 1 && (
-                      <span>{tender.lots} lots</span>
-                    )}
-                  </>
+                  <MetaStrip
+                    seen={interaction.seen}
+                    items={[
+                      tender.referenceValue,
+                      trimLocation(tender.location),
+                      tender.procedure,
+                      `Previous deadline ${tender.lastDeadline}`,
+                      ...(tender.lots && tender.lots > 1 ? [`${tender.lots} lots`] : []),
+                    ]}
+                  />
                 }
                 onOpenItem={() => openTender(tender.id, context)}
                 onOpenSimplifaer={() => onOpenSimplifaer(context)}
@@ -910,10 +954,10 @@ export default function DiscoverScreen({
             seen: interaction.seen,
             badge: (
               <>
-                <span className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-500">
+                <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
                   {plan.id}
                 </span>
-                <span className="rounded-full bg-emerald-50 px-2 py-1 text-xs text-emerald-700">
+                <span className="rounded-full border border-emerald-100 bg-emerald-50 px-2 py-1 text-[11px] font-medium text-emerald-700">
                   Annual purchasing plan
                 </span>
               </>
@@ -929,14 +973,15 @@ export default function DiscoverScreen({
                 seen={interaction.seen}
                 viewMode={viewMode}
                 meta={
-                  <>
-                    <span className="text-slate-700">
-                      {plan.estimatedValue}
-                    </span>
-                    <span>{plan.location}</span>
-                    <span>Expected publication {plan.expectedPublication}</span>
-                    <span>{plan.category}</span>
-                  </>
+                  <MetaStrip
+                    seen={interaction.seen}
+                    items={[
+                      plan.estimatedValue,
+                      trimLocation(plan.location),
+                      `Expected publication ${plan.expectedPublication}`,
+                      plan.category,
+                    ]}
+                  />
                 }
                 onOpenItem={() => openTender(plan.id, context)}
                 onOpenSimplifaer={() => onOpenSimplifaer(context)}
@@ -980,10 +1025,10 @@ export default function DiscoverScreen({
             seen: interaction.seen,
             badge: (
               <>
-                <span className="rounded-lg bg-slate-100 px-2 py-1 text-xs text-slate-500">
+                <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-500">
                   {dps.id}
                 </span>
-                <span className="rounded-full bg-violet-50 px-2 py-1 text-xs text-violet-700">
+                <span className="rounded-full border border-violet-100 bg-violet-50 px-2 py-1 text-[11px] font-medium text-violet-700">
                   DPS
                 </span>
               </>
@@ -999,15 +1044,16 @@ export default function DiscoverScreen({
                 seen={interaction.seen}
                 viewMode={viewMode}
                 meta={
-                  <>
-                    <span className="text-slate-700">
-                      {dps.estimatedValue}
-                    </span>
-                    <span>{dps.location}</span>
-                    <span>{dps.category}</span>
-                    <span>Expires {dps.expiry}</span>
-                    {dps.lots && dps.lots > 1 && <span>{dps.lots} lots</span>}
-                  </>
+                  <MetaStrip
+                    seen={interaction.seen}
+                    items={[
+                      dps.estimatedValue,
+                      trimLocation(dps.location),
+                      dps.category,
+                      `Expires ${dps.expiry}`,
+                      ...(dps.lots && dps.lots > 1 ? [`${dps.lots} lots`] : []),
+                    ]}
+                  />
                 }
                 onOpenItem={() => openTender(dps.id, context)}
                 onOpenSimplifaer={() => onOpenSimplifaer(context)}
