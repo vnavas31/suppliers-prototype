@@ -781,7 +781,11 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
       {
         title: "Contracting authority",
         lines: [
-          { label: "Entity", value: "Small Municipality of Villacampo", tone: "teal" },
+          {
+            label: "Entity",
+            value: "Small Municipality of Villacampo",
+            tone: "teal",
+          },
           { label: "Location", value: "Zamora, Spain" },
           { label: "Primary CPV", value: "30192000 · Office supplies" },
         ],
@@ -805,15 +809,60 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
         ],
       },
     ],
-    buyerBreadcrumbs: [
-      "Spain",
-      "Castile and León",
-      "Zamora",
-      "Small Municipality of Villacampo",
+    timeline: [
+      { label: "Published", value: "16 Mar 2026" },
+      {
+        label: "Deadline to submit offers",
+        value: "03 May 2026",
+        tone: "highlight",
+      },
+      { label: "Expected award", value: "May 2026" },
+      { label: "Execution period", value: "12 months" },
     ],
-    supplierSummary:
-      "Low strategic fit for a supplier focused on larger and more specialised opportunities. Limited contract value and generic supplies profile reduce attractiveness.",
-    benchmarkMetrics: [
+    signals: [
+      { label: "Competitive pressure", value: "Medium" },
+      { label: "Bid effort", value: "Low" },
+      { label: "Compliance risk", value: "Low" },
+      { label: "Pricing pressure", value: "High" },
+    ],
+    alerts: [
+      {
+        id: "villacampo-admin",
+        title: "Administrative declaration required",
+        status: "missing",
+        hint: "A signed administrative declaration is required in the offer.",
+        sourceLabel: "Required documents",
+      },
+      {
+        id: "villacampo-economic",
+        title: "Economic offer template required",
+        status: "missing",
+        hint: "The contracting authority requires the official economic offer template.",
+        sourceLabel: "Required documents",
+      },
+      {
+        id: "villacampo-price",
+        title: "Price-only award increases discount pressure",
+        status: "notDetected",
+        hint: "Pure price competition may reduce margins and strategic attractiveness.",
+        sourceLabel: "Award criteria",
+      },
+    ],
+    pricingMetrics: [
+      {
+        title: "Base price",
+        value: "0 €",
+      },
+      {
+        title: "Ideal discount",
+        value: "11,5%",
+      },
+      {
+        title: "Offer price",
+        value: "0 €",
+      },
+    ],
+    buyerMetrics: [
       { title: "Buyer type", value: "Local authority" },
       { title: "Contract value", value: "Low value" },
       { title: "Award model", value: "Price only" },
