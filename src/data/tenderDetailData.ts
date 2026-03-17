@@ -40,7 +40,7 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
           { label: "Estimated value", value: "€39.71M", tone: "strong" },
           { label: "Budget excl. VAT", value: "€36.74M" },
           { label: "Duration", value: "20 months" },
-          { label: "Guarantee", value: "3% provisional · 5% definitive guarantee" },
+          { label: "Guarantee", value: "3% provisional · 5% definitive" },
         ],
       },
       {
@@ -354,7 +354,11 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
       { title: "Presentation", value: "Electronic only" },
     ],
     guaranteeMetrics: [
-      { title: "Definitive guarantee", value: "Not highlighted" },
+      {
+        title: "Definitive guarantee",
+        value: "5%",
+        subtitle: "Required financial guarantee upon award",
+      },
       { title: "Price revision", value: "Not allowed" },
       { title: "Tender validity", value: "1 year" },
     ],
@@ -563,7 +567,11 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
       { title: "Region", value: "Valencia" },
     ],
     guaranteeMetrics: [
-      { title: "Definitive guarantee", value: "5%" },
+      {
+        title: "Definitive guarantee",
+        value: "5%",
+        subtitle: "Required financial guarantee upon award",
+      },
       { title: "Technical demo", value: "Required" },
       { title: "Submission", value: "Electronic only" },
     ],
@@ -712,7 +720,11 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
       { title: "Funding", value: "PRTR / NextGenerationEU" },
     ],
     guaranteeMetrics: [
-      { title: "Execution period", value: "1 month" },
+      {
+        title: "Definitive guarantee",
+        value: "Not required",
+        subtitle: "No definitive guarantee indicated",
+      },
       { title: "Submission", value: "Electronic only" },
       { title: "Location", value: "Yacimiento de La Clínica" },
     ],
@@ -873,7 +885,11 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
       { title: "Award model", value: "Price only" },
     ],
     guaranteeMetrics: [
-      { title: "Execution period", value: "12 months" },
+      {
+        title: "Definitive guarantee",
+        value: "Not required",
+        subtitle: "No definitive guarantee indicated",
+      },
       { title: "Submission", value: "Electronic only" },
       { title: "Location", value: "Villacampo, Zamora" },
     ],

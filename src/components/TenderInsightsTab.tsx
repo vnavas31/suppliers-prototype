@@ -1,4 +1,4 @@
-import { AlertTriangle, Check, CheckCircle2 } from "lucide-react";
+import { Check, CheckCircle2 } from "lucide-react";
 import type {
   TenderDetailData,
   TenderDetailTab,
@@ -402,9 +402,12 @@ function EvaluationStructureCard({
 
 function DepositCard({ detail }: { detail: TenderDetailData }) {
   const provisionalMetric = detail.guaranteeMetrics.find((metric) =>
-    metric.title.toLowerCase().includes("provisional")
+    metric.title.toLowerCase().includes("provisional guarantee")
   );
-  const mainMetric = provisionalMetric ?? detail.guaranteeMetrics[0];
+  const definitiveMetric = detail.guaranteeMetrics.find((metric) =>
+    metric.title.toLowerCase().includes("definitive guarantee")
+  );
+  const mainMetric = provisionalMetric ?? definitiveMetric ?? detail.guaranteeMetrics[0];
   const secondaryMetrics = detail.guaranteeMetrics.filter(
     (metric) => metric.title !== mainMetric?.title
   );
@@ -433,16 +436,13 @@ function DepositCard({ detail }: { detail: TenderDetailData }) {
         {mainMetric?.value ?? "Not specified"}
       </p>
 
-      <p className="mt-3 text-lg text-slate-600">
-        {mainMetric?.subtitle ??
-          (hasProvisionalGuarantee
-            ? "Provisional guarantee detected in tender documents"
-            : "No provisional guarantee highlighted")}
-      </p>
+      {mainMetric?.subtitle && (
+        <p className="mt-3 text-lg text-slate-600">{mainMetric.subtitle}</p>
+      )}
 
       <div
         className={`mt-6 rounded-2xl p-4 ${
-          hasProvisionalGuarantee ? "bg-amber-50" : "bg-emerald-50"
+          hasProvisionalGuarantee ? "bg-amber-50/70" : "bg-emerald-50" 
         }`}
       >
         <div
@@ -450,11 +450,7 @@ function DepositCard({ detail }: { detail: TenderDetailData }) {
             hasProvisionalGuarantee ? "text-amber-700" : "text-emerald-700"
           }`}
         >
-          {hasProvisionalGuarantee ? (
-            <AlertTriangle className="h-5 w-5" />
-          ) : (
-            <CheckCircle2 className="h-5 w-5" />
-          )}
+          <CheckCircle2 className="h-5 w-5" />
           <p className="text-sm font-semibold">
             {hasProvisionalGuarantee
               ? "Required before submitting the bid"
@@ -476,9 +472,7 @@ function DepositCard({ detail }: { detail: TenderDetailData }) {
           </div>
         ) : (
           <p className="mt-3 text-sm text-slate-600">
-            {hasProvisionalGuarantee
-              ? "This guarantee is required to participate, regardless of the final award outcome."
-              : "Historical guarantee information available in similar tenders."}
+            Historical guarantee information available in similar tenders.
           </p>
         )}
       </div>
