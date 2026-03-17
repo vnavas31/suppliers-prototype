@@ -40,7 +40,7 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
           { label: "Estimated value", value: "€39.71M", tone: "strong" },
           { label: "Budget excl. VAT", value: "€36.74M" },
           { label: "Duration", value: "20 months" },
-          { label: "Guarantee", value: "5% definitive guarantee" },
+          { label: "Guarantee", value: "3% provisional · 5% definitive guarantee" },
         ],
       },
       {
@@ -115,9 +115,14 @@ export const tenderDetailDataById: Record<string, TenderDetailData> = {
     ],
     guaranteeMetrics: [
       {
+        title: "Provisional guarantee",
+        value: "3%",
+        subtitle: "Required to participate in the tender",
+      },
+      {
         title: "Definitive guarantee",
         value: "5%",
-        subtitle: "Required financial guarantee",
+        subtitle: "Required financial guarantee upon award",
       },
       { title: "Variants", value: "Allowed" },
       { title: "Subcontracting", value: "Allowed" },

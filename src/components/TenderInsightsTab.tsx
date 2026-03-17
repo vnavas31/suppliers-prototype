@@ -1,4 +1,4 @@
-import { Check, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, Check, CheckCircle2 } from "lucide-react";
 import type {
   TenderDetailData,
   TenderDetailTab,
@@ -401,30 +401,65 @@ function EvaluationStructureCard({
 }
 
 function DepositCard({ detail }: { detail: TenderDetailData }) {
-  const mainMetric = detail.guaranteeMetrics[0];
-  const secondaryMetrics = detail.guaranteeMetrics.slice(1);
+  const provisionalMetric = detail.guaranteeMetrics.find((metric) =>
+    metric.title.toLowerCase().includes("provisional")
+  );
+  const mainMetric = provisionalMetric ?? detail.guaranteeMetrics[0];
+  const secondaryMetrics = detail.guaranteeMetrics.filter(
+    (metric) => metric.title !== mainMetric?.title
+  );
+  const hasProvisionalGuarantee = Boolean(provisionalMetric);
 
   return (
-    <div className="flex h-full flex-col rounded-3xl border border-emerald-300 bg-white p-5 shadow-sm ring-1 ring-emerald-200/70">
+    <div
+      className={`flex h-full flex-col rounded-3xl border bg-white p-5 shadow-sm ${
+        hasProvisionalGuarantee
+          ? "border-amber-300 ring-1 ring-amber-200/70"
+          : "border-emerald-300 ring-1 ring-emerald-200/70"
+      }`}
+    >
       <div className="flex items-start justify-between gap-3">
         <h3 className="max-w-[85%] text-lg font-semibold leading-tight text-[#0B0F3A]">
           Required Deposit/Warranties
         </h3>
-        <span className="mt-1 h-4 w-4 rounded-full bg-emerald-500" />
+        <span
+          className={`mt-1 h-4 w-4 rounded-full ${
+            hasProvisionalGuarantee ? "bg-amber-500" : "bg-emerald-500"
+          }`}
+        />
       </div>
 
       <p className="mt-6 text-[3rem] font-semibold leading-none tracking-tight text-[#12C2C9] xl:text-[3.5rem]">
         {mainMetric?.value ?? "Not specified"}
       </p>
 
-      {mainMetric?.subtitle && (
-        <p className="mt-3 text-lg text-slate-600">{mainMetric.subtitle}</p>
-      )}
+      <p className="mt-3 text-lg text-slate-600">
+        {mainMetric?.subtitle ??
+          (hasProvisionalGuarantee
+            ? "Provisional guarantee detected in tender documents"
+            : "No provisional guarantee highlighted")}
+      </p>
 
-      <div className="mt-6 rounded-2xl bg-emerald-50 p-4">
-        <div className="flex items-center gap-2 text-emerald-700">
-          <CheckCircle2 className="h-5 w-5" />
-          <p className="text-sm font-semibold">Similar deposit provided</p>
+      <div
+        className={`mt-6 rounded-2xl p-4 ${
+          hasProvisionalGuarantee ? "bg-amber-50" : "bg-emerald-50"
+        }`}
+      >
+        <div
+          className={`flex items-center gap-2 ${
+            hasProvisionalGuarantee ? "text-amber-700" : "text-emerald-700"
+          }`}
+        >
+          {hasProvisionalGuarantee ? (
+            <AlertTriangle className="h-5 w-5" />
+          ) : (
+            <CheckCircle2 className="h-5 w-5" />
+          )}
+          <p className="text-sm font-semibold">
+            {hasProvisionalGuarantee
+              ? "Required before submitting the bid"
+              : "Similar deposit provided"}
+          </p>
         </div>
 
         {secondaryMetrics.length > 0 ? (
@@ -441,7 +476,9 @@ function DepositCard({ detail }: { detail: TenderDetailData }) {
           </div>
         ) : (
           <p className="mt-3 text-sm text-slate-600">
-            Historical guarantee information available in similar tenders.
+            {hasProvisionalGuarantee
+              ? "This guarantee is required to participate, regardless of the final award outcome."
+              : "Historical guarantee information available in similar tenders."}
           </p>
         )}
       </div>
