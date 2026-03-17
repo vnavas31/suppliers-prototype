@@ -12,8 +12,8 @@ export default function OverviewScreen({
   const pipelineAtRisk = "€1.2M";
 
   return (
-    <div className="mx-auto max-w-[1500px] space-y-8">
-      <div>
+    <div className="mx-auto w-full max-w-[1500px] space-y-6 px-4 sm:px-6 xl:px-8">
+      <div className="min-w-0">
         <p className="text-sm text-slate-500">Overview</p>
         <h1 className="text-3xl font-semibold text-[#0B0F3A]">
           Opportunity control panel
@@ -23,7 +23,7 @@ export default function OverviewScreen({
         </p>
       </div>
 
-      <div className="flex items-center justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <p className="text-sm text-slate-500">Active opportunities</p>
           <p className="text-3xl font-semibold text-[#0B0F3A]">{pipelineValue}</p>
@@ -37,7 +37,7 @@ export default function OverviewScreen({
         </button>
       </div>
 
-      <div className="grid items-stretch gap-6 xl:grid-cols-3">
+      <div className="grid items-stretch gap-6 2xl:grid-cols-3 xl:grid-cols-2">
         <section className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex-1">
             <div className="flex items-start justify-between gap-4">
@@ -55,7 +55,7 @@ export default function OverviewScreen({
 
             <div className="mt-5 space-y-4">
               <div className="rounded-2xl border border-red-200 bg-red-50 p-4">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div className="w-full">
                     <p className="text-sm font-semibold text-[#0B0F3A]">
                       Critical · deadline ≤ 3 days
@@ -67,14 +67,14 @@ export default function OverviewScreen({
                       <p className="mt-1 text-xs text-slate-600">Due in 2 days</p>
                     </div>
                   </div>
-                  <button className="shrink-0 rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9]">
+                  <button className="w-full rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9] sm:w-auto">
                     Continue proposal
                   </button>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div className="w-full">
                     <p className="text-sm font-semibold text-[#0B0F3A]">
                       High risk · deadline ≤ 5 days
@@ -86,7 +86,7 @@ export default function OverviewScreen({
                       <p className="mt-1 text-xs text-slate-600">Due in 5 days</p>
                     </div>
                   </div>
-                  <button className="shrink-0 rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9]">
+                  <button className="w-full rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9] sm:w-auto">
                     Continue proposal
                   </button>
                 </div>
@@ -108,7 +108,7 @@ export default function OverviewScreen({
 
             <div className="mt-5 space-y-4">
               <div className="rounded-2xl border border-slate-200 p-4">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <p className="text-sm font-semibold text-[#0B0F3A]">Missing documents</p>
                     <div className="mt-3 space-y-2">
@@ -117,14 +117,14 @@ export default function OverviewScreen({
                       </button>
                     </div>
                   </div>
-                  <button className="flex w-24 justify-center rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9]">
+                  <button className="flex w-full justify-center rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9] sm:w-24">
                     Upload
                   </button>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-slate-200 p-4">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <p className="text-sm font-semibold text-[#0B0F3A]">
                       Pending internal validation
@@ -135,14 +135,14 @@ export default function OverviewScreen({
                       </button>
                     </div>
                   </div>
-                  <button className="flex w-24 justify-center rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9]">
+                  <button className="flex w-full justify-center rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9] sm:w-24">
                     Assign
                   </button>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-slate-200 p-4">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <p className="text-sm font-semibold text-[#0B0F3A]">Pricing sheet missing</p>
                     <div className="mt-3 space-y-2">
@@ -151,7 +151,7 @@ export default function OverviewScreen({
                       </button>
                     </div>
                   </div>
-                  <button className="flex w-24 justify-center rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9]">
+                  <button className="flex w-full justify-center rounded-2xl border border-[#0FB9B1] px-4 py-2 text-sm font-medium text-[#0FB9B1] hover:bg-[#E8FBF9] sm:w-24">
                     Complete
                   </button>
                 </div>
@@ -175,18 +175,18 @@ export default function OverviewScreen({
                   High-fit opportunities not yet in your workspace
                 </p>
               </div>
-              <div className="rounded-full bg-[#E8FBF9] px-3 py-1 text-xs font-semibold text-[#0FB9B1]">
+              <div className="inline-flex w-fit rounded-full bg-[#E8FBF9] px-3 py-1 text-xs font-semibold text-[#0FB9B1]">
                 Ranked by fit score
               </div>
             </div>
 
             <div className="mt-5 space-y-4">
-              {reviewItems.map((item) => (
+              {[...reviewItems].sort((a, b) => b.fit - a.fit).slice(0, 3).map((item) => (
                 <div
                   key={item.title}
                   className="rounded-2xl border border-slate-200 p-4 transition hover:border-[#0FB9B1]"
                 >
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div className="space-y-2">
                       <h3 className="font-medium text-[#0B0F3A]">{item.title}</h3>
                       <div className="mt-2 flex flex-wrap gap-2 text-xs">
@@ -199,7 +199,7 @@ export default function OverviewScreen({
                         </span>
                       </div>
                     </div>
-                    <button className="rounded-xl border border-[#0FB9B1] px-4 py-2 text-[#0FB9B1]">
+                    <button className="w-full rounded-xl border border-[#0FB9B1] px-4 py-2 text-[#0FB9B1] sm:w-auto">
                       Review
                     </button>
                   </div>
@@ -218,7 +218,7 @@ export default function OverviewScreen({
       </div>
 
       <section className="space-y-5 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-medium text-[#0B0F3A]">Market snapshot</p>
             <h2 className="mt-1 text-2xl font-semibold text-[#0B0F3A]">
@@ -229,7 +229,7 @@ export default function OverviewScreen({
             </p>
           </div>
 
-          <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600">
+          <div className="flex w-full flex-wrap items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600 lg:w-auto">
             <span>Order by:</span>
             <button className="rounded-lg bg-white px-3 py-1 font-medium text-[#0B0F3A] shadow-sm">
               Awards
@@ -238,13 +238,13 @@ export default function OverviewScreen({
           </div>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
           {benchmarkPeriods.map((period) => (
             <BenchSummaryCard key={period.label} period={period} />
           ))}
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-2">
+        <div className="grid gap-6 2xl:grid-cols-2">
           <BenchRankCard
             title="Top buyers"
             subtitle="Based on last 12 months activity"
