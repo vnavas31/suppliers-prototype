@@ -442,10 +442,14 @@ export default function DiscoverScreen({
   onOpenSimplifaer: (context?: SimplifaerItemContext) => void;
   onOpenTenderDetail: (context: SimplifaerItemContext) => void;
 }) {
+  useEffect(() => {
+    setViewMode("list");
+  }, [setViewMode]);
+
   const [selectedFilter, setSelectedFilter] = useState(savedFilters[0].id);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const [showAllPresets, setShowAllPresets] = useState(false);
+  const [presetSearch, setPresetSearch] = useState("");
   const [selectedSort, setSelectedSort] = useState<SortOption>("fitScore");
   const [showSortMenu, setShowSortMenu] = useState(false);
 
@@ -463,9 +467,19 @@ export default function DiscoverScreen({
 
   const sortMenuRef = useRef<HTMLDivElement | null>(null);
 
+  const filteredSavedFilters = useMemo(() => {
+    const query = presetSearch.trim().toLowerCase();
+
+    if (!query) return savedFilters;
+
+    return savedFilters.filter((filter) =>
+      `${filter.name} ${filter.description}`.toLowerCase().includes(query)
+    );
+  }, [presetSearch]);
+
   const visibleSavedFilters = showAllPresets
-    ? savedFilters
-    : savedFilters.slice(0, 3);
+    ? filteredSavedFilters
+    : filteredSavedFilters.slice(0, 3);
 
   const availableSortOptions = getAvailableSortOptions(discoverTab);
 
@@ -1095,146 +1109,120 @@ export default function DiscoverScreen({
         </h1>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-[#FCFDFD] p-4">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-[#0B0F3A]">
-              Saved searches
-            </p>
-            <p className="text-xs text-slate-500">
-              Reusable advanced searches for frequent monitoring and alerts
-            </p>
-          </div>
+      <div className="rounded-2xl border border-slate-200 bg-[#FCFDFD] p-3">
+        <div className="flex flex-col gap-3">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-[#0B0F3A]">
+                Saved searches
+              </p>
+              <p className="text-xs text-slate-500">
+                Reusable advanced searches for frequent monitoring and alerts
+              </p>
+            </div>
 
-          <button
-            onClick={() => {
-              setShowSearchPanel((current) => !current);
-              if (showSearchPanel) {
-                setShowAdvanced(false);
-              }
-            }}
-            className="rounded-xl bg-[#0B0F3A] px-4 py-2 text-sm text-white transition-colors duration-150 hover:opacity-95"
-          >
-            {showSearchPanel ? "Close search" : "New search"}
-          </button>
-        </div>
+            <div className="flex items-center gap-2">
+              {savedFilters.length > 3 && (
+                <button
+                  onClick={() => setShowAllPresets((current) => !current)}
+                  className="rounded-xl border border-slate-200 px-3 py-2 text-sm text-[#0B0F3A] transition-colors duration-150 hover:border-[#0FB9B1] hover:text-[#0FB9B1]"
+                >
+                  {showAllPresets ? "Show less" : "View all"}
+                </button>
+              )}
 
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
-          {visibleSavedFilters.map((filter) => {
-            const active = filter.id === selectedFilter;
-
-            return (
               <button
-                key={filter.id}
-                onClick={() => setSelectedFilter(filter.id)}
-                className={`rounded-2xl border p-4 text-left transition-colors duration-150 ${
-                  active
-                    ? "border-[#0FB9B1] bg-[#E8FBF9]"
-                    : "border-slate-200 bg-white hover:bg-slate-50"
-                }`}
+                onClick={() => {
+                  setShowSearchPanel((current) => !current);
+                }}
+                className="rounded-xl bg-[#0B0F3A] px-4 py-2 text-sm text-white transition-colors duration-150 hover:opacity-95"
               >
-                <p className="text-sm font-semibold text-[#0B0F3A]">
-                  {filter.name}
-                </p>
-                <p className="mt-1 text-xs text-slate-500">
-                  {filter.description}
-                </p>
-
-                <div className="mt-3 flex gap-2 text-xs">
-                  <span className="rounded bg-white px-2 py-1">Use</span>
-                  <span className="rounded bg-white px-2 py-1">Edit</span>
-                  <span className="rounded bg-white px-2 py-1">Alerts</span>
-                </div>
+                {showSearchPanel ? "Close search" : "Advanced Search"}
               </button>
-            );
-          })}
-        </div>
-
-        {savedFilters.length > 3 && (
-          <div className="mt-4 flex justify-center">
-            <button
-              onClick={() => setShowAllPresets((current) => !current)}
-              className="rounded-xl border border-slate-200 px-4 py-2 text-sm text-[#0B0F3A] transition-colors duration-150 hover:border-[#0FB9B1] hover:text-[#0FB9B1]"
-            >
-              {showAllPresets ? "Show less" : "View all saved searches"}
-            </button>
+            </div>
           </div>
-        )}
+
+          <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
+            <div className="relative flex-1">
+              <input
+                value={presetSearch}
+                onChange={(event) => setPresetSearch(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && presetSearch.trim()) {
+                    setShowSearchPanel(true);
+                  }
+                }}
+                className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-[#0B0F3A] outline-none transition-colors duration-150 placeholder:text-slate-400 focus:border-[#0FB9B1]"
+                placeholder="Find a preset or start a new keyword search"
+              />
+            </div>
+
+            <p className="text-[11px] text-slate-500 lg:whitespace-nowrap">
+              Filters presets as you type · Press Enter to search
+            </p>
+          </div>
+
+          {visibleSavedFilters.length > 0 ? (
+            <div className="grid gap-2 md:grid-cols-3">
+              {visibleSavedFilters.map((filter) => {
+                const active = filter.id === selectedFilter;
+
+                return (
+                  <div
+                    key={filter.id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedFilter(filter.id)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setSelectedFilter(filter.id);
+                      }
+                    }}
+                    className={`rounded-xl border px-4 py-3 text-left transition-colors duration-150 cursor-pointer ${
+                      active
+                        ? "border-[#0FB9B1] bg-[#E8FBF9]"
+                        : "border-slate-200 bg-white hover:bg-slate-50"
+                    }`}
+                  >
+                    <p className="text-sm font-semibold text-[#0B0F3A]">
+                      {filter.name}
+                    </p>
+                    <p className="mt-1 truncate text-xs text-slate-500">
+                      {filter.description}
+                    </p>
+
+                    <div className="mt-2 flex gap-2 text-xs">
+                      <span className="rounded bg-white px-2 py-1">Edit</span>
+                      <span className="rounded bg-white px-2 py-1">Alerts</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-dashed border-slate-200 bg-white px-4 py-3 text-sm text-slate-500">
+              No preset matches “{presetSearch}”. Press Enter to search new opportunities.
+            </div>
+          )}
+        </div>
 
         {showSearchPanel && (
           <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <div className="flex items-center gap-3">
-              <input
-                className="flex-1 bg-transparent text-sm outline-none"
-                placeholder="Search tenders, buyers, CPV, locations or describe what you need…"
-              />
-              <button className="rounded-xl bg-[#0B0F3A] px-5 py-2 text-sm text-white">
-                Search
-              </button>
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-[#0B0F3A]">
+                  Advanced Search builder
+                </p>
+                <p className="text-xs text-slate-500">
+                  Build complex queries, then save them as presets and alerts.
+                </p>
+              </div>
+
+              <div className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs text-slate-600">
+                ~148 opportunities match this query
+              </div>
             </div>
-
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => setShowAdvanced((current) => !current)}
-                className={`rounded-xl px-4 py-2 text-sm transition-colors duration-150 ${
-                  showAdvanced
-                    ? "border border-[#0FB9B1] bg-[#E8FBF9] text-[#0B0F3A]"
-                    : "border border-slate-200 bg-white text-[#0B0F3A] hover:border-[#0FB9B1]"
-                }`}
-              >
-                Advanced Search
-              </button>
-
-              {[
-                "Sector",
-                "Buyer",
-                "Location",
-                "Value",
-                "Deadline",
-                "Procedure",
-              ].map((filter) => (
-                <button
-                  key={filter}
-                  className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm transition-colors duration-150 hover:border-[#0FB9B1]"
-                >
-                  {filter}
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2 text-xs">
-              {[
-                "Published last 24h",
-                "Updated last 24h",
-                "Expiring soon",
-                "Under €50K",
-              ].map((preset) => (
-                <button
-                  key={preset}
-                  className="rounded-full bg-white px-3 py-1.5 text-slate-600 transition-colors duration-150 hover:bg-[#E8FBF9]"
-                >
-                  {preset}
-                </button>
-              ))}
-            </div>
-
-            {showAdvanced && (
-              <div className="mt-5 border-t border-slate-300 pt-5">
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold text-[#0B0F3A]">
-                      Advanced Search builder
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      Build complex queries, then save them as presets and
-                      alerts.
-                    </p>
-                  </div>
-
-                  <div className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs text-slate-600">
-                    ~148 opportunities match this query
-                  </div>
-                </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
                   <div className="space-y-2">
@@ -1307,8 +1295,6 @@ export default function DiscoverScreen({
                     Apply advanced search
                   </button>
                 </div>
-              </div>
-            )}
           </div>
         )}
       </div>
