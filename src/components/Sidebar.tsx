@@ -21,13 +21,15 @@ export default function Sidebar({
   setPage: (page: Page) => void;
   onOpenSimplifaer: () => void;
 }) {
+  const baseItem =
+    "flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100";
+
   return (
     <aside className="flex h-full w-72 flex-col border-r border-slate-200 bg-white">
       <div className="flex h-20 items-center border-b border-slate-200 px-6">
         <button
           onClick={() => setPage("overview")}
-          aria-label="Go to Overview"
-          className="flex items-center transition-opacity hover:opacity-90"
+          className="flex items-center"
         >
           <img
             src="/simplifae_logo_v1.png"
@@ -37,23 +39,23 @@ export default function Sidebar({
         </button>
       </div>
 
-      <nav className="flex-1 space-y-1 p-4" aria-label="Primary navigation">
+      <nav className="flex-1 space-y-1 p-4">
+
+        {/* FIXED Simplifaer alignment */}
         <button
-          aria-label="Open Simplifaer"
           onClick={onOpenSimplifaer}
-          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100"
+          className={baseItem}
         >
-          <Sparkles className="h-4 w-4" />
-          <span>Simplifaer</span>
+          <Sparkles className="h-4 w-4 text-[#6d5efc]" />
+          <span className="font-semibold text-slate-900">Simplifaer</span>
         </button>
 
         <button
-          aria-label="Open Overview"
           onClick={() => setPage("overview")}
-          className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 transition-colors ${
+          className={`${baseItem} ${
             page === "overview"
               ? "bg-[#E8FBF9] text-[#0FB9B1]"
-              : "text-slate-700 hover:bg-slate-100"
+              : ""
           }`}
         >
           <LayoutDashboard className="h-4 w-4" />
@@ -61,12 +63,11 @@ export default function Sidebar({
         </button>
 
         <button
-          aria-label="Open Discover"
           onClick={() => setPage("discover")}
-          className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 transition-colors ${
+          className={`${baseItem} ${
             page === "discover"
               ? "bg-[#E8FBF9] text-[#0FB9B1]"
-              : "text-slate-700 hover:bg-slate-100"
+              : ""
           }`}
         >
           <Search className="h-4 w-4" />
@@ -77,22 +78,22 @@ export default function Sidebar({
           Workspace
         </div>
 
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100">
+        <button className={baseItem}>
           <FolderKanban className="h-4 w-4" />
           <span>My Opportunities</span>
         </button>
 
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100">
+        <button className={baseItem}>
           <CheckSquare className="h-4 w-4" />
           <span>Task Manager</span>
         </button>
 
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100">
+        <button className={baseItem}>
           <Briefcase className="h-4 w-4" />
           <span>My Contracts</span>
         </button>
 
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100">
+        <button className={baseItem}>
           <Folder className="h-4 w-4" />
           <span>My Documents</span>
         </button>
@@ -101,20 +102,21 @@ export default function Sidebar({
           Market intelligence
         </div>
 
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100">
+        <button className={baseItem}>
           <BarChart3 className="h-4 w-4" />
           <span>Market Analysis</span>
         </button>
 
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100">
+        <button className={baseItem}>
           <Building2 className="h-4 w-4" />
           <span>Followed Companies</span>
         </button>
 
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition-colors hover:bg-slate-100">
+        <button className={baseItem}>
           <Gauge className="h-4 w-4" />
           <span>My Performance</span>
         </button>
+
       </nav>
     </aside>
   );
