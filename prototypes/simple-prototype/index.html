@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simplifae Prototype</title>
+  <style>
+    :root {
+      --bg: #f3f5f8;
+      --card: #ffffff;
+      --line: rgba(16, 34, 62, 0.08);
+      --ink: #10223e;
+      --muted: #6c7c90;
+      --navy: #08162e;
+      --teal: #1fc7be;
+      --teal-soft: rgba(31, 199, 190, 0.1);
+      --go: #1ca56d;
+      --review: #d98d1d;
+      --no: #d85c5c;
+      --pending: #7f91ab;
+      --shadow: 0 10px 26px rgba(11, 24, 51, 0.05);
+      --assistant-offset: 210px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at top, rgba(31, 199, 190, 0.08), transparent 24%),
+        linear-gradient(180deg, #f9fbfd 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", system-ui, sans-serif;
+    }
+
+    button, input { font: inherit; }
+    h1, h2, h3, h4 { margin: 0; letter-spacing: -0.03em; }
+
+    .app { max-width: 1380px; margin: 0 auto; padding: 22px; }
+    .topbar, .stepbar, .screen, .assistant, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      border-radius: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 220px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: left center;
+      display: block;
+    }
+
+    .meta { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .meta strong { color: var(--ink); }
+
+    .stepbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding: 8px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .step {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(16, 34, 62, 0.07);
+      font-size: 11px;
+    }
+
+    .step.active { background: rgba(8, 22, 46, 0.92); color: #fff; }
+    .step.active .step-num { background: rgba(255, 255, 255, 0.14); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 20px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .screen { display: none; padding: 28px; border-radius: 24px; background: rgba(255, 255, 255, 0.76); }
+    .screen.active { display: block; animation: screenFade 220ms ease-out; }
+    .assistant {
+      position: sticky;
+      top: 20px;
+      height: calc(100dvh - var(--assistant-offset));
+      max-height: calc(100dvh - var(--assistant-offset));
+      padding: 16px;
+      border-radius: 24px;
+      background: rgba(249, 251, 253, 0.98);
+      overflow: hidden;
+    }
+
+    @keyframes screenFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .subtle { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; max-width: 60ch; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .go { background: rgba(28, 165, 109, 0.14); color: var(--go); }
+    .review { background: rgba(217, 141, 29, 0.16); color: var(--review); }
+    .no-go { background: rgba(216, 92, 92, 0.14); color: var(--no); }
+    .pending { background: rgba(127, 145, 171, 0.14); color: var(--pending); }
+
+    .grid-2, .grid-3 { display: grid; gap: 18px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card { padding: 18px; border-radius: 18px; background: rgba(255, 255, 255, 0.94); }
+    .intro-grid { grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr); align-items: start; }
+    .quiet-card { background: rgba(248, 250, 252, 0.94); }
+    .profile-panel { display: grid; gap: 18px; }
+    .profile-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .profile-tab {
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 11px;
+      background: rgba(16, 34, 62, 0.05);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .profile-tab.active {
+      background: rgba(8, 22, 46, 0.94);
+      color: #fff;
+    }
+    .profile-detail {
+      padding-top: 16px;
+    }
+
+    .field { display: grid; gap: 10px; max-width: 520px; }
+    .field label { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .field input {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .btn-row, .prompt-row, .choice-row, .meta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { border: 1px solid transparent; border-radius: 12px; padding: 11px 14px; cursor: pointer; font-weight: 800; }
+    .btn-primary { background: var(--navy); color: #fff; }
+    .btn-secondary { background: rgba(16, 34, 62, 0.04); color: var(--ink); border-color: rgba(16, 34, 62, 0.06); }
+    .btn-soft { background: var(--teal-soft); color: #0b7f79; border-color: rgba(31, 199, 190, 0.16); }
+
+    .list, .message-list {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .list li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .list li > div:last-child {
+      min-width: 0;
+    }
+
+    .list li > div:last-child > div {
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .row, .msg {
+      padding: 13px 14px;
+      border-radius: 16px;
+      background: rgba(16, 34, 62, 0.03);
+      border: 1px solid rgba(16, 34, 62, 0.05);
+    }
+
+    .row { display: grid; gap: 12px; align-items: start; }
+    .row.three { grid-template-columns: auto 1fr auto; }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      margin-top: 5px;
+      background: var(--teal);
+      box-shadow: 0 0 0 4px rgba(31, 199, 190, 0.11);
+    }
+
+    .row strong { display: block; font-size: 14px; }
+    .row span { color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .tag {
+      display: inline-flex;
+      margin-top: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(16, 34, 62, 0.05);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .select-card, .opp-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(16, 34, 62, 0.05);
+    }
+
+    .choice {
+      border: 0;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(16, 34, 62, 0.06);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .choice.active { background: rgba(8, 22, 46, 0.92); color: #fff; }
+    .opp-card { cursor: pointer; transition: 0.15s; }
+    .opp-card:hover, .opp-card.active {
+      transform: translateY(-1px);
+      border-color: rgba(31, 199, 190, 0.28);
+      box-shadow: 0 10px 18px rgba(11, 24, 51, 0.04);
+    }
+
+    .score {
+      min-width: 82px;
+      text-align: right;
+      display: grid;
+      gap: 4px;
+      justify-items: end;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+    .score span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(16, 34, 62, 0.03);
+      border: 1px solid rgba(16, 34, 62, 0.05);
+    }
+
+    .stat label {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat strong { display: block; margin-top: 7px; font-size: 20px; }
+
+    .decision-shell {
+      display: grid;
+      gap: 18px;
+    }
+
+    .decision-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) 320px;
+      gap: 18px;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(16, 34, 62, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .decision-hero.go-tone { border-color: rgba(28, 165, 109, 0.16); }
+    .decision-hero.review-tone { border-color: rgba(217, 141, 29, 0.16); }
+    .decision-hero.no-tone { border-color: rgba(216, 92, 92, 0.16); }
+
+    .decision-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .decision-main h2 {
+      margin-top: 12px;
+      font-size: 36px;
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      max-width: 18ch;
+    }
+
+    .verdict-row {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .verdict-card {
+      padding: 18px 14px;
+      border-radius: 18px;
+      background: rgba(248, 250, 252, 0.98);
+      border: 1px solid rgba(16, 34, 62, 0.06);
+      display: grid;
+      align-content: start;
+      gap: 6px;
+      min-height: 100%;
+    }
+
+    .verdict-card strong {
+      font-size: 30px;
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .verdict-card.go strong { color: var(--go); }
+    .verdict-card.review strong { color: var(--review); }
+    .verdict-card.no-go strong { color: var(--no); }
+    .verdict-card.go { background: rgba(28, 165, 109, 0.05); border-color: rgba(28, 165, 109, 0.14); }
+    .verdict-card.review { background: rgba(217, 141, 29, 0.07); border-color: rgba(217, 141, 29, 0.14); }
+    .verdict-card.no-go { background: rgba(216, 92, 92, 0.05); border-color: rgba(216, 92, 92, 0.14); }
+
+    .fast-take {
+      padding: 4px 0 8px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      max-width: 36ch;
+    }
+
+    .fast-take h4 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .fast-take .list {
+      gap: 6px;
+    }
+
+    .fast-take .list li > div:last-child > div {
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      align-items: center;
+    }
+
+    .btn-link {
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--muted);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-link:hover {
+      color: var(--ink);
+    }
+
+    .decision-link-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .decision-side {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .side-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-stat,
+    .move-box {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(248, 250, 252, 0.96);
+      border: 1px solid rgba(16, 34, 62, 0.06);
+    }
+
+    .mini-stat label,
+    .move-box label {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .mini-stat strong,
+    .move-box strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 22px;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .move-box strong {
+      font-size: 18px;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .insight-grid.single {
+      grid-template-columns: 1fr;
+    }
+
+    .insight-card {
+      padding: 16px 18px;
+      background: rgba(250, 252, 253, 0.7);
+      border-color: rgba(16, 34, 62, 0.04);
+      box-shadow: none;
+    }
+
+    .insight-card h4 {
+      margin-bottom: 8px;
+    }
+
+    .insight-card .list {
+      gap: 10px;
+    }
+
+    .insight-card .finding-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .wai-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .wai-list li {
+      align-items: center;
+    }
+
+    .wai-summary {
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .wai-mini {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .wai-group {
+      display: grid;
+      gap: 4px;
+    }
+
+    .wai-group-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .wai-check {
+      border: 1px solid rgba(16, 34, 62, 0.1);
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .wai-check-panel {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(250, 252, 253, 0.95);
+      border: 1px solid rgba(16, 34, 62, 0.06);
+    }
+
+    .wai-check-panel h4 {
+      margin: 0;
+    }
+
+    .wai-check-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .wai-check-row {
+      display: grid;
+      gap: 4px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(16, 34, 62, 0.03);
+      border: 1px solid rgba(16, 34, 62, 0.06);
+    }
+
+    .wai-check-row strong {
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .wai-check-row span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .status-pill.ok {
+      color: #0f766e;
+      background: rgba(31, 199, 190, 0.14);
+      border-color: rgba(31, 199, 190, 0.24);
+    }
+
+    .status-pill.miss {
+      color: #a63a50;
+      background: rgba(237, 104, 138, 0.14);
+      border-color: rgba(237, 104, 138, 0.24);
+    }
+
+    .competitor-card {
+      display: grid;
+      gap: 14px;
+      background: rgba(250, 252, 253, 0.7);
+      border-color: rgba(16, 34, 62, 0.04);
+      box-shadow: none;
+    }
+
+    .competitor-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .competitor-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 74ch;
+    }
+
+    .competitor-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .competitor-card.collapsed .competitor-list {
+      display: none;
+    }
+
+    .competitor-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(248, 250, 252, 0.92);
+      border: 1px solid rgba(16, 34, 62, 0.05);
+      font-size: 12px;
+    }
+
+    .competitor-row.self {
+      background: rgba(31, 199, 190, 0.08);
+      border-color: rgba(31, 199, 190, 0.18);
+    }
+
+    .competitor-row strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .competitor-row span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .competitor-meta {
+      display: grid;
+      gap: 2px;
+    }
+
+    .competitor-link {
+      color: #0b7f79;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .detail-panel {
+      border-radius: 20px;
+      background: rgba(250, 252, 253, 0.96);
+    }
+
+    .detail-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .detail-panel-meta {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail-panel-actions {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .detail-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .detail-tab {
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 11px;
+      background: rgba(16, 34, 62, 0.05);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .detail-tab.active {
+      background: rgba(8, 22, 46, 0.94);
+      color: #fff;
+    }
+
+    .panel-toggle {
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 0;
+      white-space: nowrap;
+    }
+
+    .finding-text {
+      color: var(--ink);
+    }
+
+    .source-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: rgba(16, 34, 62, 0.04);
+      color: #0b7f79;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .source-link:hover {
+      background: rgba(31, 199, 190, 0.1);
+    }
+
+    .scope-list {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .scope-list li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .scope-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .scope-main .finding-text {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .scope-main .source-row {
+      margin-top: 0;
+      gap: 6px;
+    }
+
+    .req-head,
+    .req-row {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 0 !important;
+    }
+
+    .req-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.05fr) 72px 78px minmax(0, 0.95fr);
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .req-grid-head {
+      padding: 0 0 4px;
+      border-bottom: 1px solid rgba(16, 34, 62, 0.08);
+    }
+
+    .req-col {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .req-row .req-grid {
+      padding: 2px 0;
+    }
+
+    .req-doc {
+      font-size: 14px;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+
+    .type-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: var(--muted);
+      background: rgba(16, 34, 62, 0.04);
+      border: 1px solid rgba(16, 34, 62, 0.08);
+      width: fit-content;
+      white-space: nowrap;
+    }
+
+    .req-weight {
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .detail-preview {
+      display: none;
+    }
+
+    .detail-preview.active {
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .readiness-card {
+      display: grid;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(248, 250, 252, 0.92);
+      border: 1px solid rgba(16, 34, 62, 0.06);
+    }
+
+    .readiness-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .readiness-title {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .readiness-list {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .readiness-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .readiness-line span:first-child {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .handoff {
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(16, 34, 62, 0.02);
+      border: 1px solid rgba(16, 34, 62, 0.05);
+    }
+
+    .handoff p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .empty {
+      padding: 38px 24px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px dashed rgba(16, 34, 62, 0.16);
+      text-align: center;
+    }
+
+    .empty p { max-width: 54ch; margin: 10px auto 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+    .assistant {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .assistant-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 2px; }
+    .assistant-head span { color: var(--muted); font-size: 11px; font-weight: 700; }
+    .msg.user { background: rgba(31, 199, 190, 0.08); color: #0b7f79; }
+    .msg {
+      font-size: 12px;
+      line-height: 1.55;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(16, 34, 62, 0.06);
+    }
+    .message-list {
+      flex: 1 1 auto;
+      gap: 10px;
+      min-height: 0;
+      max-height: none;
+      overflow: auto;
+      padding-right: 4px;
+      align-content: start;
+    }
+    .prompt-row {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+      flex: 0 0 auto;
+      max-height: 220px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+    .prompt-row .btn {
+      width: 100%;
+      justify-content: flex-start;
+      text-align: left;
+      background: rgba(16, 34, 62, 0.03);
+      border-color: rgba(16, 34, 62, 0.05);
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+
+    .composer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: end;
+      flex: 0 0 auto;
+    }
+
+    .composer textarea {
+      width: 100%;
+      min-height: 92px;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      resize: none;
+    }
+
+    @media (max-width: 1220px) {
+      .layout, .grid-2, .grid-3, .insight-grid, .decision-hero { grid-template-columns: 1fr; }
+      .assistant { position: static; height: auto; max-height: none; }
+    }
+
+    @media (max-width: 880px) {
+      .app { padding: 16px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .detail-grid, .select-card, .opp-card, .verdict-row, .side-metrics, .competitor-row { grid-template-columns: 1fr; }
+      .score { text-align: left; }
+      .detail-panel-head { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="./assets/simplifae_logo_v1.png" alt="Simplifae logo">
+        </div>
+      </div>
+      <div class="meta"><span>Workflow</span><strong>Let the system do the first pass</strong></div>
+      <div class="meta"><span>Current company</span><strong id="topbar-company">Not identified</strong></div>
+    </header>
+
+    <nav class="stepbar" id="stepbar">
+      <button class="step active" data-step="1" type="button"><span class="step-num">1</span> VAT</button>
+      <button class="step" data-step="2" type="button"><span class="step-num">2</span> Profile</button>
+      <button class="step" data-step="3" type="button"><span class="step-num">3</span> Teach fit</button>
+      <button class="step" data-step="4" type="button"><span class="step-num">4</span> Queue</button>
+      <button class="step" data-step="5" type="button"><span class="step-num">5</span> Decision</button>
+    </nav>
+
+    <section class="layout">
+      <div>
+        <section class="screen active" id="screen-1">
+          <div class="head">
+            <div>
+              <h1>Enter VAT</h1>
+              <p class="subtle">One input. Simplifae builds the first supplier profile before asking you for any decision.</p>
+            </div>
+            <div class="chip pending">Single input</div>
+          </div>
+          <div class="grid-2 intro-grid">
+            <article class="card">
+              <div class="field">
+                <label for="vat">VAT Number</label>
+                <input id="vat" value="B65897214">
+              </div>
+              <div class="btn-row" style="margin-top:18px">
+                <button class="btn btn-primary" id="build-profile" type="button">Build profile</button>
+                <button class="btn btn-secondary" type="button">Use example</button>
+              </div>
+            </article>
+            <article class="card quiet-card">
+              <h3>What happens automatically</h3>
+              <p class="subtle">Procurement history does most of the work. Registry data and tender-pack extraction fill the gaps.</p>
+              <div class="list" id="source-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-2">
+          <div class="head">
+            <div>
+              <h2>Review the draft</h2>
+              <p class="subtle">Facts, procurement evidence, and inferences are separated so approval feels safe.</p>
+            </div>
+            <div class="chip review">Pending approval</div>
+          </div>
+          <div class="card profile-panel">
+            <div id="profile-summary"></div>
+            <div class="profile-tabs" id="profile-tabs">
+              <button class="profile-tab active" data-profile-tab="facts" type="button">Facts</button>
+              <button class="profile-tab" data-profile-tab="evidence" type="button">Evidence</button>
+              <button class="profile-tab" data-profile-tab="inferences" type="button">Inferences</button>
+            </div>
+            <article class="card quiet-card profile-detail">
+              <h4 id="profile-panel-title">Verified facts</h4>
+              <p class="subtle" id="profile-panel-subtitle">Company registry and master company data.</p>
+              <div class="list" id="profile-panel-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" id="screen-3">
+          <div class="head">
+            <div>
+              <h2>Teach relevance</h2>
+              <p class="subtle">Mark what is core, strategic, or noise before live recommendations begin.</p>
+            </div>
+            <div class="chip pending" id="relevance-counter">0 approved</div>
+          </div>
+          <div class="list" id="selection-list"></div>
+          <div class="btn-row" style="margin-top:18px"><button class="btn btn-primary" id="save-relevance" type="button">Save and activate recommendations</button></div>
+        </section>
+
+        <section class="screen" id="screen-4">
+          <div class="head">
+            <div>
+              <h2>Active recommendations</h2>
+              <p class="subtle">A short queue ranked after profile approval and relevance learning.</p>
+            </div>
+            <div class="chip go" id="recommendation-count">0 opportunities</div>
+          </div>
+          <div class="list" id="opportunity-list"></div>
+        </section>
+
+        <section class="screen" id="screen-5">
+          <div class="decision-shell">
+            <div class="decision-hero" id="decision-hero">
+              <div class="decision-main">
+                <div class="decision-meta">
+                  <span class="eyebrow" id="detail-subtitle">Buyer</span>
+                  <div class="chip pending" id="detail-state">Pending</div>
+                </div>
+                <h2 id="detail-title">Opportunity decision</h2>
+            <div class="verdict-row">
+                  <div class="verdict-card review" id="verdict-card">
+                    <span class="eyebrow">System call</span>
+                    <strong id="detail-recommendation"></strong>
+                  </div>
+                  <div class="fast-take">
+                    <h4>Check before sending</h4>
+                    <ul class="list" id="detail-risks"></ul>
+                  </div>
+                </div>
+              </div>
+              <div class="decision-side">
+                <div class="side-metrics">
+                  <div class="mini-stat"><label>Fit</label><strong id="detail-fit"></strong></div>
+                  <div class="mini-stat"><label>Best path</label><strong id="detail-best-path"></strong></div>
+                  <div class="mini-stat"><label>Deadline</label><strong id="detail-deadline"></strong></div>
+                  <div class="mini-stat"><label>Key risk</label><strong id="detail-gap"></strong></div>
+                </div>
+                <div class="move-box">
+                  <label>Next step</label>
+                  <strong id="detail-move"></strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="detail-go" type="button">Start bid</button>
+              <button class="btn btn-secondary" id="detail-no-go" type="button">Skip</button>
+            </div>
+
+            <div class="decision-link-row">
+              <button class="btn-link" id="detail-review" type="button">Review details</button>
+            </div>
+
+            <article class="card detail-panel" id="detail-panel">
+              <div class="detail-panel-head">
+                <div class="detail-panel-meta">
+                  <h4 id="detail-panel-title">Contract scope</h4>
+                  <p class="subtle" id="detail-panel-subtitle">Each insight is grounded in tender documents and linked to its source pages.</p>
+                  <div class="detail-tabs" id="detail-tabs">
+                    <button class="detail-tab active" data-tab="scope" type="button">Scope</button>
+                    <button class="detail-tab" data-tab="requiredDocs" type="button">Required docs</button>
+                    <button class="detail-tab" data-tab="competition" type="button">Competition</button>
+                    <button class="detail-tab" data-tab="tenderDocs" type="button">Tender docs</button>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-preview" id="detail-preview"></div>
+              <ul class="list" id="detail-panel-list"></ul>
+            </article>
+
+            <div id="workspace-block"></div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="assistant">
+        <div class="assistant-head"><h3>Simplifaer</h3><span id="assistant-context">Workflow</span></div>
+        <div class="message-list" id="messages"></div>
+        <div class="prompt-row" id="prompts"></div>
+        <div class="composer">
+          <textarea id="assistant-input" placeholder="Ask anything..."></textarea>
+          <button class="btn btn-soft" id="assistant-send" type="button">Send</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const profile = {
+      vat: "B65897214",
+      company: "EcoInfra Delta",
+      summary: "Civil works supplier focused on river restoration, urban earthworks, drainage, paving, and mixed works-supply packages for public buyers.",
+      tags: ["River restoration", "Earthworks", "Drainage", "Paving", "Landscape integration", "Municipal works"],
+      sources: [
+        ["Public procurement graph", "Awarded and participated contracts, buyers, competitors, lots, and award results"],
+        ["Company registry API", "Legal name, address, sector code, management, and master company data"],
+        ["Tender pack extraction", "PCAP, PPT, annexes, templates, and bill-of-quantities-style scope from past files"],
+        ["Company website", "Visible project language, materials, and service descriptions"]
+      ],
+      facts: [
+        ["Legal name", "EcoInfra Delta S.L."],
+        ["Registered address", "Calle del Ferrocarril 18, Seville"],
+        ["Sector code", "4299 - Civil engineering works"],
+        ["Management", "Marta Romero, Daniel Paredes"],
+        ["Country", "Spain"]
+      ],
+      evidence: [
+        ["38 contracts identified", "14 awards and 24 participations across municipalities, regional entities, and urban regeneration programs"],
+        ["Repeated contract objects", "River naturalization, demolition, earthworks, drainage, paving, planting, and mixed material supply"],
+        ["Buyer footprint", "Municipalities, provincial councils, water agencies, and public-space renewal programs"],
+        ["Competitor graph", "Verde Norte Obras, Urbalia Medio Natural, and Hidrocam Infraestructuras appear repeatedly in adjacent awards"]
+      ],
+      inferences: [
+        ["Historically demonstrated solvency", "Strong for municipal mixed works and supply lots; weaker in specialist maritime or building systems tenders"],
+        ["Inferred offer", "Earthworks, demolition, drainage correction, paving, shrubs, concrete, auxiliary materials, and public-space finishing"],
+        ["Adjacent scope worth testing", "Small habitat restoration and landscape integration projects discovered through competitor awards"],
+        ["Likely exclusions", "Avoid HVAC, medical equipment, and maritime classification tenders unless a partner closes the capability gap"]
+      ]
+    };
+
+    const relevance = [
+      { id: "r1", type: "Won", title: "Riverbed naturalization and drainage correction", buyer: "El Masnou Town Council", reason: "Direct overlap with extracted scope in your awarded restoration files.", value: "strategic" },
+      { id: "r2", type: "Won", title: "Demolitions and earthworks for municipal PFEA works", buyer: "Montilla Town Council", reason: "Represents the mixed works-supply pattern that appears repeatedly in your history.", value: "relevant" },
+      { id: "r3", type: "Participated", title: "Urban paving and planting lots", buyer: "Provincial Council of Jaen", reason: "No award, but the object still reflects the core business accurately.", value: "relevant" },
+      { id: "r4", type: "Competitor similar", title: "Riverbank stabilization with ecological restoration", buyer: "Regional Water Agency", reason: "Adjacent but useful; discovered through competitor wins in similar buyers.", value: "strategic" },
+      { id: "r5", type: "Competitor similar", title: "HVAC supply and installation in tourism space", buyer: "Calahorra Town Council", reason: "Public-buyer overlap exists, but the contract object is outside your approved offer.", value: "irrelevant" }
+    ];
+
+    const evidenceFiles = {
+      masnouPcap: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/masnou/PCAP_simp_naturalizacio_rieres_definitiu.pdf",
+      masnouPpt: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/masnou/PPTsimpnaturalizaciorieres.pdf",
+      masnouProject: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/masnou/ProjectenaturalitzaciorieraElMasnou.pdf",
+      masnouMemo: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/masnou/Memoriajustificativacontractacionaturalitzaciorierat.m.Masnou.pdf",
+      granadillaPcap: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/granadilla/6012600058_pcp.pdf",
+      granadillaPpt: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/granadilla/6012600058_ppt.pdf",
+      calahorraPcap: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/calahorra/pcap_pnsp_2026-3-09_1.pdf",
+      calahorraSpecs: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/calahorra/pliego_et_2026-3-09_1.pdf",
+      calahorraNeed: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/calahorra/informe_de_necesidad_2026-3-09_1.pdf",
+      calahorraStart: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/calahorra/inicio_expediente_2026-3-09_1.pdf"
+    };
+
+    const opportunities = [
+      {
+        id: "o1",
+        buyer: "El Masnou Town Council",
+        title: "River naturalization and drainage correction works in Alella stream",
+        recommendation: "go",
+        decision: "pending",
+        score: "93",
+        fit: "93%",
+        bestPath: "Direct bid",
+        gap: "Quantity interpretation",
+        eligibility: "No blocker detected",
+        effort: "Medium",
+        deadline: "10 days",
+        headline: "Strong restoration fit. The object matches your approved delivery pattern.",
+        move: "Validate pricing against the project estimate.",
+        basePrice: "Use the project estimate and the administrative model together. The commercial baseline should come from the project budget, not from a generic percentage shortcut.",
+        lotAdvice: "This is a single-scope works file. The best route is a direct bid, not a lot-selection strategy.",
+        priceGuidance: "Anchor the offer against the project budget, check the execution burden in the technical project, and stay competitive without undercutting specialist ecological works.",
+        proofs: ["14 similar wins", "Project + PCAP extracted", "Municipal buyer", "No blocking gap"],
+        why: [
+          "Matches core river-restoration work.",
+          "Familiar buyer and document structure.",
+          "Proven wins in similar scope (14)."
+        ],
+        wai: [
+          {
+            key: "scope",
+            title: "Scope",
+            summary: "Compliant with requested scope.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Riverbed naturalization and drainage correction", buyer: "El Masnou Town Council", status: "Won", note: "Direct scope overlap in awarded contract." },
+              { contract: "Urban paving and planting lots", buyer: "Provincial Council of Jaen", status: "Participated", note: "Comparable BoQ package and item structure." }
+            ]
+          },
+          {
+            key: "solvency",
+            title: "Solvency",
+            summary: "Solvency mostly compliant, one item missing.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Demolitions and earthworks for municipal PFEA works", buyer: "Montilla Town Council", status: "Won", note: "Technical solvency pattern is already proven." },
+              { contract: "Riverbank stabilization with ecological restoration", buyer: "Regional Water Agency", status: "Participated", note: "Financial thresholds are aligned in a comparable buyer context." }
+            ]
+          },
+          {
+            key: "requiredDocs",
+            title: "Required docs",
+            summary: "Compliant with technical and solvency documents.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Riverbed naturalization and drainage correction", buyer: "El Masnou Town Council", status: "Won", note: "Core solvency evidence pack was already delivered." },
+              { contract: "Urban paving and planting lots", buyer: "Provincial Council of Jaen", status: "Participated", note: "Technical and solvency documents follow the same pattern." }
+            ]
+          }
+        ],
+        risks: [
+          "⚠️ Pricing risk from quantity interpretation.",
+          "⚠️ Technical scope requires full read.",
+          "ℹ️ Environmental details may affect quantities."
+        ],
+        signals: [
+          "River naturalization and drainage correction appear in the core scope.",
+          "PCAP, PPT, justification memo, and full technical project are available.",
+          "The tender pack looks like a works file your team already understands."
+        ],
+        next: [
+          "Read the project estimate and the scope summary before pricing.",
+          "Match execution certificates to river restoration and drainage works.",
+          "Prepare the administrative forms only after the commercial route is clear."
+        ],
+        scope: [
+          { text: "River naturalization works in Alella stream area.", status: "ok", sources: [{ label: "Project · p. 1", href: `${evidenceFiles.masnouProject}#page=1` }, { label: "PPT · p. 1", href: `${evidenceFiles.masnouPpt}#page=1` }] },
+          { text: "BoQ includes drainage correction, civil works, and ecological integration.", status: "ok", sources: [{ label: "PPT · pp. 2-4", href: `${evidenceFiles.masnouPpt}#page=2` }] },
+          { text: "Single-scope works file (no lot split).", status: "ok", sources: [{ label: "PCAP · p. 3", href: `${evidenceFiles.masnouPcap}#page=3` }] }
+        ],
+        solvency: [
+          { text: "Similar works evidence.", status: "ok", sources: [{ label: "PCAP · p. 8", href: `${evidenceFiles.masnouPcap}#page=8` }] },
+          { text: "Team and delivery capacity.", status: "ok", sources: [{ label: "PCAP · p. 8", href: `${evidenceFiles.masnouPcap}#page=8` }, { label: "Memo · p. 2", href: `${evidenceFiles.masnouMemo}#page=2` }] },
+          { text: "Financial solvency proof.", status: "miss", sources: [{ label: "PCAP · pp. 10-12", href: `${evidenceFiles.masnouPcap}#page=10` }] }
+        ],
+        criteria: [
+          { text: "Price formula and bid sheet.", type: "Criteria · Price", weight: "55%", sources: [{ label: "PCAP · pp. 10-12", href: `${evidenceFiles.masnouPcap}#page=10` }] },
+          { text: "Technical quality criteria.", type: "Criteria · Quality", weight: "35%", sources: [{ label: "Project · pp. 6-8", href: `${evidenceFiles.masnouProject}#page=6` }] },
+          { text: "Commercial route and admin rules.", type: "Criteria · Other", weight: "10%", sources: [{ label: "PCAP · pp. 10-12", href: `${evidenceFiles.masnouPcap}#page=10` }] }
+        ],
+        requiredDocs: [
+          { text: "Similar-works certificates and CVs.", type: "Solvency", status: "ok", sources: [{ label: "PCAP · p. 8", href: `${evidenceFiles.masnouPcap}#page=8` }] },
+          { text: "Method statement and technical catalogs.", type: "Criteria · Quality", status: "ok", sources: [{ label: "PCAP · p. 12", href: `${evidenceFiles.masnouPcap}#page=12` }, { label: "Project · p. 1", href: `${evidenceFiles.masnouProject}#page=1` }] }
+        ],
+        tenderDocs: [
+          { text: "PCAP administrative clauses.", sources: [{ label: "PCAP · pp. 8-12", href: `${evidenceFiles.masnouPcap}#page=8` }] },
+          { text: "PPT technical specifications.", sources: [{ label: "PPT · pp. 1-4", href: `${evidenceFiles.masnouPpt}#page=1` }] },
+          { text: "Technical project.", sources: [{ label: "Project · pp. 1-8", href: `${evidenceFiles.masnouProject}#page=1` }] },
+          { text: "Justification memo.", sources: [{ label: "Memo · pp. 1-2", href: `${evidenceFiles.masnouMemo}#page=1` }] }
+        ],
+        competitors: {
+          summary: "Competition: Medium (3-5 bidders). You are stronger than the closest peer.",
+          href: evidenceFiles.masnouPcap,
+          rows: [
+            { name: "EcoInfra Delta", self: true, match: "92%", win: "67%", discount: "-5.2%", buyer: "2 active / 5 total" },
+            { name: "Urbalia Medio Natural", match: "86%", win: "43%", discount: "-6.1%", buyer: "1 active / 3 total" },
+            { name: "Verde Norte Obras", match: "74%", win: "29%", discount: "-4.7%", buyer: "0 active / 2 total" }
+          ]
+        },
+        workspace: {
+          summary: "Workspace opened around lot selection, solvency evidence, and submission documents rather than a broad project plan.",
+          tasks: [
+            "Choose lots 1 to 4 or 5 to 8 based on evidence strength.||Bid manager",
+            "Attach three matching execution certificates with amounts and recipients.||Operations",
+            "Prepare signed price templates for selected lots.||Commercial"
+          ],
+          docs: [
+            "Annex_I_responsible_declaration.pdf||Ready",
+            "Execution_certificates_bundle.pdf||Review",
+            "Lot_price_templates.docx||To adapt"
+          ],
+          actions: [
+            "Lock target lots and owners.||Today",
+            "Validate turnover threshold lot by lot.||Next",
+            "Run final e-signature check before upload.||Before submission"
+          ]
+        }
+      },
+      {
+        id: "o2",
+        buyer: "Port Authority of Santa Cruz de Tenerife",
+        title: "Granadilla port quay closure and pavement enabling works",
+        recommendation: "review",
+        decision: "pending",
+        score: "58",
+        fit: "58%",
+        bestPath: "Partner route",
+        gap: "Maritime capability",
+        eligibility: "Partner required",
+        effort: "High",
+        deadline: "14 days",
+        headline: "Civil overlap exists. Direct maritime proof does not.",
+        move: "Find a maritime partner within 24 hours.",
+        basePrice: "Do not read this as a pricing-first file. Check the economic envelope only after confirming a viable maritime partner.",
+        lotAdvice: "No direct best lot. The viable path is a consortium or partner route that closes the maritime capability gap.",
+        priceGuidance: "Do not optimize price first. Close the specialist gap before spending time on competitiveness.",
+        proofs: ["0 maritime wins", "3 envelopes extracted", "1 core gap", "Partner likely"],
+        summary: "58% fit · 14 days left · partner required",
+        why: [
+          "Civil execution overlap is real.",
+          "Large-infrastructure buyer pattern is adjacent.",
+          "A specialist partner is still required."
+        ],
+        wai: [
+          {
+            key: "scope",
+            title: "Scope",
+            summary: "Partial scope fit.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Demolitions and earthworks for municipal PFEA works", buyer: "Montilla Town Council", status: "Won", note: "Overlap in civil items, not maritime items." },
+              { contract: "Riverbank stabilization with ecological restoration", buyer: "Regional Water Agency", status: "Participated", note: "No direct evidence for caisson-based scope." }
+            ]
+          },
+          {
+            key: "solvency",
+            title: "Solvency",
+            summary: "Missing critical maritime solvency.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Granadilla port quay closure and pavement enabling works", buyer: "Port Authority of Santa Cruz de Tenerife", status: "Target tender", note: "Technical and classification gap remains open." }
+            ]
+          },
+          {
+            key: "requiredDocs",
+            title: "Required docs",
+            summary: "Partner route needed for required documents.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Urban paving and planting lots", buyer: "Provincial Council of Jaen", status: "Participated", note: "Envelope workflow is known; maritime evidence pack is missing." }
+            ]
+          }
+        ],
+        risks: [
+          "⚠️ Maritime capability gap blocks direct bid.",
+          "⚠️ Three-envelope process raises effort.",
+          "ℹ️ Classification depends on partner route."
+        ],
+        signals: [
+          "543.31 m quay closure with 11 caissons.",
+          "Maritime CPV 45244000 sits outside your core profile.",
+          "Technical judgment and formula criteria are separated."
+        ],
+        next: [
+          "Approach a maritime specialist partner within 24 hours.",
+          "If no partner appears, pass fast.",
+          "Do not move forward without closing the capability gap."
+        ],
+        scope: [
+          { text: "Quay closure works at Port of Granadilla.", status: "ok", sources: [{ label: "PCAP · p. 4", href: `${evidenceFiles.granadillaPcap}#page=4` }, { label: "PPT · p. 3", href: `${evidenceFiles.granadillaPpt}#page=3` }] },
+          { text: "11 reinforced concrete caissons in scope.", status: "miss", sources: [{ label: "PPT · p. 4", href: `${evidenceFiles.granadillaPpt}#page=4` }] },
+          { text: "Specialist maritime execution environment.", status: "miss", sources: [{ label: "PPT · p. 6", href: `${evidenceFiles.granadillaPpt}#page=6` }] }
+        ],
+        solvency: [
+          { text: "Maritime classifications F1-2, F2-5, F4-6 required.", status: "miss", sources: [{ label: "PCAP · p. 18", href: `${evidenceFiles.granadillaPcap}#page=18` }] },
+          { text: "Specialized personnel and technical means commitment required.", status: "miss", sources: [{ label: "PCAP · p. 19", href: `${evidenceFiles.granadillaPcap}#page=19` }] },
+          { text: "Current profile has no direct maritime classification evidence.", status: "miss", sources: [{ label: "PCAP · p. 18", href: `${evidenceFiles.granadillaPcap}#page=18` }] }
+        ],
+        criteria: [
+          { text: "Envelope 1 covers administrative requirements.", sources: [{ label: "PCAP · p. 33", href: `${evidenceFiles.granadillaPcap}#page=33` }] },
+          { text: "Envelope 2 is the judgment-based technical response.", sources: [{ label: "PCAP · p. 34", href: `${evidenceFiles.granadillaPcap}#page=34` }] },
+          { text: "Envelope 3 carries formula-based economic criteria.", sources: [{ label: "PCAP · p. 35", href: `${evidenceFiles.granadillaPcap}#page=35` }] }
+        ],
+        requiredDocs: [
+          { text: "Administrative compliance file and DEUC equivalent.", status: "ok", sources: [{ label: "PCAP · p. 33", href: `${evidenceFiles.granadillaPcap}#page=33` }] },
+          { text: "Technical offer for judgment-based criteria.", status: "ok", sources: [{ label: "PCAP · p. 34", href: `${evidenceFiles.granadillaPcap}#page=34` }] },
+          { text: "Economic offer and measurable criteria documents.", status: "ok", sources: [{ label: "PCAP · p. 35", href: `${evidenceFiles.granadillaPcap}#page=35` }] },
+          { text: "Partner or external means commitments for consortium route.", status: "miss", sources: [{ label: "PCAP · p. 19", href: `${evidenceFiles.granadillaPcap}#page=19` }] }
+        ],
+        tenderDocs: [
+          { text: "PCAP administrative clauses used for classifications and envelopes.", sources: [{ label: "PCAP · pp. 18-19, 33-35", href: `${evidenceFiles.granadillaPcap}#page=18` }] },
+          { text: "PPT technical specifications used for scope and caisson evidence.", sources: [{ label: "PPT · pp. 3-6", href: `${evidenceFiles.granadillaPpt}#page=3` }] },
+          { text: "Adjudication notice.", sources: [{ label: "Award notice · p. 1", href: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/granadilla/6012600058_anuncio_adjudicacion_firpub.pdf#page=1" }] },
+          { text: "Justification memo.", sources: [{ label: "Justification memo · p. 1", href: "file:///C:/Users/VictorNavasZozaya/iCloudDrive/Documents/Claude/Projects/SUPPLIERS%20Prototype/sample_tenders/extracted/granadilla/6012600058_mem_justif_publicar.pdf#page=1" }] }
+        ],
+        competitors: {
+          summary: "Competition: Medium (3-4 bidders). Specialist maritime peer is stronger.",
+          href: evidenceFiles.granadillaPcap,
+          rows: [
+            { name: "EcoInfra Delta", self: true, match: "58%", win: "12%", discount: "-4.9%", buyer: "0 active / 0 total" },
+            { name: "Obras Marítimas Atlántico", match: "86%", win: "44%", discount: "-6.3%", buyer: "2 active / 3 total" },
+            { name: "Metalwork Iberia S.A.", match: "63%", win: "28%", discount: "-5.7%", buyer: "1 active / 2 total" }
+          ]
+        },
+        workspace: {
+          summary: "",
+          tasks: [],
+          docs: [],
+          actions: []
+        }
+      },
+      {
+        id: "o3",
+        buyer: "Calahorra Town Council",
+        title: "Minor contract for HVAC supply and installation in immersive space",
+        recommendation: "no-go",
+        decision: "pending",
+        score: "16",
+        fit: "16%",
+        bestPath: "No viable path",
+        gap: "Category mismatch",
+        eligibility: "Blocked",
+        effort: "Low",
+        deadline: "6 days",
+        headline: "Public buyer fit is not enough. Category fit is absent.",
+        move: "Discard now and keep it as a negative training signal.",
+        basePrice: "The file has a simple minor-contract budget, but pricing is not the real issue here.",
+        lotAdvice: "No lot or bid route fits the approved profile.",
+        priceGuidance: "Do not price this file. Category fit is missing and the authorization gap is hard.",
+        proofs: ["0 matched wins", "1 envelope", "2 hard gaps", "RITE required"],
+        summary: "16% fit · 6 days left · blocked by category gap",
+        why: [
+          "Public-buyer overlap exists.",
+          "Category fit does not match approved scope.",
+          "This is easy to filter out early."
+        ],
+        wai: [
+          {
+            key: "scope",
+            title: "Scope",
+            summary: "Not compliant with requested scope.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Riverbed naturalization and drainage correction", buyer: "El Masnou Town Council", status: "Won", note: "Civil-works scope; no HVAC item overlap." }
+            ]
+          },
+          {
+            key: "solvency",
+            title: "Solvency",
+            summary: "Not compliant with technical solvency.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Minor contract for HVAC supply and installation in immersive space", buyer: "Calahorra Town Council", status: "Target tender", note: "Direct technical solvency gap identified." }
+            ]
+          },
+          {
+            key: "requiredDocs",
+            title: "Required docs",
+            summary: "Missing key required technical documents.",
+            checkLabel: "Check",
+            contractChecks: [
+              { contract: "Urban paving and planting lots", buyer: "Provincial Council of Jaen", status: "Participated", note: "Document flow is similar, but not HVAC-specific evidence." }
+            ]
+          }
+        ],
+        risks: [
+          "⚠️ Core object is HVAC, not civil works.",
+          "⚠️ RITE installer authorization is required.",
+          "ℹ️ PRTR annexes add admin work with no upside."
+        ],
+        signals: [
+          "Single-envelope process.",
+          "Price-only award logic.",
+          "PRTR and Next Generation EU funding markers."
+        ],
+        next: [
+          "Pass and store it as negative training.",
+          "Only revisit if HVAC becomes an approved expansion area."
+        ],
+        scope: [
+          { text: "Supply and commissioning of a multisplit HVAC system.", status: "miss", sources: [{ label: "Specs · p. 2", href: `${evidenceFiles.calahorraSpecs}#page=2` }] },
+          { text: "Indoor/outdoor unit installation and building integration.", status: "miss", sources: [{ label: "Specs · p. 3", href: `${evidenceFiles.calahorraSpecs}#page=3` }] },
+          { text: "Minor contract with single-envelope route.", status: "ok", sources: [{ label: "PCAP · p. 4", href: `${evidenceFiles.calahorraPcap}#page=4` }] }
+        ],
+        solvency: [
+          { text: "No historical evidence in approved profile for HVAC installation.", status: "miss", sources: [{ label: "Need memo · p. 2", href: `${evidenceFiles.calahorraNeed}#page=2` }] },
+          { text: "Authorized thermal installer (RITE) required.", status: "miss", sources: [{ label: "PCAP · p. 8", href: `${evidenceFiles.calahorraPcap}#page=8` }] },
+          { text: "PRTR controls add extra compliance workload.", status: "miss", sources: [{ label: "PCAP · p. 9", href: `${evidenceFiles.calahorraPcap}#page=9` }] }
+        ],
+        criteria: [
+          { text: "Single automatic criterion: price.", sources: [{ label: "PCAP · p. 6", href: `${evidenceFiles.calahorraPcap}#page=6` }] },
+          { text: "Single submission envelope for the full offer.", sources: [{ label: "PCAP · p. 5", href: `${evidenceFiles.calahorraPcap}#page=5` }] }
+        ],
+        requiredDocs: [
+          { text: "PRTR annex pack and DACI declaration.", status: "miss", sources: [{ label: "PCAP · p. 5", href: `${evidenceFiles.calahorraPcap}#page=5` }] },
+          { text: "Authorized installer certificate.", status: "miss", sources: [{ label: "PCAP · p. 8", href: `${evidenceFiles.calahorraPcap}#page=8` }] },
+          { text: "Price offer template.", status: "ok", sources: [{ label: "PCAP · p. 6", href: `${evidenceFiles.calahorraPcap}#page=6` }] },
+          { text: "Tax and Social Security certificates.", status: "ok", sources: [{ label: "PCAP · p. 9", href: `${evidenceFiles.calahorraPcap}#page=9` }] }
+        ],
+        tenderDocs: [
+          { text: "PCAP administrative clauses used for envelope, criteria, PRTR docs, and installer requirement.", sources: [{ label: "PCAP · pp. 4-9", href: `${evidenceFiles.calahorraPcap}#page=4` }] },
+          { text: "Technical specifications used for HVAC scope and installation details.", sources: [{ label: "Specs · pp. 2-3", href: `${evidenceFiles.calahorraSpecs}#page=2` }] },
+          { text: "Need memo.", sources: [{ label: "Need memo · p. 2", href: `${evidenceFiles.calahorraNeed}#page=2` }] },
+          { text: "Start-of-file administrative resolution.", sources: [{ label: "Start memo · p. 1", href: `${evidenceFiles.calahorraStart}#page=1` }] }
+        ],
+        competitors: {
+          summary: "Competition: Low to medium (2-3 bidders). HVAC specialist tier is out of scope.",
+          href: evidenceFiles.calahorraPcap,
+          rows: [
+            { name: "EcoInfra Delta", self: true, match: "16%", win: "0%", discount: "-", buyer: "0 active / 0 total" },
+            { name: "Clima Rioja Instalaciones", match: "84%", win: "52%", discount: "-3.9%", buyer: "2 active / 3 total" },
+            { name: "Termia Building Systems", match: "79%", win: "37%", discount: "-4.6%", buyer: "1 active / 2 total" }
+          ]
+        },
+        workspace: {
+          summary: "",
+          tasks: [],
+          docs: [],
+          actions: []
+        }
+      }
+    ];
+        const assistantConfig = {
+      1: {
+        context: "Identification",
+        messages: [
+          "Enter a VAT number and I reconstruct the supplier profile from procurement history, registry data, and tender files."
+        ],
+        prompts: ["What can you infer from one VAT?", "What is still uncertain?"]
+      },
+      2: {
+        context: "Draft profile",
+        messages: [
+          "I separated the draft into verified facts, procurement evidence, and inferences so approval feels safer."
+        ],
+        prompts: ["Why this competitor?", "This is not core for us"]
+      },
+      3: {
+        context: "Relevance",
+        messages: [
+          "Use these examples to teach me what really represents your business."
+        ],
+        prompts: ["This is strategic", "Find more like this"]
+      },
+      4: {
+        context: "Recommendations",
+        messages: [
+          "These live opportunities were ranked after profile approval and relevance training."
+        ],
+        prompts: ["Why is this recommended?", "Show docs and scoring logic"]
+      },
+      5: {
+        context: "Decision",
+        messages: [
+          "I can push the next action now: generate pricing range, check blockers, and prepare the submission route."
+        ],
+        prompts: ["Generate pricing range", "Check solvency evidence", "Identify bid blockers", "Prepare submission route"]
+      }
+    };
+
+    const state = { step: 1, selected: "o1", assistant: [], assistantStep: 0, profileTab: "evidence", detailTab: "scope" };
+    const $ = id => document.getElementById(id);
+    const tone = value => value === "go" ? "go" : value === "review" ? "review" : value === "no-go" ? "no-go" : "pending";
+    const label = value => value === "go" ? "Go" : value === "review" ? "Review" : value === "no-go" ? "Pass" : "Pending";
+    const actionLabel = value => value === "go" ? "Bid now" : value === "review" ? "Review first" : value === "no-go" ? "Skip now" : "Pending";
+    const current = () => opportunities.find(item => item.id === state.selected);
+    function reply(text) {
+      const prompt = text.toLowerCase();
+
+      if (state.step === 1 && prompt.includes("infer")) return "From one VAT I can usually reconstruct buyers, awards, participated tenders, competitors, repeated contract objects, and a first version of likely solvency bands.";
+      if (state.step === 1 && prompt.includes("source")) return "The strongest signals come from procurement history, structured notices, and tender pack extraction. Registry and website data help stabilize company identity and language.";
+      if (state.step === 1 && prompt.includes("uncertain")) return "I am least certain where historical evidence is thin, where competitor overlap is only adjacent, or where the tender object sits outside the approved business profile.";
+      if (state.step === 2 && prompt.includes("competitor")) return "A competitor appears only when it repeatedly overlaps on the same buyers, object families, CPV patterns, or adjacent awards. It stays as an inference until you approve the profile.";
+      if (state.step === 2 && (prompt.includes("missing") || prompt.includes("activity"))) return "I can add that activity as a pending inference and immediately reweight recommendations after profile approval.";
+      if (state.step === 2 && prompt.includes("not core")) return "If you mark it as non-core, I will stop using it as a positive recommendation signal and treat it as noise or an expansion edge case.";
+      if (state.step === 3 && prompt.includes("strategic")) return "Strategic examples stay visible even if they are not your biggest volume segment. They push the recommendation engine toward where you want to grow.";
+      if (state.step === 3 && prompt.includes("irrelevant")) return "Once marked irrelevant, that contract object stops influencing recommendations unless strong new evidence appears later.";
+      if (state.step === 4 && prompt.includes("discard")) return "I discarded files with weak object match, missing solvency evidence, or special requirements that do not belong to your approved business profile.";
+      if (state.step === 4 && prompt.includes("solvency")) return "I compare each live file against what your company has already demonstrated historically, then flag where the tender asks for a threshold, classification, or document pattern that is missing.";
+      if (state.step === 5 && (prompt.includes("base price") || prompt.includes("budget") || prompt.includes("pricing range") || prompt.includes("offer range"))) return current().basePrice;
+      if (state.step === 5 && (prompt.includes("lot") || prompt.includes("lots") || prompt.includes("best path") || prompt.includes("submission route") || prompt.includes("prepare"))) return current().lotAdvice;
+      if (state.step === 5 && (prompt.includes("competitive") || prompt.includes("price"))) return current().priceGuidance;
+      if (state.step === 5 && (prompt.includes("blocker") || prompt.includes("solvency evidence"))) return current().solvency[0].text;
+      if (state.step === 5 && prompt.includes("risk")) {
+        const item = current();
+        if (item.id === "o1") return "The main risk is not fit; it is operational discipline. You need to pick the right lots and line up certificates and turnover evidence lot by lot.";
+        if (item.id === "o2") return "The main risk is specialist maritime capability. The object includes caissons and port works that your profile does not currently evidence.";
+        return "The main risk is category mismatch. Even though the tender is small and simple, the object is HVAC installation with special authorization requirements.";
+      }
+      if (state.step === 5 && prompt.includes("special")) {
+        const item = current();
+        if (item.id === "o1") return "The notable special requirement in this file is the external solvency declaration if you rely on another entity's capacity.";
+        if (item.id === "o2") return "The notable special requirement is the need to cover specialist maritime means and likely classification through your own evidence or a partner.";
+        return "The notable special requirements are RITE installer authorization and PRTR annexes such as DACI.";
+      }
+      if (state.step === 5 && prompt.includes("what should")) return current().next[0];
+
+      return "Noted. I will use that as context for the next recommendation or decision.";
+    }
+
+    function pairRow(title, text, mode = "go") {
+      const badge = mode === "go" ? "OK" : mode === "review" ? "Review" : "Info";
+      return `<div class="row three"><div class="dot"></div><div><strong>${title}</strong><span>${text}</span></div><div class="chip ${mode}">${badge}</div></div>`;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function findingHtml(item) {
+      if (typeof item === "string") return `<div class="finding-text">${escapeHtml(item)}</div>`;
+      const text = `<div class="finding-text">${escapeHtml(item.text)}</div>`;
+      const sources = item.sources?.length
+        ? `<div class="source-row">${item.sources.map(source => `<a class="source-link" href="${source.href}" target="_blank" rel="noreferrer">${escapeHtml(source.label)}</a>`).join("")}</div>`
+        : "";
+      return `${text}${sources}`;
+    }
+
+    function listHtml(items) {
+      return items.map(item => {
+        if (typeof item === "string") return `<li><div class="dot"></div><div>${findingHtml(item)}</div></li>`;
+        const statusClass = item.status === "ok" ? "ok" : item.status === "miss" ? "miss" : "";
+        const statusLabel = item.status === "ok" ? "OK" : item.status === "miss" ? "Miss" : "";
+        const status = statusClass ? `<span class="status-pill ${statusClass}">${statusLabel}</span>` : "";
+        return `<li><div class="dot"></div><div>${findingHtml(item)}</div>${status}</li>`;
+      }).join("");
+    }
+
+    function scopeHtml(items) {
+      return `<ul class="scope-list">${items.map(item => {
+        const statusClass = item.status === "ok" ? "ok" : item.status === "miss" ? "miss" : "";
+        const statusLabel = item.status === "ok" ? "OK" : item.status === "miss" ? "Miss" : "";
+        const status = statusClass ? `<span class="status-pill ${statusClass}">${statusLabel}</span>` : "";
+        const sources = item.sources?.length
+          ? `<div class="source-row">${item.sources.map(source => `<a class="source-link" href="${source.href}" target="_blank" rel="noreferrer">${escapeHtml(source.label)}</a>`).join("")}</div>`
+          : "";
+        return `
+          <li>
+            <div class="dot"></div>
+            <div class="scope-main">
+              <div class="finding-text">${escapeHtml(item.text)}</div>
+              ${sources}
+            </div>
+            ${status}
+          </li>
+        `;
+      }).join("")}</ul>`;
+    }
+
+    function stripHash(url) {
+      return String(url).split("#")[0];
+    }
+
+    function tenderDocsHtml(items) {
+      return items.map(item => {
+        const primary = item.sources?.[0];
+        if (!primary) return `<li><div class="dot"></div><div>${findingHtml(item)}</div></li>`;
+        return `<li><div class="dot"></div><div><a class="source-link" href="${stripHash(primary.href)}" target="_blank" rel="noreferrer">${escapeHtml(item.text)}</a></div></li>`;
+      }).join("");
+    }
+
+    function competitionHtml(item) {
+      const summary = `<div class="finding-text">${escapeHtml(item.competitors.summary)}</div>`;
+      const rows = item.competitors.rows.map(row => `
+        <div class="competitor-row ${row.self ? "self" : ""}">
+          <div class="competitor-meta">
+            <strong>${escapeHtml(row.name)}</strong>
+            <span>${row.self ? "You" : "Peer"}</span>
+          </div>
+          <div class="competitor-meta"><strong>${escapeHtml(row.match)}</strong><span>Match</span></div>
+          <div class="competitor-meta"><strong>${escapeHtml(row.win)}</strong><span>Win rate</span></div>
+          <div class="competitor-meta"><strong>${escapeHtml(row.discount)}</strong><span>Avg. discount</span></div>
+          <div class="competitor-meta"><strong>${escapeHtml(row.buyer)}</strong><span>This buyer</span></div>
+        </div>
+      `).join("");
+      return `${summary}<div class="competitor-list" style="margin-top:12px">${rows}</div><div class="source-row" style="margin-top:14px"><a class="competitor-link" href="#" id="competition-deep-analysis">Deep Analysis</a></div>`;
+    }
+
+    function criteriaType(text) {
+      const value = String(text).toLowerCase();
+      if (value.includes("price") || value.includes("economic") || value.includes("formula")) return "Criteria · Price";
+      if (value.includes("technical") || value.includes("judgment")) return "Criteria · Quality";
+      return "Criteria · Other";
+    }
+
+    function criteriaWeight(text) {
+      const value = String(text);
+      const match = value.match(/(\d{1,3})\s*%/);
+      if (match) return `${match[1]}%`;
+      const lower = value.toLowerCase();
+      if (lower.includes("single automatic criterion: price") || lower.includes("price-only")) return "100%";
+      return "";
+    }
+
+    function buildRequirementRows(item) {
+      const rows = [];
+      const criteriaWeights = {};
+      const orderMap = {
+        "Solvency": 0,
+        "Criteria · Quality": 1,
+        "Criteria · Price": 2,
+        "Criteria · Other": 3
+      };
+
+      (item.criteria || []).forEach(entry => {
+        const type = entry.type || criteriaType(entry.text);
+        const weight = entry.weight ?? criteriaWeight(entry.text);
+        if (weight) criteriaWeights[type] = weight;
+      });
+
+      let index = 0;
+      const addRow = (entry, type, weight = "") => {
+        const resolvedType = entry.type || type;
+        const resolvedWeight = entry.weight ?? weight ?? "";
+        rows.push({
+          doc: entry.text,
+          type: resolvedType,
+          weight: resolvedType.startsWith("Criteria")
+            ? (resolvedWeight || criteriaWeights[resolvedType] || "")
+            : resolvedWeight,
+          status: entry.status || "ok",
+          sourceLabel: entry.sources?.[0]?.label || "—",
+          sourceHref: entry.sources?.[0]?.href || "",
+          index: index++
+        });
+      };
+
+      (item.solvency || []).forEach(entry => addRow(entry, "Solvency"));
+      (item.criteria || []).forEach(entry => addRow(entry, criteriaType(entry.text), criteriaWeight(entry.text)));
+      (item.requiredDocs || []).forEach(entry => addRow(entry, "Solvency"));
+
+      return rows
+        .sort((a, b) => {
+          const aOrder = orderMap[a.type] ?? 99;
+          const bOrder = orderMap[b.type] ?? 99;
+          if (aOrder !== bOrder) return aOrder - bOrder;
+          return a.index - b.index;
+        })
+        .map(({ index: _index, ...row }) => row);
+    }
+
+    function readinessHtml(item) {
+      const rows = buildRequirementRows(item);
+      const missing = rows.filter(row => row.status === "miss");
+      const headline = item.recommendation === "go" ? "Readiness" : "Readiness";
+      const badgeClass = item.recommendation === "go" ? "ok" : "miss";
+      const badgeLabel = item.recommendation === "go" ? "Ready" : "Review";
+      const primaryLine = item.recommendation === "go"
+        ? "No blocker detected."
+        : `${item.eligibility}.`;
+      const secondLine = missing.length
+        ? `${missing.length} item${missing.length > 1 ? "s still need" : " still needs"} validation: ${missing[0].doc}`
+        : "No open validation items.";
+      const source = missing[0]?.sourceHref
+        ? `<a class="source-link" href="${missing[0].sourceHref}" target="_blank" rel="noreferrer">Open source</a>`
+        : "";
+
+      return `
+        <div class="readiness-card">
+          <div class="readiness-top">
+            <div class="readiness-title">${headline}</div>
+            <span class="status-pill ${badgeClass}">${badgeLabel}</span>
+          </div>
+          <ul class="readiness-list">
+            <li class="readiness-line"><span>${escapeHtml(primaryLine)}</span></li>
+            <li class="readiness-line"><span>${escapeHtml(secondLine)}</span>${source}</li>
+          </ul>
+        </div>
+      `;
+    }
+
+    function requirementsHtml(item) {
+      const rows = buildRequirementRows(item);
+      const head = `
+        <li class="req-head">
+          <div class="req-grid req-grid-head">
+            <div class="req-col">Required doc</div>
+            <div class="req-col">Type</div>
+            <div class="req-col">Weight</div>
+            <div class="req-col">Status</div>
+            <div class="req-col">Source</div>
+          </div>
+        </li>
+      `;
+
+      const body = rows.map(row => {
+        const statusClass = row.status === "miss" ? "miss" : "ok";
+        const statusLabel = statusClass === "miss" ? "Miss" : "OK";
+        const isCriteria = row.type.startsWith("Criteria");
+        const sourceHtml = row.sourceHref
+          ? `<a class="source-link" href="${row.sourceHref}" target="_blank" rel="noreferrer">${escapeHtml(row.sourceLabel)}</a>`
+          : `<span class="req-weight"></span>`;
+
+        return `
+          <li class="req-row">
+            <div class="req-grid">
+              <div class="req-doc">${escapeHtml(row.doc)}</div>
+              <div><span class="type-pill">${escapeHtml(row.type)}</span></div>
+              <div class="req-weight">${escapeHtml(row.weight)}</div>
+              <div>${isCriteria ? "" : `<span class="status-pill ${statusClass}">${statusLabel}</span>`}</div>
+              <div>${sourceHtml}</div>
+            </div>
+          </li>
+        `;
+      }).join("");
+
+      return `${head}${body}`;
+    }
+
+    function pushAssistant(text) {
+      const last = state.assistant[state.assistant.length - 1];
+      if (!last || last.role !== "assistant" || last.text !== text) {
+        state.assistant.push({ role: "assistant", text });
+      }
+    }
+
+    function renderAssistant() {
+      const visibleMessages = state.step === 5 ? state.assistant.slice(-6) : state.assistant.filter(message => message.role === "assistant").slice(-1);
+      $("messages").innerHTML = visibleMessages.map(message => `<div class="msg ${message.role === "user" ? "user" : ""}">${message.text}</div>`).join("");
+      $("prompts").innerHTML = assistantConfig[state.step].prompts.map(prompt => `<button class="btn btn-secondary" data-prompt="${prompt}" type="button">${prompt}</button>`).join("");
+      $("prompts").querySelectorAll("button").forEach(button => {
+        button.onclick = () => {
+          state.assistant.push({ role: "user", text: button.dataset.prompt }, { role: "assistant", text: reply(button.dataset.prompt) });
+          renderAssistant();
+        };
+      });
+    }
+
+    function setAssistant() {
+      const config = assistantConfig[state.step];
+      $("assistant-context").textContent = config.context;
+      if (state.assistantStep !== state.step) {
+        if (!state.assistant.length) {
+          config.messages.forEach(text => pushAssistant(text));
+        } else {
+          pushAssistant(config.messages[0]);
+        }
+        state.assistantStep = state.step;
+      }
+      if (state.step === 5 && current().recommendation === "go") {
+        pushAssistant("Suggested next action: generate pricing range from the project estimate before bidding.");
+      }
+      renderAssistant();
+    }
+
+    function renderStep1() {
+      $("source-list").innerHTML = profile.sources.map(source => pairRow(source[0], source[1], "go")).join("");
+      $("vat").value = profile.vat;
+    }
+
+    function renderStep2() {
+      $("topbar-company").textContent = profile.company;
+      $("profile-summary").innerHTML = `<h3>${profile.company}</h3><p class="subtle">${profile.summary}</p><div class="meta-row">${profile.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}</div><div class="btn-row" style="margin-top:16px"><button class="btn btn-primary" id="approve-profile" type="button">Approve profile</button></div>`;
+      const tabMap = {
+        facts: {
+          title: "Verified facts",
+          subtitle: "Company registry and master company data.",
+          html: profile.facts.map(fact => pairRow(fact[0], fact[1], "go")).join("")
+        },
+        evidence: {
+          title: "Procurement evidence",
+          subtitle: "Awards, participations, buyers, contract objects, and competitor graph.",
+          html: profile.evidence.map(item => `<div class="row"><strong>${item[0]}</strong><span>${item[1]}</span></div>`).join("")
+        },
+        inferences: {
+          title: "System inferences",
+          subtitle: "Likely offer scope, solvency bands, and exclusions to confirm.",
+          html: profile.inferences.map(item => `<div class="row"><strong>${item[0]}</strong><span>${item[1]}</span></div>`).join("")
+        }
+      };
+      const active = tabMap[state.profileTab];
+      $("profile-panel-title").textContent = active.title;
+      $("profile-panel-subtitle").textContent = active.subtitle;
+      $("profile-panel-list").innerHTML = active.html;
+      $("profile-tabs").querySelectorAll(".profile-tab").forEach(button => {
+        button.classList.toggle("active", button.dataset.profileTab === state.profileTab);
+        button.onclick = () => {
+          state.profileTab = button.dataset.profileTab;
+          renderStep2();
+        };
+      });
+      $("approve-profile").onclick = () => setStep(3);
+    }
+
+    function renderStep3() {
+      const approved = relevance.filter(item => item.value === "relevant" || item.value === "strategic").length;
+      $("relevance-counter").textContent = `${approved} approved`;
+      $("selection-list").innerHTML = relevance.map(item => `<div class="select-card"><div class="dot"></div><div><strong>${item.title}</strong><span>${item.type} - ${item.buyer} - ${item.reason}</span></div><div class="choice-row" data-id="${item.id}"><button class="choice ${item.value === "relevant" ? "active" : ""}" data-value="relevant" type="button">Relevant</button><button class="choice ${item.value === "strategic" ? "active" : ""}" data-value="strategic" type="button">Strategic</button><button class="choice ${item.value === "irrelevant" ? "active" : ""}" data-value="irrelevant" type="button">Irrelevant</button></div></div>`).join("");
+      $("selection-list").querySelectorAll(".choice-row").forEach(row => {
+        row.querySelectorAll(".choice").forEach(button => {
+          button.onclick = () => {
+            relevance.find(item => item.id === row.dataset.id).value = button.dataset.value;
+            renderStep3();
+          };
+        });
+      });
+      $("save-relevance").onclick = () => setStep(4);
+    }
+
+    function renderStep4() {
+      $("recommendation-count").textContent = `${opportunities.length} opportunities`;
+      $("opportunity-list").innerHTML = opportunities.map(item => `<div class="opp-card ${item.id === state.selected ? "active" : ""}" data-id="${item.id}"><div class="dot"></div><div><strong>${item.title}</strong><span>${item.buyer} - ${item.headline}</span><div class="btn-row" style="margin-top:10px"><div class="chip ${tone(item.recommendation)}">${label(item.recommendation)}</div><div class="chip ${tone(item.decision)}">${label(item.decision)}</div></div></div><div class="score"><span>Fit</span>${item.fit}</div></div>`).join("");
+      $("opportunity-list").querySelectorAll(".opp-card").forEach(card => {
+        card.onclick = () => {
+          state.selected = card.dataset.id;
+          state.detailTab = "scope";
+          setStep(5);
+        };
+      });
+    }
+
+    function renderWorkspace(item) {
+      if (item.decision !== "go") {
+        $("workspace-block").innerHTML = "";
+        return;
+      }
+      $("workspace-block").innerHTML = `<div class="handoff"><h4>Bid pipeline activated</h4><p>${item.workspace.summary}</p><div class="meta-row" style="margin-top:10px"><span class="tag">${item.workspace.tasks.length} checklist items</span><span class="tag">${item.workspace.docs.length} documents</span><span class="tag">${item.workspace.actions.length} first actions</span></div></div>`;
+    }
+
+    function renderDetailPanel(item) {
+      const tabMap = {
+        scope: { title: "Contract scope", subtitle: "What the buyer is actually asking for.", items: item.scope },
+        requiredDocs: { title: "Required docs and scoring", subtitle: "Core checks for readiness and scoring.", items: item.requiredDocs },
+        competition: { title: "Competition", subtitle: "Who the likely peers are and how you compare at a glance.", items: item.competitors.rows },
+        tenderDocs: { title: "Tender documents", subtitle: "Open the full tender documents for deeper analysis.", items: item.tenderDocs }
+      };
+      const active = tabMap[state.detailTab];
+      const previewMap = {
+        scope: null,
+        requiredDocs: null,
+        competition: null,
+        tenderDocs: null
+      };
+      $("detail-panel-title").textContent = active.title;
+      $("detail-panel-subtitle").textContent = active.subtitle;
+      $("detail-preview").innerHTML = state.detailTab === "requiredDocs"
+        ? readinessHtml(item)
+        : previewMap[state.detailTab]
+          ? findingHtml(previewMap[state.detailTab])
+          : "";
+      $("detail-preview").classList.toggle("active", Boolean($("detail-preview").innerHTML));
+      if (state.detailTab === "tenderDocs") {
+        $("detail-panel-list").innerHTML = tenderDocsHtml(active.items);
+      } else if (state.detailTab === "competition") {
+        $("detail-panel-list").innerHTML = competitionHtml(item);
+        const deepAnalysisLink = document.getElementById("competition-deep-analysis");
+        if (deepAnalysisLink) {
+          deepAnalysisLink.onclick = event => {
+            event.preventDefault();
+            $("workspace-block").innerHTML = `<div class="empty"><h4>Deep Analysis Space</h4><p>This space is not included in the prototype yet. It would let the user explore all related contracts connected to the tender being analyzed.</p></div>`;
+            $("workspace-block").scrollIntoView({ behavior: "smooth", block: "start" });
+            pushAssistant("Deep Analysis would open a separate workspace with related contracts connected to this tender. That space is not included in the prototype yet.");
+            renderAssistant();
+          };
+        }
+      } else if (state.detailTab === "requiredDocs") {
+        $("detail-panel-list").innerHTML = requirementsHtml(item);
+      } else if (state.detailTab === "scope") {
+        $("detail-panel-list").innerHTML = scopeHtml(active.items);
+      } else {
+        $("detail-panel-list").innerHTML = listHtml(active.items);
+      }
+      $("detail-tabs").querySelectorAll(".detail-tab").forEach(button => {
+        button.classList.toggle("active", button.dataset.tab === state.detailTab);
+      });
+    }
+
+    function renderStep5() {
+      const item = current();
+      const recommendationTone = item.recommendation === "no-go" ? "no-tone" : item.recommendation === "review" ? "review-tone" : "go-tone";
+      $("detail-subtitle").textContent = item.buyer;
+      $("decision-hero").className = `decision-hero ${recommendationTone}`;
+      $("detail-state").className = `chip ${tone(item.decision)}`;
+      $("detail-state").textContent = item.decision === "pending" ? "Awaiting approval" : label(item.decision);
+      $("detail-recommendation").textContent = label(item.recommendation);
+      $("verdict-card").className = `verdict-card ${tone(item.recommendation)}`;
+      $("detail-fit").textContent = item.fit;
+      $("detail-best-path").textContent = item.bestPath;
+      $("detail-deadline").textContent = item.deadline;
+      $("detail-gap").textContent = item.gap;
+      $("detail-move").textContent = item.move;
+      $("detail-title").textContent = item.title;
+      $("detail-risks").innerHTML = listHtml(item.risks);
+      renderDetailPanel(item);
+      renderWorkspace(item);
+
+      const activeAction = item.decision === "pending" ? item.recommendation : item.decision;
+      $("detail-go").className = activeAction === "go" ? "btn btn-primary" : "btn btn-secondary";
+      $("detail-no-go").className = activeAction === "no-go" ? "btn btn-primary" : "btn btn-secondary";
+      $("detail-go").textContent = item.recommendation === "go" ? "Start bid" : "Proceed";
+      $("detail-no-go").textContent = "Skip";
+    }
+
+    function renderSteps() {
+      document.querySelectorAll(".step").forEach(button => button.classList.toggle("active", Number(button.dataset.step) === state.step));
+      document.querySelectorAll(".screen").forEach(screen => screen.classList.toggle("active", screen.id === `screen-${state.step}`));
+      $("topbar-company").textContent = state.step === 1 ? "Not identified" : profile.company;
+    }
+
+    function setStep(step) {
+      state.step = step;
+      if (step !== 5) {
+        state.detailTab = "scope";
+      }
+      renderSteps();
+      setAssistant();
+      if (step === 1) renderStep1();
+      if (step === 2) renderStep2();
+      if (step === 3) renderStep3();
+      if (step === 4) renderStep4();
+      if (step === 5) renderStep5();
+    }
+
+    document.querySelectorAll(".step").forEach(button => {
+      button.onclick = () => setStep(Number(button.dataset.step));
+    });
+    $("detail-tabs").querySelectorAll(".detail-tab").forEach(button => {
+      button.onclick = () => {
+        state.detailTab = button.dataset.tab;
+        renderDetailPanel(current());
+      };
+    });
+    $("build-profile").onclick = () => setStep(2);
+    $("detail-go").onclick = () => {
+      current().decision = "go";
+      renderStep4();
+      renderStep5();
+      pushAssistant("Bid approved. I prepared the next stage, but the main outcome here is that this opportunity is now qualified and ready to move forward.");
+      renderAssistant();
+    };
+    $("detail-review").onclick = () => {
+      state.detailTab = "scope";
+      renderDetailPanel(current());
+      $("detail-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+      pushAssistant("I opened the scope first so you can validate what the buyer is actually asking for before going deeper.");
+      renderAssistant();
+    };
+    $("detail-no-go").onclick = () => {
+      current().decision = "no-go";
+      renderStep4();
+      renderStep5();
+      pushAssistant("Marked as pass. I will keep the negative signal for future recommendations.");
+      renderAssistant();
+    };
+    $("assistant-send").onclick = () => {
+      const input = $("assistant-input");
+      const text = input.value.trim();
+      if (!text) return;
+      state.assistant.push({ role: "user", text }, { role: "assistant", text: reply(text) });
+      input.value = "";
+      renderAssistant();
+    };
+    $("assistant-input").addEventListener("keydown", event => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        $("assistant-send").click();
+      }
+    });
+    setStep(1);
+  </script>
+</body>
+</html>
