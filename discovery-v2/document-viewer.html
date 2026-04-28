@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simplifae · Document Viewer</title>
+  <style>
+    :root {
+      --ink: #17233a;
+      --muted: #667892;
+      --soft: #eef4f7;
+      --line: #dbe5ee;
+      --line-strong: #c8d6e3;
+      --teal: #18cbc3;
+      --teal-dark: #087c77;
+      --teal-soft: #e8fbf8;
+      --navy: #08132d;
+      --danger: #a33a1b;
+      --paper: #ffffff;
+      --wash: #eef5f8;
+      --shadow: 0 18px 46px rgba(8, 19, 45, .10);
+      --refs-width: 22rem;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(24, 203, 195, .13), transparent 35rem),
+        linear-gradient(180deg, #f8fbfd 0%, var(--wash) 100%);
+    }
+
+    button, select { font: inherit; }
+
+    .viewer-shell {
+      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tender-strip {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: auto minmax(12rem, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      min-height: 66px;
+      padding: 10px 18px;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .tender-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .match-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 13px;
+      border-radius: 999px;
+      border: 1px solid #bfeee9;
+      color: var(--teal-dark);
+      background: var(--teal-soft);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      flex: 0 0 auto;
+    }
+
+    .ref-chip {
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      color: #5c6f88;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .01em;
+      flex: 0 0 auto;
+    }
+
+    .tender-title {
+      min-width: 0;
+      font-size: 14px;
+      font-weight: 850;
+      line-height: 1.15;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .viewer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      color: #6a7c94;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color .16s ease, color .16s ease, transform .16s ease, background .16s ease;
+      flex: 0 0 auto;
+    }
+
+    .icon-btn svg { width: 17px; height: 17px; }
+    .icon-btn:hover {
+      color: var(--teal-dark);
+      border-color: #bfeee9;
+      background: #f6fffd;
+      transform: translateY(-1px);
+    }
+    .icon-btn.is-active {
+      color: var(--teal-dark);
+      border-color: #aee9e4;
+      background: var(--teal-soft);
+    }
+
+    .action-separator {
+      width: 1px;
+      height: 32px;
+      background: var(--line);
+      margin: 0 4px;
+      flex: 0 0 auto;
+    }
+
+    .decision-btn {
+      height: 38px;
+      border-radius: 999px;
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      color: #34445d;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .decision-btn.go {
+      min-width: 76px;
+      border-color: var(--teal);
+      color: #06223a;
+      background: linear-gradient(180deg, #25d6cf 0%, #16c8c0 100%);
+      box-shadow: 0 16px 32px rgba(24, 203, 195, .22);
+    }
+
+    .document-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
+      gap: 12px;
+      align-items: center;
+      min-height: 64px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .doc-card {
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .doc-summary-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .doc-main {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .doc-meta {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: 8px;
+      max-width: 100%;
+      min-width: 13rem;
+      padding-left: 16px;
+      border-left: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 780;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .doc-meta span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .doc-meta span:not(:last-child)::after {
+      content: "·";
+      margin-left: 8px;
+      color: #a7b3c2;
+    }
+
+    .document-header-shell {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
+      gap: 12px;
+      align-items: center;
+      border: 1px solid #d7e3ed;
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,253,254,.9));
+      box-shadow: 0 8px 24px rgba(8, 19, 45, .045);
+      padding: 8px 12px 8px 14px;
+    }
+
+    .doc-eyebrow {
+      color: #8291a5;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .doc-title {
+      font-size: 17px;
+      line-height: 1.15;
+      font-weight: 950;
+      letter-spacing: -.02em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .doc-control-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .doc-select {
+      height: 40px;
+      width: 100%;
+      border-radius: 15px;
+      border: 1px solid #cad8e5;
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      padding: 0 12px;
+      font-weight: 850;
+      font-size: 13px;
+      outline: none;
+      min-width: 0;
+    }
+
+    .active-ref {
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      max-width: 13rem;
+      padding: 0 11px;
+      border-radius: 999px;
+      background: #f7fafc;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .viewer-main {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(17rem, var(--refs-width)) minmax(0, 1fr);
+      gap: 18px;
+      padding: 18px 22px 22px;
+      transition: grid-template-columns .2s ease;
+    }
+
+    body.refs-wide {
+      --refs-width: 29rem;
+    }
+
+    body.refs-compact {
+      --refs-width: 17rem;
+    }
+
+    .references-panel {
+      min-height: 0;
+      height: 100%;
+      max-height: none;
+      align-self: stretch;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.86);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.refs-wide .references-panel {
+      max-height: none;
+    }
+
+    body.refs-compact .references-panel {
+      max-height: none;
+    }
+
+    .panel-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+      padding: 15px 15px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: 950;
+      letter-spacing: -.015em;
+    }
+
+    .panel-sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .panel-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f8fbfd;
+    }
+
+    .panel-tool {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #64748b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .16s ease, color .16s ease;
+    }
+
+    .panel-tool:hover,
+    .panel-tool.active {
+      background: var(--teal-soft);
+      color: var(--teal-dark);
+    }
+
+    .panel-tool svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .ref-list {
+      padding: 10px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ref-item {
+      width: 100%;
+      text-align: left;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      background: #f8fafc;
+      padding: 12px 13px;
+      cursor: pointer;
+      color: var(--ink);
+      transition: border-color .16s ease, background .16s ease;
+    }
+
+    .ref-item:hover,
+    .ref-item.active {
+      border-color: #aee9e4;
+      background: var(--teal-soft);
+    }
+
+    .ref-item.active { box-shadow: inset 3px 0 0 var(--teal); }
+
+    .ref-kicker {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--teal-dark);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .ref-label {
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .pdf-stage {
+      min-width: 0;
+      height: 100%;
+      min-height: 0;
+      max-height: none;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pdf-bar {
+      min-height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      background: #fbfdfe;
+    }
+
+    .pdf-scroll {
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+      background: #f7fafc;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scroll-behavior: smooth;
+    }
+
+    .pdf-pages {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 28px 22px 38px;
+      min-height: 100%;
+    }
+
+    .pdf-page {
+      position: relative;
+      width: min(100%, 1120px);
+      aspect-ratio: 2480 / 3510;
+      min-height: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 34px rgba(8, 19, 45, .13);
+      outline: 1px solid rgba(200, 214, 227, .75);
+      scroll-margin-top: 24px;
+    }
+
+    .pdf-page::before {
+      content: attr(data-page-label);
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 2;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      color: #6c7d94;
+      font-size: 10px;
+      font-weight: 850;
+      box-shadow: 0 4px 12px rgba(8, 19, 45, .08);
+      opacity: .75;
+    }
+
+    .pdf-page img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .pdf-page.loading {
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .pdf-page.error {
+      align-items: center;
+      padding: 40px;
+      color: #9f3412;
+      font-size: 13px;
+      font-weight: 850;
+      background: #fff7ed;
+    }
+
+    .pdf-loading {
+      display: grid;
+      gap: 8px;
+      place-items: center;
+      min-height: 28rem;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .pdf-loading::before {
+      content: "";
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 3px solid #d8e6ed;
+      border-top-color: var(--teal);
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 980px) {
+      body {
+        overflow: auto;
+      }
+
+      .viewer-shell {
+        height: auto;
+      }
+
+      .tender-strip {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 8px;
+        padding: 8px 10px;
+      }
+
+      .match-chip { height: 30px; padding: 0 9px; font-size: 11px; }
+      .ref-chip { display: none; }
+      .tender-title { font-size: 12px; }
+      .icon-btn { width: 31px; height: 31px; }
+      .decision-btn { height: 32px; padding: 0 10px; font-size: 12px; }
+      .decision-btn.go { min-width: 58px; }
+      .action-separator { height: 27px; margin: 0 1px; }
+
+      .document-header {
+        grid-template-columns: 1fr;
+        padding: 10px 12px;
+      }
+
+      .document-header-shell {
+        grid-template-columns: minmax(0, 1fr) minmax(13rem, 20rem);
+        gap: 10px;
+      }
+
+      .doc-summary-card {
+        align-items: center;
+      }
+
+      .doc-meta {
+        display: none;
+      }
+
+      .doc-title { font-size: 16px; }
+
+      .viewer-main {
+        grid-template-columns: 1fr;
+        padding: 12px;
+      }
+
+      .references-panel {
+        height: auto;
+      }
+
+      body.refs-compact .references-panel { max-height: 42vh; }
+      body.refs-wide .references-panel { max-height: 50vh; }
+      .pdf-stage {
+        height: 70vh;
+        min-height: 520px;
+        max-height: none;
+      }
+      .pdf-scroll { min-height: 0; }
+      .pdf-pages { padding: 18px 12px 28px; }
+    }
+
+    @media (max-width: 640px) {
+      .viewer-actions { gap: 5px; }
+      .icon-btn { width: 29px; height: 29px; }
+      .icon-btn svg { width: 15px; height: 15px; }
+      .decision-btn { padding: 0 9px; }
+      .tender-strip-left { gap: 6px; }
+      .match-chip span:last-child { display: none; }
+      .pdf-stage {
+        height: 68vh;
+        min-height: 430px;
+      }
+      .doc-summary-card { display: block; }
+      .doc-meta {
+        border-left: 0;
+        padding-left: 0;
+        margin-top: 6px;
+        max-width: 100%;
+      }
+      .doc-control-card {
+        grid-template-columns: 1fr;
+      }
+      .active-ref {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="viewer-shell">
+    <header class="tender-strip" aria-label="Tender context">
+      <div class="tender-strip-left">
+        <span class="match-chip"><strong>96%</strong> <span>match</span></span>
+        <span class="ref-chip">B41632266-2026/000071-PaA</span>
+      </div>
+      <div class="tender-title" title="Water and sanitation infrastructure works — Aguas de Huesna SL.">Water and sanitation infrastructure works — Aguas de Huesna SL...</div>
+      <div class="viewer-actions" aria-label="Tender actions">
+        <button class="icon-btn" id="favorite-btn" title="Add to favourites" aria-label="Add to favourites" onclick="toggleActive(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.6 12 20l-7.5-7.4a5 5 0 0 1 7.1-7.1l.4.4.4-.4a5 5 0 0 1 7.1 7.1Z"/></svg>
+        </button>
+        <button class="icon-btn" title="Copy tender link" aria-label="Copy tender link" onclick="copyViewerLink()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+        <button class="icon-btn" id="seen-btn" title="Mark as unread" aria-label="Mark as unread" onclick="toggleSeen(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 10.6A2 2 0 0 0 13.4 13.4"/><path d="M9.9 4.24A10.6 10.6 0 0 1 12 4c6.5 0 10 8 10 8a18.5 18.5 0 0 1-3.1 4.5"/><path d="M6.6 6.7A18 18 0 0 0 2 12s3.5 8 10 8a10.7 10.7 0 0 0 4.3-.9"/></svg>
+        </button>
+        <button class="icon-btn" title="View source in a new tab" aria-label="View source in a new tab" onclick="openSource()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </button>
+        <span class="action-separator" aria-hidden="true"></span>
+        <button class="decision-btn go" onclick="setDecision('Go')">Go</button>
+        <button class="decision-btn" onclick="setDecision('No Go')">No Go</button>
+      </div>
+    </header>
+
+    <section class="document-header" aria-label="Document header">
+      <div class="document-header-shell">
+        <div class="doc-card doc-summary-card">
+          <div class="doc-main">
+            <div class="doc-eyebrow">Document viewer</div>
+            <div class="doc-title" id="doc-title">PCAP — Administrative Clauses</div>
+          </div>
+          <div class="doc-meta" id="doc-meta"></div>
+        </div>
+        <div class="doc-card doc-control-card">
+          <select class="doc-select" id="doc-select" aria-label="Change document" onchange="selectDocument(this.value)"></select>
+          <div class="active-ref" id="active-ref">PCAP · p. 8</div>
+        </div>
+      </div>
+    </section>
+
+    <main class="viewer-main">
+      <aside class="references-panel" aria-label="Evidence references">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Tender evidence</div>
+            <div class="panel-sub">Click any reference to open its document and cited page.</div>
+          </div>
+          <div class="panel-tools" aria-label="Reference panel size">
+            <button class="panel-tool active" id="refs-compact-btn" type="button" title="Narrow evidence panel" aria-label="Narrow evidence panel" onclick="setReferencePanel('compact')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M5 12h14"/></svg>
+            </button>
+            <button class="panel-tool" id="refs-wide-btn" type="button" title="Widen evidence panel" aria-label="Widen evidence panel" onclick="setReferencePanel('wide')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="ref-list" id="ref-list"></div>
+      </aside>
+      <section class="pdf-stage" id="pdf-stage" aria-label="PDF document">
+        <div class="pdf-bar">
+          <span id="pdf-location">PCAP · p. 8</span>
+          <span id="pdf-hint">Source-backed tender evidence</span>
+        </div>
+        <div class="pdf-scroll" id="pdf-scroll" aria-label="Scrollable PDF pages">
+          <div class="pdf-pages" id="pdf-pages">
+            <div class="pdf-loading">Loading document</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const DOCS = {
+      pcap: {
+        title: 'PCAP — Administrative Clauses',
+        short: 'PCAP',
+        meta: ['1.4 MB', 'PCAP', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/pcap-administrative-clauses.pdf',
+        pageDir: 'doc-pages/pcap',
+        pageCount: 56,
+        defaultPage: 8,
+        refs: [
+          { type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 8 },
+          { type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 9 },
+          { type: 'Admission', label: 'Provisional guarantee proof: 3% of base price, VAT excluded', page: 3 },
+          { type: 'Admission', label: 'Contractor classification: Group E, Subgroup 6, Category 6', page: 37 },
+          { type: 'Admission', label: 'Civil liability insurance policy and premium payment proof', page: 35 },
+          { type: 'Admission', label: 'Senior civil engineering staff commitment', page: 38 },
+          { type: 'Award criteria', label: 'Economic offer form using Annex VII', page: 43 },
+          { type: 'Award criteria', label: 'Execution-period reduction and quality scoring criteria', page: 44 }
+        ]
+      },
+      project: {
+        title: 'Technical Project — Works Project Access',
+        short: 'Project',
+        meta: ['122 KB', 'PPT', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/technical-project-access.pdf',
+        pageDir: 'doc-pages/ppt',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: [
+          { type: 'Project', label: 'Published access document for the complete technical project file', page: 1 },
+          { type: 'Source', label: 'Technical project download access evidence', page: 1 }
+        ]
+      },
+      mj: {
+        title: 'MJ — Justification Report',
+        short: 'MJ',
+        meta: ['315 KB', 'Other', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/mj-justification-report.pdf',
+        pageDir: 'doc-pages/mj',
+        pageCount: 11,
+        defaultPage: 2,
+        refs: [
+          { type: 'Scope', label: 'Object of contract and replacement pipeline scope', page: 2 },
+          { type: 'Admission', label: 'No value-judgment envelope: not applicable', page: 4 },
+          { type: 'Admission', label: 'Contractor classification cross-reference', page: 4 },
+          { type: 'Admission', label: 'Staff and delivery capacity evidence', page: 6 }
+        ]
+      },
+      ra: {
+        title: 'RA — Approval Resolution',
+        short: 'RA',
+        meta: ['723 KB', 'Other', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/ra-approval-resolution.pdf',
+        pageDir: 'doc-pages/ra',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: [
+          { type: 'Procedure', label: 'Approval of the procurement file and procedure opening', page: 1 }
+        ]
+      },
+      urgency: {
+        title: 'Urgency Report — Emergency Processing Justification',
+        short: 'Urgency report',
+        meta: ['505 KB', 'Other', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/urgency-report.pdf',
+        pageDir: 'doc-pages/urgency',
+        pageCount: 2,
+        defaultPage: 1,
+        refs: [
+          { type: 'Timing', label: 'Urgency processing justification', page: 1 },
+          { type: 'Timing', label: 'Accelerated procedure rationale', page: 2 }
+        ]
+      },
+      incident: {
+        title: 'Incident Notice — Corrected Technical Project Link',
+        short: 'Incident notice',
+        meta: ['488 KB', 'Other', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/incident-notice.pdf',
+        pageDir: 'doc-pages/incident',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: [
+          { type: 'Source', label: 'Corrected technical project link notice', page: 1 }
+        ]
+      }
+    };
+
+    const TENDER_EVIDENCE_REFS = [
+      { docKey: 'pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'pcap', type: 'Admission', label: 'Provisional guarantee proof: 3% of base price, VAT excluded', page: 3, source: 'PCAP · p. 3' },
+      { docKey: 'pcap', type: 'Admission', label: 'Provisional guarantee proof: 3% of base price, VAT excluded', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'pcap', type: 'Admission', label: 'Business group declaration, including negative declaration if no group applies', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'pcap', type: 'Admission', label: 'Business group declaration, including negative declaration if no group applies', page: 34, source: 'PCAP · p. 34' },
+      { docKey: 'pcap', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 6, Category 6', page: 37, source: 'PCAP · p. 37' },
+      { docKey: 'mj', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 6, Category 6', page: 4, source: 'MJ · p. 4' },
+      { docKey: 'pcap', type: 'Admission', label: 'Civil liability insurance policy and premium payment proof', page: 35, source: 'PCAP · p. 35' },
+      { docKey: 'pcap', type: 'Admission', label: 'Senior civil engineering staff commitment', page: 38, source: 'PCAP · pp. 38-39' },
+      { docKey: 'mj', type: 'Admission', label: 'Senior civil engineering staff commitment', page: 6, source: 'MJ · pp. 6-7' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'Value-judgment award criteria: not applicable', page: 42, source: 'PCAP · p. 42' },
+      { docKey: 'mj', type: 'Award criteria', label: 'Value-judgment award criteria: not applicable', page: 4, source: 'MJ · p. 4' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'Economic offer form using Annex VII', page: 10, source: 'PCAP · p. 10' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'Economic offer form using Annex VII', page: 41, source: 'PCAP · p. 41' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'Economic offer form using Annex VII', page: 43, source: 'PCAP · p. 43' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'Execution-period reduction proposal: total works and horizontal perforations', page: 41, source: 'PCAP · p. 41' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'Execution-period reduction proposal: total works and horizontal perforations', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'ISO 9001, ISO 14001 and ISO 45001 certificates, or equivalent evidence', page: 41, source: 'PCAP · p. 41' },
+      { docKey: 'pcap', type: 'Award criteria', label: 'ISO 9001, ISO 14001 and ISO 45001 certificates, or equivalent evidence', page: 44, source: 'PCAP · p. 44' }
+    ];
+
+    let activeDocKey = 'pcap';
+    let activePage = 8;
+    let renderedDocKey = null;
+    let renderRunId = 0;
+
+    function pageFromParams() {
+      const params = new URLSearchParams(window.location.search);
+      const doc = params.get('doc');
+      const page = Number(params.get('page'));
+      activeDocKey = DOCS[doc] ? doc : 'pcap';
+      activePage = Number.isFinite(page) && page > 0 ? page : DOCS[activeDocKey].defaultPage;
+    }
+
+    function buildDocSelect() {
+      const select = document.getElementById('doc-select');
+      select.innerHTML = Object.entries(DOCS).map(([key, doc]) => `<option value="${key}">${doc.title}</option>`).join('');
+    }
+
+    function renderDocument({ reloadPdf = false } = {}) {
+      const doc = DOCS[activeDocKey];
+      document.getElementById('doc-select').value = activeDocKey;
+      document.getElementById('doc-title').textContent = doc.title;
+      document.getElementById('doc-meta').innerHTML = doc.meta.map(item => `<span>${item}</span>`).join('');
+      if (reloadPdf || renderedDocKey !== activeDocKey) {
+        loadDocumentPages(doc, activePage);
+      } else {
+        scrollToPage(activePage);
+      }
+      document.getElementById('pdf-location').textContent = `${doc.short} · p. ${activePage}`;
+      document.getElementById('active-ref').textContent = `${doc.short} · p. ${activePage}`;
+      renderReferences();
+      const url = new URL(window.location.href);
+      url.searchParams.set('doc', activeDocKey);
+      url.searchParams.set('page', String(activePage));
+      window.history.replaceState({}, '', url.toString());
+    }
+
+    function pageImagePath(doc, pageNumber) {
+      return `${doc.pageDir}/page-${String(pageNumber).padStart(3, '0')}.png`;
+    }
+
+    function loadDocumentPages(doc, page) {
+      const pagesRoot = document.getElementById('pdf-pages');
+      const currentRun = ++renderRunId;
+      const scroller = document.getElementById('pdf-scroll');
+      renderedDocKey = activeDocKey;
+      scroller.dataset.currentPage = String(page);
+      pagesRoot.innerHTML = '';
+      pagesRoot.dataset.renderStatus = 'loading-pages';
+
+      for (let pageNumber = 1; pageNumber <= doc.pageCount; pageNumber += 1) {
+        const pageShell = document.createElement('article');
+        pageShell.className = 'pdf-page loading';
+        pageShell.id = `pdf-page-${pageNumber}`;
+        pageShell.dataset.page = String(pageNumber);
+        pageShell.dataset.pageLabel = `p. ${pageNumber}`;
+
+        const image = document.createElement('img');
+        image.src = pageImagePath(doc, pageNumber);
+        image.alt = `${doc.short} page ${pageNumber}`;
+        image.loading = Math.abs(pageNumber - page) <= 2 ? 'eager' : 'lazy';
+        image.decoding = 'async';
+        image.onload = () => {
+          if (currentRun !== renderRunId) return;
+          pageShell.classList.remove('loading');
+          if (pageNumber === page) scrollToPage(page, { immediate: true });
+        };
+        image.onerror = () => {
+          pageShell.className = 'pdf-page error';
+          pageShell.textContent = `Unable to load ${doc.short} page ${pageNumber}`;
+        };
+
+        pageShell.appendChild(image);
+        pagesRoot.appendChild(pageShell);
+      }
+
+      requestAnimationFrame(() => {
+        scrollToPage(page, { immediate: true });
+        requestAnimationFrame(() => scrollToPage(page, { immediate: true }));
+      });
+      pagesRoot.dataset.renderStatus = 'complete';
+    }
+
+    function scrollToPage(page, options = {}) {
+      const target = document.getElementById(`pdf-page-${page}`);
+      if (!target) return;
+      const scroller = document.getElementById('pdf-scroll');
+      const scrollerRect = scroller.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const top = Math.max(0, scroller.scrollTop + targetRect.top - scrollerRect.top - 18);
+      scroller.dataset.currentPage = String(page);
+      scroller.scrollTo({
+        top,
+        behavior: options.immediate ? 'auto' : 'smooth'
+      });
+    }
+
+    function renderReferences() {
+      const list = document.getElementById('ref-list');
+      list.innerHTML = TENDER_EVIDENCE_REFS.map(ref => `
+        <button class="ref-item ${ref.docKey === activeDocKey && ref.page === activePage ? 'active' : ''}" data-doc="${ref.docKey}" data-page="${ref.page}" onclick="goToReference('${escapeForAttr(ref.docKey)}', ${ref.page}, '${escapeForAttr(ref.label)}')">
+          <span class="ref-kicker"><span>${ref.type}</span><span>${ref.source || `${DOCS[ref.docKey].short} · p. ${ref.page}`}</span></span>
+          <span class="ref-label">${ref.label}</span>
+        </button>
+      `).join('');
+      const activeItem = list.querySelector('.ref-item.active');
+      if (activeItem) activeItem.scrollIntoView({ block: 'nearest' });
+    }
+
+    function selectDocument(docKey) {
+      activeDocKey = DOCS[docKey] ? docKey : 'pcap';
+      activePage = DOCS[activeDocKey].defaultPage;
+      renderDocument({ reloadPdf: true });
+    }
+
+    function goToReference(docKey, page, label) {
+      const nextDocKey = DOCS[docKey] ? docKey : activeDocKey;
+      const shouldReload = nextDocKey !== activeDocKey;
+      activeDocKey = nextDocKey;
+      activePage = page;
+      renderDocument({ reloadPdf: shouldReload });
+      if (!shouldReload) requestAnimationFrame(() => scrollToPage(page));
+      document.getElementById('active-ref').textContent = `${DOCS[activeDocKey].short} · p. ${page}`;
+      document.getElementById('pdf-stage').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function escapeForAttr(value) {
+      return String(value).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    }
+
+    function toggleActive(btn) {
+      btn.classList.toggle('is-active');
+    }
+
+    function toggleSeen(btn) {
+      btn.classList.toggle('is-active');
+      btn.title = btn.classList.contains('is-active') ? 'Marked as unread' : 'Mark as unread';
+    }
+
+    async function copyViewerLink() {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+      } catch (err) {
+        window.prompt('Copy tender link', window.location.href);
+      }
+    }
+
+    function openSource() {
+      alert('This would open the original tender source in a new browser tab.');
+    }
+
+    function setReferencePanel(size) {
+      document.body.classList.toggle('refs-wide', size === 'wide');
+      document.body.classList.toggle('refs-compact', size !== 'wide');
+      document.getElementById('refs-wide-btn').classList.toggle('active', size === 'wide');
+      document.getElementById('refs-compact-btn').classList.toggle('active', size !== 'wide');
+    }
+
+    function setDecision(decision) {
+      alert(`${decision} decision saved for this tender.`);
+    }
+
+    pageFromParams();
+    buildDocSelect();
+    setReferencePanel('compact');
+    renderDocument({ reloadPdf: true });
+  </script>
+</body>
+</html>

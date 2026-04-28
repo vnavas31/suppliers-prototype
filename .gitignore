@@ -1,1 +1,5 @@
 .DS_Store
+*.backup-*.html
+*.backup-before-*.html
+discovery-v1.zip
+discovery-v2/vendor/
