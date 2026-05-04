@@ -19,7 +19,7 @@
       --paper: #ffffff;
       --wash: #eef5f8;
       --shadow: 0 18px 46px rgba(8, 19, 45, .10);
-      --refs-width: 22rem;
+      --refs-width: 23rem;
       font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
@@ -309,18 +309,65 @@
       flex: 1;
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(17rem, var(--refs-width)) minmax(0, 1fr);
-      gap: 18px;
+      grid-template-columns: minmax(17rem, var(--refs-width)) 12px minmax(0, 1fr);
+      gap: 10px;
       padding: 18px 22px 22px;
       transition: grid-template-columns .2s ease;
     }
 
-    body.refs-wide {
-      --refs-width: 29rem;
+    body.resizing-panel {
+      cursor: col-resize;
+      user-select: none;
     }
 
-    body.refs-compact {
-      --refs-width: 17rem;
+    body.resizing-panel .viewer-main {
+      transition: none;
+    }
+
+    .viewer-resizer {
+      position: relative;
+      width: 12px;
+      height: 100%;
+      align-self: stretch;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      cursor: col-resize;
+      touch-action: none;
+      opacity: .72;
+      transition: opacity .16s ease;
+    }
+
+    .viewer-resizer:hover,
+    .viewer-resizer:focus-visible,
+    body.resizing-panel .viewer-resizer {
+      opacity: 1;
+      outline: none;
+    }
+
+    .viewer-resizer::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      left: 50%;
+      width: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, transparent 0%, #d8e5ed 14%, #c6d7e3 50%, #d8e5ed 86%, transparent 100%);
+    }
+
+    .viewer-resizer::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 34px;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background:
+        radial-gradient(circle, #9fb3c5 1.4px, transparent 1.6px) center 7px / 5px 8px repeat-y;
+      box-shadow: 0 0 0 6px rgba(255,255,255,.62);
     }
 
     .references-panel {
@@ -330,32 +377,23 @@
       align-self: stretch;
       border: 1px solid var(--line);
       border-radius: 24px;
-      background: rgba(255,255,255,.86);
-      box-shadow: var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(249,252,253,.90) 100%),
+        radial-gradient(circle at 0% 0%, rgba(24,203,195,.08), transparent 18rem);
+      box-shadow: 0 20px 44px rgba(8, 19, 45, .08);
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    body.refs-wide .references-panel {
-      max-height: none;
-    }
-
-    body.refs-compact .references-panel {
-      max-height: none;
-    }
-
     .panel-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 10px;
-      align-items: start;
-      padding: 15px 15px 12px;
+      padding: 15px 16px 13px;
       border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(250,253,254,.72));
     }
 
     .panel-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 950;
       letter-spacing: -.015em;
     }
@@ -363,89 +401,133 @@
     .panel-sub {
       margin-top: 4px;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1.35;
     }
 
-    .panel-tools {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #f8fbfd;
-    }
-
-    .panel-tool {
-      width: 28px;
-      height: 28px;
-      border: 0;
-      border-radius: 50%;
-      background: transparent;
-      color: #64748b;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background .16s ease, color .16s ease;
-    }
-
-    .panel-tool:hover,
-    .panel-tool.active {
-      background: var(--teal-soft);
-      color: var(--teal-dark);
-    }
-
-    .panel-tool svg {
-      width: 15px;
-      height: 15px;
-    }
-
     .ref-list {
-      padding: 10px;
+      padding: 12px;
       overflow: auto;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 9px;
+      scrollbar-gutter: stable;
+      scroll-padding-block: 14px;
+      background:
+        linear-gradient(180deg, rgba(248,251,253,.34), rgba(238,245,248,.18)),
+        repeating-linear-gradient(135deg, rgba(8,19,45,.012) 0, rgba(8,19,45,.012) 1px, transparent 1px, transparent 12px);
     }
 
-    .ref-item {
+    .ref-list::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .ref-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .ref-list::-webkit-scrollbar-thumb {
+      border: 3px solid transparent;
+      border-radius: 999px;
+      background: #c5d4df;
+      background-clip: content-box;
+    }
+
+    .ref-group {
       width: 100%;
       text-align: left;
-      border: 1px solid transparent;
-      border-radius: 16px;
-      background: #f8fafc;
-      padding: 12px 13px;
-      cursor: pointer;
+      border: 1px solid rgba(219, 229, 238, .72);
+      border-radius: 15px;
+      background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(249,251,253,.78));
+      padding: 11px 12px;
       color: var(--ink);
-      transition: border-color .16s ease, background .16s ease;
+      box-shadow: 0 8px 22px rgba(8, 19, 45, .035);
+      transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
     }
 
-    .ref-item:hover,
-    .ref-item.active {
+    .ref-group.active {
       border-color: #aee9e4;
-      background: var(--teal-soft);
+      background: linear-gradient(180deg, #f1fffc 0%, #eafbf8 100%);
+      box-shadow: inset 3px 0 0 var(--teal), 0 10px 24px rgba(8, 124, 119, .08);
     }
 
-    .ref-item.active { box-shadow: inset 3px 0 0 var(--teal); }
+    .ref-group.scope {
+      border-color: #c8eee8;
+      background:
+        linear-gradient(180deg, rgba(244,255,252,.96), rgba(250,254,253,.86)),
+        radial-gradient(circle at 100% 0%, rgba(24,203,195,.11), transparent 14rem);
+    }
 
     .ref-kicker {
       display: flex;
       justify-content: space-between;
       gap: 8px;
       color: var(--teal-dark);
-      font-size: 11px;
+      font-size: 9.5px;
       font-weight: 950;
-      letter-spacing: .08em;
+      letter-spacing: .13em;
       text-transform: uppercase;
       margin-bottom: 6px;
     }
 
+    .ref-kicker span:last-child {
+      color: #7e8fa2;
+    }
+
     .ref-label {
-      font-size: 14px;
-      font-weight: 900;
-      line-height: 1.25;
+      font-size: 13px;
+      font-weight: 860;
+      line-height: 1.28;
+      letter-spacing: -.006em;
+    }
+
+    .ref-sources {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+    }
+
+    .ref-section-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #8090a3;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      padding: 4px 2px 2px;
+    }
+
+    .ref-section-divider::before,
+    .ref-section-divider::after {
+      content: "";
+      height: 1px;
+      background: #dbe6ee;
+      flex: 1 1 auto;
+    }
+
+    .ref-source-chip {
+      appearance: none;
+      border: 1px solid #dce7ef;
+      border-radius: 999px;
+      background: rgba(255,255,255,.84);
+      color: var(--teal-dark);
+      cursor: pointer;
+      padding: 5px 8px;
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .02em;
+      line-height: 1;
+      transition: border-color .16s ease, background .16s ease, color .16s ease;
+    }
+
+    .ref-source-chip:hover,
+    .ref-source-chip.active {
+      border-color: var(--teal);
+      background: #effffd;
+      color: #055f5a;
     }
 
     .pdf-stage {
@@ -624,12 +706,15 @@
         padding: 12px;
       }
 
+      .viewer-resizer {
+        display: none;
+      }
+
       .references-panel {
         height: auto;
       }
 
-      body.refs-compact .references-panel { max-height: 42vh; }
-      body.refs-wide .references-panel { max-height: 50vh; }
+      .references-panel { max-height: 48vh; }
       .pdf-stage {
         height: 70vh;
         min-height: 520px;
@@ -714,19 +799,12 @@
         <div class="panel-head">
           <div>
             <div class="panel-title">Tender evidence</div>
-            <div class="panel-sub">Click any reference to open its document and cited page.</div>
-          </div>
-          <div class="panel-tools" aria-label="Reference panel size">
-            <button class="panel-tool active" id="refs-compact-btn" type="button" title="Narrow evidence panel" aria-label="Narrow evidence panel" onclick="setReferencePanel('compact')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M5 12h14"/></svg>
-            </button>
-            <button class="panel-tool" id="refs-wide-btn" type="button" title="Widen evidence panel" aria-label="Widen evidence panel" onclick="setReferencePanel('wide')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-            </button>
+            <div class="panel-sub">Use references to jump to the exact source page.</div>
           </div>
         </div>
         <div class="ref-list" id="ref-list"></div>
       </aside>
+      <div class="viewer-resizer" id="viewer-resizer" role="separator" tabindex="0" aria-label="Resize evidence panel" aria-orientation="vertical" title="Drag to resize evidence panel"></div>
       <section class="pdf-stage" id="pdf-stage" aria-label="PDF document">
         <div class="pdf-bar">
           <span id="pdf-location">PCAP · p. 8</span>
@@ -826,10 +904,79 @@
         refs: [
           { type: 'Source', label: 'Corrected technical project link notice', page: 1 }
         ]
+      },
+      'ec1750-pcap': {
+        title: 'PCAP — Administrative Clauses',
+        short: 'PCAP',
+        meta: ['1.8 MB', 'PCAP', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/ec1750-pcap-administrative-clauses.pdf',
+        pageDir: 'doc-pages/ec1750-pcap',
+        pageCount: 52,
+        defaultPage: 8,
+        refs: []
+      },
+      'ec1750-ppt': {
+        title: 'PPT — Technical Specifications',
+        short: 'PPT',
+        meta: ['435 KB', 'PPT', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/ec1750-technical-specifications.pdf',
+        pageDir: 'doc-pages/ec1750-ppt',
+        pageCount: 5,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1750-mj': {
+        title: 'MJ — Need Report',
+        short: 'MJ',
+        meta: ['1.2 MB', 'Other', 'PDF', 'Published 27 Apr 2026'],
+        file: 'docs/ec1750-justification-report.pdf',
+        pageDir: 'doc-pages/ec1750-mj',
+        pageCount: 18,
+        defaultPage: 2,
+        refs: []
+      },
+      'ec1750-lot1': {
+        title: 'Technical Offer — Lot 1 Industrial Area',
+        short: 'Lot 1',
+        meta: ['8.8 MB', 'Other', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/ec1750-lot1-industrial-technical-offer.pdf',
+        pageDir: 'doc-pages/ec1750-lot1',
+        pageCount: 58,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1750-lot2': {
+        title: 'Technical Offer — Lot 2 Urban Core',
+        short: 'Lot 2',
+        meta: ['6.7 MB', 'Other', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/ec1750-lot2-urban-core-technical-offer.pdf',
+        pageDir: 'doc-pages/ec1750-lot2',
+        pageCount: 38,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1750-lot3': {
+        title: 'Technical Offer — Lot 3 Residential Area',
+        short: 'Lot 3',
+        meta: ['5.9 MB', 'Other', 'PDF', 'Published 24 Apr 2026'],
+        file: 'docs/ec1750-lot3-residential-technical-offer.pdf',
+        pageDir: 'doc-pages/ec1750-lot3',
+        pageCount: 36,
+        defaultPage: 1,
+        refs: []
       }
     };
 
+    const TENDER_DOC_KEYS = {
+      'current-tender': ['pcap', 'project', 'mj', 'ra', 'urgency', 'incident'],
+      'B41632266-2026-000071-PaA': ['pcap', 'project', 'mj', 'ra', 'urgency', 'incident'],
+      'EC-1750-2026': ['ec1750-pcap', 'ec1750-ppt', 'ec1750-mj', 'ec1750-lot1', 'ec1750-lot2', 'ec1750-lot3']
+    };
+
     const TENDER_EVIDENCE_REFS = [
+      { docKey: 'mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 2, source: 'MJ · p. 2 · Object of contract' },
+      { docKey: 'pcap', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'PCAP · p. 1 · CPV + no lots' },
+      { docKey: 'pcap', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 2, source: 'PCAP · p. 2 · execution milestones' },
       { docKey: 'pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 8, source: 'PCAP · p. 8' },
       { docKey: 'pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 9, source: 'PCAP · p. 9' },
       { docKey: 'pcap', type: 'Admission', label: 'Provisional guarantee proof: 3% of base price, VAT excluded', page: 3, source: 'PCAP · p. 3' },
@@ -852,22 +999,95 @@
       { docKey: 'pcap', type: 'Award criteria', label: 'ISO 9001, ISO 14001 and ISO 45001 certificates, or equivalent evidence', page: 44, source: 'PCAP · p. 44' }
     ];
 
+    const EC1750_EVIDENCE_REFS = [
+      { docKey: 'ec1750-mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 2, source: 'MJ · p. 2 · Object of contract and lots' },
+      { docKey: 'ec1750-pcap', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'PCAP · p. 1 · CPV + lots' },
+      { docKey: 'ec1750-ppt', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'PPT · p. 1 · technical scope' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 34, source: 'PCAP · p. 34' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'Complementary declaration using Annex IV', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'Commitment to allocate required personal and material means, if applicable', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'Commitment to allocate required personal and material means, if applicable', page: 2, source: 'PCAP · p. 2' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'Foreign bidder documentation, if applicable', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 2, source: 'PCAP · p. 2' },
+      { docKey: 'ec1750-pcap', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 38, source: 'PCAP · p. 38' },
+      { docKey: 'ec1750-mj', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 5, source: 'MJ · p. 5' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1750-mj', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 12, source: 'MJ · p. 12' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1750-mj', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 12, source: 'MJ · p. 12' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1750-mj', type: 'Award criteria', label: 'Key technical team permanence commitment', page: 12, source: 'MJ · p. 12' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 45, source: 'PCAP · p. 45' },
+      { docKey: 'ec1750-mj', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 13, source: 'MJ · p. 13' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 45, source: 'PCAP · pp. 45-46' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 47, source: 'PCAP · p. 47' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Price and technical formulas submitted in the automatic-evaluation envelope', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Price and technical formulas submitted in the automatic-evaluation envelope', page: 47, source: 'PCAP · p. 47' }
+    ];
+
+    const TENDER_EVIDENCE_REFS_BY_KEY = {
+      'current-tender': TENDER_EVIDENCE_REFS,
+      'B41632266-2026-000071-PaA': TENDER_EVIDENCE_REFS,
+      'EC-1750-2026': EC1750_EVIDENCE_REFS
+    };
+
     let activeDocKey = 'pcap';
     let activePage = 8;
+    let activeTenderKey = 'current-tender';
     let renderedDocKey = null;
     let renderRunId = 0;
+    let viewerBroadcastChannel = null;
+
+    const VIEWER_CHANNEL_NAME = 'simplifae-document-viewer';
+
+    function sanitizeViewerKey(value) {
+      return String(value || 'current-tender')
+        .trim()
+        .replace(/[^\w-]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 90) || 'current-tender';
+    }
+
+    function getActiveDocKeys() {
+      return TENDER_DOC_KEYS[activeTenderKey] || TENDER_DOC_KEYS['current-tender'];
+    }
+
+    function getDefaultDocKey() {
+      return getActiveDocKeys().find(key => DOCS[key]) || 'pcap';
+    }
+
+    function getActiveDocEntries() {
+      return getActiveDocKeys()
+        .filter(key => DOCS[key])
+        .map(key => [key, DOCS[key]]);
+    }
+
+    function getActiveEvidenceRefs() {
+      return TENDER_EVIDENCE_REFS_BY_KEY[activeTenderKey] || TENDER_EVIDENCE_REFS;
+    }
 
     function pageFromParams() {
       const params = new URLSearchParams(window.location.search);
       const doc = params.get('doc');
       const page = Number(params.get('page'));
-      activeDocKey = DOCS[doc] ? doc : 'pcap';
+      activeTenderKey = sanitizeViewerKey(params.get('tender') || activeTenderKey);
+      const activeDocKeys = getActiveDocKeys();
+      activeDocKey = DOCS[doc] && activeDocKeys.includes(doc) ? doc : getDefaultDocKey();
       activePage = Number.isFinite(page) && page > 0 ? page : DOCS[activeDocKey].defaultPage;
+      window.name = 'simplifae-viewer-' + activeTenderKey;
     }
 
     function buildDocSelect() {
       const select = document.getElementById('doc-select');
-      select.innerHTML = Object.entries(DOCS).map(([key, doc]) => `<option value="${key}">${doc.title}</option>`).join('');
+      select.innerHTML = getActiveDocEntries().map(([key, doc]) => `<option value="${key}">${doc.title}</option>`).join('');
     }
 
     function renderDocument({ reloadPdf = false } = {}) {
@@ -886,6 +1106,7 @@
       const url = new URL(window.location.href);
       url.searchParams.set('doc', activeDocKey);
       url.searchParams.set('page', String(activePage));
+      url.searchParams.set('tender', activeTenderKey);
       window.history.replaceState({}, '', url.toString());
     }
 
@@ -951,35 +1172,123 @@
 
     function renderReferences() {
       const list = document.getElementById('ref-list');
-      list.innerHTML = TENDER_EVIDENCE_REFS.map(ref => `
-        <button class="ref-item ${ref.docKey === activeDocKey && ref.page === activePage ? 'active' : ''}" data-doc="${ref.docKey}" data-page="${ref.page}" onclick="goToReference('${escapeForAttr(ref.docKey)}', ${ref.page}, '${escapeForAttr(ref.label)}')">
-          <span class="ref-kicker"><span>${ref.type}</span><span>${ref.source || `${DOCS[ref.docKey].short} · p. ${ref.page}`}</span></span>
-          <span class="ref-label">${ref.label}</span>
-        </button>
-      `).join('');
-      const activeItem = list.querySelector('.ref-item.active');
-      if (activeItem) activeItem.scrollIntoView({ block: 'nearest' });
+      const groupedRefs = getActiveEvidenceRefs().reduce((groups, ref) => {
+        const key = `${ref.type}::${ref.label}`;
+        if (!groups.has(key)) {
+          groups.set(key, {
+            type: ref.type,
+            label: ref.label,
+            refs: []
+          });
+        }
+        groups.get(key).refs.push(ref);
+        return groups;
+      }, new Map());
+
+      const groups = [...groupedRefs.values()];
+      list.innerHTML = groups.map((group, index) => {
+        const isActiveGroup = group.refs.some(ref => ref.docKey === activeDocKey && ref.page === activePage);
+        const isScopeGroup = group.type.toLowerCase().includes('scope');
+        const sources = group.refs.map(ref => {
+          const isActiveSource = ref.docKey === activeDocKey && ref.page === activePage;
+          const source = ref.source || `${DOCS[ref.docKey] ? DOCS[ref.docKey].short : ref.docKey} · p. ${ref.page}`;
+          return `
+            <button class="ref-source-chip ${isActiveSource ? 'active' : ''}" data-doc="${escapeForHtml(ref.docKey)}" data-page="${ref.page}" onclick="goToReference('${escapeForAttr(ref.docKey)}', ${ref.page}, '${escapeForAttr(ref.label)}')" title="Open ${escapeForHtml(source)}">
+              ${escapeForHtml(source)}
+            </button>
+          `;
+        }).join('');
+        const nextGroup = groups[index + 1];
+        const needsCriteriaDivider = isScopeGroup && nextGroup && !nextGroup.type.toLowerCase().includes('scope');
+
+        return `
+          <article class="ref-group ${isScopeGroup ? 'scope' : ''} ${isActiveGroup ? 'active' : ''}">
+            <div class="ref-kicker"><span>${escapeForHtml(group.type)}</span><span>${group.refs.length} ${group.refs.length === 1 ? 'source' : 'sources'}</span></div>
+            <div class="ref-label">${escapeForHtml(group.label)}</div>
+            <div class="ref-sources">${sources}</div>
+          </article>
+          ${needsCriteriaDivider ? '<div class="ref-section-divider"><span>Criteria evidence</span></div>' : ''}
+        `;
+      }).join('');
+      const activeItem = list.querySelector('.ref-group.active');
+      if (activeItem) activeItem.scrollIntoView({ block: 'center' });
     }
 
     function selectDocument(docKey) {
-      activeDocKey = DOCS[docKey] ? docKey : 'pcap';
+      const activeDocKeys = getActiveDocKeys();
+      activeDocKey = DOCS[docKey] && activeDocKeys.includes(docKey) ? docKey : getDefaultDocKey();
       activePage = DOCS[activeDocKey].defaultPage;
       renderDocument({ reloadPdf: true });
     }
 
     function goToReference(docKey, page, label) {
-      const nextDocKey = DOCS[docKey] ? docKey : activeDocKey;
+      const activeDocKeys = getActiveDocKeys();
+      const nextDocKey = DOCS[docKey] && activeDocKeys.includes(docKey) ? docKey : activeDocKey;
       const shouldReload = nextDocKey !== activeDocKey;
       activeDocKey = nextDocKey;
-      activePage = page;
+      activePage = Math.min(page, DOCS[activeDocKey].pageCount);
       renderDocument({ reloadPdf: shouldReload });
-      if (!shouldReload) requestAnimationFrame(() => scrollToPage(page));
-      document.getElementById('active-ref').textContent = `${DOCS[activeDocKey].short} · p. ${page}`;
+      if (!shouldReload) requestAnimationFrame(() => scrollToPage(activePage));
+      document.getElementById('active-ref').textContent = `${DOCS[activeDocKey].short} · p. ${activePage}`;
       document.getElementById('pdf-stage').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function handleExternalViewerNavigation(payload) {
+      if (!payload || payload.type !== 'simplifae:viewer:navigate') return;
+      const payloadTenderKey = sanitizeViewerKey(payload.tenderKey || activeTenderKey);
+      if (payloadTenderKey) {
+        activeTenderKey = payloadTenderKey;
+        window.name = 'simplifae-viewer-' + activeTenderKey;
+        buildDocSelect();
+        renderedDocKey = null;
+      }
+      const activeDocKeys = getActiveDocKeys();
+      const docKey = DOCS[payload.docKey] && activeDocKeys.includes(payload.docKey) ? payload.docKey : getDefaultDocKey();
+      const page = Number(payload.page);
+      if (!Number.isFinite(page) || page < 1) return;
+      goToReference(docKey, Math.min(page, DOCS[docKey].pageCount), payload.label || '');
+      try {
+        window.focus();
+      } catch (err) {
+        // Browser focus is best-effort; the opener also calls focus from the user gesture.
+      }
+    }
+
+    function setupExternalViewerControl() {
+      window.addEventListener('message', event => {
+        handleExternalViewerNavigation(event.data);
+      });
+
+      try {
+        if ('BroadcastChannel' in window) {
+          viewerBroadcastChannel = new BroadcastChannel(VIEWER_CHANNEL_NAME);
+          viewerBroadcastChannel.onmessage = event => handleExternalViewerNavigation(event.data);
+        }
+      } catch (err) {
+        viewerBroadcastChannel = null;
+      }
+
+      window.addEventListener('storage', event => {
+        if (event.key !== 'simplifae.viewer.command' || !event.newValue) return;
+        try {
+          handleExternalViewerNavigation(JSON.parse(event.newValue));
+        } catch (err) {
+          // Ignore malformed cross-tab messages.
+        }
+      });
     }
 
     function escapeForAttr(value) {
       return String(value).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    }
+
+    function escapeForHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     function toggleActive(btn) {
@@ -1003,11 +1312,93 @@
       alert('This would open the original tender source in a new browser tab.');
     }
 
-    function setReferencePanel(size) {
-      document.body.classList.toggle('refs-wide', size === 'wide');
-      document.body.classList.toggle('refs-compact', size !== 'wide');
-      document.getElementById('refs-wide-btn').classList.toggle('active', size === 'wide');
-      document.getElementById('refs-compact-btn').classList.toggle('active', size !== 'wide');
+    function getReferencePanelBounds() {
+      const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+      return {
+        min: Math.round(rootSize * 17),
+        max: Math.min(Math.round(rootSize * 34), Math.round(viewportWidth * .42))
+      };
+    }
+
+    function setReferencePanelWidth(width, options = {}) {
+      const { min, max } = getReferencePanelBounds();
+      const nextWidth = Math.max(min, Math.min(max, Math.round(width)));
+      document.documentElement.style.setProperty('--refs-width', `${nextWidth}px`);
+      const resizer = document.getElementById('viewer-resizer');
+      if (resizer) {
+        resizer.setAttribute('aria-valuemin', String(min));
+        resizer.setAttribute('aria-valuemax', String(max));
+        resizer.setAttribute('aria-valuenow', String(nextWidth));
+      }
+      if (options.persist !== false) {
+        try {
+          localStorage.setItem('simplifae.viewer.refsWidth', String(nextWidth));
+        } catch (err) {
+          // Width persistence is a convenience only.
+        }
+      }
+    }
+
+    function initReferenceResizer() {
+      const resizer = document.getElementById('viewer-resizer');
+      const panel = document.querySelector('.references-panel');
+      if (!resizer || !panel) return;
+
+      resizer.setAttribute('role', 'separator');
+      resizer.setAttribute('aria-valuetext', 'Evidence panel width');
+
+      try {
+        const storedWidth = Number(localStorage.getItem('simplifae.viewer.refsWidth'));
+        if (Number.isFinite(storedWidth) && storedWidth > 0) {
+          setReferencePanelWidth(storedWidth, { persist: false });
+        } else {
+          setReferencePanelWidth(panel.getBoundingClientRect().width || 368, { persist: false });
+        }
+      } catch (err) {
+        setReferencePanelWidth(panel.getBoundingClientRect().width || 368, { persist: false });
+      }
+
+      let startX = 0;
+      let startWidth = 0;
+
+      const stopResize = event => {
+        document.body.classList.remove('resizing-panel');
+        window.removeEventListener('pointermove', moveResize);
+        window.removeEventListener('pointerup', stopResize);
+        window.removeEventListener('pointercancel', stopResize);
+        if (event && typeof resizer.releasePointerCapture === 'function') {
+          try { resizer.releasePointerCapture(event.pointerId); } catch (err) {}
+        }
+      };
+
+      const moveResize = event => {
+        setReferencePanelWidth(startWidth + event.clientX - startX);
+      };
+
+      resizer.addEventListener('pointerdown', event => {
+        if (window.matchMedia('(max-width: 900px)').matches) return;
+        startX = event.clientX;
+        startWidth = panel.getBoundingClientRect().width;
+        document.body.classList.add('resizing-panel');
+        if (typeof resizer.setPointerCapture === 'function') {
+          try { resizer.setPointerCapture(event.pointerId); } catch (err) {}
+        }
+        window.addEventListener('pointermove', moveResize);
+        window.addEventListener('pointerup', stopResize);
+        window.addEventListener('pointercancel', stopResize);
+      });
+
+      resizer.addEventListener('keydown', event => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        setReferencePanelWidth(panel.getBoundingClientRect().width + direction * 24);
+      });
+
+      window.addEventListener('resize', () => {
+        setReferencePanelWidth(panel.getBoundingClientRect().width, { persist: false });
+      });
     }
 
     function setDecision(decision) {
@@ -1016,7 +1407,8 @@
 
     pageFromParams();
     buildDocSelect();
-    setReferencePanel('compact');
+    setupExternalViewerControl();
+    initReferenceResizer();
     renderDocument({ reloadPdf: true });
   </script>
 </body>
