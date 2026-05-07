@@ -1,0 +1,81 @@
+name: Simplifae ingestion checks
+
+on:
+  pull_request:
+    paths:
+      - "tools/simplifae-ingestion/**"
+      - ".claude/**"
+      - "AGENTS.md"
+      - ".github/workflows/simplifae-ingestion.yml"
+  push:
+    paths:
+      - "tools/simplifae-ingestion/**"
+      - ".claude/**"
+      - "AGENTS.md"
+      - ".github/workflows/simplifae-ingestion.yml"
+  workflow_dispatch:
+    inputs:
+      run_live_smoke:
+        description: "Run live PLACSP OCR smoke against the first live seed records"
+        required: false
+        default: "false"
+
+jobs:
+  ingestion-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install OCR system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ghostscript \
+            imagemagick \
+            ocrmypdf \
+            poppler-utils \
+            tesseract-ocr \
+            tesseract-ocr-cat \
+            tesseract-ocr-spa
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install PyMuPDF requests
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run focused ingestion checks
+        env:
+          SIMPLIFAE_PYTHON: python
+        run: node tools/simplifae-ingestion/simplifae.js check
+
+      - name: Verify OCR tools are available
+        run: |
+          command -v tesseract
+          command -v ocrmypdf
+          command -v pdftotext
+          tesseract --list-langs | grep -E '^(spa|cat|eng)$'
+
+      - name: Optional live OCR smoke
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_live_smoke == 'true' }}
+        env:
+          SIMPLIFAE_PYTHON: python
+        run: |
+          node tools/simplifae-ingestion/simplifae.js ocr-50 \
+            --limit 5 \
+            --workers 2 \
+            --timeout 420 \
+            --ocr-timeout 240 \
+            --out-root /tmp/simplifae-github-ocr-smoke

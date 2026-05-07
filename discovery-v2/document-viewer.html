@@ -755,10 +755,10 @@
   <div class="viewer-shell">
     <header class="tender-strip" aria-label="Tender context">
       <div class="tender-strip-left">
-        <span class="match-chip"><strong>96%</strong> <span>match</span></span>
-        <span class="ref-chip">B41632266-2026/000071-PaA</span>
+        <span class="match-chip"><strong id="tender-match-value">96%</strong> <span>match</span></span>
+        <span class="ref-chip" id="tender-ref-chip">B41632266-2026/000071-PaA</span>
       </div>
-      <div class="tender-title" title="Water and sanitation infrastructure works — Aguas de Huesna SL.">Water and sanitation infrastructure works — Aguas de Huesna SL...</div>
+      <div class="tender-title" id="tender-strip-title" title="Water and sanitation infrastructure works — Aguas de Huesna SL.">Water and sanitation infrastructure works — Aguas de Huesna SL...</div>
       <div class="viewer-actions" aria-label="Tender actions">
         <button class="icon-btn" id="favorite-btn" title="Add to favourites" aria-label="Add to favourites" onclick="toggleActive(this)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.6 12 20l-7.5-7.4a5 5 0 0 1 7.1-7.1l.4.4.4-.4a5 5 0 0 1 7.1 7.1Z"/></svg>
@@ -819,6 +819,7 @@
     </main>
   </div>
 
+  <script src="live-publicada-viewer-docs.js"></script>
   <script>
     const DOCS = {
       pcap: {
@@ -964,14 +965,353 @@
         pageCount: 36,
         defaultPage: 1,
         refs: []
+      },
+      'ec1752-pcap': {
+        title: 'PCAP — Administrative Clauses',
+        short: 'PCAP',
+        meta: ['1.8 MB', 'PCAP', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1752-pcap-administrative-clauses.pdf',
+        pageDir: 'doc-pages/ec1752-pcap',
+        pageCount: 52,
+        defaultPage: 7,
+        refs: []
+      },
+      'ec1752-ppt': {
+        title: 'PPT — Technical Specifications',
+        short: 'PPT',
+        meta: ['453 KB', 'PPT', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1752-technical-specifications.pdf',
+        pageDir: 'doc-pages/ec1752-ppt',
+        pageCount: 5,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1752-mj': {
+        title: 'MJ — Need Report',
+        short: 'MJ',
+        meta: ['1.0 MB', 'Other', 'PDF', 'Published 27 Apr 2026'],
+        file: 'docs/ec1752-need-report.pdf',
+        pageDir: 'doc-pages/ec1752-mj',
+        pageCount: 17,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1752-visit': {
+        title: 'Site Visit — Technical Visit Notice',
+        short: 'Site visit',
+        meta: ['531 KB', 'Other', 'PDF', 'Published 30 Apr 2026'],
+        file: 'docs/ec1752-site-visit.pdf',
+        pageDir: 'doc-pages/ec1752-visit',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1752-lot1': {
+        title: 'Technical Offer — Lot 1 Urban Core',
+        short: 'Lot 1',
+        meta: ['9.6 MB', 'Other', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1752-lot1-technical-offer.pdf',
+        pageDir: 'doc-pages/ec1752-lot1',
+        pageCount: 49,
+        defaultPage: 3,
+        refs: []
+      },
+      'ec1752-lot2': {
+        title: 'Technical Offer — Lot 2 San Benet / Santa Barbara',
+        short: 'Lot 2',
+        meta: ['14 MB', 'Other', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1752-lot2-technical-offer.pdf',
+        pageDir: 'doc-pages/ec1752-lot2',
+        pageCount: 50,
+        defaultPage: 3,
+        refs: []
+      },
+      'ec1749-pcap': {
+        title: 'PCAP — Administrative Clauses',
+        short: 'PCAP',
+        meta: ['1.8 MB', 'PCAP', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1749-pcap-administrative-clauses.pdf',
+        pageDir: 'doc-pages/ec1749-pcap',
+        pageCount: 51,
+        defaultPage: 7,
+        refs: []
+      },
+      'ec1749-ppt': {
+        title: 'PPT — Technical Specifications',
+        short: 'PPT',
+        meta: ['440 KB', 'PPT', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1749-technical-specifications.pdf',
+        pageDir: 'doc-pages/ec1749-ppt',
+        pageCount: 5,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1749-mj': {
+        title: 'MJ — Need Report',
+        short: 'MJ',
+        meta: ['556 KB', 'Other', 'PDF', 'Published 27 Apr 2026'],
+        file: 'docs/ec1749-need-report.pdf',
+        pageDir: 'doc-pages/ec1749-mj',
+        pageCount: 16,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1749-visit': {
+        title: 'Site Visit — Technical Visit Notice',
+        short: 'Site visit',
+        meta: ['536 KB', 'Other', 'PDF', 'Published 30 Apr 2026'],
+        file: 'docs/ec1749-site-visit.pdf',
+        pageDir: 'doc-pages/ec1749-visit',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1749-tech': {
+        title: 'Technical Offer — Benetusser Network Works',
+        short: 'Technical offer',
+        meta: ['16 MB', 'Other', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1749-technical-offer.pdf',
+        pageDir: 'doc-pages/ec1749-tech',
+        pageCount: 55,
+        defaultPage: 4,
+        refs: []
+      },
+      'ec1748-pcap': {
+        title: 'PCAP — Administrative Clauses',
+        short: 'PCAP',
+        meta: ['1.8 MB', 'PCAP', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1748-pcap-administrative-clauses.pdf',
+        pageDir: 'doc-pages/ec1748-pcap',
+        pageCount: 52,
+        defaultPage: 7,
+        refs: []
+      },
+      'ec1748-ppt': {
+        title: 'PPT — Technical Specifications',
+        short: 'PPT',
+        meta: ['596 KB', 'PPT', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1748-technical-specifications.pdf',
+        pageDir: 'doc-pages/ec1748-ppt',
+        pageCount: 5,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1748-mj': {
+        title: 'MJ — Need Report',
+        short: 'MJ',
+        meta: ['520 KB', 'Other', 'PDF', 'Published 27 Apr 2026'],
+        file: 'docs/ec1748-need-report.pdf',
+        pageDir: 'doc-pages/ec1748-mj',
+        pageCount: 16,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1748-visit': {
+        title: 'Site Visit — Technical Visit Notice',
+        short: 'Site visit',
+        meta: ['536 KB', 'Other', 'PDF', 'Published 30 Apr 2026'],
+        file: 'docs/ec1748-site-visit.pdf',
+        pageDir: 'doc-pages/ec1748-visit',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ec1748-tech': {
+        title: "Technical Offer — l'Alcudia Network Works",
+        short: 'Technical offer',
+        meta: ['10 MB', 'Other', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ec1748-technical-offer.pdf',
+        pageDir: 'doc-pages/ec1748-tech',
+        pageCount: 51,
+        defaultPage: 3,
+        refs: []
+      },
+      'ms-maint-contract-notice': {
+        title: 'Contract Notice — Tender Summary',
+        short: 'Contract Notice',
+        meta: ['100 KB', 'Other', 'PDF', 'Published 4 May 2026'],
+        file: 'docs/ms-maint-contract-notice.pdf',
+        pageDir: 'doc-pages/ms-maint-contract-notice',
+        pageCount: 8,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-pcap': {
+        title: 'PCAP — Administrative Clauses',
+        short: 'PCAP',
+        meta: ['659 KB', 'PCAP', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ms-maint-pcap.pdf',
+        pageDir: 'doc-pages/ms-maint-pcap',
+        pageCount: 98,
+        defaultPage: 48,
+        refs: []
+      },
+      'ms-maint-ppt': {
+        title: 'PPT — Technical Specifications',
+        short: 'PPT',
+        meta: ['687 KB', 'PPT', 'PDF', 'Published 23 Apr 2026'],
+        file: 'docs/ms-maint-ppt.pdf',
+        pageDir: 'doc-pages/ms-maint-ppt',
+        pageCount: 49,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-justification': {
+        title: 'MJ — Justification Report',
+        short: 'MJ',
+        meta: ['384 KB', 'Other', 'PDF', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-justification.pdf',
+        pageDir: 'doc-pages/ms-maint-justification',
+        pageCount: 6,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-value-study': {
+        title: 'Economic Study — Contract Valuation',
+        short: 'Economic Study',
+        meta: ['339 KB', 'Other', 'PDF', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-value-study.pdf',
+        pageDir: 'doc-pages/ms-maint-value-study',
+        pageCount: 2,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-economic-valuation': {
+        title: 'Economic Valuation Spreadsheet',
+        short: 'Economic XLS',
+        meta: ['169 KB', 'Spreadsheet', 'XLS', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-economic-valuation.xls',
+        pageDir: 'doc-pages/ms-maint-economic-valuation',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-inventory': {
+        title: 'Inventory — Installations',
+        short: 'Inventory',
+        meta: ['248 KB', 'Spreadsheet', 'XLSX', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-inventory.xlsx',
+        pageDir: 'doc-pages/ms-maint-inventory',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-protocol': {
+        title: 'Preventive Maintenance Protocol Book',
+        short: 'Protocol',
+        meta: ['971 KB', 'Other', 'PDF', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-protocol.pdf',
+        pageDir: 'doc-pages/ms-maint-protocol',
+        pageCount: 51,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-means-report': {
+        title: 'Insufficient Means Report',
+        short: 'Means Report',
+        meta: ['384 KB', 'Other', 'PDF', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-means-report.pdf',
+        pageDir: 'doc-pages/ms-maint-means-report',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-start-resolution': {
+        title: 'Start Resolution',
+        short: 'Start',
+        meta: ['120 KB', 'Other', 'PDF', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-start-resolution.pdf',
+        pageDir: 'doc-pages/ms-maint-start-resolution',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-approval-resolution': {
+        title: 'Approval Resolution',
+        short: 'Approval',
+        meta: ['130 KB', 'Other', 'PDF', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-approval-resolution.pdf',
+        pageDir: 'doc-pages/ms-maint-approval-resolution',
+        pageCount: 1,
+        defaultPage: 1,
+        refs: []
+      },
+      'ms-maint-deuc-instructions': {
+        title: 'DEUC Completion Instructions',
+        short: 'DEUC',
+        meta: ['365 KB', 'Other', 'PDF', 'Published 29 Apr 2026'],
+        file: 'docs/ms-maint-deuc-instructions.pdf',
+        pageDir: 'doc-pages/ms-maint-deuc-instructions',
+        pageCount: 2,
+        defaultPage: 1,
+        refs: []
+      },
+      'mejorada-tax-contract-notice': {
+        title: 'Contract Notice — Tender Summary',
+        short: 'Contract Notice',
+        meta: ['96 KB', 'Other', 'PDF', 'Published 4 May 2026'],
+        file: 'docs/mejorada-tax-contract-notice.pdf',
+        pageDir: 'doc-pages/mejorada-tax-contract-notice',
+        pageCount: 7,
+        defaultPage: 1,
+        refs: []
+      },
+      'mejorada-tax-pliegos-summary': {
+        title: 'Tender Documents Summary',
+        short: 'Pliegos',
+        meta: ['97 KB', 'Other', 'PDF', 'Published 4 May 2026'],
+        file: 'docs/mejorada-tax-pliegos-summary.pdf',
+        pageDir: 'doc-pages/mejorada-tax-pliegos-summary',
+        pageCount: 7,
+        defaultPage: 1,
+        refs: []
+      },
+      'mejorada-tax-pcap': {
+        title: 'PCAP — Administrative Clauses',
+        short: 'PCAP',
+        meta: ['1.2 MB', 'PCAP', 'PDF', 'Published 4 May 2026'],
+        file: 'docs/mejorada-tax-pcap.pdf',
+        pageDir: 'doc-pages/mejorada-tax-pcap',
+        pageCount: 84,
+        defaultPage: 22,
+        refs: []
+      },
+      'mejorada-tax-ppt': {
+        title: 'PPT — Technical Specifications',
+        short: 'PPT',
+        meta: ['857 KB', 'PPT', 'PDF', 'Published 4 May 2026'],
+        file: 'docs/mejorada-tax-ppt.pdf',
+        pageDir: 'doc-pages/mejorada-tax-ppt',
+        pageCount: 18,
+        defaultPage: 3,
+        refs: []
+      },
+      'mejorada-tax-justification': {
+        title: 'MJ — Justification Report',
+        short: 'MJ',
+        meta: ['938 KB', 'Other', 'PDF', 'Published 4 May 2026'],
+        file: 'docs/mejorada-tax-justification.pdf',
+        pageDir: 'doc-pages/mejorada-tax-justification',
+        pageCount: 8,
+        defaultPage: 1,
+        refs: []
       }
     };
+
+    Object.assign(DOCS, window.SIMPLIFAE_LIVE_PUBLICADA_VIEWER_DOCS || {});
 
     const TENDER_DOC_KEYS = {
       'current-tender': ['pcap', 'project', 'mj', 'ra', 'urgency', 'incident'],
       'B41632266-2026-000071-PaA': ['pcap', 'project', 'mj', 'ra', 'urgency', 'incident'],
-      'EC-1750-2026': ['ec1750-pcap', 'ec1750-ppt', 'ec1750-mj', 'ec1750-lot1', 'ec1750-lot2', 'ec1750-lot3']
+      'EC-1750-2026': ['ec1750-pcap', 'ec1750-ppt', 'ec1750-mj', 'ec1750-lot1', 'ec1750-lot2', 'ec1750-lot3'],
+      'EC-1752-2026': ['ec1752-pcap', 'ec1752-ppt', 'ec1752-mj', 'ec1752-visit', 'ec1752-lot1', 'ec1752-lot2'],
+      'EC-1749-2026': ['ec1749-pcap', 'ec1749-ppt', 'ec1749-mj', 'ec1749-visit', 'ec1749-tech'],
+      'EC-1748-2026': ['ec1748-pcap', 'ec1748-ppt', 'ec1748-mj', 'ec1748-visit', 'ec1748-tech'],
+      '300-2026-00207': ['ms-maint-contract-notice', 'ms-maint-pcap', 'ms-maint-ppt', 'ms-maint-justification', 'ms-maint-value-study', 'ms-maint-economic-valuation', 'ms-maint-inventory', 'ms-maint-protocol', 'ms-maint-means-report', 'ms-maint-start-resolution', 'ms-maint-approval-resolution', 'ms-maint-deuc-instructions'],
+      '6536-2025': ['mejorada-tax-contract-notice', 'mejorada-tax-pliegos-summary', 'mejorada-tax-pcap', 'mejorada-tax-ppt', 'mejorada-tax-justification']
     };
+
+    Object.assign(TENDER_DOC_KEYS, window.SIMPLIFAE_LIVE_PUBLICADA_TENDER_DOC_KEYS || {});
 
     const TENDER_EVIDENCE_REFS = [
       { docKey: 'mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 2, source: 'MJ · p. 2 · Object of contract' },
@@ -1033,11 +1373,240 @@
       { docKey: 'ec1750-pcap', type: 'Award criteria', label: 'Price and technical formulas submitted in the automatic-evaluation envelope', page: 47, source: 'PCAP · p. 47' }
     ];
 
+    const EC1752_EVIDENCE_REFS = [
+      { docKey: 'ec1752-mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'MJ · p. 1 · Object of contract and lots' },
+      { docKey: 'ec1752-pcap', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'PCAP · p. 1 · CPV + lot budget' },
+      { docKey: 'ec1752-lot1', type: 'Detailed scope', label: 'Lot 1 urban-core water and sewerage works', page: 3, source: 'Lot 1 technical offer · p. 3' },
+      { docKey: 'ec1752-lot1', type: 'Detailed scope', label: 'Lot 1 urban-core water and sewerage works', page: 6, source: 'Lot 1 technical offer · pp. 6-7' },
+      { docKey: 'ec1752-lot2', type: 'Detailed scope', label: 'Lot 2 San Benet and Santa Barbara water and sewerage works', page: 3, source: 'Lot 2 technical offer · p. 3' },
+      { docKey: 'ec1752-lot2', type: 'Detailed scope', label: 'Lot 2 San Benet and Santa Barbara water and sewerage works', page: 6, source: 'Lot 2 technical offer · pp. 6-7' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC), one declaration per lot where requirements differ', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC), one declaration per lot where requirements differ', page: 34, source: 'PCAP · p. 34' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Complementary declaration using Annex IV', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Complementary declaration using Annex IV', page: 36, source: 'PCAP · p. 36' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance', page: 40, source: 'PCAP · p. 40' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Foreign bidder documentation and Spanish jurisdiction commitment, if applicable', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Contractor classification: Lot 1 Group E, Subgroup 1, Category 5; Lot 2 Group E, Subgroup 1, Category 4', page: 2, source: 'PCAP · p. 2' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'Contractor classification: Lot 1 Group E, Subgroup 1, Category 5; Lot 2 Group E, Subgroup 1, Category 4', page: 38, source: 'PCAP · p. 38' },
+      { docKey: 'ec1752-mj', type: 'Admission', label: 'Contractor classification: Lot 1 Group E, Subgroup 1, Category 5; Lot 2 Group E, Subgroup 1, Category 4', page: 4, source: 'MJ · p. 4' },
+      { docKey: 'ec1752-pcap', type: 'Admission', label: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works', page: 39, source: 'PCAP · p. 39' },
+      { docKey: 'ec1752-mj', type: 'Admission', label: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works', page: 5, source: 'MJ · p. 5' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1752-mj', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 10, source: 'MJ · p. 10' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1752-mj', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 10, source: 'MJ · p. 10' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 44, source: 'PCAP · pp. 44-45' },
+      { docKey: 'ec1752-mj', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 10, source: 'MJ · pp. 10-11' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 45, source: 'PCAP · p. 45' },
+      { docKey: 'ec1752-mj', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 11, source: 'MJ · p. 11' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 45, source: 'PCAP · pp. 45-46' },
+      { docKey: 'ec1752-mj', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 11, source: 'MJ · p. 11' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 43, source: 'PCAP · p. 43' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 47, source: 'PCAP · p. 47' },
+      { docKey: 'ec1752-pcap', type: 'Award criteria', label: 'Price formula submitted in the automatic-evaluation envelope', page: 47, source: 'PCAP · p. 47' },
+      { docKey: 'ec1752-mj', type: 'Award criteria', label: 'Price formula submitted in the automatic-evaluation envelope', page: 14, source: 'MJ · p. 14' }
+    ];
+
+    const EC1748_EVIDENCE_REFS = [
+      { docKey: 'ec1748-mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'MJ · p. 1 · Object and quantities' },
+      { docKey: 'ec1748-mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 2, source: 'MJ · p. 2 · No lots + duration' },
+      { docKey: 'ec1748-pcap', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'PCAP · p. 1 · CPV + no lots' },
+      { docKey: 'ec1748-tech', type: 'Detailed scope', label: "l'Alcudia drinking-water and sewerage action area", page: 3, source: 'Technical offer · p. 3' },
+      { docKey: 'ec1748-tech', type: 'Detailed scope', label: "l'Alcudia drinking-water and sewerage action area", page: 5, source: 'Technical offer · pp. 5-7' },
+      { docKey: 'ec1748-tech', type: 'Detailed scope', label: "l'Alcudia works budget split", page: 51, source: 'Technical offer · p. 51' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'Complementary declaration using Annex IV', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1748-mj', type: 'Admission', label: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance', page: 15, source: 'MJ · p. 15' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'Foreign bidder documentation and Spanish jurisdiction commitment, if applicable', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 2, source: 'PCAP · p. 2' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 38, source: 'PCAP · p. 38' },
+      { docKey: 'ec1748-mj', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 8, source: 'MJ · p. 8' },
+      { docKey: 'ec1748-pcap', type: 'Admission', label: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works', page: 38, source: 'PCAP · pp. 38-39' },
+      { docKey: 'ec1748-mj', type: 'Admission', label: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works', page: 8, source: 'MJ · pp. 8-9' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1748-mj', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 10, source: 'MJ · p. 10' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1748-mj', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 10, source: 'MJ · p. 10' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 44, source: 'PCAP · pp. 44-45' },
+      { docKey: 'ec1748-mj', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 10, source: 'MJ · pp. 10-11' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 45, source: 'PCAP · p. 45' },
+      { docKey: 'ec1748-mj', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 11, source: 'MJ · p. 11' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 45, source: 'PCAP · pp. 45-46' },
+      { docKey: 'ec1748-mj', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 12, source: 'MJ · p. 12' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 43, source: 'PCAP · p. 43' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 47, source: 'PCAP · p. 47' },
+      { docKey: 'ec1748-pcap', type: 'Award criteria', label: 'Price formula submitted in the automatic-evaluation envelope', page: 47, source: 'PCAP · p. 47' },
+      { docKey: 'ec1748-mj', type: 'Award criteria', label: 'Price formula submitted in the automatic-evaluation envelope', page: 13, source: 'MJ · p. 13' }
+    ];
+
+    const EC1749_EVIDENCE_REFS = [
+      { docKey: 'ec1749-mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'MJ · p. 1 · Object and quantities' },
+      { docKey: 'ec1749-mj', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 2, source: 'MJ · p. 2 · No lots + duration' },
+      { docKey: 'ec1749-pcap', type: 'Detailed scope', label: 'Specific contract scope and execution context', page: 1, source: 'PCAP · p. 1 · CPV + no lots' },
+      { docKey: 'ec1749-tech', type: 'Detailed scope', label: 'Benetusser drinking-water and sewerage action area', page: 4, source: 'Technical offer · p. 4' },
+      { docKey: 'ec1749-tech', type: 'Detailed scope', label: 'Benetusser drinking-water and sewerage action area', page: 6, source: 'Technical offer · pp. 6-7' },
+      { docKey: 'ec1749-tech', type: 'Detailed scope', label: 'Benetusser works budget split', page: 55, source: 'Technical offer · p. 55' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'Complementary declaration using Annex IV', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance', page: 39, source: 'PCAP · p. 39' },
+      { docKey: 'ec1749-mj', type: 'Admission', label: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance', page: 15, source: 'MJ · p. 15' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'Foreign bidder documentation and Spanish jurisdiction commitment, if applicable', page: 7, source: 'PCAP · p. 7' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 2, source: 'PCAP · p. 2' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 38, source: 'PCAP · p. 38' },
+      { docKey: 'ec1749-mj', type: 'Admission', label: 'Contractor classification: Group E, Subgroup 1, Category 5', page: 8, source: 'MJ · p. 8' },
+      { docKey: 'ec1749-pcap', type: 'Admission', label: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works', page: 38, source: 'PCAP · p. 38' },
+      { docKey: 'ec1749-mj', type: 'Admission', label: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works', page: 8, source: 'MJ · pp. 8-9' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 43, source: 'PCAP · p. 43' },
+      { docKey: 'ec1749-mj', type: 'Award criteria', label: 'Technical report: detailed works plan and site impacts', page: 10, source: 'MJ · p. 10' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 43, source: 'PCAP · p. 43' },
+      { docKey: 'ec1749-mj', type: 'Award criteria', label: 'Monitoring, reporting and progress-control plan', page: 10, source: 'MJ · p. 10' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 8, source: 'PCAP · p. 8' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 43, source: 'PCAP · pp. 43-44' },
+      { docKey: 'ec1749-mj', type: 'Award criteria', label: 'Key technical team permanence commitment for site manager and surveyor', page: 10, source: 'MJ · pp. 10-11' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 44, source: 'PCAP · p. 44' },
+      { docKey: 'ec1749-mj', type: 'Award criteria', label: 'Environmental and waste-management plan', page: 11, source: 'MJ · p. 11' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 44, source: 'PCAP · pp. 44-45' },
+      { docKey: 'ec1749-mj', type: 'Award criteria', label: 'Proposed machinery adequacy and availability', page: 12, source: 'MJ · p. 12' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 9, source: 'PCAP · p. 9' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 42, source: 'PCAP · p. 42' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Economic offer form using Annex VIII', page: 46, source: 'PCAP · p. 46' },
+      { docKey: 'ec1749-pcap', type: 'Award criteria', label: 'Price formula submitted in the automatic-evaluation envelope', page: 46, source: 'PCAP · p. 46' },
+      { docKey: 'ec1749-mj', type: 'Award criteria', label: 'Price formula submitted in the automatic-evaluation envelope', page: 13, source: 'MJ · p. 13' }
+    ];
+
+    const MADRID_SALUD_MAINT_EVIDENCE_REFS = [
+      { docKey: 'ms-maint-contract-notice', type: 'Detailed scope', label: 'Structured tender notice: value, CPV, term and official publication', page: 1, source: 'Contract Notice · p. 1' },
+      { docKey: 'ms-maint-contract-notice', type: 'Detailed scope', label: 'Official submission deadline and opening events', page: 2, source: 'Contract Notice · pp. 2-3' },
+      { docKey: 'ms-maint-contract-notice', type: 'Detailed scope', label: 'Object, planned start and extension options', page: 4, source: 'Contract Notice · p. 4' },
+      { docKey: 'ms-maint-pcap', type: 'Detailed scope', label: 'Integral maintenance object and CPV scope', page: 48, source: 'PCAP · p. 48 · Object and CPV' },
+      { docKey: 'ms-maint-pcap', type: 'Detailed scope', label: 'No lot division and Madrid Salud centre/property scope', page: 49, source: 'PCAP · p. 49 · No lots + centre count' },
+      { docKey: 'ms-maint-ppt', type: 'Detailed scope', label: 'Technical object and maintenance definitions', page: 1, source: 'PPT · p. 1' },
+      { docKey: 'ms-maint-ppt', type: 'Detailed scope', label: 'Preventive, technical-legal and corrective maintenance model', page: 5, source: 'PPT · p. 5' },
+      { docKey: 'ms-maint-ppt', type: 'Detailed scope', label: 'Inventory deliverables and covered technical systems', page: 6, source: 'PPT · p. 6' },
+      { docKey: 'ms-maint-ppt', type: 'Detailed scope', label: 'Minimum multi-trade staffing model', page: 28, source: 'PPT · pp. 28-29' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC), signed and identified', page: 16, source: 'PCAP · p. 16' },
+      { docKey: 'ms-maint-deuc-instructions', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC), signed and identified', page: 1, source: 'DEUC · p. 1' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'External-capacity ESPD / DEUC and commitment evidence, if applicable', page: 17, source: 'PCAP · p. 17' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 17, source: 'PCAP · pp. 17-18' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Business group declaration using Annex VI when linked companies submit bids', page: 19, source: 'PCAP · p. 19' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Responsible declaration on disability quota, labour/social obligations and equality plan', page: 19, source: 'PCAP · p. 19' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Foreign financial-contributions notification or declaration, if applicable', page: 20, source: 'PCAP · pp. 19-20' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Service contractor classification Group O, Subgroup 1, Category 4, or equivalent solvency', page: 61, source: 'PCAP · p. 61' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Economic solvency: annual turnover of at least €669,836.20', page: 61, source: 'PCAP · p. 61' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Technical solvency: similar services of at least €669,836.20 in the best year', page: 62, source: 'PCAP · p. 62' },
+      { docKey: 'ms-maint-pcap', type: 'Admission', label: 'Professional-risk insurance for proposed awardee', page: 63, source: 'PCAP · pp. 63-64' },
+      { docKey: 'ms-maint-contract-notice', type: 'Admission', label: 'Submit the electronic offer by 19 May 2026 at 23:59', page: 2, source: 'Contract Notice · p. 2' },
+      { docKey: 'ms-maint-contract-notice', type: 'Admission', label: 'Post-award definitive and complementary guarantees', page: 5, source: 'Contract Notice · p. 5' },
+      { docKey: 'ms-maint-pcap', type: 'Award criteria', label: 'Economic offer using Annex II; discount only on fixed contract part', page: 67, source: 'PCAP · pp. 67-68, 79' },
+      { docKey: 'ms-maint-pcap', type: 'Award criteria', label: 'Technical improvement: electrical-system and HVAC supply/replacement bag', page: 65, source: 'PCAP · pp. 65, 80' },
+      { docKey: 'ms-maint-pcap', type: 'Award criteria', label: 'Technical improvement: electricity, cooling, refrigeration and heating repair bag', page: 66, source: 'PCAP · pp. 65-66, 81' },
+      { docKey: 'ms-maint-pcap', type: 'Award criteria', label: 'Technical improvement: masonry, sanitation, plumbing and painting bag', page: 66, source: 'PCAP · pp. 66-67, 81-82' },
+      { docKey: 'ms-maint-pcap', type: 'Award criteria', label: 'Annual ITE reports for selected buildings', page: 67, source: 'PCAP · pp. 67, 82' },
+      { docKey: 'ms-maint-pcap', type: 'Award criteria', label: 'Environmental improvement: replace failed luminaires with LED technology', page: 67, source: 'PCAP · p. 67' },
+      { docKey: 'ms-maint-pcap', type: 'Award criteria', label: 'No value-judgment technical documentation is required', page: 70, source: 'PCAP · p. 70' }
+    ];
+
+    const MEJORADA_TAX_SUPPORT_EVIDENCE_REFS = [
+      { docKey: 'mejorada-tax-contract-notice', type: 'Detailed scope', label: 'Structured tender notice: value, CPV, publication and deadline', page: 1, source: 'Contract Notice · p. 1' },
+      { docKey: 'mejorada-tax-contract-notice', type: 'Detailed scope', label: 'Official submission deadline and electronic submission rule', page: 2, source: 'Contract Notice · p. 2' },
+      { docKey: 'mejorada-tax-contract-notice', type: 'Detailed scope', label: 'Object, two-lot structure and guarantees', page: 4, source: 'Contract Notice · pp. 4-6' },
+      { docKey: 'mejorada-tax-justification', type: 'Detailed scope', label: 'Need, no externalisation of public powers and two-lot rationale', page: 1, source: 'MJ · p. 1' },
+      { docKey: 'mejorada-tax-justification', type: 'Detailed scope', label: 'Duration, extension, lot budgets and estimated value', page: 3, source: 'MJ · pp. 3-4' },
+      { docKey: 'mejorada-tax-ppt', type: 'Detailed scope', label: 'Technical object, lots and CPVs', page: 3, source: 'PPT · p. 3' },
+      { docKey: 'mejorada-tax-ppt', type: 'Detailed scope', label: 'Lot 1 software support, ESTIMA maintenance, hosting and integrations', page: 4, source: 'PPT · pp. 4-5' },
+      { docKey: 'mejorada-tax-ppt', type: 'Detailed scope', label: 'Lot 2 administrative support, file processing and public counter service', page: 6, source: 'PPT · pp. 6-7' },
+      { docKey: 'mejorada-tax-contract-notice', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 6, source: 'Contract Notice · p. 6' },
+      { docKey: 'mejorada-tax-pcap', type: 'Admission', label: 'European Single Procurement Document (ESPD / DEUC)', page: 24, source: 'PCAP · p. 24' },
+      { docKey: 'mejorada-tax-pcap', type: 'Admission', label: 'Temporary consortium commitment, if bidding as a UTE', page: 24, source: 'PCAP · pp. 24-25' },
+      { docKey: 'mejorada-tax-pcap', type: 'Admission', label: 'Business-group declaration using Annex VI', page: 25, source: 'PCAP · p. 25' },
+      { docKey: 'mejorada-tax-pcap', type: 'Admission', label: 'External-capacity ESPD / DEUC and written commitment, if applicable', page: 21, source: 'PCAP · pp. 21, 25' },
+      { docKey: 'mejorada-tax-pcap', type: 'Admission', label: 'Foreign-bidder Spanish jurisdiction declaration, if applicable', page: 25, source: 'PCAP · p. 25' },
+      { docKey: 'mejorada-tax-pcap', type: 'Admission', label: 'Economic solvency by lot; accreditation requested from proposed awardee', page: 18, source: 'PCAP · pp. 18-19' },
+      { docKey: 'mejorada-tax-pcap', type: 'Admission', label: 'Technical/professional solvency by lot; accreditation requested from proposed awardee', page: 20, source: 'PCAP · p. 20' },
+      { docKey: 'mejorada-tax-justification', type: 'Admission', label: 'Civil-liability insurance minimum amount', page: 8, source: 'MJ · p. 8' },
+      { docKey: 'mejorada-tax-pcap', type: 'Award criteria', label: 'Economic offer using the PCAP model; price scored by lot', page: 33, source: 'PCAP · pp. 33-35' },
+      { docKey: 'mejorada-tax-pcap', type: 'Award criteria', label: 'Lot 1 software-hosting security level', page: 33, source: 'PCAP · p. 33' },
+      { docKey: 'mejorada-tax-ppt', type: 'Award criteria', label: 'Lot 1 software-hosting security level', page: 5, source: 'PPT · p. 5' },
+      { docKey: 'mejorada-tax-pcap', type: 'Award criteria', label: 'Lot 1 reduction of 15-day software start-up period', page: 33, source: 'PCAP · pp. 33-34' },
+      { docKey: 'mejorada-tax-justification', type: 'Award criteria', label: 'Lot 1 reduction of 15-day software start-up period', page: 6, source: 'MJ · p. 6' },
+      { docKey: 'mejorada-tax-pcap', type: 'Award criteria', label: 'Lot 1 SICALWIN integration work programme and supporting studies', page: 25, source: 'PCAP · pp. 25-26, 34' },
+      { docKey: 'mejorada-tax-pcap', type: 'Award criteria', label: 'Lot 2 training programme for municipal staff', page: 35, source: 'PCAP · p. 35' },
+      { docKey: 'mejorada-tax-ppt', type: 'Award criteria', label: 'Lot 2 training programme for municipal staff', page: 10, source: 'PPT · p. 10' },
+      { docKey: 'mejorada-tax-pcap', type: 'Award criteria', label: 'Lot 2 taxpayer telephone-attention schedule extension', page: 35, source: 'PCAP · p. 35' },
+      { docKey: 'mejorada-tax-ppt', type: 'Award criteria', label: 'Lot 2 taxpayer telephone-attention schedule extension', page: 11, source: 'PPT · p. 11' }
+    ];
+
     const TENDER_EVIDENCE_REFS_BY_KEY = {
       'current-tender': TENDER_EVIDENCE_REFS,
       'B41632266-2026-000071-PaA': TENDER_EVIDENCE_REFS,
-      'EC-1750-2026': EC1750_EVIDENCE_REFS
+      'EC-1750-2026': EC1750_EVIDENCE_REFS,
+      'EC-1752-2026': EC1752_EVIDENCE_REFS,
+      'EC-1749-2026': EC1749_EVIDENCE_REFS,
+      'EC-1748-2026': EC1748_EVIDENCE_REFS,
+      '300-2026-00207': MADRID_SALUD_MAINT_EVIDENCE_REFS,
+      '6536-2025': MEJORADA_TAX_SUPPORT_EVIDENCE_REFS
     };
+
+    Object.assign(TENDER_EVIDENCE_REFS_BY_KEY, window.SIMPLIFAE_LIVE_PUBLICADA_EVIDENCE_REFS_BY_TENDER || {});
+
+    const DEFAULT_TENDER_CONTEXT = {
+      match: '96%',
+      reference: 'B41632266-2026/000071-PaA',
+      title: 'Water and sanitation infrastructure works — Aguas de Huesna SL.'
+    };
+
+    const TENDER_CONTEXT_BY_KEY = {
+      'current-tender': DEFAULT_TENDER_CONTEXT,
+      'B41632266-2026-000071-PaA': DEFAULT_TENDER_CONTEXT,
+      'EC-1750-2026': {
+        match: '96%',
+        reference: 'EC-1750/2026',
+        title: 'Water and sanitation infrastructure works — Apoderado de Global Omnium Inversiones, S.L.'
+      },
+      'EC-1752-2026': {
+        match: '96%',
+        reference: 'EC-1752/2026',
+        title: 'Water and sanitation infrastructure works — Consejero Delegado de Aguas de Valencia, S.A.'
+      },
+      'EC-1749-2026': {
+        match: '96%',
+        reference: 'EC-1749/2026',
+        title: 'Water and sanitation infrastructure works — Consejero Delegado de Aguas de Valencia, S.A.'
+      },
+      'EC-1748-2026': {
+        match: '96%',
+        reference: 'EC-1748/2026',
+        title: 'Water and sanitation infrastructure works — Consejero Delegado de Aguas de Valencia, S.A.'
+      },
+      '300-2026-00207': {
+        match: '76%',
+        reference: '300/2026/00207',
+        title: 'Building maintenance and repair services — Organismo Autónomo Madrid Salud'
+      },
+      '6536-2025': {
+        match: '76%',
+        reference: '6536/2025',
+        title: 'Tax administration and IT support services — Junta de Gobierno del Ayuntamiento de Mejorada del Campo'
+      }
+    };
+
+    Object.assign(TENDER_CONTEXT_BY_KEY, window.SIMPLIFAE_LIVE_PUBLICADA_CONTEXT_BY_TENDER || {});
 
     let activeDocKey = 'pcap';
     let activePage = 8;
@@ -1074,6 +1643,45 @@
       return TENDER_EVIDENCE_REFS_BY_KEY[activeTenderKey] || TENDER_EVIDENCE_REFS;
     }
 
+    function normalizeEvidenceCategory(type) {
+      const value = String(type || '').toLowerCase();
+      if (value.includes('scope')) return 'Detailed Scope';
+      if (value.includes('required') || value.includes('envelope') || value.includes('guarantee') || value.includes('submission')) return 'Required Documents';
+      if (value.includes('award')) return 'Award Criteria';
+      if (value.includes('admission') || value.includes('solvency') || value.includes('eligibility') || value.includes('capacity')) return 'Admission Criteria';
+      return 'Required Documents';
+    }
+
+    function evidenceCategoryOrder(category) {
+      return {
+        'Detailed Scope': 1,
+        'Required Documents': 2,
+        'Admission Criteria': 3,
+        'Award Criteria': 4
+      }[category] || 9;
+    }
+
+    function evidenceCategoryClass(category) {
+      return category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+
+    function getActiveTenderContext() {
+      return TENDER_CONTEXT_BY_KEY[activeTenderKey] || DEFAULT_TENDER_CONTEXT;
+    }
+
+    function renderTenderContext() {
+      const context = getActiveTenderContext();
+      const matchValue = document.getElementById('tender-match-value');
+      const refChip = document.getElementById('tender-ref-chip');
+      const title = document.getElementById('tender-strip-title');
+      if (matchValue) matchValue.textContent = context.match;
+      if (refChip) refChip.textContent = context.reference;
+      if (title) {
+        title.textContent = context.title;
+        title.title = context.title;
+      }
+    }
+
     function pageFromParams() {
       const params = new URLSearchParams(window.location.search);
       const doc = params.get('doc');
@@ -1081,8 +1689,9 @@
       activeTenderKey = sanitizeViewerKey(params.get('tender') || activeTenderKey);
       const activeDocKeys = getActiveDocKeys();
       activeDocKey = DOCS[doc] && activeDocKeys.includes(doc) ? doc : getDefaultDocKey();
-      activePage = Number.isFinite(page) && page > 0 ? page : DOCS[activeDocKey].defaultPage;
+      activePage = clampDocumentPage(DOCS[activeDocKey], Number.isFinite(page) && page > 0 ? page : DOCS[activeDocKey].defaultPage);
       window.name = 'simplifae-viewer-' + activeTenderKey;
+      renderTenderContext();
     }
 
     function buildDocSelect() {
@@ -1107,6 +1716,7 @@
       url.searchParams.set('doc', activeDocKey);
       url.searchParams.set('page', String(activePage));
       url.searchParams.set('tender', activeTenderKey);
+      url.searchParams.set('ref', `${doc.short} · p. ${activePage}`);
       window.history.replaceState({}, '', url.toString());
     }
 
@@ -1114,16 +1724,37 @@
       return `${doc.pageDir}/page-${String(pageNumber).padStart(3, '0')}.png`;
     }
 
+    function clampDocumentPage(doc, page) {
+      const maxPage = Math.max(1, Number(doc && doc.pageCount) || 1);
+      const value = Math.floor(Number(page) || 1);
+      return Math.min(Math.max(1, value), maxPage);
+    }
+
+    function getRenderablePages(doc, activePageNumber) {
+      const maxPage = Math.max(1, Number(doc && doc.pageCount) || 1);
+      const packagedPages = Array.isArray(doc.availablePages) && doc.availablePages.length
+        ? doc.availablePages
+        : Array.from({ length: maxPage }, (_, index) => index + 1);
+      const pages = new Set(
+        packagedPages
+          .map(page => clampDocumentPage(doc, page))
+          .filter(page => page >= 1 && page <= maxPage)
+      );
+      pages.add(clampDocumentPage(doc, activePageNumber));
+      return Array.from(pages).sort((a, b) => a - b);
+    }
+
     function loadDocumentPages(doc, page) {
       const pagesRoot = document.getElementById('pdf-pages');
       const currentRun = ++renderRunId;
       const scroller = document.getElementById('pdf-scroll');
+      const pagesToRender = getRenderablePages(doc, page);
       renderedDocKey = activeDocKey;
       scroller.dataset.currentPage = String(page);
       pagesRoot.innerHTML = '';
       pagesRoot.dataset.renderStatus = 'loading-pages';
 
-      for (let pageNumber = 1; pageNumber <= doc.pageCount; pageNumber += 1) {
+      for (const pageNumber of pagesToRender) {
         const pageShell = document.createElement('article');
         pageShell.className = 'pdf-page loading';
         pageShell.id = `pdf-page-${pageNumber}`;
@@ -1173,11 +1804,13 @@
     function renderReferences() {
       const list = document.getElementById('ref-list');
       const groupedRefs = getActiveEvidenceRefs().reduce((groups, ref) => {
-        const key = `${ref.type}::${ref.label}`;
+        const category = normalizeEvidenceCategory(ref.type);
+        const key = `${category}::${ref.label}`;
         if (!groups.has(key)) {
           groups.set(key, {
-            type: ref.type,
+            type: category,
             label: ref.label,
+            order: evidenceCategoryOrder(category),
             refs: []
           });
         }
@@ -1185,10 +1818,11 @@
         return groups;
       }, new Map());
 
-      const groups = [...groupedRefs.values()];
+      const groups = [...groupedRefs.values()].sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
       list.innerHTML = groups.map((group, index) => {
         const isActiveGroup = group.refs.some(ref => ref.docKey === activeDocKey && ref.page === activePage);
-        const isScopeGroup = group.type.toLowerCase().includes('scope');
+        const isScopeGroup = group.type === 'Detailed Scope';
+        const categoryChanged = index === 0 || groups[index - 1].type !== group.type;
         const sources = group.refs.map(ref => {
           const isActiveSource = ref.docKey === activeDocKey && ref.page === activePage;
           const source = ref.source || `${DOCS[ref.docKey] ? DOCS[ref.docKey].short : ref.docKey} · p. ${ref.page}`;
@@ -1198,16 +1832,14 @@
             </button>
           `;
         }).join('');
-        const nextGroup = groups[index + 1];
-        const needsCriteriaDivider = isScopeGroup && nextGroup && !nextGroup.type.toLowerCase().includes('scope');
 
         return `
-          <article class="ref-group ${isScopeGroup ? 'scope' : ''} ${isActiveGroup ? 'active' : ''}">
+          ${categoryChanged ? `<div class="ref-section-divider"><span>${escapeForHtml(group.type)}</span></div>` : ''}
+          <article class="ref-group ${isScopeGroup ? 'scope' : ''} ${evidenceCategoryClass(group.type)} ${isActiveGroup ? 'active' : ''}">
             <div class="ref-kicker"><span>${escapeForHtml(group.type)}</span><span>${group.refs.length} ${group.refs.length === 1 ? 'source' : 'sources'}</span></div>
             <div class="ref-label">${escapeForHtml(group.label)}</div>
             <div class="ref-sources">${sources}</div>
           </article>
-          ${needsCriteriaDivider ? '<div class="ref-section-divider"><span>Criteria evidence</span></div>' : ''}
         `;
       }).join('');
       const activeItem = list.querySelector('.ref-group.active');
@@ -1217,7 +1849,7 @@
     function selectDocument(docKey) {
       const activeDocKeys = getActiveDocKeys();
       activeDocKey = DOCS[docKey] && activeDocKeys.includes(docKey) ? docKey : getDefaultDocKey();
-      activePage = DOCS[activeDocKey].defaultPage;
+      activePage = clampDocumentPage(DOCS[activeDocKey], DOCS[activeDocKey].defaultPage);
       renderDocument({ reloadPdf: true });
     }
 
@@ -1226,7 +1858,7 @@
       const nextDocKey = DOCS[docKey] && activeDocKeys.includes(docKey) ? docKey : activeDocKey;
       const shouldReload = nextDocKey !== activeDocKey;
       activeDocKey = nextDocKey;
-      activePage = Math.min(page, DOCS[activeDocKey].pageCount);
+      activePage = clampDocumentPage(DOCS[activeDocKey], page);
       renderDocument({ reloadPdf: shouldReload });
       if (!shouldReload) requestAnimationFrame(() => scrollToPage(activePage));
       document.getElementById('active-ref').textContent = `${DOCS[activeDocKey].short} · p. ${activePage}`;
@@ -1239,6 +1871,7 @@
       if (payloadTenderKey) {
         activeTenderKey = payloadTenderKey;
         window.name = 'simplifae-viewer-' + activeTenderKey;
+        renderTenderContext();
         buildDocSelect();
         renderedDocKey = null;
       }

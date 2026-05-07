@@ -1,0 +1,119 @@
+{
+  "schema": "simplifae.quality.slow-method-inventory.v1",
+  "name": "Simplifae slow-method parity inventory",
+  "purpose": "Machine-readable contract for the quality expected from fast/premium tender processing before data is promoted into Discovery, Tender Detail, or the document viewer.",
+  "conceptual_categories": [
+    {
+      "id": "detailed_scope",
+      "label": "Detailed Scope",
+      "description": "What the contract is about, including object, lot structure, execution context, CPVs, scope boundaries, and technical/service/work lines.",
+      "allowed_sources": ["structured", "document"],
+      "must_not_include": ["bidder eligibility", "solvency admission", "price scoring", "generic scraper boilerplate"]
+    },
+    {
+      "id": "required_documents",
+      "label": "Required Documents",
+      "description": "Envelope-aware checklist of what the bidder must submit or later accredit, with exact source-page evidence.",
+      "allowed_sources": ["document"],
+      "must_not_include": ["raw contract-object paragraphs as document labels", "truncated legal snippets", "generic missing-doc placeholders when documents are recovered"]
+    },
+    {
+      "id": "admission_criteria",
+      "label": "Admission Criteria",
+      "description": "Who may participate and what proves eligibility: capacity, DEUC/ESPD, solvency, guarantees, UTE commitments, declarations, insurance, classifications, and required means.",
+      "allowed_row_types": ["Admission"],
+      "must_not_include": ["price formulas", "award scoring", "criterion weights used to rank offers"]
+    },
+    {
+      "id": "award_criteria",
+      "label": "Award Criteria",
+      "description": "How bids are evaluated: price, formula criteria, value-judgment criteria, quality scores, timing reductions, formulas, scoring thresholds and weights.",
+      "allowed_row_types": ["Award criteria"],
+      "must_not_include": ["capacity to contract", "DEUC/ESPD", "generic solvency accreditation"]
+    },
+    {
+      "id": "commercial_facts",
+      "label": "Commercial Facts",
+      "description": "Estimated value, base budget, contract duration, provisional guarantee and definitive guarantee, each with provenance and evidence when document-backed.",
+      "allowed_sources": ["structured", "document"],
+      "must_not_include": ["warranty period as contract duration", "fixed definitive guarantee amount when the source only states a percentage of future award"]
+    },
+    {
+      "id": "tender_documents",
+      "label": "Tender Documents",
+      "description": "Recovered local documents used by evidence chips and viewer navigation.",
+      "allowed_sources": ["document"],
+      "must_not_include": ["source-only document URL when local viewer-backed file exists", "native PDF iframe fallback"]
+    },
+    {
+      "id": "document_viewer_evidence",
+      "label": "Document Viewer Evidence",
+      "description": "Source-backed references that jump to exact rendered document pages in the Simplifae viewer.",
+      "allowed_categories": ["Detailed Scope", "Required Documents", "Admission Criteria", "Award Criteria"],
+      "must_not_include": ["Structured award/admission summary", "mixed award/admission labels", "unlinked source chips"]
+    }
+  ],
+  "quality_rules": {
+    "source_evidence": {
+      "require_doc_title_and_page_for_document_evidence": true,
+      "structured_values_may_be_used_for_discovery": true,
+      "premium_ready_requires_no_missing_evidence_blocks": true
+    },
+    "semantic_classification": {
+      "each_reference_group_belongs_to_one_category": true,
+      "admission_and_award_never_merged": true,
+      "scope_must_be_identifiable": true,
+      "raw_source_snippets_cannot_be_requirement_items": true
+    },
+    "promotion": {
+      "documents_recovered_must_be_promoted_before_detail_is_source_backed": true,
+      "docs_required_is_allowed_only_when_documents_are_missing_unrecoverable_or_blocked": true,
+      "ocr_blocked_tenders_must_be_downgraded_not_faked": true
+    },
+    "viewer_navigation": {
+      "source_chips_must_resolve_to_local_viewer_docs": true,
+      "viewer_uses_rendered_page_navigation_not_native_pdf_iframe": true
+    }
+  },
+  "golden_reference_tenders": [
+    {
+      "reference": "100/2026",
+      "reason": "Regression canary for structured notice plus PCAP/PPT evidence, admission criteria, award criteria, required documents and viewer references."
+    },
+    {
+      "reference": "B41632266-2026/000071-PaA",
+      "reason": "Legacy/source-backed static tender used to protect previous Tender Detail behaviour."
+    },
+    {
+      "reference": "EC-1750/2026",
+      "reason": "Manual slow-method tender with detailed scope, requirements, lots/docs and viewer evidence."
+    },
+    {
+      "reference": "EC-1752/2026",
+      "reason": "Manual slow-method tender with DANA works documents and lot structure."
+    },
+    {
+      "reference": "EC-1749/2026",
+      "reason": "Manual slow-method tender with DANA works documents."
+    },
+    {
+      "reference": "EC-1748/2026",
+      "reason": "Manual slow-method tender with DANA works documents."
+    },
+    {
+      "reference": "300/2026/00207",
+      "reason": "Manual/imported source-backed tender used for regression coverage."
+    },
+    {
+      "reference": "6536/2025",
+      "reason": "Manual/imported source-backed tender used for viewer and required-doc coverage."
+    }
+  ],
+  "failure_severity": {
+    "premium_ready_semantic_error": "fail",
+    "premium_ready_missing_document_evidence": "fail",
+    "non_premium_missing_legal_evidence": "warn",
+    "ocr_blocked_non_premium": "warn",
+    "discovery_fast_path_without_documents": "warn"
+  }
+}

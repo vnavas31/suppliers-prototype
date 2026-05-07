@@ -8728,6 +8728,17 @@
       color: var(--brand-teal-dark);
     }
 
+    .td-source-chip-static {
+      cursor: default;
+      color: var(--text-2);
+    }
+
+    .td-source-chip-static:hover {
+      background: #F8FAFC;
+      border-color: rgba(16,34,62,0.06);
+      color: var(--text-2);
+    }
+
     .td-doc-review-source-chip.active {
       background: var(--brand-teal-bg);
       border-color: rgba(18,221,208,0.34);
@@ -9110,6 +9121,19 @@
       font-size: 13px;
       font-weight: 700;
       line-height: 1.45;
+    }
+
+    .td-scope-bullet-main {
+      display: block;
+    }
+
+    .td-scope-bullet-meta {
+      display: block;
+      margin-top: 3px;
+      color: var(--text-2);
+      font-size: 11.5px;
+      font-weight: 720;
+      letter-spacing: 0.01em;
     }
 
     .td-scope-bullet-list li::before {
@@ -9531,6 +9555,10 @@
       padding-left: 26px;
       font-size: 13.5px;
       font-weight: 760;
+    }
+
+    #screen-tender .td-scope-bullet-meta {
+      font-size: 11.8px;
     }
 
     #screen-tender .td-scope-bullet-list li::before {
@@ -13596,6 +13624,9 @@
 <!-- ═══════════════════════════════════
      JAVASCRIPT
      ═══════════════════════════════════ -->
+<script src="live-publicada-20260504.js"></script>
+<script src="live-publicada-viewer-docs.js"></script>
+<script src="live-publicada-premium-overrides.js"></script>
 <script>
   let chatOpen = false;
   let aiSearchAwaitingBrief = false;
@@ -14044,6 +14075,10 @@
     const tenderId = parseInt(params.get('tender') || '', 10);
     if (screen === 'tender' && Number.isFinite(tenderId) && TENDER_DATA[tenderId]) {
       openTender(tenderId);
+      return;
+    }
+    if (['discovery', 'profile', 'pipeline'].includes(screen)) {
+      go(screen);
       return;
     }
     go('profile');
@@ -15939,11 +15974,152 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
 
   const IMPORTED_LEARNING_NOTE = '(learning)';
 
+  IMPORTED_OPPORTUNITIES.unshift({
+    id: 'imported-101',
+    category: 'tenders',
+    match: 76,
+    action: 'Validate',
+    title: 'Building maintenance and repair services — Organismo Autónomo Madrid Salud',
+    objectSummary: 'Integral technical maintenance, conservation and repair service for Madrid Salud buildings, installations and assets across 36 properties and 38 centres.',
+    tenderReference: '300/2026/00207',
+    buyer: 'Organismo Autónomo Madrid Salud',
+    buyerFull: 'Organismo Autónomo Madrid Salud',
+    flag: '🇪🇸',
+    country: 'Spain',
+    location: 'Madrid',
+    platform: 'Source',
+    cpv: '50700000-2 · 45261220-2 · 45261900-3 · 45262520-2',
+    value: '€1,621,004',
+    priceNumber: 1621003.59,
+    deadline: 15,
+    deadlineLabel: '15 days left',
+    deadlineIsoSort: 20260519,
+    publication: '4 May 2026',
+    publicationSort: 20260504,
+    submissionDate: '19 May 2026',
+    procedure: 'Open procedure',
+    contractType: 'Services',
+    risk: 'service-heavy building maintenance scope requires facilities-maintenance capability and publication timing validation.',
+    sourceUrl: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qp1eHcPlLTg%2Bk2oCbDosIw%3D%3D',
+    estimatedValue: '€4,028,460',
+    duration: '24 months',
+    provisional: 'Not required',
+    guarantee: '5% of award amount',
+    bidEstimate: '€1,572,374',
+    bidEstimateSub: '−3.0% · facilities-maintenance benchmark band',
+    historicalBidBandPct: 3,
+    cpvs: ['50700000-2', '45261220-2', '45261900-3', '45262520-2'],
+    originalDescription: 'Servicio de mantenimiento integral de los edificios y bienes de Madrid Salud'
+  });
+
+  IMPORTED_OPPORTUNITIES.unshift({
+    id: 'imported-102',
+    category: 'tenders',
+    match: 76,
+    action: 'Validate',
+    title: 'Tax administration and IT support services — Junta de Gobierno del Ayuntamiento de Mejorada del Campo',
+    objectSummary: 'Administrative support for municipal tax management, treasury, voluntary collection and public counter service, plus IT support for the tax-management application.',
+    tenderReference: '6536/2025',
+    buyer: 'Junta de Gobierno del Ayuntamiento de Mejorada del Campo',
+    buyerFull: 'Junta de Gobierno del Ayuntamiento de Mejorada del Campo',
+    flag: '🇪🇸',
+    country: 'Spain',
+    location: 'Madrid',
+    platform: 'Source',
+    cpv: '72611000-6 · 75130000-6 · 79940000-5',
+    value: '€130,583',
+    priceNumber: 130583.2,
+    deadline: 15,
+    deadlineLabel: '15 days left',
+    deadlineIsoSort: 20260519,
+    publication: '4 May 2026',
+    publicationSort: 20260504,
+    submissionDate: '19 May 2026',
+    procedure: 'Open procedure',
+    contractType: 'Services',
+    risk: 'scope is mainly administrative tax-support and software-service work, outside core infrastructure delivery.',
+    sourceUrl: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=vD4Gw%2Bk0thnzAq95uGTrDQ%3D%3D',
+    estimatedValue: '€215,840',
+    duration: '12 months',
+    provisional: 'Not required',
+    guarantee: '5% of awarded lot budget',
+    bidEstimate: '€126,666',
+    bidEstimateSub: '−3.0% · service-support benchmark band',
+    historicalBidBandPct: 3,
+    cpvs: ['72611000-6', '75130000-6', '79940000-5'],
+    originalDescription: 'Apoyo y soporte administrativo a la gestión tributaria, tesorería, recaudación en periodo voluntario y atención al público, así como soporte informático y asistencia técnica del aplicativo utilizado en la gestión tributaria y recaudación.'
+  });
+
+  const LIVE_PUBLICADA_OPPORTUNITIES = Array.isArray(window.SIMPLIFAE_LIVE_PUBLICADA_OPPORTUNITIES)
+    ? window.SIMPLIFAE_LIVE_PUBLICADA_OPPORTUNITIES
+    : [];
+  const LIVE_PUBLICADA_PROMOTION_STATUS = window.SIMPLIFAE_LIVE_PUBLICADA_PROMOTION_STATUS || {};
+  LIVE_PUBLICADA_OPPORTUNITIES.forEach(item => {
+    const id = String(item && item.id || '');
+    const status = id ? LIVE_PUBLICADA_PROMOTION_STATUS[id] : null;
+    if (!status) return;
+    item.promotionStatus = status.reason || (status.promoted ? 'promoted' : 'not_promotion_eligible');
+    item.promotionEligible = Boolean(status.promotionEligible);
+    item.promotionPromoted = Boolean(status.promoted);
+    item.processingStatus = status.processingStatus || item.processingStatus;
+    if (!status.promoted) {
+      item.documentsPreview = item.documents && item.documents.length
+        ? `${item.documents.length} source docs · quality review needed`
+        : PROTO_DOCS_REQUIRED_LABEL;
+      item.documentsPreviewSub = status.qualityStatus || 'Quality gate did not promote this tender yet';
+    }
+  });
+  if (LIVE_PUBLICADA_OPPORTUNITIES.length) {
+    const importedReferenceSet = new Set(IMPORTED_OPPORTUNITIES.map(item => String(item.tenderReference || '').trim()).filter(Boolean));
+    const importedIdSet = new Set(IMPORTED_OPPORTUNITIES.map(item => String(item.id || '').trim()).filter(Boolean));
+    const freshLiveOpportunities = LIVE_PUBLICADA_OPPORTUNITIES.filter(item => {
+      const id = String(item && item.id || '').trim();
+      const ref = String(item && item.tenderReference || '').trim();
+      return id && ref && !importedIdSet.has(id) && !importedReferenceSet.has(ref);
+    });
+    IMPORTED_OPPORTUNITIES.unshift(...freshLiveOpportunities);
+  }
+
   const HUESNA_SOURCE_BACKED_COMMERCIAL_FACTS = {
     estimatedValue: '€20,868,077',
     duration: '20 months',
     provisional: '€521,702',
     guarantee: '5% of award amount'
+  };
+
+  const EC1752_SOURCE_BACKED_COMMERCIAL_FACTS = {
+    estimatedValue: '€21,248,427',
+    duration: '48 months',
+    provisional: 'Not required',
+    guarantee: '5% of award amount'
+  };
+
+  const EC1749_SOURCE_BACKED_COMMERCIAL_FACTS = {
+    estimatedValue: '€16,127,774',
+    duration: '48 months',
+    provisional: 'Not required',
+    guarantee: '5% of award amount'
+  };
+
+  const EC1748_SOURCE_BACKED_COMMERCIAL_FACTS = {
+    estimatedValue: '€8,775,706',
+    duration: '24 months',
+    provisional: 'Not required',
+    guarantee: '5% of award amount'
+  };
+
+  const MADRID_SALUD_MAINT_SOURCE_BACKED_COMMERCIAL_FACTS = {
+    estimatedValue: '€4,028,460',
+    duration: '24 months',
+    provisional: 'Not required',
+    guarantee: '5% of award amount'
+  };
+
+  const MEJORADA_TAX_SUPPORT_SOURCE_BACKED_COMMERCIAL_FACTS = {
+    estimatedValue: '€215,840',
+    duration: '12 months',
+    provisional: 'Not required',
+    guarantee: '5% of awarded lot budget'
   };
 
   const huesnaImportedOpportunity = IMPORTED_OPPORTUNITIES.find((opportunity) => opportunity.id === 'imported-003');
@@ -15953,6 +16129,112 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       ...(huesnaImportedOpportunity.provenance || {}),
       commercialFacts: {
         estimatedValue: 'document',
+        duration: 'document',
+        provisional: 'document',
+        guarantee: 'document'
+      },
+      evidenceSections: {
+        scope: 'document',
+        requiredDocuments: 'document',
+        tenderDocuments: 'document',
+        contractingAuthority: 'structured'
+      }
+    };
+  }
+
+  const ec1752ImportedOpportunity = IMPORTED_OPPORTUNITIES.find((opportunity) => opportunity.id === 'imported-007');
+  if (ec1752ImportedOpportunity) {
+    Object.assign(ec1752ImportedOpportunity, EC1752_SOURCE_BACKED_COMMERCIAL_FACTS, {
+      objectSummary: 'Repair, adaptation and renewal of DANA-damaged drinking-water and sewerage networks in Algemesi, organised into two lots across the urban core and San Benet / Santa Barbara areas.'
+    });
+    ec1752ImportedOpportunity.provenance = {
+      ...(ec1752ImportedOpportunity.provenance || {}),
+      commercialFacts: {
+        estimatedValue: 'document',
+        duration: 'document',
+        provisional: 'document',
+        guarantee: 'document'
+      },
+      evidenceSections: {
+        scope: 'document',
+        requiredDocuments: 'document',
+        tenderDocuments: 'document',
+        contractingAuthority: 'structured'
+      }
+    };
+  }
+
+  const ec1749ImportedOpportunity = IMPORTED_OPPORTUNITIES.find((opportunity) => opportunity.id === 'imported-009');
+  if (ec1749ImportedOpportunity) {
+    Object.assign(ec1749ImportedOpportunity, EC1749_SOURCE_BACKED_COMMERCIAL_FACTS, {
+      objectSummary: 'Repair and adaptation works for DANA-damaged drinking-water and sewerage networks in Benetusser, with one integrated contract covering the affected urban network.'
+    });
+    ec1749ImportedOpportunity.provenance = {
+      ...(ec1749ImportedOpportunity.provenance || {}),
+      commercialFacts: {
+        estimatedValue: 'document',
+        duration: 'document',
+        provisional: 'document',
+        guarantee: 'document'
+      },
+      evidenceSections: {
+        scope: 'document',
+        requiredDocuments: 'document',
+        tenderDocuments: 'document',
+        contractingAuthority: 'structured'
+      }
+    };
+  }
+
+  const ec1748ImportedOpportunity = IMPORTED_OPPORTUNITIES.find((opportunity) => opportunity.id === 'imported-010');
+  if (ec1748ImportedOpportunity) {
+    Object.assign(ec1748ImportedOpportunity, EC1748_SOURCE_BACKED_COMMERCIAL_FACTS, {
+      objectSummary: "Repair, adaptation and renewal works for DANA-damaged drinking-water and sewerage networks in l'Alcudia, with one integrated contract covering supply and sanitation renewal."
+    });
+    ec1748ImportedOpportunity.provenance = {
+      ...(ec1748ImportedOpportunity.provenance || {}),
+      commercialFacts: {
+        estimatedValue: 'document',
+        duration: 'document',
+        provisional: 'document',
+        guarantee: 'document'
+      },
+      evidenceSections: {
+        scope: 'document',
+        requiredDocuments: 'document',
+        tenderDocuments: 'document',
+        contractingAuthority: 'structured'
+      }
+    };
+  }
+
+  const madridSaludMaintImportedOpportunity = IMPORTED_OPPORTUNITIES.find((opportunity) => opportunity.id === 'imported-101');
+  if (madridSaludMaintImportedOpportunity) {
+    Object.assign(madridSaludMaintImportedOpportunity, MADRID_SALUD_MAINT_SOURCE_BACKED_COMMERCIAL_FACTS);
+    madridSaludMaintImportedOpportunity.provenance = {
+      ...(madridSaludMaintImportedOpportunity.provenance || {}),
+      commercialFacts: {
+        estimatedValue: 'document',
+        duration: 'document',
+        provisional: 'document',
+        guarantee: 'document'
+      },
+      evidenceSections: {
+        scope: 'document',
+        requiredDocuments: 'document',
+        tenderDocuments: 'document',
+        contractingAuthority: 'structured'
+      }
+    };
+  }
+
+  const mejoradaTaxSupportImportedOpportunity = IMPORTED_OPPORTUNITIES.find((opportunity) => opportunity.id === 'imported-102');
+  if (mejoradaTaxSupportImportedOpportunity) {
+    Object.assign(mejoradaTaxSupportImportedOpportunity, MEJORADA_TAX_SUPPORT_SOURCE_BACKED_COMMERCIAL_FACTS);
+    mejoradaTaxSupportImportedOpportunity.provenance = {
+      ...(mejoradaTaxSupportImportedOpportunity.provenance || {}),
+      commercialFacts: {
+        estimatedValue: 'structured',
         duration: 'document',
         provisional: 'document',
         guarantee: 'document'
@@ -16037,6 +16319,144 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
     return ref === 'EC-1750/2026' || buyer.includes('Global Omnium');
   }
 
+  function importedIsEc1752(tender) {
+    const ref = String(tender && tender.tenderReference || '');
+    return ref === 'EC-1752/2026';
+  }
+
+  function importedIsEc1749(tender) {
+    const ref = String(tender && tender.tenderReference || '');
+    return ref === 'EC-1749/2026';
+  }
+
+  function importedIsEc1748(tender) {
+    const ref = String(tender && tender.tenderReference || '');
+    return ref === 'EC-1748/2026';
+  }
+
+  function importedIsLiveProcessedTender(tender) {
+    return String(tender && tender.batch || '') === 'live-publicada-50';
+  }
+
+  function importedIsHuesnaWaterMain(tender) {
+    const ref = String(tender && tender.tenderReference || '');
+    const buyer = String(tender && tender.buyer || '');
+    const cpv = String(tender && tender.cpv || '');
+    return ref === 'B41632266-2026/000071-PaA' ||
+      (buyer.includes('Aguas de Huesna') && cpv.includes('45231300'));
+  }
+
+  function importedCompactDigits(value) {
+    return String(value || '').replace(/\D/g, '');
+  }
+
+  function importedNormalizeCpvList(tender, cpvs) {
+    const refDigits = importedCompactDigits(tender && tender.tenderReference);
+    const values = (Array.isArray(cpvs) ? cpvs : [])
+      .map(value => String(value || '').trim())
+      .filter(Boolean)
+      .filter(value => {
+        const codeDigits = importedCompactDigits(value).slice(0, 8);
+        return !(refDigits && codeDigits && refDigits.includes(codeDigits));
+      });
+    return Array.from(new Set(values));
+  }
+
+  function importedNormalizeScopeModel(tender, scope) {
+    if (!scope) return scope;
+    return {
+      ...scope,
+      cpvs: importedNormalizeCpvList(tender, Array.isArray(scope.cpvs) ? scope.cpvs : []),
+      lots: Array.isArray(scope.lots) ? scope.lots.map(lot => ({
+        ...lot,
+        cpvs: importedNormalizeCpvList(tender, Array.isArray(lot && lot.cpvs) ? lot.cpvs : [])
+      })) : scope.lots
+    };
+  }
+
+  function importedHasRequirementGroups(requirements) {
+    return Boolean(requirements && Array.isArray(requirements.groups) && requirements.groups.length);
+  }
+
+  function importedHasScopeModel(scope) {
+    return Boolean(scope && (
+      (Array.isArray(scope.lots) && scope.lots.length) ||
+      (Array.isArray(scope.items) && scope.items.length) ||
+      (Array.isArray(scope.cpvs) && scope.cpvs.length)
+    ));
+  }
+
+  function importedHasDocuments(documents) {
+    return Array.isArray(documents) && documents.length > 0;
+  }
+
+  function importedHasViewerBackedDocuments(documents) {
+    return Array.isArray(documents) && documents.some(doc => doc && doc.docKey && !doc.externalOnly);
+  }
+
+  function importedLiveHasViewerEvidence(tender) {
+    return importedIsLiveProcessedTender(tender) && importedHasViewerBackedDocuments(tender.documents);
+  }
+
+  function importedGetLivePremiumOverride(tender) {
+    const id = String(tender && tender.id || '');
+    return (window.SIMPLIFAE_LIVE_PUBLICADA_PREMIUM_DETAILS && window.SIMPLIFAE_LIVE_PUBLICADA_PREMIUM_DETAILS[id]) || null;
+  }
+
+  function importedHasUsableSourceValue(value) {
+    const text = String(value || '').trim();
+    return Boolean(text && !/needs source verification|pending|learning/i.test(text));
+  }
+
+  function importedIsMadridSaludMaint(tender) {
+    const ref = String(tender && tender.tenderReference || '');
+    return ref === '300/2026/00207';
+  }
+
+  function importedIsMejoradaTaxSupport(tender) {
+    const ref = String(tender && tender.tenderReference || '');
+    return ref === '6536/2025';
+  }
+
+  const HUESNA_TENDER_DOCUMENTS = [
+    {
+      docKey: 'pcap',
+      iconType: 'pcap',
+      name: 'PCAP — Administrative Clauses',
+      meta: ['1.4 MB', 'PCAP', 'PDF', 'Published 24 Apr 2026']
+    },
+    {
+      docKey: 'project',
+      iconType: 'ppt',
+      name: 'Technical Project — Works Project Access',
+      meta: ['122 KB', 'PPT', 'PDF', 'Published 24 Apr 2026']
+    },
+    {
+      docKey: 'mj',
+      iconType: 'other',
+      name: 'MJ — Justification Report',
+      meta: ['315 KB', 'Other', 'PDF', 'Published 24 Apr 2026']
+    },
+    {
+      docKey: 'ra',
+      iconType: 'other',
+      name: 'RA — Approval Resolution',
+      meta: ['723 KB', 'Other', 'PDF', 'Published 24 Apr 2026']
+    },
+    {
+      docKey: 'urgency',
+      iconType: 'other',
+      name: 'Urgency Report — Emergency Processing Justification',
+      meta: ['505 KB', 'Other', 'PDF', 'Published 24 Apr 2026']
+    },
+    {
+      docKey: 'incident',
+      iconType: 'other',
+      name: 'Incident Notice — Corrected Technical Project Link',
+      meta: ['488 KB', 'Other', 'PDF', 'Published 24 Apr 2026']
+    }
+  ];
+
   const EC1750_TENDER_DOCUMENTS = [
     {
       docKey: 'ec1750-pcap',
@@ -16076,10 +16496,392 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
     }
   ];
 
+  const EC1752_TENDER_DOCUMENTS = [
+    {
+      docKey: 'ec1752-pcap',
+      iconType: 'pcap',
+      name: 'PCAP — Administrative Clauses',
+      meta: ['1.8 MB', 'PCAP', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ec1752-ppt',
+      iconType: 'ppt',
+      name: 'PPT — Technical Specifications',
+      meta: ['453 KB', 'PPT', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ec1752-mj',
+      iconType: 'other',
+      name: 'MJ — Need Report',
+      meta: ['1.0 MB', 'Other', 'PDF', 'Published 27 Apr 2026']
+    },
+    {
+      docKey: 'ec1752-visit',
+      iconType: 'other',
+      name: 'Site Visit — Technical Visit Notice',
+      meta: ['531 KB', 'Other', 'PDF', 'Published 30 Apr 2026']
+    },
+    {
+      docKey: 'ec1752-lot1',
+      iconType: 'other',
+      name: 'Technical Offer — Lot 1 Urban Core',
+      meta: ['9.6 MB', 'Other', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ec1752-lot2',
+      iconType: 'other',
+      name: 'Technical Offer — Lot 2 San Benet / Santa Barbara',
+      meta: ['14 MB', 'Other', 'PDF', 'Published 23 Apr 2026']
+    }
+  ];
+
+  const EC1749_TENDER_DOCUMENTS = [
+    {
+      docKey: 'ec1749-pcap',
+      iconType: 'pcap',
+      name: 'PCAP — Administrative Clauses',
+      meta: ['1.8 MB', 'PCAP', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ec1749-ppt',
+      iconType: 'ppt',
+      name: 'PPT — Technical Specifications',
+      meta: ['440 KB', 'PPT', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ec1749-mj',
+      iconType: 'other',
+      name: 'MJ — Need Report',
+      meta: ['556 KB', 'Other', 'PDF', 'Published 27 Apr 2026']
+    },
+    {
+      docKey: 'ec1749-visit',
+      iconType: 'other',
+      name: 'Site Visit — Technical Visit Notice',
+      meta: ['536 KB', 'Other', 'PDF', 'Published 30 Apr 2026']
+    },
+    {
+      docKey: 'ec1749-tech',
+      iconType: 'other',
+      name: 'Technical Offer — Benetusser Network Works',
+      meta: ['16 MB', 'Other', 'PDF', 'Published 23 Apr 2026']
+    }
+  ];
+
+  const EC1748_TENDER_DOCUMENTS = [
+    {
+      docKey: 'ec1748-pcap',
+      iconType: 'pcap',
+      name: 'PCAP — Administrative Clauses',
+      meta: ['1.8 MB', 'PCAP', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ec1748-ppt',
+      iconType: 'ppt',
+      name: 'PPT — Technical Specifications',
+      meta: ['596 KB', 'PPT', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ec1748-mj',
+      iconType: 'other',
+      name: 'MJ — Need Report',
+      meta: ['520 KB', 'Other', 'PDF', 'Published 27 Apr 2026']
+    },
+    {
+      docKey: 'ec1748-visit',
+      iconType: 'other',
+      name: 'Site Visit — Technical Visit Notice',
+      meta: ['536 KB', 'Other', 'PDF', 'Published 30 Apr 2026']
+    },
+    {
+      docKey: 'ec1748-tech',
+      iconType: 'other',
+      name: "Technical Offer — l'Alcudia Network Works",
+      meta: ['10 MB', 'Other', 'PDF', 'Published 23 Apr 2026']
+    }
+  ];
+
+  const MADRID_SALUD_MAINT_TENDER_DOCUMENTS = [
+    {
+      docKey: 'ms-maint-contract-notice',
+      iconType: 'other',
+      name: 'Contract Notice — Tender Summary',
+      meta: ['100 KB', 'Other', 'PDF', 'Published 4 May 2026']
+    },
+    {
+      docKey: 'ms-maint-pcap',
+      iconType: 'pcap',
+      name: 'PCAP — Administrative Clauses',
+      meta: ['659 KB', 'PCAP', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-ppt',
+      iconType: 'ppt',
+      name: 'PPT — Technical Specifications',
+      meta: ['687 KB', 'PPT', 'PDF', 'Published 23 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-justification',
+      iconType: 'other',
+      name: 'MJ — Justification Report',
+      meta: ['384 KB', 'Other', 'PDF', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-value-study',
+      iconType: 'other',
+      name: 'Economic Study — Contract Valuation',
+      meta: ['339 KB', 'Other', 'PDF', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-economic-valuation',
+      iconType: 'other',
+      name: 'Economic Valuation Spreadsheet',
+      meta: ['169 KB', 'Spreadsheet', 'XLS', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-inventory',
+      iconType: 'other',
+      name: 'Inventory — Installations',
+      meta: ['248 KB', 'Spreadsheet', 'XLSX', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-protocol',
+      iconType: 'other',
+      name: 'Preventive Maintenance Protocol Book',
+      meta: ['971 KB', 'Other', 'PDF', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-means-report',
+      iconType: 'other',
+      name: 'Insufficient Means Report',
+      meta: ['384 KB', 'Other', 'PDF', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-start-resolution',
+      iconType: 'other',
+      name: 'Start Resolution',
+      meta: ['120 KB', 'Other', 'PDF', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-approval-resolution',
+      iconType: 'other',
+      name: 'Approval Resolution',
+      meta: ['130 KB', 'Other', 'PDF', 'Published 29 Apr 2026']
+    },
+    {
+      docKey: 'ms-maint-deuc-instructions',
+      iconType: 'other',
+      name: 'DEUC Completion Instructions',
+      meta: ['365 KB', 'Other', 'PDF', 'Published 29 Apr 2026']
+    }
+  ];
+
+  const MEJORADA_TAX_SUPPORT_TENDER_DOCUMENTS = [
+    {
+      docKey: 'mejorada-tax-contract-notice',
+      iconType: 'other',
+      name: 'Contract Notice — Tender Summary',
+      meta: ['96 KB', 'Other', 'PDF', 'Published 4 May 2026']
+    },
+    {
+      docKey: 'mejorada-tax-pliegos-summary',
+      iconType: 'other',
+      name: 'Tender Documents Summary',
+      meta: ['97 KB', 'Other', 'PDF', 'Published 4 May 2026']
+    },
+    {
+      docKey: 'mejorada-tax-pcap',
+      iconType: 'pcap',
+      name: 'PCAP — Administrative Clauses',
+      meta: ['1.2 MB', 'PCAP', 'PDF', 'Published 4 May 2026']
+    },
+    {
+      docKey: 'mejorada-tax-ppt',
+      iconType: 'ppt',
+      name: 'PPT — Technical Specifications',
+      meta: ['857 KB', 'PPT', 'PDF', 'Published 4 May 2026']
+    },
+    {
+      docKey: 'mejorada-tax-justification',
+      iconType: 'other',
+      name: 'MJ — Justification Report',
+      meta: ['938 KB', 'Other', 'PDF', 'Published 4 May 2026']
+    }
+  ];
+
   function importedBuildVerifiedScope(tender) {
     const ref = String(tender && tender.tenderReference || '');
     const buyer = String(tender && tender.buyer || '');
     const cpv = String(tender && tender.cpv || '');
+    if (importedIsLiveProcessedTender(tender) && tender.scope) return tender.scope;
+    if (importedIsMejoradaTaxSupport(tender)) {
+      return {
+        format: 'lots',
+        cpvs: [
+          '72611000-6 · Technical computer support services',
+          '75130000-6 · Public-sector support services',
+          '79940000-5 · Collection-agency services'
+        ],
+        lots: [
+          {
+            title: 'Lot 1 — Tax-management software support',
+            cpvs: ['72611000-6 · Technical computer support services'],
+            items: [
+              { item: 'Provide technical support and assistance for the municipal tax, treasury and voluntary-collection application.', quantitySpec: 'Lot 1 budget €34,500 excl. VAT · VEC €69,000', unit: 'Service' },
+              { item: 'Resolve incidents and maintain the ESTIMA tax-management application, including functional and technical maintenance.', quantitySpec: 'Continuous support', unit: 'Service line' },
+              { item: 'Host and administer the servers supporting the application with primary and secondary CPD availability.', quantitySpec: 'Minimum TIER III or equivalent', unit: 'Infrastructure' },
+              { item: 'Maintain interoperability with the municipal e-administration platform and provide EDITRAN access.', quantitySpec: 'PAE integration + EDITRAN service', unit: 'Integration' }
+            ]
+          },
+          {
+            title: 'Lot 2 — Administrative support and public counter service',
+            cpvs: [
+              '75130000-6 · Public-sector support services',
+              '79940000-5 · Collection-agency services'
+            ],
+            items: [
+              { item: 'Provide administrative and material support for tax management, treasury and voluntary collection under municipal supervision.', quantitySpec: 'Lot 2 budget €73,420 excl. VAT · VEC €146,840', unit: 'Service' },
+              { item: 'Handle telephone and remote information support plus document preparation, printing, notification support and auxiliary lists.', quantitySpec: 'Minimum 9:00-14:00, Monday-Friday for phone/remote support', unit: 'Operations' },
+              { item: 'Support technical data processing for settlements, IAE/PAD, DOC/DGC and MOVE/DGT files, bank files and annual SEP closure.', quantitySpec: 'Tax and collection file workflows', unit: 'Workflows' },
+              { item: 'Provide in-person public-counter support for receipts, settlements, self-assessments, fines and payment-plan information.', quantitySpec: '9:00-14:00 four days/week + Tuesday 15:00-18:30', unit: 'Counter service' }
+            ]
+          }
+        ],
+        evidence: [
+          { docKey: 'mejorada-tax-contract-notice', page: 1, label: 'Contract Notice · p. 1 · Structured tender facts' },
+          { docKey: 'mejorada-tax-contract-notice', page: 4, label: 'Contract Notice · p. 4 · Object + lot structure' },
+          { docKey: 'mejorada-tax-justification', page: 1, label: 'MJ · p. 1 · Object and need' },
+          { docKey: 'mejorada-tax-justification', page: 3, label: 'MJ · p. 3 · Budget and duration' },
+          { docKey: 'mejorada-tax-ppt', page: 3, label: 'PPT · p. 3 · Lots and CPVs' },
+          { docKey: 'mejorada-tax-ppt', page: 4, label: 'PPT · pp. 4-6 · Lot 1 and Lot 2 services' },
+          { docKey: 'mejorada-tax-ppt', page: 7, label: 'PPT · pp. 7-8 · Budget and term' }
+        ]
+      };
+    }
+    if (importedIsMadridSaludMaint(tender)) {
+      const cpvs = [
+        '50700000-2 · Repair and maintenance services of building installations',
+        '45261220-2 · Roof-painting and other coating work',
+        '45261900-3 · Roof repair and maintenance work',
+        '45262520-2 · Bricklaying work'
+      ];
+      return {
+        format: 'bullets',
+        cpvs: cpvs,
+        items: [
+          { item: 'Provide integral technical maintenance, conservation and repair for Madrid Salud buildings, installations and assets.', quantitySpec: 'No lot division', unit: 'Service' },
+          { item: 'Cover 38 devices and centres integrated in 36 properties across Madrid’s districts.', quantitySpec: '38 centres · 36 properties', unit: 'Assets' },
+          { item: 'Run preventive maintenance, technical-legal maintenance, corrective maintenance and assistance for regulatory controls.', quantitySpec: 'Full maintenance lifecycle', unit: 'Service lines' },
+          { item: 'Maintain building elements, plumbing, irrigation, HVAC, heating, ACS, electrical, fire-protection, safety-access and monitoring installations.', quantitySpec: 'Multi-trade scope', unit: 'Systems' },
+          { item: 'Produce and keep updated the building book, installation inventory, preventive-inspection protocol and daily incident records.', quantitySpec: 'First inventory within 2 months', unit: 'Deliverables' },
+          { item: 'Deploy minimum multi-trade teams covering works foreman, masonry, painting, carpentry, locksmithing, plumbing, electrical, refrigeration and maintenance assistance.', quantitySpec: 'Mandatory minimum team', unit: 'Staffing' }
+        ],
+        evidence: [
+          { docKey: 'ms-maint-contract-notice', page: 1, label: 'Contract Notice · p. 1 · Structured tender facts' },
+          { docKey: 'ms-maint-contract-notice', page: 4, label: 'Contract Notice · p. 4 · Object + extensions' },
+          { docKey: 'ms-maint-pcap', page: 48, label: 'PCAP · p. 48 · Object and CPV' },
+          { docKey: 'ms-maint-pcap', page: 49, label: 'PCAP · p. 49 · No lots + centre count' },
+          { docKey: 'ms-maint-ppt', page: 1, label: 'PPT · p. 1 · Technical object' },
+          { docKey: 'ms-maint-ppt', page: 5, label: 'PPT · p. 5 · Service definition' },
+          { docKey: 'ms-maint-ppt', page: 6, label: 'PPT · p. 6 · Inventory and covered systems' },
+          { docKey: 'ms-maint-ppt', page: 28, label: 'PPT · pp. 28-29 · Minimum staff' }
+        ]
+      };
+    }
+    if (importedIsEc1748(tender)) {
+      const cpvs = [
+        '45232150-8 · Works related to water-distribution pipelines',
+        '45232410-9 · Sewerage work'
+      ];
+      return {
+        format: 'bullets',
+        cpvs: cpvs,
+        items: [
+          { item: "Repair, adapt and renew DANA-damaged drinking-water and sewerage infrastructure in l'Alcudia under one integrated works contract.", quantitySpec: 'No lot division', unit: 'Contract' },
+          { item: 'Renew the drinking-water arterial ring along Carrer Dr. Fleming, Avinguda Mestre Serrano and Avinguda Antonio Lamela.', quantitySpec: '3,913 m ductile iron DN200', unit: 'm' },
+          { item: 'Execute new domestic connections, valves and chambers for the drinking-water network.', quantitySpec: '803 connections · 40 valves · 40 chambers + sectorisation chamber', unit: 'Units' },
+          { item: "Renew collapsed sewer collectors across l'Alcudia urban and industrial streets.", quantitySpec: '2,884.3 m collectors DN400-DN1500', unit: 'm' },
+          { item: 'Renew lateral sewer connections and drainage civil works.', quantitySpec: '3,924 m PVC Ø250 · 115 manholes · 231 gullies · 500 chambers', unit: 'Units / m' },
+          { item: 'Maintain provisional service during works and manage RCDs, sludge and fibre-cement waste through authorised handling.', quantitySpec: 'Bypass + asbestos/waste plan', unit: 'Plan' }
+        ],
+        evidence: [
+          { docKey: 'ec1748-mj', page: 1, label: 'MJ · p. 1 · Object and quantities' },
+          { docKey: 'ec1748-mj', page: 2, label: 'MJ · p. 2 · No lots + duration' },
+          { docKey: 'ec1748-pcap', page: 1, label: 'PCAP · p. 1 · CPV + no lots' },
+          { docKey: 'ec1748-tech', page: 3, label: 'Technical offer · p. 3 · action area' },
+          { docKey: 'ec1748-tech', page: 5, label: 'Technical offer · pp. 5-7 · works description' },
+          { docKey: 'ec1748-tech', page: 51, label: 'Technical offer · p. 51 · budget summary' }
+        ]
+      };
+    }
+    if (importedIsEc1749(tender)) {
+      const cpvs = [
+        '45232150-8 · Works related to water-distribution pipelines',
+        '45232410-9 · Sewerage work'
+      ];
+      return {
+        format: 'bullets',
+        cpvs: cpvs,
+        items: [
+          { item: 'Repair and adapt DANA-damaged drinking-water and sewerage infrastructure in Benetusser under one integrated works contract.', quantitySpec: 'No lot division', unit: 'Contract' },
+          { item: 'Renew drinking-water supply in C/ Vicente Navarro Soler and C/ San Roque, including arterial and distribution pipes.', quantitySpec: '450 m ductile iron DN300 · 63 m PEAD DN110', unit: 'm' },
+          { item: 'Install drinking-water valves, service connections and valve/accessory chambers.', quantitySpec: '9 valves · 20 service connections · 46 chambers', unit: 'Units' },
+          { item: 'Renew collapsed sewer collectors with PVC compact-wall and Rib-Loc pipework across Benetusser streets.', quantitySpec: '7,074 m collectors DN400-DN1000', unit: 'm' },
+          { item: 'Renew lateral sewer connections and drainage civil works.', quantitySpec: '20,840 m PVC Ø250 · 276 manholes · 580 gullies · 1,350 chambers', unit: 'Units / m' },
+          { item: 'Maintain provisional water/sewer service during works and manage DANA debris, RCDs, sludge and fibre-cement waste through authorised handling.', quantitySpec: 'Bypass + waste-management plan', unit: 'Plan' }
+        ],
+        evidence: [
+          { docKey: 'ec1749-mj', page: 1, label: 'MJ · p. 1 · Object and quantities' },
+          { docKey: 'ec1749-mj', page: 2, label: 'MJ · p. 2 · No lots + duration' },
+          { docKey: 'ec1749-pcap', page: 1, label: 'PCAP · p. 1 · CPV + no lots' },
+          { docKey: 'ec1749-tech', page: 4, label: 'Technical offer · p. 4 · action area' },
+          { docKey: 'ec1749-tech', page: 6, label: 'Technical offer · pp. 6-7 · works description' },
+          { docKey: 'ec1749-tech', page: 55, label: 'Technical offer · p. 55 · budget summary' }
+        ]
+      };
+    }
+    if (importedIsEc1752(tender)) {
+      const lotCpvs = [
+        '45232150-8 · Works related to water-distribution pipelines',
+        '45232410-9 · Sewerage work'
+      ];
+      return {
+        format: 'lots',
+        cpvs: lotCpvs,
+        lots: [
+          {
+            title: 'Lot 1 — Urban core networks',
+            cpvs: lotCpvs,
+            items: [
+              { item: 'Repair and renew drinking-water and sewerage networks in Algemesi urban-core streets including Cervantes, Germanies, Albalat, dels Arbres and Lepanto.', quantitySpec: 'Urban core streets', unit: 'Area' },
+              { item: 'Replace drinking-water pipes with PVC-O DN90/DN110 and ductile-iron DN150 pipework.', quantitySpec: '500 m DN90 · 486 m DN110 · 1,775 m DN150', unit: 'm' },
+              { item: 'Renew high-capacity sewer collectors using PVC compact-wall and PEAD KRAH pipework.', quantitySpec: 'DN630-DN2500 collectors', unit: 'm' },
+              { item: 'Execute civil works for service connections, valves, manholes, gullies and reinstatement.', quantitySpec: '238 connections · 104 manholes · 212 gullies', unit: 'Units' },
+              { item: 'Remove, encapsulate and manage fibre-cement pipe waste through authorised waste handling.', quantitySpec: 'RD 396/2006 asbestos workflow', unit: 'Plan' }
+            ]
+          },
+          {
+            title: 'Lot 2 — San Benet and Santa Barbara networks',
+            cpvs: lotCpvs,
+            items: [
+              { item: 'Repair and renew drinking-water and sewerage networks around San Benet, San Miguel, Santa Barbara, del Delme, dels Gans, Rafol and Santo Tomas.', quantitySpec: 'San Benet / Santa Barbara area', unit: 'Area' },
+              { item: 'Replace drinking-water pipes with PVC-O DN90/DN110 and ductile-iron DN150/DN200 pipework.', quantitySpec: '485 m DN90 · 494 m DN110 · 1,546 m DN150 · 191 m DN200', unit: 'm' },
+              { item: 'Renew sewer collectors using PVC compact-wall and PEAD KRAH pipework.', quantitySpec: 'DN400-DN2000 collectors', unit: 'm' },
+              { item: 'Execute civil works for service connections, valves, manholes, gullies and reinstatement.', quantitySpec: '264 connections · 81 manholes · 166 gullies', unit: 'Units' },
+              { item: 'Maintain provisional water and sewer service during works and manage DANA-related debris and fibre-cement waste.', quantitySpec: 'Bypass + authorised waste handling', unit: 'Plan' }
+            ]
+          }
+        ],
+        evidence: [
+          { docKey: 'ec1752-mj', page: 1, label: 'MJ · p. 1 · Object of contract and lots' },
+          { docKey: 'ec1752-pcap', page: 1, label: 'PCAP · p. 1 · CPV + lot budget' },
+          { docKey: 'ec1752-lot1', page: 3, label: 'Lot 1 technical offer · p. 3 · object and damage context' },
+          { docKey: 'ec1752-lot1', page: 6, label: 'Lot 1 technical offer · pp. 6-7 · network quantities' },
+          { docKey: 'ec1752-lot2', page: 3, label: 'Lot 2 technical offer · p. 3 · object and damage context' },
+          { docKey: 'ec1752-lot2', page: 6, label: 'Lot 2 technical offer · pp. 6-7 · network quantities' }
+        ]
+      };
+    }
     if (importedIsEc1750(tender)) {
       const lotCpvs = [
         '45232100-3 · Ancillary works for water pipelines',
@@ -16314,10 +17116,943 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
     };
   }
 
+  function importedBuildEc1748Requirements() {
+    const pcapDoc = 'ec1748-pcap';
+    const mjDoc = 'ec1748-mj';
+
+    return {
+      preview: '3 active envelopes · 14 bid items',
+      previewSub: 'Admission + value-judgment and formula award criteria',
+      groups: [
+        {
+          title: 'Envelope 1',
+          description: 'Participation requirements',
+          rows: [
+            {
+              item: 'European Single Procurement Document (ESPD / DEUC).',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Temporary consortium commitment, if bidding as a UTE.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Complementary declaration using Annex IV.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7; MJ · p. 15',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' },
+                { docKey: mjDoc, page: 15, label: 'MJ · p. 15' }
+              ]
+            },
+            {
+              item: 'Foreign bidder documentation and Spanish jurisdiction commitment, if applicable.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Contractor classification: Group E, Subgroup 1, Category 5.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 2, 38; MJ · p. 8',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 2, label: 'PCAP · p. 2' },
+                { docKey: pcapDoc, page: 38, label: 'PCAP · p. 38' },
+                { docKey: mjDoc, page: 8, label: 'MJ · p. 8' }
+              ]
+            },
+            {
+              item: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 38-39; MJ · pp. 8-9',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 38, label: 'PCAP · pp. 38-39' },
+                { docKey: mjDoc, page: 8, label: 'MJ · pp. 8-9' }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Envelope 2',
+          description: 'Value-judgment award criteria',
+          rows: [
+            {
+              item: 'Technical report: detailed works plan and site impacts.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 44; MJ · p. 10',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 44, label: 'PCAP · p. 44' },
+                { docKey: mjDoc, page: 10, label: 'MJ · p. 10' }
+              ]
+            },
+            {
+              item: 'Monitoring, reporting and progress-control plan.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 44; MJ · p. 10',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 44, label: 'PCAP · p. 44' },
+                { docKey: mjDoc, page: 10, label: 'MJ · p. 10' }
+              ]
+            },
+            {
+              item: 'Key technical team permanence commitment for site manager and surveyor.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 44-45; MJ · pp. 10-11',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 44, label: 'PCAP · pp. 44-45' },
+                { docKey: mjDoc, page: 10, label: 'MJ · pp. 10-11' }
+              ]
+            },
+            {
+              item: 'Environmental and waste-management plan.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · p. 45; MJ · p. 11',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 45, label: 'PCAP · p. 45' },
+                { docKey: mjDoc, page: 11, label: 'MJ · p. 11' }
+              ]
+            },
+            {
+              item: 'Proposed machinery adequacy and availability.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · pp. 45-46; MJ · p. 12',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 45, label: 'PCAP · pp. 45-46' },
+                { docKey: mjDoc, page: 12, label: 'MJ · p. 12' }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Envelope 3',
+          description: 'Formula award criteria',
+          rows: [
+            {
+              item: 'Economic offer form using Annex VIII.',
+              type: 'Award criteria',
+              weight: '60 pts',
+              source: 'PCAP · pp. 9, 43, 47',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 9, label: 'PCAP · p. 9' },
+                { docKey: pcapDoc, page: 43, label: 'PCAP · p. 43' },
+                { docKey: pcapDoc, page: 47, label: 'PCAP · p. 47' }
+              ]
+            },
+            {
+              item: 'Price formula submitted in the automatic-evaluation envelope.',
+              type: 'Award criteria',
+              weight: 'Formula-based',
+              source: 'PCAP · p. 47; MJ · p. 13',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 47, label: 'PCAP · p. 47' },
+                { docKey: mjDoc, page: 13, label: 'MJ · p. 13' }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+  }
+
+  function importedBuildEc1749Requirements() {
+    const pcapDoc = 'ec1749-pcap';
+    const mjDoc = 'ec1749-mj';
+
+    return {
+      preview: '3 active envelopes · 14 bid items',
+      previewSub: 'Admission + value-judgment and formula award criteria',
+      groups: [
+        {
+          title: 'Envelope 1',
+          description: 'Participation requirements',
+          rows: [
+            {
+              item: 'European Single Procurement Document (ESPD / DEUC).',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Temporary consortium commitment, if bidding as a UTE.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Complementary declaration using Annex IV.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 7, 39; MJ · p. 15',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' },
+                { docKey: pcapDoc, page: 39, label: 'PCAP · p. 39' },
+                { docKey: mjDoc, page: 15, label: 'MJ · p. 15' }
+              ]
+            },
+            {
+              item: 'Foreign bidder documentation and Spanish jurisdiction commitment, if applicable.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Contractor classification: Group E, Subgroup 1, Category 5.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 2, 38; MJ · p. 8',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 2, label: 'PCAP · p. 2' },
+                { docKey: pcapDoc, page: 38, label: 'PCAP · p. 38' },
+                { docKey: mjDoc, page: 8, label: 'MJ · p. 8' }
+              ]
+            },
+            {
+              item: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 38; MJ · pp. 8-9',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 38, label: 'PCAP · p. 38' },
+                { docKey: mjDoc, page: 8, label: 'MJ · pp. 8-9' }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Envelope 2',
+          description: 'Value-judgment award criteria',
+          rows: [
+            {
+              item: 'Technical report: detailed works plan and site impacts.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 43; MJ · p. 10',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 43, label: 'PCAP · p. 43' },
+                { docKey: mjDoc, page: 10, label: 'MJ · p. 10' }
+              ]
+            },
+            {
+              item: 'Monitoring, reporting and progress-control plan.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 43; MJ · p. 10',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 43, label: 'PCAP · p. 43' },
+                { docKey: mjDoc, page: 10, label: 'MJ · p. 10' }
+              ]
+            },
+            {
+              item: 'Key technical team permanence commitment for site manager and surveyor.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 43-44; MJ · pp. 10-11',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 43, label: 'PCAP · pp. 43-44' },
+                { docKey: mjDoc, page: 10, label: 'MJ · pp. 10-11' }
+              ]
+            },
+            {
+              item: 'Environmental and waste-management plan.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · p. 44; MJ · p. 11',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 44, label: 'PCAP · p. 44' },
+                { docKey: mjDoc, page: 11, label: 'MJ · p. 11' }
+              ]
+            },
+            {
+              item: 'Proposed machinery adequacy and availability.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · pp. 44-45; MJ · p. 12',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 44, label: 'PCAP · pp. 44-45' },
+                { docKey: mjDoc, page: 12, label: 'MJ · p. 12' }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Envelope 3',
+          description: 'Formula award criteria',
+          rows: [
+            {
+              item: 'Economic offer form using Annex VIII.',
+              type: 'Award criteria',
+              weight: '60 pts',
+              source: 'PCAP · pp. 9, 42, 46',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 9, label: 'PCAP · p. 9' },
+                { docKey: pcapDoc, page: 42, label: 'PCAP · p. 42' },
+                { docKey: pcapDoc, page: 46, label: 'PCAP · p. 46' }
+              ]
+            },
+            {
+              item: 'Price formula submitted in the automatic-evaluation envelope.',
+              type: 'Award criteria',
+              weight: 'Formula-based',
+              source: 'PCAP · p. 46; MJ · p. 13',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 46, label: 'PCAP · p. 46' },
+                { docKey: mjDoc, page: 13, label: 'MJ · p. 13' }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+  }
+
+  function importedBuildEc1752Requirements() {
+    const pcapDoc = 'ec1752-pcap';
+    const mjDoc = 'ec1752-mj';
+
+    return {
+      preview: '3 active envelopes · 15 bid items',
+      previewSub: 'Admission + value-judgment and formula award criteria',
+      groups: [
+        {
+          title: 'Envelope 1',
+          description: 'Participation requirements',
+          rows: [
+            {
+              item: 'European Single Procurement Document (ESPD / DEUC), one declaration per lot where requirements differ.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 7, 34',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' },
+                { docKey: pcapDoc, page: 34, label: 'PCAP · p. 34' }
+              ]
+            },
+            {
+              item: 'Temporary consortium commitment, if bidding as a UTE.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Complementary declaration using Annex IV.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 7, 36',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' },
+                { docKey: pcapDoc, page: 36, label: 'PCAP · p. 36' }
+              ]
+            },
+            {
+              item: 'Commitment to allocate mandatory means: full-time site foreman and construction civil-liability insurance.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 7, 40',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' },
+                { docKey: pcapDoc, page: 40, label: 'PCAP · p. 40' }
+              ]
+            },
+            {
+              item: 'Foreign bidder documentation and Spanish jurisdiction commitment, if applicable.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 7',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 7, label: 'PCAP · p. 7' }]
+            },
+            {
+              item: 'Contractor classification: Lot 1 Group E, Subgroup 1, Category 5; Lot 2 Group E, Subgroup 1, Category 4.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 2, 38; MJ · p. 4',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 2, label: 'PCAP · p. 2' },
+                { docKey: pcapDoc, page: 38, label: 'PCAP · p. 38' },
+                { docKey: mjDoc, page: 4, label: 'MJ · p. 4' }
+              ]
+            },
+            {
+              item: 'ISO 9001 and ISO 14001 certificates, or equivalent certificates, covering hydraulic works.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 39; MJ · p. 5',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 39, label: 'PCAP · p. 39' },
+                { docKey: mjDoc, page: 5, label: 'MJ · p. 5' }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Envelope 2',
+          description: 'Value-judgment award criteria',
+          rows: [
+            {
+              item: 'Technical report: detailed works plan and site impacts.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 44; MJ · p. 10',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 44, label: 'PCAP · p. 44' },
+                { docKey: mjDoc, page: 10, label: 'MJ · p. 10' }
+              ]
+            },
+            {
+              item: 'Monitoring, reporting and progress-control plan.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 44; MJ · p. 10',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 44, label: 'PCAP · p. 44' },
+                { docKey: mjDoc, page: 10, label: 'MJ · p. 10' }
+              ]
+            },
+            {
+              item: 'Key technical team permanence commitment for site manager and surveyor.',
+              type: 'Award criteria',
+              weight: '10 pts',
+              source: 'PCAP · pp. 8, 44-45; MJ · pp. 10-11',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 8, label: 'PCAP · p. 8' },
+                { docKey: pcapDoc, page: 44, label: 'PCAP · pp. 44-45' },
+                { docKey: mjDoc, page: 10, label: 'MJ · pp. 10-11' }
+              ]
+            },
+            {
+              item: 'Environmental and waste-management plan.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · p. 45; MJ · p. 11',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 45, label: 'PCAP · p. 45' },
+                { docKey: mjDoc, page: 11, label: 'MJ · p. 11' }
+              ]
+            },
+            {
+              item: 'Proposed machinery adequacy and availability.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · pp. 45-46; MJ · p. 11',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 45, label: 'PCAP · pp. 45-46' },
+                { docKey: mjDoc, page: 11, label: 'MJ · p. 11' }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Envelope 3',
+          description: 'Formula award criteria',
+          rows: [
+            {
+              item: 'Economic offer form using Annex VIII.',
+              type: 'Award criteria',
+              weight: '60 pts',
+              source: 'PCAP · pp. 9, 43, 47',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 9, label: 'PCAP · p. 9' },
+                { docKey: pcapDoc, page: 43, label: 'PCAP · p. 43' },
+                { docKey: pcapDoc, page: 47, label: 'PCAP · p. 47' }
+              ]
+            },
+            {
+              item: 'Price formula submitted in the automatic-evaluation envelope.',
+              type: 'Award criteria',
+              weight: 'Formula-based',
+              source: 'PCAP · p. 47; MJ · p. 14',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 47, label: 'PCAP · p. 47' },
+                { docKey: mjDoc, page: 14, label: 'MJ · p. 14' }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+  }
+
+  function importedBuildMadridSaludMaintRequirements() {
+    const noticeDoc = 'ms-maint-contract-notice';
+    const pcapDoc = 'ms-maint-pcap';
+    const pptDoc = 'ms-maint-ppt';
+    const deucDoc = 'ms-maint-deuc-instructions';
+
+    return {
+      preview: '2 active envelopes · 18 bid items',
+      previewSub: 'Admission + formula award criteria · no value-judgment envelope',
+      groups: [
+        {
+          title: 'Envelope A',
+          description: 'Participation requirements',
+          rows: [
+            {
+              item: 'European Single Procurement Document (ESPD / DEUC), signed and identified.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 16; DEUC · p. 1',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 16, label: 'PCAP · p. 16' },
+                { docKey: deucDoc, page: 1, label: 'DEUC · p. 1' }
+              ]
+            },
+            {
+              item: 'Separate ESPD / DEUC and commitment evidence for each external-capacity provider, if relying on third-party solvency.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 17',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 17, label: 'PCAP · p. 17' }]
+            },
+            {
+              item: 'Temporary consortium commitment, if bidding as a UTE.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 17-18',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 17, label: 'PCAP · p. 17' },
+                { docKey: pcapDoc, page: 18, label: 'PCAP · p. 18' }
+              ]
+            },
+            {
+              item: 'Business group declaration using Annex VI when linked companies submit bids.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 19',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 19, label: 'PCAP · p. 19' }]
+            },
+            {
+              item: 'Responsible declaration on disability quota, labour/social obligations and equality-plan obligations.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 19',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 19, label: 'PCAP · p. 19' }]
+            },
+            {
+              item: 'Foreign financial-contributions notification or declaration, if applicable under Regulation (EU) 2022/2560.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 19-20',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 19, label: 'PCAP · p. 19' },
+                { docKey: pcapDoc, page: 20, label: 'PCAP · p. 20' }
+              ]
+            },
+            {
+              item: 'Service contractor classification Group O, Subgroup 1, Category 4, or equivalent solvency accreditation.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 61',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 61, label: 'PCAP · p. 61' }]
+            },
+            {
+              item: 'Economic solvency: annual turnover of at least €669,836.20 in the best year among 2023, 2024 and 2025.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 61',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 61, label: 'PCAP · p. 61' }]
+            },
+            {
+              item: 'Technical solvency: similar services in the last three years for at least €669,836.20 in the year of highest execution.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · p. 62',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 62, label: 'PCAP · p. 62' }]
+            },
+            {
+              item: 'Professional-risk insurance for the proposed awardee: civil-liability cover of €300,000 per claim/year and €150,000 employer-liability sublimit.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PCAP · pp. 63-64',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 63, label: 'PCAP · p. 63' },
+                { docKey: pcapDoc, page: 64, label: 'PCAP · p. 64' }
+              ]
+            },
+            {
+              item: 'Submit the electronic offer by 19 May 2026 at 23:59; administrative envelope opening is scheduled for 21 May 2026.',
+              type: 'Admission',
+              weight: '—',
+              source: 'Contract Notice · pp. 2-3',
+              sourceKey: noticeDoc,
+              sourceRefs: [
+                { docKey: noticeDoc, page: 2, label: 'Contract Notice · p. 2' },
+                { docKey: noticeDoc, page: 3, label: 'Contract Notice · p. 3' }
+              ]
+            },
+            {
+              item: 'Post-award guarantee requirement: 5% definitive guarantee and 1% complementary guarantee where applicable.',
+              type: 'Admission',
+              weight: '—',
+              source: 'Contract Notice · p. 5; PCAP · p. 63',
+              sourceKey: noticeDoc,
+              sourceRefs: [
+                { docKey: noticeDoc, page: 5, label: 'Contract Notice · p. 5' },
+                { docKey: pcapDoc, page: 63, label: 'PCAP · p. 63' }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Envelope C',
+          description: 'Formula award criteria',
+          rows: [
+            {
+              item: 'Economic offer using Annex II, with the discount applied only to the fixed part of the contract.',
+              type: 'Award criteria',
+              weight: '30 pts',
+              source: 'PCAP · pp. 20, 67-68, 79',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 20, label: 'PCAP · p. 20' },
+                { docKey: pcapDoc, page: 67, label: 'PCAP · p. 67' },
+                { docKey: pcapDoc, page: 68, label: 'PCAP · p. 68' },
+                { docKey: pcapDoc, page: 79, label: 'PCAP · p. 79' }
+              ]
+            },
+            {
+              item: 'Annual technical-improvement bag for electrical-system and HVAC equipment supply/replacement, capped at €60,000 per year.',
+              type: 'Award criteria',
+              weight: '25 pts',
+              source: 'PCAP · pp. 65, 80',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 65, label: 'PCAP · p. 65' },
+                { docKey: pcapDoc, page: 80, label: 'PCAP · p. 80' }
+              ]
+            },
+            {
+              item: 'Annual technical-improvement bag for electricity, cooling, refrigeration and heating repair works, capped at €60,000 per year.',
+              type: 'Award criteria',
+              weight: '20 pts',
+              source: 'PCAP · pp. 65-66, 81',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 65, label: 'PCAP · p. 65' },
+                { docKey: pcapDoc, page: 66, label: 'PCAP · p. 66' },
+                { docKey: pcapDoc, page: 81, label: 'PCAP · p. 81' }
+              ]
+            },
+            {
+              item: 'Annual technical-improvement bag for masonry, sanitation, plumbing and painting works, capped at €50,000 per year.',
+              type: 'Award criteria',
+              weight: '15 pts',
+              source: 'PCAP · pp. 66-67, 81-82',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 66, label: 'PCAP · p. 66' },
+                { docKey: pcapDoc, page: 67, label: 'PCAP · p. 67' },
+                { docKey: pcapDoc, page: 81, label: 'PCAP · p. 81' },
+                { docKey: pcapDoc, page: 82, label: 'PCAP · p. 82' }
+              ]
+            },
+            {
+              item: 'Annual ITE reports for selected buildings, including registration and economic assessment of remediation needs.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · pp. 67, 82',
+              sourceKey: pcapDoc,
+              sourceRefs: [
+                { docKey: pcapDoc, page: 67, label: 'PCAP · p. 67' },
+                { docKey: pcapDoc, page: 82, label: 'PCAP · p. 82' }
+              ]
+            },
+            {
+              item: 'Environmental improvement: replacement of failed luminaires with LED technology across contract centres.',
+              type: 'Award criteria',
+              weight: '5 pts',
+              source: 'PCAP · p. 67',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 67, label: 'PCAP · p. 67' }]
+            },
+            {
+              item: 'No value-judgment technical documentation is required.',
+              type: 'Award criteria',
+              weight: 'Not required',
+              source: 'PCAP · p. 70',
+              sourceKey: pcapDoc,
+              sourceRefs: [{ docKey: pcapDoc, page: 70, label: 'PCAP · p. 70' }]
+            },
+            {
+              item: 'Minimum multi-trade staff and daily inspection / incident records must support the service delivery model.',
+              type: 'Admission',
+              weight: '—',
+              source: 'PPT · pp. 27-29',
+              sourceKey: pptDoc,
+              sourceRefs: [
+                { docKey: pptDoc, page: 27, label: 'PPT · p. 27' },
+                { docKey: pptDoc, page: 28, label: 'PPT · p. 28' },
+                { docKey: pptDoc, page: 29, label: 'PPT · p. 29' }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+  }
+
   function importedBuildVerifiedRequirements(tender) {
     const ref = String(tender && tender.tenderReference || '');
     const buyer = String(tender && tender.buyer || '');
     const cpv = String(tender && tender.cpv || '');
+    if (importedIsLiveProcessedTender(tender) && tender.requirements && Array.isArray(tender.requirements.groups)) return tender.requirements;
+    if (importedIsMejoradaTaxSupport(tender)) {
+      const noticeDoc = 'mejorada-tax-contract-notice';
+      const pcapDoc = 'mejorada-tax-pcap';
+      const pptDoc = 'mejorada-tax-ppt';
+      const mjDoc = 'mejorada-tax-justification';
+
+      return {
+        preview: '2 active envelopes · 12 bid items',
+        previewSub: 'Admission + formula-only award criteria',
+        groups: [
+          {
+            title: 'Envelope 1',
+            description: 'Administrative documentation',
+            rows: [
+              {
+                item: 'European Single Procurement Document (ESPD / DEUC).',
+                type: 'Admission',
+                weight: '—',
+                source: 'Contract Notice · p. 6; PCAP · p. 24',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: noticeDoc, page: 6, label: 'Contract Notice · p. 6' },
+                  { docKey: pcapDoc, page: 24, label: 'PCAP · p. 24' }
+                ]
+              },
+              {
+                item: 'Temporary consortium commitment, if bidding as a UTE.',
+                type: 'Admission',
+                weight: '—',
+                source: 'PCAP · pp. 24-25',
+                sourceKey: pcapDoc,
+                sourceRefs: [{ docKey: pcapDoc, page: 24, label: 'PCAP · pp. 24-25' }]
+              },
+              {
+                item: 'Business-group declaration using Annex VI.',
+                type: 'Admission',
+                weight: '—',
+                source: 'PCAP · p. 25',
+                sourceKey: pcapDoc,
+                sourceRefs: [{ docKey: pcapDoc, page: 25, label: 'PCAP · p. 25' }]
+              },
+              {
+                item: 'External-capacity ESPD / DEUC and written commitment, if relying on third-party solvency.',
+                type: 'Admission',
+                weight: '—',
+                source: 'PCAP · pp. 21, 25',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: pcapDoc, page: 21, label: 'PCAP · p. 21' },
+                  { docKey: pcapDoc, page: 25, label: 'PCAP · p. 25' }
+                ]
+              },
+              {
+                item: 'Foreign-bidder Spanish jurisdiction declaration, if applicable.',
+                type: 'Admission',
+                weight: '—',
+                source: 'PCAP · p. 25',
+                sourceKey: pcapDoc,
+                sourceRefs: [{ docKey: pcapDoc, page: 25, label: 'PCAP · p. 25' }]
+              },
+              {
+                item: 'Economic solvency: annual turnover of €51,750 for Lot 1 or €110,130 for Lot 2; accreditation requested from proposed awardee.',
+                type: 'Admission',
+                weight: '—',
+                source: 'PCAP · pp. 18-19',
+                sourceKey: pcapDoc,
+                sourceRefs: [{ docKey: pcapDoc, page: 18, label: 'PCAP · pp. 18-19' }]
+              },
+              {
+                item: 'Technical/professional solvency: similar services of €24,150 for Lot 1 or €51,394 for Lot 2; accreditation requested from proposed awardee.',
+                type: 'Admission',
+                weight: '—',
+                source: 'PCAP · p. 20',
+                sourceKey: pcapDoc,
+                sourceRefs: [{ docKey: pcapDoc, page: 20, label: 'PCAP · p. 20' }]
+              },
+              {
+                item: 'Civil-liability insurance with minimum insured amount of €300,000 for the awarded service.',
+                type: 'Admission',
+                weight: '—',
+                source: 'MJ · p. 8',
+                sourceKey: mjDoc,
+                sourceRefs: [{ docKey: mjDoc, page: 8, label: 'MJ · p. 8' }]
+              }
+            ]
+          },
+          {
+            title: 'Envelope 2',
+            description: 'Automatically quantifiable criteria',
+            rows: [
+              {
+                item: 'Economic offer using the PCAP model; price is scored separately for each lot.',
+                type: 'Award criteria',
+                weight: '65 pts / lot',
+                source: 'Contract Notice · pp. 5-7; PCAP · pp. 25, 33-35',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: noticeDoc, page: 5, label: 'Contract Notice · pp. 5-7' },
+                  { docKey: pcapDoc, page: 25, label: 'PCAP · p. 25' },
+                  { docKey: pcapDoc, page: 33, label: 'PCAP · pp. 33-35' }
+                ]
+              },
+              {
+                item: 'Lot 1 security level for software hosting CPD: TIER IV or equivalent improvement over TIER III minimum.',
+                type: 'Award criteria',
+                weight: '15 pts',
+                source: 'PCAP · p. 33; PPT · p. 5',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: pcapDoc, page: 33, label: 'PCAP · p. 33' },
+                  { docKey: pptDoc, page: 5, label: 'PPT · p. 5' }
+                ]
+              },
+              {
+                item: 'Lot 1 reduction of the 15-day software start-up period.',
+                type: 'Award criteria',
+                weight: '15 pts',
+                source: 'PCAP · pp. 33-34; MJ · p. 6',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: pcapDoc, page: 33, label: 'PCAP · pp. 33-34' },
+                  { docKey: mjDoc, page: 6, label: 'MJ · p. 6' }
+                ]
+              },
+              {
+                item: 'Lot 1 SICALWIN integration proposal, with detailed work programme and supporting study documents.',
+                type: 'Award criteria',
+                weight: '5 pts',
+                source: 'PCAP · pp. 25-26, 34',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: pcapDoc, page: 25, label: 'PCAP · pp. 25-26' },
+                  { docKey: pcapDoc, page: 34, label: 'PCAP · p. 34' }
+                ]
+              },
+              {
+                item: 'Lot 2 training programme for municipal tax and treasury staff.',
+                type: 'Award criteria',
+                weight: '25 pts',
+                source: 'PCAP · p. 35; PPT · p. 10',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: pcapDoc, page: 35, label: 'PCAP · p. 35' },
+                  { docKey: pptDoc, page: 10, label: 'PPT · p. 10' }
+                ]
+              },
+              {
+                item: 'Lot 2 extension of taxpayer telephone-attention hours beyond the minimum schedule.',
+                type: 'Award criteria',
+                weight: '10 pts',
+                source: 'PCAP · p. 35; PPT · p. 11',
+                sourceKey: pcapDoc,
+                sourceRefs: [
+                  { docKey: pcapDoc, page: 35, label: 'PCAP · p. 35' },
+                  { docKey: pptDoc, page: 11, label: 'PPT · p. 11' }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+    }
+    if (importedIsMadridSaludMaint(tender)) return importedBuildMadridSaludMaintRequirements();
+    if (importedIsEc1748(tender)) return importedBuildEc1748Requirements();
+    if (importedIsEc1749(tender)) return importedBuildEc1749Requirements();
+    if (importedIsEc1752(tender)) return importedBuildEc1752Requirements();
     if (importedIsEc1750(tender)) return importedBuildEc1750Requirements();
 
     const isHuesnaWaterMain = ref === 'B41632266-2026/000071-PaA' ||
@@ -16455,7 +18190,7 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
   }
 
   function importedSummaryHasAnalysisLeak(summary) {
-    return /imported opportunity|assessed against|ferrovial|match|fit|risk|blocker|validate|go\b|source extraction|source opportunity record/i.test(String(summary || ''));
+    return /imported opportunity|assessed against|ferrovial|match|fit|risk|blocker|validate|go\b|source extraction|source opportunity record|auto-drafted|downloaded tender documents|source object retained|evidence review/i.test(String(summary || ''));
   }
 
   function importedFallbackObjectSummary(tender) {
@@ -16481,7 +18216,6 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
   }
 
   function importedTenderToDetail(tender) {
-    const cpvs = Array.isArray(tender.cpvs) && tender.cpvs.length ? tender.cpvs : [importedLearning('CPV pending')];
     const deadline = Number(tender.deadline || 0);
     const deadlineCopy = deadline >= 0 && deadline < 900 ? `${deadline} days left` : importedLearning('Timing pending');
     const bidBand = parseTenderPercent(tender.bidEstimateSub) || 0;
@@ -16489,26 +18223,64 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
     const openingDate = importedAddDays(submissionDate, 7);
     const awardDate = importedAddDays(submissionDate, 45);
     const startDate = importedAddDays(submissionDate, 90);
-    const verifiedScope = importedBuildVerifiedScope(tender);
-    const verifiedRequirements = importedBuildVerifiedRequirements(tender);
+    const isLiveProcessed = importedIsLiveProcessedTender(tender);
+    const livePremiumOverride = importedGetLivePremiumOverride(tender);
+    const liveHasViewerEvidence = importedLiveHasViewerEvidence(tender) || Boolean(livePremiumOverride && importedHasViewerBackedDocuments(livePremiumOverride.documents));
+    const rawVerifiedScope = livePremiumOverride && livePremiumOverride.scope ? livePremiumOverride.scope : importedBuildVerifiedScope(tender);
+    const verifiedScope = importedNormalizeScopeModel(tender, (isLiveProcessed && !liveHasViewerEvidence) ? null : rawVerifiedScope);
+    const rawVerifiedRequirements = livePremiumOverride && livePremiumOverride.requirements ? livePremiumOverride.requirements : importedBuildVerifiedRequirements(tender);
+    const verifiedRequirements = (isLiveProcessed && !liveHasViewerEvidence) ? null : rawVerifiedRequirements;
     const isEc1750 = importedIsEc1750(tender);
-    const objectSummary = isEc1750
-      ? 'Repair, adaptation and renewal works for DANA-damaged drinking-water and sewerage networks in Paiporta, organised into industrial, urban-core and residential lots.'
-      : importedTenderObjectSummary(tender);
-    const detailProvenance = isEc1750 ? {
+    const isEc1752 = importedIsEc1752(tender);
+    const isEc1749 = importedIsEc1749(tender);
+    const isEc1748 = importedIsEc1748(tender);
+    const isMadridSaludMaint = importedIsMadridSaludMaint(tender);
+    const isMejoradaTaxSupport = importedIsMejoradaTaxSupport(tender);
+    const isHuesnaWaterMain = importedIsHuesnaWaterMain(tender);
+    const cpvs = importedNormalizeCpvList(tender, Array.isArray(tender.cpvs) && tender.cpvs.length ? tender.cpvs : []);
+    if (!cpvs.length) cpvs.push(importedLearning('CPV pending'));
+    const liveProvenance = (isLiveProcessed && (livePremiumOverride && livePremiumOverride.provenance || tender.provenance)) ? (livePremiumOverride && livePremiumOverride.provenance || tender.provenance) : {};
+    const liveCommercialFacts = (liveProvenance && liveProvenance.commercialFacts) || {};
+    const liveEvidenceSections = (liveProvenance && liveProvenance.evidenceSections) || {};
+    const liveHasScope = isLiveProcessed && liveHasViewerEvidence && importedHasScopeModel(verifiedScope);
+    const liveHasRequirements = isLiveProcessed && liveHasViewerEvidence && importedHasRequirementGroups(verifiedRequirements);
+    const liveHasDocuments = isLiveProcessed && liveHasViewerEvidence && importedHasDocuments(livePremiumOverride && livePremiumOverride.documents || tender.documents);
+    const hasDocumentBackedDetail = isHuesnaWaterMain || isEc1750 || isEc1752 || isEc1749 || isEc1748 || isMadridSaludMaint || isMejoradaTaxSupport || liveHasScope || liveHasRequirements || liveHasDocuments;
+    let objectSummary = livePremiumOverride && livePremiumOverride.objectSummary ? livePremiumOverride.objectSummary : importedTenderObjectSummary(tender);
+    if (isEc1750) {
+      objectSummary = 'Repair, adaptation and renewal works for DANA-damaged drinking-water and sewerage networks in Paiporta, organised into industrial, urban-core and residential lots.';
+    }
+    if (isEc1752) {
+      objectSummary = 'Repair, adaptation and renewal works for DANA-damaged drinking-water and sewerage networks in Algemesi, organised into two lots across the urban core and San Benet / Santa Barbara areas.';
+    }
+    if (isEc1749) {
+      objectSummary = 'Repair and adaptation works for DANA-damaged drinking-water and sewerage networks in Benetusser, including supply renewal, sewer collector replacement and service reinstatement.';
+    }
+    if (isEc1748) {
+      objectSummary = "Repair, adaptation and renewal works for DANA-damaged drinking-water and sewerage networks in l'Alcudia, including arterial supply-ring replacement and sewer collector renewal.";
+    }
+    if (isMadridSaludMaint) {
+      objectSummary = 'Integral technical maintenance, conservation and repair service for Madrid Salud buildings, installations and assets across 36 properties and 38 centres.';
+    }
+    if (isMejoradaTaxSupport) {
+      objectSummary = 'Administrative support for municipal tax management, treasury, voluntary collection and public counter service, plus IT support for the tax-management application.';
+    }
+    const detailProvenance = (hasDocumentBackedDetail || isLiveProcessed) ? {
       ...(tender.provenance || {}),
       commercialFacts: {
         ...((tender.provenance && tender.provenance.commercialFacts) || {}),
-        estimatedValue: 'structured',
-        duration: 'document',
-        provisional: 'document',
-        guarantee: 'document'
+        ...((livePremiumOverride && livePremiumOverride.provenance && livePremiumOverride.provenance.commercialFacts) || {}),
+        estimatedValue: isLiveProcessed ? (liveCommercialFacts.estimatedValue || undefined) : 'structured',
+        duration: isLiveProcessed ? ((importedHasUsableSourceValue(tender.duration) && liveCommercialFacts.duration === 'structured') ? 'structured' : undefined) : 'document',
+        provisional: isLiveProcessed ? (liveHasViewerEvidence ? (liveCommercialFacts.provisional || undefined) : undefined) : 'document',
+        guarantee: isLiveProcessed ? (liveHasViewerEvidence ? (liveCommercialFacts.guarantee || undefined) : undefined) : 'document'
       },
       evidenceSections: {
         ...((tender.provenance && tender.provenance.evidenceSections) || {}),
-        scope: 'document',
-        requiredDocuments: 'document',
-        tenderDocuments: 'document',
+        ...((livePremiumOverride && livePremiumOverride.provenance && livePremiumOverride.provenance.evidenceSections) || {}),
+        scope: isLiveProcessed ? (liveHasScope ? (liveEvidenceSections.scope || 'document') : undefined) : 'document',
+        requiredDocuments: isLiveProcessed ? (liveHasRequirements ? (liveEvidenceSections.requiredDocuments || 'document') : undefined) : 'document',
+        tenderDocuments: isLiveProcessed ? (liveHasDocuments ? (liveEvidenceSections.tenderDocuments || 'document') : undefined) : 'document',
         contractingAuthority: 'structured'
       }
     } : (tender.provenance || {});
@@ -16571,19 +18343,19 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       authorityHistory: 'No Ferrovial-specific win history loaded in this prototype',
       authoritySignals: 'Imported source data',
       baseSub: 'Imported base price',
-      estimatedValue: tender.estimatedValue,
-      estimatedSub: 'Prototype estimate: base price plus possible extensions',
-      duration: isEc1750 ? '24 months' : importedSimulatedDuration(tender),
-      durationSub: isEc1750 ? 'Document-backed contract term' : 'Simulated from contract type and value',
-      guarantee: isEc1750 ? '€869,503' : importedSimulatedGuarantee(tender),
-      guaranteeSub: isEc1750 ? 'Document-backed definitive guarantee' : 'Estimated guarantee signal',
-      provisional: isEc1750 ? '€347,801' : importedSimulatedProvisional(tender),
-      provisionalSub: isEc1750 ? 'Document-backed provisional guarantee' : 'Estimated provisional guarantee signal',
+      estimatedValue: livePremiumOverride && livePremiumOverride.estimatedValue ? livePremiumOverride.estimatedValue : tender.estimatedValue,
+      estimatedSub: (isMejoradaTaxSupport || isMadridSaludMaint || isEc1752 || isEc1749 || isEc1748 || isLiveProcessed) ? 'Source-backed value from structured data or documents' : 'Prototype estimate: base price plus possible extensions',
+      duration: livePremiumOverride && livePremiumOverride.duration ? livePremiumOverride.duration : (isLiveProcessed && importedHasUsableSourceValue(tender.duration) ? tender.duration : (isMejoradaTaxSupport ? '12 months' : (isMadridSaludMaint ? '24 months' : (isEc1748 ? '24 months' : ((isEc1752 || isEc1749) ? '48 months' : (isEc1750 ? '24 months' : importedSimulatedDuration(tender))))))),
+      durationSub: (hasDocumentBackedDetail || (isLiveProcessed && (importedHasUsableSourceValue(tender.duration) || livePremiumOverride && livePremiumOverride.duration))) ? 'Source-backed contract term when available' : 'Simulated from contract type and value',
+      guarantee: livePremiumOverride && livePremiumOverride.guarantee ? livePremiumOverride.guarantee : (isMejoradaTaxSupport ? '5% of awarded lot budget' : (isMadridSaludMaint ? '5% of award amount' : ((isEc1752 || isEc1749 || isEc1748) ? '5% of award amount' : (isEc1750 ? '€869,503' : importedSimulatedGuarantee(tender))))),
+      guaranteeSub: hasDocumentBackedDetail ? 'Source-backed definitive guarantee when available' : 'Estimated guarantee signal',
+      provisional: livePremiumOverride && livePremiumOverride.provisional ? livePremiumOverride.provisional : (isMejoradaTaxSupport ? 'Not required' : (isMadridSaludMaint ? 'Not required' : ((isEc1752 || isEc1749 || isEc1748) ? 'Not required' : (isEc1750 ? '€347,801' : importedSimulatedProvisional(tender))))),
+      provisionalSub: (hasDocumentBackedDetail && !isEc1750) ? 'Source-backed provisional guarantee when available' : (isEc1750 ? 'Document-backed provisional guarantee' : 'Estimated provisional guarantee signal'),
       bidEstimate: tender.bidEstimate,
       bidEstimateSub: tender.bidEstimateSub,
       historicalBidBandPct: tender.historicalBidBandPct,
-      docsPreview: verifiedRequirements ? verifiedRequirements.preview : importedLearning('Tender documents detected'),
-      docsPreviewSub: verifiedRequirements ? verifiedRequirements.previewSub : 'Open source to validate documents',
+      docsPreview: verifiedRequirements ? verifiedRequirements.preview : (isLiveProcessed && !liveHasViewerEvidence ? PROTO_DOCS_REQUIRED_LABEL : importedLearning('Tender documents detected')),
+      docsPreviewSub: verifiedRequirements ? verifiedRequirements.previewSub : (isLiveProcessed && !liveHasViewerEvidence ? 'Tender documents needed' : 'Open source to validate documents'),
       solvencyPreview: tender.match >= 82 ? 'Likely eligible' : 'Validate eligibility',
       solvencyPreviewSub: tender.risk,
       criteriaPreview: importedLearning('Price + technical criteria'),
@@ -16596,19 +18368,19 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       authPreviewSub: tender.location + ', ' + tender.country,
       partnerPreview: importedLearning(tender.match < 75 ? 'Partner route possible' : 'Partner route unlikely'),
       partnerPreviewSub: tender.match < 75 ? 'May need specialist validation' : 'Not required at first pass',
-      pliegosPreview: isEc1750 ? '6 docs · 20.9 MB' : '6 docs · 3.5 MB',
-      pliegosPreviewSub: 'Ask Simplifaer about any clause →',
-      documents: isEc1750 ? EC1750_TENDER_DOCUMENTS : (tender.documents || null),
+      pliegosPreview: isLiveProcessed && !liveHasViewerEvidence ? PROTO_DOCS_REQUIRED_LABEL : (isLiveProcessed ? (livePremiumOverride && livePremiumOverride.documentsPreview || tender.documentsPreview || 'Auto-processed documents') : (isMejoradaTaxSupport ? '5 docs · 3.2 MB' : (isMadridSaludMaint ? '12 docs · 4.9 MB' : (isEc1748 ? '5 docs · 13.4 MB' : (isEc1749 ? '5 docs · 19.3 MB' : (isEc1752 ? '6 docs · 27.3 MB' : (isEc1750 ? '6 docs · 20.9 MB' : '6 docs · 3.5 MB'))))))),
+      pliegosPreviewSub: isLiveProcessed && !liveHasViewerEvidence ? 'Tender documents needed' : 'Ask Simplifaer about any clause →',
+      documents: isMejoradaTaxSupport ? MEJORADA_TAX_SUPPORT_TENDER_DOCUMENTS : (isMadridSaludMaint ? MADRID_SALUD_MAINT_TENDER_DOCUMENTS : (isEc1748 ? EC1748_TENDER_DOCUMENTS : (isEc1749 ? EC1749_TENDER_DOCUMENTS : (isEc1752 ? EC1752_TENDER_DOCUMENTS : (isEc1750 ? EC1750_TENDER_DOCUMENTS : (isHuesnaWaterMain ? HUESNA_TENDER_DOCUMENTS : (liveHasViewerEvidence ? (livePremiumOverride && livePremiumOverride.documents || tender.documents || null) : null))))))),
       publication: tender.publication,
-      publicationSub: 'Imported source data',
+      publicationSub: (isMejoradaTaxSupport || isMadridSaludMaint || isLiveProcessed) ? 'Source-backed publication timestamp' : 'Imported source data',
       submissionDate: tender.submissionDate,
-      submissionSub: deadline >= 0 && deadline < 900 ? `In ${deadline} days` : importedLearning('Date pending'),
-      openingDate: importedFormatDisplayDate(openingDate),
-      openingSub: 'Estimated opening',
+      submissionSub: (isMejoradaTaxSupport || isMadridSaludMaint) ? 'Official deadline · 23:59' : (isLiveProcessed ? 'Official deadline from structured source' : (deadline >= 0 && deadline < 900 ? `In ${deadline} days` : importedLearning('Date pending'))),
+      openingDate: isMadridSaludMaint ? '28 May 2026' : importedFormatDisplayDate(openingDate),
+      openingSub: isMadridSaludMaint ? 'Official economic-offer opening' : (isMejoradaTaxSupport ? 'Opening date to be published after administrative review' : 'Estimated opening'),
       awardDate: importedFormatDisplayDate(awardDate),
       awardSub: 'Estimated award',
-      startDate: importedFormatDisplayDate(startDate),
-      startSub: 'Estimated start'
+      startDate: isMejoradaTaxSupport ? 'After formalisation' : (isMadridSaludMaint ? '1 Sep 2026' : importedFormatDisplayDate(startDate)),
+      startSub: isMejoradaTaxSupport ? 'Document-backed start trigger' : (isMadridSaludMaint ? 'Official planned start' : 'Estimated start')
     };
   }
 
@@ -17125,12 +18897,18 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
 
   function tdGetScopeModel(tender) {
     const scope = tender && tender.scope ? tender.scope : {};
-    const lots = Array.isArray(scope.lots) ? scope.lots : [];
+    const lots = Array.isArray(scope.lots) ? scope.lots.map(function(lot) {
+      return {
+        ...lot,
+        cpvs: importedNormalizeCpvList(tender, Array.isArray(lot && lot.cpvs) ? lot.cpvs : [])
+      };
+    }) : [];
     const items = Array.isArray(scope.items) ? scope.items : [];
-    const cpvs = Array.isArray(scope.cpvs) ? scope.cpvs : (tender && tender.cpv ? [tender.cpv] : []);
+    const cpvs = importedNormalizeCpvList(tender, Array.isArray(scope.cpvs) ? scope.cpvs : (tender && tender.cpv ? [tender.cpv] : []));
     const evidence = Array.isArray(scope.evidence) ? scope.evidence : [];
     const format = scope.format || 'table';
-    return { lots, items, cpvs, evidence, format };
+    const presentation = scope.presentation || (format === 'bullets' || format === 'lots' ? 'bullets' : 'table');
+    return { lots, items, cpvs, evidence, format, presentation };
   }
 
   function tdGetScopeItemCount(scopeModel) {
@@ -17159,10 +18937,19 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
     const cpvCount = tdGetScopeCpvList(scopeModel).length;
     const itemCount = tdGetScopeItemCount(scopeModel);
     const cpvLabel = cpvCount === 1 ? 'CPV' : 'CPVs';
-    const itemLabel = scopeModel.format === 'bullets'
+    const itemLabel = scopeModel.presentation === 'bullets'
       ? (itemCount === 1 ? 'scope bullet' : 'scope bullets')
       : (itemCount === 1 ? 'supply line' : 'supply lines');
     return cpvCount + ' ' + cpvLabel + ' · ' + itemCount + ' ' + itemLabel;
+  }
+
+  function tdScopeBulletMeta(item) {
+    const parts = [];
+    const quantity = String(item && item.quantitySpec || '').trim();
+    const unit = String(item && item.unit || '').trim();
+    if (quantity && !/^document-backed scope$/i.test(quantity)) parts.push(quantity);
+    if (unit && !/^scope$/i.test(unit) && !parts.includes(unit)) parts.push(unit);
+    return parts.join(' · ');
   }
 
   function tdRenderScopeBullets(items) {
@@ -17170,7 +18957,11 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       return '<div class="td-detail-note">Detailed scope bullets are still being structured for this tender.</div>';
     }
     return '<ul class="td-scope-bullet-list">' + items.map(function(item) {
-      return '<li>' + tdEscapeHtml(item.item || 'Scope item pending (learning)') + '</li>';
+      const meta = tdScopeBulletMeta(item);
+      return '<li>' +
+        '<span class="td-scope-bullet-main">' + tdEscapeHtml(item.item || 'Scope item pending (learning)') + '</span>' +
+        (meta ? '<span class="td-scope-bullet-meta">' + tdEscapeHtml(meta) + '</span>' : '') +
+      '</li>';
     }).join('') + '</ul>';
   }
 
@@ -17193,6 +18984,35 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
 
   function tdGetDocKeyFromSourceLabel(label) {
     const value = String(label || '').toLowerCase();
+    if (value.includes('mejorada') && value.includes('contract notice')) return 'mejorada-tax-contract-notice';
+    if (value.includes('mejorada') && value.includes('pliegos')) return 'mejorada-tax-pliegos-summary';
+    if (value.includes('mejorada') && value.includes('pcap')) return 'mejorada-tax-pcap';
+    if (value.includes('mejorada') && value.includes('ppt')) return 'mejorada-tax-ppt';
+    if (value.includes('mejorada') && value.includes('mj')) return 'mejorada-tax-justification';
+    if (value.includes('contract notice')) return 'ms-maint-contract-notice';
+    if (value.includes('ms-maint') && value.includes('pcap')) return 'ms-maint-pcap';
+    if (value.includes('madrid salud') && value.includes('pcap')) return 'ms-maint-pcap';
+    if (value.includes('madrid salud') && value.includes('ppt')) return 'ms-maint-ppt';
+    if (value.includes('madrid salud') && value.includes('deuc')) return 'ms-maint-deuc-instructions';
+    if (value.includes('madrid salud') && value.includes('inventory')) return 'ms-maint-inventory';
+    if (value.includes('madrid salud') && value.includes('economic')) return 'ms-maint-economic-valuation';
+    if (value.includes('ec1748') && value.includes('pcap')) return 'ec1748-pcap';
+    if (value.includes('ec1748') && value.includes('ppt')) return 'ec1748-ppt';
+    if (value.includes('ec1748') && value.includes('mj')) return 'ec1748-mj';
+    if (value.includes('ec1748') && value.includes('visit')) return 'ec1748-visit';
+    if (value.includes('ec1748') && value.includes('technical')) return 'ec1748-tech';
+    if (value.includes('ec1749') && value.includes('pcap')) return 'ec1749-pcap';
+    if (value.includes('ec1749') && value.includes('ppt')) return 'ec1749-ppt';
+    if (value.includes('ec1749') && value.includes('mj')) return 'ec1749-mj';
+    if (value.includes('ec1749') && value.includes('visit')) return 'ec1749-visit';
+    if (value.includes('ec1749') && value.includes('technical')) return 'ec1749-tech';
+    if (value.includes('ec1752') && value.includes('pcap')) return 'ec1752-pcap';
+    if (value.includes('ec1752') && value.includes('ppt')) return 'ec1752-ppt';
+    if (value.includes('ec1752') && value.includes('mj')) return 'ec1752-mj';
+    if (value.includes('alcudia') && value.includes('technical')) return 'ec1748-tech';
+    if (value.includes('benetusser') && value.includes('technical')) return 'ec1749-tech';
+    if (value.includes('lot 1 technical')) return 'ec1752-lot1';
+    if (value.includes('lot 2 technical')) return 'ec1752-lot2';
     if (value.includes('ec1750') && value.includes('pcap')) return 'ec1750-pcap';
     if (value.includes('ec1750') && value.includes('ppt')) return 'ec1750-ppt';
     if (value.includes('ec1750') && value.includes('mj')) return 'ec1750-mj';
@@ -17212,6 +19032,9 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       const label = typeof item === 'object' ? (item.label || item.source || '') : String(item);
       const docKey = (typeof item === 'object' && item.docKey) ? item.docKey : tdGetDocKeyFromSourceLabel(label);
       const page = (typeof item === 'object' && Number(item.page)) ? Number(item.page) : (tdGetSourcePageFromLabel(label) || 1);
+      if (typeof item === 'object' && item.externalOnly) {
+        return '<span class="td-doc-review-source-chip td-scope-source-chip td-source-chip-static" title="Source evidence processed, not rendered in the prototype viewer yet">' + tdEscapeHtml(label) + '</span>';
+      }
       return '<button class="td-doc-review-source-chip td-scope-source-chip" onclick="tdOpenTenderDoc(event, \'' + tdEscapeJsString(docKey) + '\', ' + page + ', \'' + tdEscapeJsString(label) + '\')">' + tdEscapeHtml(label) + '</button>';
     }).join('');
   }
@@ -17257,7 +19080,7 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
               '<span class="td-scope-context-label">' + cpvLabel + '</span>' +
               '<span class="td-scope-cpv-values">' + cpvValues + '</span>' +
             '</div>' +
-            tdRenderScopeTable(Array.isArray(lot.items) ? lot.items : []) +
+            tdRenderScopeBullets(Array.isArray(lot.items) ? lot.items : []) +
           '</section>';
         }).join('');
       } else {
@@ -17267,7 +19090,7 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
             '<span class="td-scope-context-label">' + cpvLabel + '</span>' +
             '<span class="td-scope-cpv-values">' + scopeModel.cpvs.map(tdEscapeHtml).join(' · ') + '</span>' +
           '</div>' +
-          (scopeModel.format === 'bullets' ? tdRenderScopeBullets(scopeModel.items) : tdRenderScopeTable(scopeModel.items)) +
+          (scopeModel.presentation === 'bullets' ? tdRenderScopeBullets(scopeModel.items) : tdRenderScopeTable(scopeModel.items)) +
         '</div>';
       }
     }
@@ -17349,6 +19172,9 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       const docKey = ref.docKey || row.sourceKey || 'pcap';
       const label = ref.label || fallbackSource;
       const page = Number(ref.page) || tdGetSourcePageFromLabel(label) || 1;
+      if (ref.externalOnly) {
+        return '<span class="td-doc-review-source-chip td-source-chip-static" title="Source evidence processed, not rendered in the prototype viewer yet">' + tdEscapeHtml(label) + '</span>';
+      }
       return '<button class="td-doc-review-source-chip" onclick="tdOpenTenderDoc(event, \'' + tdEscapeJsString(docKey) + '\', ' + page + ', \'' + tdEscapeJsString(label) + '\')">' + tdEscapeHtml(label) + '</button>';
     }).join('') + '</span>';
   }
@@ -17453,6 +19279,11 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       const iconType = doc.iconType || 'other';
       const meta = Array.isArray(doc.meta) ? doc.meta : [];
       const shortRef = (meta.find(function(item) { return /PCAP|PPT|MJ|Lot/i.test(String(item)); }) || doc.name || 'Document').split(' — ')[0] + ' · p. 1';
+      const externalUrl = doc.sourceUrl || doc.externalUrl || '';
+      const actionsHtml = doc.externalOnly && externalUrl
+        ? '<button class="td-doc-action-btn view" onclick="tdOpenExternalTenderDoc(event, \'' + tdEscapeJsString(externalUrl) + '\')">Open source</button>'
+        : '<button class="td-doc-action-btn view" onclick="tdViewTenderDoc(event, \'' + tdEscapeJsString(docKey) + '\', \'' + tdEscapeJsString(shortRef) + '\')">View</button>' +
+          '<button class="td-doc-action-btn download" onclick="tdDownloadTenderDoc(event, \'' + tdEscapeJsString(docKey) + '\')">Download</button>';
       return '<div class="td-doc-file td-entity-list-row" id="td-doc-file-' + tdEscapeHtml(docKey) + '">' +
         '<div class="td-doc-file-main td-entity-list-main">' +
           '<span class="td-doc-file-ic ' + tdEscapeHtml(iconType) + '" aria-hidden="true">' + tdRenderTenderDocumentIcon(iconType) + '</span>' +
@@ -17462,8 +19293,7 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
           '</div>' +
         '</div>' +
         '<div class="td-doc-file-actions td-entity-list-actions">' +
-          '<button class="td-doc-action-btn view" onclick="tdViewTenderDoc(event, \'' + tdEscapeJsString(docKey) + '\', \'' + tdEscapeJsString(shortRef) + '\')">View</button>' +
-          '<button class="td-doc-action-btn download" onclick="tdDownloadTenderDoc(event, \'' + tdEscapeJsString(docKey) + '\')">Download</button>' +
+          actionsHtml +
         '</div>' +
       '</div>';
     }).join('');
@@ -18259,6 +20089,125 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       sourceUrlLabel: 'Incident notice source',
       defaultPage: 1
     },
+    'ms-maint-contract-notice': {
+      title: 'Contract Notice — Tender Summary',
+      sub: 'Structured tender notice with official dates, value, CPV, guarantees, extensions and opening events.',
+      shortLabel: 'Contract Notice',
+      sourceUrlLabel: 'Contract notice source',
+      defaultPage: 1
+    },
+    'ms-maint-pcap': {
+      title: 'PCAP — Administrative Clauses',
+      sub: 'Administrative clauses, admission requirements and award criteria for Madrid Salud building maintenance.',
+      shortLabel: 'PCAP',
+      sourceUrlLabel: 'Administrative clauses source',
+      defaultPage: 48
+    },
+    'ms-maint-ppt': {
+      title: 'PPT — Technical Specifications',
+      sub: 'Technical specifications for the integral building maintenance service.',
+      shortLabel: 'PPT',
+      sourceUrlLabel: 'Technical specifications source',
+      defaultPage: 1
+    },
+    'ms-maint-justification': {
+      title: 'MJ — Justification Report',
+      sub: 'Justification report for need, object and procurement rationale.',
+      shortLabel: 'MJ',
+      sourceUrlLabel: 'Justification report source',
+      defaultPage: 1
+    },
+    'ms-maint-value-study': {
+      title: 'Economic Study — Contract Valuation',
+      sub: 'Economic study and valuation for the 2026-2028 maintenance service.',
+      shortLabel: 'Economic Study',
+      sourceUrlLabel: 'Economic study source',
+      defaultPage: 1
+    },
+    'ms-maint-economic-valuation': {
+      title: 'Economic Valuation Spreadsheet',
+      sub: 'Spreadsheet with m2, annual price and staff/material cost breakdown.',
+      shortLabel: 'Economic XLS',
+      sourceUrlLabel: 'Economic valuation source',
+      defaultPage: 1
+    },
+    'ms-maint-inventory': {
+      title: 'Inventory — Installations',
+      sub: 'Spreadsheet inventory of centres, installations and equipment.',
+      shortLabel: 'Inventory',
+      sourceUrlLabel: 'Inventory source',
+      defaultPage: 1
+    },
+    'ms-maint-protocol': {
+      title: 'Preventive Maintenance Protocol Book',
+      sub: 'General protocol book for preventive maintenance operations.',
+      shortLabel: 'Protocol',
+      sourceUrlLabel: 'Maintenance protocol source',
+      defaultPage: 1
+    },
+    'ms-maint-means-report': {
+      title: 'Insufficient Means Report',
+      sub: 'Report supporting the need to contract external specialist resources.',
+      shortLabel: 'Means Report',
+      sourceUrlLabel: 'Means report source',
+      defaultPage: 1
+    },
+    'ms-maint-start-resolution': {
+      title: 'Start Resolution',
+      sub: 'Resolution initiating the procurement file.',
+      shortLabel: 'Start Resolution',
+      sourceUrlLabel: 'Start resolution source',
+      defaultPage: 1
+    },
+    'ms-maint-approval-resolution': {
+      title: 'Approval Resolution',
+      sub: 'Resolution approving the procurement file and opening the award procedure.',
+      shortLabel: 'Approval',
+      sourceUrlLabel: 'Approval resolution source',
+      defaultPage: 1
+    },
+    'ms-maint-deuc-instructions': {
+      title: 'DEUC Completion Instructions',
+      sub: 'Instructions for preparing and submitting the ESPD / DEUC.',
+      shortLabel: 'DEUC',
+      sourceUrlLabel: 'DEUC instruction source',
+      defaultPage: 1
+    },
+    'mejorada-tax-contract-notice': {
+      title: 'Contract Notice — Tender Summary',
+      sub: 'Structured tender notice with official dates, value, CPV, lots, guarantees and submission rules.',
+      shortLabel: 'Contract Notice',
+      sourceUrlLabel: 'Contract notice source',
+      defaultPage: 1
+    },
+    'mejorada-tax-pliegos-summary': {
+      title: 'Tender Documents Summary',
+      sub: 'Platform-generated tender documents summary with official tender facts and document references.',
+      shortLabel: 'Pliegos Summary',
+      sourceUrlLabel: 'Tender documents summary source',
+      defaultPage: 1
+    },
+    'mejorada-tax-pcap': {
+      title: 'PCAP — Administrative Clauses',
+      sub: 'Administrative clauses, admission requirements and award criteria for expediente 6536/2025.',
+      shortLabel: 'PCAP',
+      sourceUrlLabel: 'Administrative clauses source',
+      defaultPage: 22
+    },
+    'mejorada-tax-ppt': {
+      title: 'PPT — Technical Specifications',
+      sub: 'Technical specifications for tax-management software support and administrative support services.',
+      shortLabel: 'PPT',
+      sourceUrlLabel: 'Technical specifications source',
+      defaultPage: 3
+    },
+    'mejorada-tax-justification': {
+      title: 'MJ — Justification Report',
+      sub: 'Justification report with need, lots, values, term and award criteria.',
+      shortLabel: 'MJ',
+      sourceUrlLabel: 'Justification report source',
+      defaultPage: 1
+    },
     'ec1750-pcap': {
       title: 'PCAP — Administrative Clauses',
       sub: 'Administrative clauses, admission requirements and award criteria for EC-1750/2026.',
@@ -18300,8 +20249,122 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
       shortLabel: 'Lot 3',
       sourceUrlLabel: 'Lot 3 technical offer source',
       defaultPage: 1
+    },
+    'ec1752-pcap': {
+      title: 'PCAP — Administrative Clauses',
+      sub: 'Administrative clauses, admission requirements and award criteria for EC-1752/2026.',
+      shortLabel: 'PCAP',
+      sourceUrlLabel: 'Administrative clauses source',
+      defaultPage: 7
+    },
+    'ec1752-ppt': {
+      title: 'PPT — Technical Specifications',
+      sub: 'Technical specifications for EC-1752 hydraulic materials.',
+      shortLabel: 'PPT',
+      sourceUrlLabel: 'Technical specifications source',
+      defaultPage: 1
+    },
+    'ec1752-mj': {
+      title: 'MJ — Need Report',
+      sub: 'Need report with object, lots, value, guarantees and procurement rationale.',
+      shortLabel: 'MJ',
+      sourceUrlLabel: 'Need report source',
+      defaultPage: 1
+    },
+    'ec1752-visit': {
+      title: 'Site Visit — Technical Visit Notice',
+      sub: 'Technical site-visit notice for the Algemesi works.',
+      shortLabel: 'Site visit',
+      sourceUrlLabel: 'Site visit notice source',
+      defaultPage: 1
+    },
+    'ec1752-lot1': {
+      title: 'Technical Offer — Lot 1 Urban Core',
+      sub: 'Technical tender document for Lot 1 urban-core network works.',
+      shortLabel: 'Lot 1',
+      sourceUrlLabel: 'Lot 1 technical offer source',
+      defaultPage: 3
+    },
+    'ec1752-lot2': {
+      title: 'Technical Offer — Lot 2 San Benet / Santa Barbara',
+      sub: 'Technical tender document for Lot 2 network works.',
+      shortLabel: 'Lot 2',
+      sourceUrlLabel: 'Lot 2 technical offer source',
+      defaultPage: 3
+    },
+    'ec1748-pcap': {
+      title: 'PCAP — Administrative Clauses',
+      sub: 'Administrative clauses, admission requirements and award criteria for EC-1748/2026.',
+      shortLabel: 'PCAP',
+      sourceUrlLabel: 'Administrative clauses source',
+      defaultPage: 7
+    },
+    'ec1748-ppt': {
+      title: 'PPT — Technical Specifications',
+      sub: 'Technical specifications for EC-1748 hydraulic materials.',
+      shortLabel: 'PPT',
+      sourceUrlLabel: 'Technical specifications source',
+      defaultPage: 1
+    },
+    'ec1748-mj': {
+      title: 'MJ — Need Report',
+      sub: 'Need report with object, no-lot rationale, value, guarantees and procurement rationale.',
+      shortLabel: 'MJ',
+      sourceUrlLabel: 'Need report source',
+      defaultPage: 1
+    },
+    'ec1748-visit': {
+      title: 'Site Visit — Technical Visit Notice',
+      sub: "Technical site-visit notice for the l'Alcudia works.",
+      shortLabel: 'Site visit',
+      sourceUrlLabel: 'Site visit notice source',
+      defaultPage: 1
+    },
+    'ec1748-tech': {
+      title: "Technical Offer — l'Alcudia Network Works",
+      sub: "Technical tender document with l'Alcudia water and sewerage work quantities.",
+      shortLabel: 'Technical offer',
+      sourceUrlLabel: 'Technical offer source',
+      defaultPage: 3
+    },
+    'ec1749-pcap': {
+      title: 'PCAP — Administrative Clauses',
+      sub: 'Administrative clauses, admission requirements and award criteria for EC-1749/2026.',
+      shortLabel: 'PCAP',
+      sourceUrlLabel: 'Administrative clauses source',
+      defaultPage: 7
+    },
+    'ec1749-ppt': {
+      title: 'PPT — Technical Specifications',
+      sub: 'Technical specifications for EC-1749 hydraulic materials.',
+      shortLabel: 'PPT',
+      sourceUrlLabel: 'Technical specifications source',
+      defaultPage: 1
+    },
+    'ec1749-mj': {
+      title: 'MJ — Need Report',
+      sub: 'Need report with object, no-lot rationale, value, guarantees and procurement rationale.',
+      shortLabel: 'MJ',
+      sourceUrlLabel: 'Need report source',
+      defaultPage: 1
+    },
+    'ec1749-visit': {
+      title: 'Site Visit — Technical Visit Notice',
+      sub: 'Technical site-visit notice for the Benetusser works.',
+      shortLabel: 'Site visit',
+      sourceUrlLabel: 'Site visit notice source',
+      defaultPage: 1
+    },
+    'ec1749-tech': {
+      title: 'Technical Offer — Benetusser Network Works',
+      sub: 'Technical tender document with Benetusser water and sewerage work quantities.',
+      shortLabel: 'Technical offer',
+      sourceUrlLabel: 'Technical offer source',
+      defaultPage: 4
     }
   };
+
+  Object.assign(TD_TENDER_DOCS, window.SIMPLIFAE_LIVE_PUBLICADA_INDEX_DOCS || {});
 
   let tdActiveTenderDocKey = 'pcap';
   let tdTenderViewerWindow = null;
@@ -18329,7 +20392,7 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
 
   function tdGetViewerTenderKey() {
     const tender = tdGetCurrentTenderForViewer();
-    return tdSanitizeViewerKey(tender.tenderReference || currentTenderStateKey || currentTenderDetailId);
+    return tdSanitizeViewerKey(tender.viewerTenderKey || tender.tenderReference || currentTenderStateKey || currentTenderDetailId);
   }
 
   function tdGetViewerWindowName() {
@@ -18440,6 +20503,16 @@ Nuestra oferta económica: <strong>€1.163.000 (IVA excluido)</strong>, equival
     if (event) event.stopPropagation();
     const doc = TD_TENDER_DOCS[docKey] || TD_TENDER_DOCS.pcap;
     alert('This would open the document URL for: ' + doc.sourceUrlLabel + '.');
+  }
+
+  function tdOpenExternalTenderDoc(event, url) {
+    if (event) event.stopPropagation();
+    if (!url) return;
+    try {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } catch (err) {
+      window.location.href = url;
+    }
   }
 
   function tdDownloadTenderDoc(event, docKey) {

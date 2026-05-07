@@ -1,0 +1,104 @@
+{
+  "schema": "simplifae.quality.field-contract.v1",
+  "purpose": "Permanent field-level contract for PLACSP-derived tenders. Golden slow-method tenders teach the contract, but mass processing must satisfy this contract even when no slow reference exists.",
+  "principles": [
+    "Structured PLACSP facts are valid for fast Discovery when explicit in source data.",
+    "Tender Detail premium fields must be structured or document-backed; otherwise they are unavailable/review, never fake certainty.",
+    "Every document-backed claim must keep exact document title and page evidence.",
+    "Detailed Scope, Required Documents, Admission Criteria and Award Criteria are separate concepts.",
+    "Fast processing may downgrade status for OCR/review, but must not promote incomplete extraction as premium-ready."
+  ],
+  "field_groups": [
+    {
+      "id": "discovery_card",
+      "target_surfaces": ["Discovery"],
+      "fields": [
+        {"id": "tenderReference", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "title", "source": "structured_or_document_summary", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "objectSummary", "source": "structured_or_document_summary", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "buyer", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "procedure", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "contractType", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "cpvs", "source": "structured_or_document", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "value", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "deadline", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "publication", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]},
+        {"id": "sourceUrl", "source": "structured", "required_for": ["discovery_ready", "premium_ready"]}
+      ]
+    },
+    {
+      "id": "commercial_header",
+      "target_surfaces": ["Tender Detail header"],
+      "fields": [
+        {"id": "estimatedValue", "source": "structured_or_document", "required_for": ["premium_ready"]},
+        {"id": "duration", "source": "structured_or_document", "required_for": ["premium_ready"], "guardrail": "Must be execution term, not warranty period."},
+        {"id": "provisional", "source": "document", "required_for": ["premium_ready"], "guardrail": "Use exact amount, formula, Not required, or Needs source verification."},
+        {"id": "guarantee", "source": "document", "required_for": ["premium_ready"], "guardrail": "Use formula when based on future award amount."}
+      ]
+    },
+    {
+      "id": "detailed_scope",
+      "target_surfaces": ["Tender Detail", "Document Viewer references"],
+      "fields": [
+        {"id": "scope.cpvs", "source": "structured_or_document", "required_for": ["premium_ready"]},
+        {"id": "scope.items_or_lots", "source": "document", "required_for": ["premium_ready"]},
+        {"id": "scope.evidence", "source": "document_page", "required_for": ["premium_ready"]},
+        {"id": "scope.lot_structure", "source": "document", "required_for": ["premium_ready"], "guardrail": "Use explicit lot/no-lot language only."}
+      ]
+    },
+    {
+      "id": "required_documents",
+      "target_surfaces": ["Tender Detail", "Document Viewer references"],
+      "fields": [
+        {"id": "requirements.groups", "source": "document", "required_for": ["premium_ready"]},
+        {"id": "requirements.rows", "source": "document", "required_for": ["premium_ready"]},
+        {"id": "requirements.rows.item", "source": "normalized_bid_checklist_label", "required_for": ["premium_ready"], "guardrail": "Never raw source paragraph or truncated snippet."},
+        {"id": "requirements.rows.type", "source": "classification", "allowed_values": ["Admission", "Award criteria"], "required_for": ["premium_ready"]},
+        {"id": "requirements.rows.weight", "source": "document_or_null", "required_for": ["premium_ready"]},
+        {"id": "requirements.rows.evidence", "source": "document_page", "required_for": ["premium_ready"]}
+      ]
+    },
+    {
+      "id": "tender_documents",
+      "target_surfaces": ["Tender Detail", "Document Viewer"],
+      "fields": [
+        {"id": "documents.docKey", "source": "promotion", "required_for": ["premium_ready"]},
+        {"id": "documents.name", "source": "document_metadata", "required_for": ["premium_ready"]},
+        {"id": "documents.role", "source": "classification", "required_for": ["premium_ready"]},
+        {"id": "documents.local_file", "source": "downloaded_document", "required_for": ["premium_ready"]},
+        {"id": "viewer.refs", "source": "document_page", "required_for": ["premium_ready"]}
+      ]
+    },
+    {
+      "id": "provenance",
+      "target_surfaces": ["All source-backed surfaces"],
+      "fields": [
+        {"id": "provenance.commercialFacts", "allowed_values": ["structured", "document", "mock", "unavailable"], "required_for": ["premium_ready"]},
+        {"id": "provenance.evidenceSections.scope", "allowed_values": ["document", "unavailable"], "required_for": ["premium_ready"]},
+        {"id": "provenance.evidenceSections.requiredDocuments", "allowed_values": ["document", "unavailable"], "required_for": ["premium_ready"]},
+        {"id": "provenance.evidenceSections.tenderDocuments", "allowed_values": ["document", "unavailable"], "required_for": ["premium_ready"]}
+      ]
+    }
+  ],
+  "mass_processing_contract": {
+    "new_tender_without_slow_reference": [
+      "Apply the field groups above directly.",
+      "If a field cannot be source-backed, set status to review/OCR/docs-required instead of premium_ready.",
+      "Keep detailed failure context: tender ID, reference, field group, failed field, input snippet and deterministic/intermittent classification.",
+      "Do not promote a tender into the prototype as source-backed unless the packet passes quality_gate and, when enabled, golden_parity_benchmark."
+    ],
+    "acceptable_degradation": [
+      "discovery_ready_structured for structured-only fast ingestion",
+      "discovery_ready_needs_ocr when PDFs exist but OCR is required",
+      "discovery_ready_needs_legal_review when legal/detail evidence is incomplete",
+      "discovery_ready_needs_confidence_review when evidence exists but confidence is below threshold"
+    ],
+    "unacceptable_degradation": [
+      "premium_ready with OCR candidates",
+      "premium_ready with missing document/page evidence",
+      "premium_ready with mixed admission/award labels",
+      "premium_ready with raw snippets as requirement rows",
+      "Tender Detail source chips that cannot navigate to a local viewer document/page"
+    ]
+  }
+}

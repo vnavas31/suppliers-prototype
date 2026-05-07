@@ -3,3 +3,14 @@
 *.backup-before-*.html
 discovery-v1.zip
 discovery-v2/vendor/
+discovery-v2/backups/
+discovery-v2/*.backup-*
+discovery-v2/*backup*
+discovery-v2/docs/*.pdf
+discovery-v2/docs/*.xls
+discovery-v2/docs/*.xlsx
+discovery-v2/docs/live-publicada/*.pdf
+discovery-v2/doc-pages/live-publicada/**/*.png
+reports/
+tools/**/__pycache__/
+tools/**/*.backup-*
