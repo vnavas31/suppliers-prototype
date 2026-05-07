@@ -1,0 +1,12 @@
+.DS_Store
+.claude/
+.github/
+.git/
+AGENTS.md
+CODEX_HANDOFF_SIMPLIFAE.md
+reports/
+tools/
+discovery-v1.zip
+discovery-v2/backups/
+discovery-v2/*.backup*
+discovery-v2/*.backup-*

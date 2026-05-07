@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "echo \"Static gh-pages prototype: no build step required\"",
+  "installCommand": "",
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/discovery-v2/",
+      "permanent": false
+    }
+  ]
+}
