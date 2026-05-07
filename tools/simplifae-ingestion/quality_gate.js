@@ -32,16 +32,23 @@ function detectExecutable(name) {
 
 function detectOcrEnvironment() {
   const requiredForLocalOcr = ["tesseract", "ocrmypdf"];
+  const requiredForSidecarOcr = ["tesseract", "pdftoppm"];
   const usefulPdfTools = ["pdftoppm", "pdftotext", "gs", "magick", "convert"];
-  const tools = [...requiredForLocalOcr, ...usefulPdfTools].map((name) => ({
+  const toolNames = Array.from(new Set([...requiredForLocalOcr, ...requiredForSidecarOcr, ...usefulPdfTools]));
+  const tools = toolNames.map((name) => ({
     name,
     path: detectExecutable(name),
   }));
   const available = tools.filter((tool) => tool.path).map((tool) => tool.name);
   const missing = tools.filter((tool) => !tool.path).map((tool) => tool.name);
+  const localPdfOcrAvailable = requiredForLocalOcr.every((name) => available.includes(name));
+  const localSidecarOcrAvailable = requiredForSidecarOcr.every((name) => available.includes(name));
   return {
-    local_ocr_available: requiredForLocalOcr.every((name) => available.includes(name)),
+    local_ocr_available: localPdfOcrAvailable || localSidecarOcrAvailable,
+    local_pdf_ocr_available: localPdfOcrAvailable,
+    local_sidecar_ocr_available: localSidecarOcrAvailable,
     required_for_local_ocr: requiredForLocalOcr,
+    required_for_sidecar_ocr: requiredForSidecarOcr,
     useful_pdf_tools: usefulPdfTools,
     available,
     missing,
@@ -59,6 +66,10 @@ function normalizeReference(value) {
 
 function compact(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function documentTitleKey(title, role) {
+  return `${compact(title).toLowerCase()}::${compact(role).toLowerCase()}`;
 }
 
 function snippet(value, max = 1400) {
@@ -102,6 +113,8 @@ function hasDocPageEvidence(value) {
     return Boolean(compact(evidence.doc_title) && Number.isFinite(page) && page > 0);
   });
 }
+
+const preferredEvidenceRoles = new Set(["pcap", "ppt", "justification", "contract_notice", "pliegos_summary"]);
 
 function evidenceProblems(value) {
   return collectEvidence(value)
@@ -161,6 +174,8 @@ function summarizePacket(packet) {
   const missingEvidenceBlocks = checks
     .filter(([, evidence]) => !Array.isArray(evidence) || !evidence.length || !hasDocPageEvidence(evidence))
     .map(([name]) => name);
+  const blockers = ocrBlockers(packet);
+  const criticalBlockers = blockers.filter((doc) => doc.critical);
 
   return {
     ok: true,
@@ -168,7 +183,8 @@ function summarizePacket(packet) {
     confidence: Number(level3.confidence && level3.confidence.overall || 0),
     documents: Number(packet.coverage && packet.coverage.documents_downloaded || 0),
     pdfs: Number(packet.coverage && packet.coverage.pdfs_processed || 0),
-    ocr_candidates: Number(packet.coverage && packet.coverage.ocr_candidates || 0),
+    ocr_candidates: criticalBlockers.length,
+    ocr_review_candidates: blockers.length,
     sections: packet.coverage && packet.coverage.sections_with_candidates || [],
     pipeline_mode: packet.source && packet.source.mode || "premium",
     summary: level3.summary && level3.summary.value || null,
@@ -179,16 +195,41 @@ function summarizePacket(packet) {
 
 function ocrBlockers(packet) {
   const docs = Array.isArray(packet.documents) ? packet.documents : [];
+  const evidenceKeys = new Set(
+    collectEvidence(packet.level3 || {})
+      .filter((item) => compact(item.doc_title))
+      .flatMap((item) => [
+        documentTitleKey(item.doc_title, item.doc_role || ""),
+        documentTitleKey(item.doc_title, ""),
+      ]),
+  );
+  const hasPreferredReadableDoc = docs.some((doc) =>
+    preferredEvidenceRoles.has(String(doc.role || "")) &&
+    !doc.ocr_candidate &&
+    Number(doc.text_chars || 0) >= 500
+  );
   return docs
     .filter((doc) => doc && doc.ocr_candidate)
-    .map((doc) => ({
-      title: doc.title || null,
-      role: doc.role || null,
-      pages_extracted: doc.pages_extracted || doc.page_count || null,
-      text_chars: Number(doc.text_chars || 0),
-      path: doc.path || null,
-      severity: Number(doc.text_chars || 0) === 0 ? "hard_ocr_blocker" : "partial_text_review",
-    }));
+    .map((doc) => {
+      const role = String(doc.role || "");
+      const textChars = Number(doc.text_chars || 0);
+      const cited = evidenceKeys.has(documentTitleKey(doc.title || "", role)) || evidenceKeys.has(documentTitleKey(doc.title || "", ""));
+      const preferred = preferredEvidenceRoles.has(role);
+      const hardWithoutPreferredEvidence = textChars === 0 && !hasPreferredReadableDoc;
+      const critical = Boolean(preferred || cited || hardWithoutPreferredEvidence);
+      return {
+        title: doc.title || null,
+        role: role || null,
+        pages_extracted: doc.pages_extracted || doc.page_count || null,
+        text_chars: textChars,
+        path: doc.path || null,
+        severity: textChars === 0 ? "hard_ocr_blocker" : "partial_text_review",
+        critical,
+        critical_reason: critical
+          ? (preferred ? "preferred_evidence_doc" : (cited ? "cited_by_evidence" : "hard_blocker_without_preferred_docs"))
+          : "ancillary_document_has_preferred_evidence_available",
+      };
+    });
 }
 
 function operationalStatus(summary) {
@@ -356,6 +397,7 @@ function validatePacket(packetFile, packet, statusItem, inventory) {
     documents: computed.documents,
     pdfs: computed.pdfs,
     ocr_candidates: computed.ocr_candidates,
+    ocr_review_candidates: computed.ocr_review_candidates,
     ocr_blockers: ocrBlockers(packet),
     sections: computed.sections,
     viewer_categories: viewerCategories,
@@ -439,16 +481,19 @@ function main() {
   const ocrEnvironment = detectOcrEnvironment();
   const ocrBlockers = results
     .filter((item) => item.ocr_candidates > 0)
-    .map((item) => ({
-      tender_id: item.id,
-      reference: item.reference,
-      status: item.status,
-      confidence: item.confidence,
-      ocr_candidates: item.ocr_candidates,
-      hard_ocr_blockers: item.ocr_blockers.filter((doc) => doc.severity === "hard_ocr_blocker").length,
-      partial_text_review: item.ocr_blockers.filter((doc) => doc.severity === "partial_text_review").length,
-      documents: item.ocr_blockers,
-    }));
+    .map((item) => {
+      const criticalDocuments = item.ocr_blockers.filter((doc) => doc.critical);
+      return {
+        tender_id: item.id,
+        reference: item.reference,
+        status: item.status,
+        confidence: item.confidence,
+        ocr_candidates: item.ocr_candidates,
+        hard_ocr_blockers: criticalDocuments.filter((doc) => doc.severity === "hard_ocr_blocker").length,
+        partial_text_review: criticalDocuments.filter((doc) => doc.severity === "partial_text_review").length,
+        documents: criticalDocuments,
+      };
+    });
   if (premiumReady < minPremiumReady) {
     failures.push({
       tender_id: "batch",
@@ -478,6 +523,7 @@ function main() {
       premium_ready: premiumReady,
       needs_review: results.filter((item) => item.status !== "premium_ready").length,
       ocr_blocked: results.filter((item) => item.ocr_candidates > 0).length,
+      ocr_review_candidates: results.reduce((sum, item) => sum + Number(item.ocr_review_candidates || 0), 0),
       hard_ocr_blocked: ocrBlockers.filter((item) => item.hard_ocr_blockers > 0).length,
       partial_ocr_review: ocrBlockers.filter((item) => item.partial_text_review > 0).length,
       local_ocr_available: ocrEnvironment.local_ocr_available,

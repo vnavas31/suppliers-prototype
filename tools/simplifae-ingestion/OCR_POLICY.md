@@ -21,11 +21,12 @@ OCR is a production enrichment lane, not a reason to invent premium evidence.
 The quality gate reports `ocr_environment`:
 
 - `local_ocr_available`
-- required OCR tools: `tesseract`, `ocrmypdf`
+- PDF-rewrite OCR tools: `tesseract`, `ocrmypdf`
+- sidecar OCR tools: `tesseract`, `pdftoppm`
 - useful PDF tools: `pdftoppm`, `pdftotext`, `gs`, `magick`, `convert`
 - available/missing tools
 
-If `local_ocr_available` is false, hard OCR blockers are expected and must be visible as review debt.
+`local_ocr_available` is true when either the PDF-rewrite lane or the sidecar lane is available. If it is false, hard OCR blockers are expected and must be visible as review debt.
 
 ## Local Provider
 
@@ -52,7 +53,8 @@ When local OCR is enabled:
 - The pipeline first extracts text normally.
 - Only documents still classified as `ocr_candidate` are sent through OCR.
 - OCR output is stored under the packet `ocr/` directory.
-- The packet records `ocr_applied`, `ocr_provider`, `ocr_status`, `ocr_original_path`, `ocr_error`, and `ocr_elapsed_seconds` per document.
+- Digitally signed or rewrite-blocked PDFs must use `local_sidecar` OCR: render page images, extract text into `.sidecar.txt`, keep the original PDF path/hash unchanged for the viewer, and preserve page numbers.
+- The packet records `ocr_applied`, `ocr_provider`, `ocr_status`, `ocr_original_path`, `ocr_sidecar_path`, `ocr_sidecar_pages`, `ocr_sidecar_text_chars`, `ocr_error`, and `ocr_elapsed_seconds` per document.
 - Quality and manifest reports keep OCR failures visible instead of silently dropping them.
 
 ## Promotion Rules

@@ -101,6 +101,16 @@ function documentTitleKey(title, role) {
   return `${compact(title).toLowerCase()}::${compact(role).toLowerCase()}`;
 }
 
+const preferredEvidenceRoles = new Set(["pcap", "ppt", "justification", "contract_notice", "pliegos_summary"]);
+
+function criticalOcrDoc(doc, evidenceKeys, hasPreferredReadableDoc) {
+  const role = compact(doc && doc.role);
+  const textChars = Number(doc && doc.text_chars || 0);
+  const cited = evidenceKeys.has(documentTitleKey(doc && doc.title || "", role)) ||
+    evidenceKeys.has(documentTitleKey(doc && doc.title || "", ""));
+  return preferredEvidenceRoles.has(role) || cited || (textChars === 0 && !hasPreferredReadableDoc);
+}
+
 function validatePacket(packetFile, packet, qualityResult) {
   const packetDir = path.dirname(packetFile);
   const tenderId = path.basename(packetDir);
@@ -146,6 +156,21 @@ function validatePacket(packetFile, packet, qualityResult) {
   }
 
   const docs = Array.isArray(packet.documents) ? packet.documents : [];
+  const evidence = collectEvidence(level3);
+  const evidenceKeys = new Set(
+    evidence
+      .filter((item) => compact(item.doc_title))
+      .flatMap((item) => [
+        documentTitleKey(item.doc_title, item.doc_role || ""),
+        documentTitleKey(item.doc_title, ""),
+      ]),
+  );
+  const hasPreferredReadableDoc = docs.some((doc) =>
+    preferredEvidenceRoles.has(compact(doc && doc.role)) &&
+    !doc.ocr_candidate &&
+    Number(doc.text_chars || 0) >= 500
+  );
+  const criticalOcrDocs = docs.filter((doc) => doc && doc.ocr_candidate && criticalOcrDoc(doc, evidenceKeys, hasPreferredReadableDoc));
   const docTitleIndex = new Map();
   const documents = docs.map((doc, index) => {
     const docPath = doc && doc.path ? path.resolve(doc.path) : null;
@@ -177,14 +202,19 @@ function validatePacket(packetFile, packet, qualityResult) {
       docTitleIndex.set(documentTitleKey(doc.title, doc.role), doc);
       docTitleIndex.set(documentTitleKey(doc.title, ""), doc);
     }
-    if (doc.ocr_status && !["not_requested", "not_needed", "applied"].includes(doc.ocr_status)) {
-      premiumSensitive("ocr_provider_document_issue", "ocr", "OCR provider could not produce a fully usable text layer for this document", {
+    if (doc.ocr_status && !["not_requested", "not_needed", "applied", "sidecar_applied"].includes(doc.ocr_status)) {
+      const criticalOcr = doc.ocr_candidate && criticalOcrDoc(doc, evidenceKeys, hasPreferredReadableDoc);
+      const targetSeverity = criticalOcr && isPremiumReady ? "fail" : "warn";
+      const reason = criticalOcr ? "ocr_provider_document_issue" : "ancillary_ocr_provider_document_issue";
+      target(targetSeverity, reason, "ocr", "OCR provider could not produce a fully usable text layer for this document", {
         title: doc.title || null,
         role: doc.role || null,
         status: doc.ocr_status,
         error: doc.ocr_error || null,
         text_chars: Number(doc.text_chars || 0),
         ocr_candidate: Boolean(doc.ocr_candidate),
+        ocr_sidecar_path: doc.ocr_sidecar_path || null,
+        critical: criticalOcr,
       });
     }
     return {
@@ -203,12 +233,14 @@ function validatePacket(packetFile, packet, qualityResult) {
       ocr_provider: doc.ocr_provider || null,
       ocr_status: doc.ocr_status || null,
       ocr_original_path: doc.ocr_original_path || null,
+      ocr_sidecar_path: doc.ocr_sidecar_path || null,
+      ocr_sidecar_pages: Number(doc.ocr_sidecar_pages || 0),
+      ocr_sidecar_text_chars: Number(doc.ocr_sidecar_text_chars || 0),
       ocr_error: doc.ocr_error || null,
       ocr_elapsed_seconds: doc.ocr_elapsed_seconds || null,
     };
   });
 
-  const evidence = collectEvidence(level3);
   const evidenceProblems = [];
   for (const item of evidence) {
     if (!item.doc_title && !item.page) continue;
@@ -244,10 +276,10 @@ function validatePacket(packetFile, packet, qualityResult) {
   if (isPremiumReady && !docs.length) {
     target("fail", "premium_ready_without_documents", "Tender Documents", "premium_ready packet has no recovered documents", { reference });
   }
-  if (isPremiumReady && Number(coverage.ocr_candidates || 0) > 0) {
+  if (isPremiumReady && criticalOcrDocs.length > 0) {
     target("fail", "premium_ready_with_ocr_candidates", "ocr", "premium_ready packet still has OCR candidates", {
-      ocr_candidates: coverage.ocr_candidates,
-      ocr_candidate_titles: coverage.ocr_candidate_titles || [],
+      ocr_candidates: criticalOcrDocs.length,
+      ocr_candidate_titles: criticalOcrDocs.map((doc) => doc.title || doc.role || "document"),
     });
   }
 
@@ -289,7 +321,8 @@ function validatePacket(packetFile, packet, qualityResult) {
       has_structured_facts: Boolean(coverage.has_structured_facts),
       documents_downloaded: Number(coverage.documents_downloaded || documents.length),
       pdfs_processed: Number(coverage.pdfs_processed || 0),
-      ocr_candidates: Number(coverage.ocr_candidates || 0),
+      ocr_candidates: criticalOcrDocs.length,
+      ocr_review_candidates: Number(coverage.ocr_candidates || 0),
       ocr_applied: Number(coverage.ocr_applied || 0),
       ocr_failed: Number(coverage.ocr_failed || 0),
       sections_with_candidates: coverage.sections_with_candidates || [],

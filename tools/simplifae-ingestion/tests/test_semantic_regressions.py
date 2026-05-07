@@ -3,6 +3,7 @@ import pathlib
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 PIPELINE_PATH = pathlib.Path(__file__).resolve().parents[1] / "placsp_pipeline.py"
@@ -459,6 +460,109 @@ class SemanticRegressionTests(unittest.TestCase):
         for title in examples:
             with self.subTest(title=title):
                 self.assertEqual(pipeline.classify_role(title, "application/pdf", b"%PDF-1.4"), "pcap")
+
+    def test_sidecar_ocr_extracts_text_without_replacing_signed_pdf(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = pathlib.Path(temp)
+            pdf_path = root / "signed.pdf"
+            pdf_path.write_bytes(b"%PDF-1.4 signed tender")
+            doc = pipeline.DownloadedDoc(
+                role="pcap",
+                title="Signed PCAP",
+                url="",
+                path=pdf_path,
+                sha1="original-sha",
+                page_count=2,
+            )
+
+            def fake_run(command, **_kwargs):
+                tool = pathlib.Path(command[0]).name
+                if tool == "pdftoppm":
+                    prefix = pathlib.Path(command[-1])
+                    (prefix.parent / f"{prefix.name}-1.png").write_bytes(b"png")
+                    (prefix.parent / f"{prefix.name}-2.png").write_bytes(b"png")
+                    return pipeline.subprocess.CompletedProcess(command, 0, "", "")
+                if tool == "tesseract":
+                    image_name = pathlib.Path(command[1]).name
+                    text = "Objeto del contrato. Prestación técnica del servicio." if "-1." in image_name else "Criterios de adjudicación. Precio: 100 puntos."
+                    return pipeline.subprocess.CompletedProcess(command, 0, text, "")
+                raise AssertionError(f"Unexpected command: {command}")
+
+            env = {
+                "local_ocr_available": True,
+                "local_pdf_ocr_available": False,
+                "local_sidecar_ocr_available": True,
+                "required_for_local_ocr": ["ocrmypdf", "tesseract"],
+                "required_for_sidecar_ocr": ["pdftoppm", "tesseract"],
+                "missing": ["ocrmypdf"],
+                "tools": {
+                    "pdftoppm": "/usr/bin/pdftoppm",
+                    "tesseract": "/usr/bin/tesseract",
+                    "ocrmypdf": None,
+                },
+            }
+            with patch.object(pipeline, "ocr_environment", return_value=env), \
+                patch.object(pipeline, "effective_ocr_lang", return_value="spa"), \
+                patch.object(pipeline.subprocess, "run", side_effect=fake_run):
+                result = pipeline.run_tesseract_sidecar_ocr(doc, root / "ocr", pipeline.OcrConfig(provider="local"))
+
+            self.assertTrue(result.ok)
+            self.assertEqual(result.status, "sidecar_applied")
+            self.assertEqual(result.provider, "local_sidecar")
+            self.assertIsNone(result.output_path)
+            self.assertEqual(doc.path, pdf_path)
+            self.assertGreater(pipeline.page_text_chars(result.pages), 80)
+            self.assertTrue(result.sidecar_path and result.sidecar_path.exists())
+
+    def test_local_ocr_falls_back_to_sidecar_when_pdf_signature_blocks_rewrite(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = pathlib.Path(temp)
+            pdf_path = root / "signed.pdf"
+            pdf_path.write_bytes(b"%PDF-1.4 signed tender")
+            doc = pipeline.DownloadedDoc(
+                role="pcap",
+                title="Signed PCAP",
+                url="",
+                path=pdf_path,
+                sha1="original-sha",
+                page_count=1,
+            )
+
+            def fake_run(command, **_kwargs):
+                tool = pathlib.Path(command[0]).name
+                if tool == "ocrmypdf":
+                    return pipeline.subprocess.CompletedProcess(command, 6, "", "DigitalSignatureError: Input PDF has a digital signature.")
+                if tool == "pdftoppm":
+                    prefix = pathlib.Path(command[-1])
+                    (prefix.parent / f"{prefix.name}-1.png").write_bytes(b"png")
+                    return pipeline.subprocess.CompletedProcess(command, 0, "", "")
+                if tool == "tesseract":
+                    return pipeline.subprocess.CompletedProcess(command, 0, "Pliego técnico con objeto y criterios de adjudicación.", "")
+                raise AssertionError(f"Unexpected command: {command}")
+
+            env = {
+                "local_ocr_available": True,
+                "local_pdf_ocr_available": True,
+                "local_sidecar_ocr_available": True,
+                "required_for_local_ocr": ["ocrmypdf", "tesseract"],
+                "required_for_sidecar_ocr": ["pdftoppm", "tesseract"],
+                "missing": [],
+                "tools": {
+                    "ocrmypdf": "/usr/bin/ocrmypdf",
+                    "pdftoppm": "/usr/bin/pdftoppm",
+                    "tesseract": "/usr/bin/tesseract",
+                },
+            }
+            with patch.object(pipeline, "ocr_environment", return_value=env), \
+                patch.object(pipeline, "effective_ocr_lang", return_value="spa"), \
+                patch.object(pipeline.subprocess, "run", side_effect=fake_run):
+                result = pipeline.run_local_ocr(doc, root / "ocr", pipeline.OcrConfig(provider="local"))
+
+            self.assertTrue(result.ok)
+            self.assertEqual(result.status, "sidecar_applied")
+            self.assertEqual(result.provider, "local_sidecar")
+            self.assertIsNone(result.output_path)
+            self.assertIn("objeto", result.pages[0]["text"])
 
 
 if __name__ == "__main__":

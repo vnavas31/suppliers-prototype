@@ -148,6 +148,9 @@ class DownloadedDoc:
     ocr_provider: str | None = None
     ocr_status: str = "not_requested"
     ocr_original_path: str | None = None
+    ocr_sidecar_path: str | None = None
+    ocr_sidecar_pages: int | None = None
+    ocr_sidecar_text_chars: int | None = None
     ocr_error: str | None = None
     ocr_elapsed_seconds: float | None = None
     candidate_pages: dict[str, list[dict[str, Any]]] = field(default_factory=dict)
@@ -171,6 +174,9 @@ class OcrResult:
     elapsed_seconds: float | None = None
     error: str | None = None
     command: list[str] = field(default_factory=list)
+    pages: list[dict[str, Any]] = field(default_factory=list)
+    page_count: int | None = None
+    pages_limited: bool = False
 
 
 def slugify(value: str, fallback: str = "item") -> str:
@@ -482,6 +488,10 @@ def is_ocr_candidate(pages: list[dict[str, Any]], candidate_pages: dict[str, lis
     return not candidate_pages and (total_chars < 2500 or avg_chars < 160 or mostly_sparse)
 
 
+def page_text_chars(pages: list[dict[str, Any]]) -> int:
+    return sum(len((page.get("text") or "").strip()) for page in pages)
+
+
 def detect_executable(name: str) -> str | None:
     return shutil.which(name)
 
@@ -497,6 +507,8 @@ def tesseract_languages() -> set[str]:
             capture_output=True,
             timeout=15,
             check=False,
+            encoding="utf-8",
+            errors="replace",
         )
     except (OSError, subprocess.TimeoutExpired):
         return set()
@@ -528,19 +540,238 @@ def effective_ocr_lang(requested: str) -> str:
 
 def ocr_environment() -> dict[str, Any]:
     required = ["ocrmypdf", "tesseract"]
+    sidecar_required = ["pdftoppm", "tesseract"]
     useful = ["pdftotext", "pdftoppm", "gs", "magick", "convert"]
-    tools = {name: detect_executable(name) for name in [*required, *useful]}
+    tool_names = list(dict.fromkeys([*required, *sidecar_required, *useful]))
+    tools = {name: detect_executable(name) for name in tool_names}
     available = [name for name, found in tools.items() if found]
     missing = [name for name, found in tools.items() if not found]
+    pdf_ocr_available = all(tools.get(name) for name in required)
+    sidecar_ocr_available = all(tools.get(name) for name in sidecar_required)
     return {
-        "local_ocr_available": all(tools.get(name) for name in required),
+        "local_ocr_available": pdf_ocr_available or sidecar_ocr_available,
+        "local_pdf_ocr_available": pdf_ocr_available,
+        "local_sidecar_ocr_available": sidecar_ocr_available,
         "required_for_local_ocr": required,
+        "required_for_sidecar_ocr": sidecar_required,
         "useful_pdf_tools": useful,
         "available": available,
         "missing": missing,
         "tools": tools,
         "tesseract_languages": sorted(tesseract_languages()),
     }
+
+
+def sidecar_page_number(path: Path) -> int:
+    match = re.search(r"-(\d+)\.(?:png|jpg|jpeg|tif|tiff|ppm)$", path.name, re.I)
+    return int(match.group(1)) if match else 0
+
+
+def render_sidecar_images_with_fitz(pdf_path: Path, render_prefix: Path, page_limit: int | None) -> tuple[list[Path], str | None]:
+    try:
+        pdf = fitz.open(pdf_path)
+    except Exception as exc:
+        return [], str(exc)
+    images: list[Path] = []
+    limit = min(pdf.page_count, page_limit) if page_limit else pdf.page_count
+    matrix = fitz.Matrix(220 / 72, 220 / 72)
+    for index in range(limit):
+        try:
+            page = pdf.load_page(index)
+            pixmap = page.get_pixmap(matrix=matrix, alpha=False)
+            image_path = render_prefix.parent / f"{render_prefix.name}-{index + 1}.png"
+            pixmap.save(image_path)
+            images.append(image_path)
+        except Exception as exc:
+            return images, str(exc)
+    return images, None
+
+
+def run_tesseract_sidecar_ocr(doc: DownloadedDoc, ocr_dir: Path, config: OcrConfig) -> OcrResult:
+    """Extract OCR text into a sidecar without modifying the source PDF.
+
+    This is intentionally separate from OCRmyPDF because many public tender PDFs
+    are digitally signed. Rewriting them can invalidate the signature and also
+    changes the artifact that the document viewer should display as evidence.
+    """
+    env = ocr_environment()
+    if not env.get("local_sidecar_ocr_available"):
+        missing = [name for name in env["required_for_sidecar_ocr"] if not env["tools"].get(name)]
+        return OcrResult(
+            ok=False,
+            status="sidecar_missing_tools",
+            provider="local_sidecar",
+            error=f"Missing sidecar OCR tools: {', '.join(missing)}",
+        )
+
+    ocr_dir.mkdir(parents=True, exist_ok=True)
+    safe_title = slugify(doc.title, doc.role)
+    render_prefix = ocr_dir / f"{safe_title}.sidecar-page"
+    sidecar_path = ocr_dir / f"{safe_title}.sidecar.txt"
+    lang = effective_ocr_lang(config.lang)
+    page_limit = pdf_page_limit_for_doc(doc)
+    if page_limit and doc.page_count:
+        page_limit = min(page_limit, doc.page_count)
+
+    render_command = [
+        env["tools"]["pdftoppm"],
+        "-r",
+        "220",
+        "-png",
+        str(doc.path),
+        str(render_prefix),
+    ]
+    if page_limit:
+        render_command = [
+            env["tools"]["pdftoppm"],
+            "-r",
+            "220",
+            "-png",
+            "-f",
+            "1",
+            "-l",
+            str(page_limit),
+            str(doc.path),
+            str(render_prefix),
+        ]
+
+    started = time.perf_counter()
+    try:
+        rendered = subprocess.run(
+            render_command,
+            text=True,
+            capture_output=True,
+            timeout=max(30, config.timeout),
+            check=False,
+            encoding="utf-8",
+            errors="replace",
+        )
+    except subprocess.TimeoutExpired as exc:
+        return OcrResult(
+            ok=False,
+            status="sidecar_render_timeout",
+            provider="local_sidecar",
+            elapsed_seconds=round(time.perf_counter() - started, 3),
+            error=f"Timed out rendering PDF after {config.timeout}s: {(exc.stderr or exc.stdout or '')[-800:]}",
+            command=render_command,
+        )
+    except OSError as exc:
+        return OcrResult(
+            ok=False,
+            status="sidecar_render_error",
+            provider="local_sidecar",
+            elapsed_seconds=round(time.perf_counter() - started, 3),
+            error=str(exc),
+            command=render_command,
+        )
+
+    render_warning = ""
+    if rendered.returncode != 0:
+        images, fitz_error = render_sidecar_images_with_fitz(doc.path, render_prefix, page_limit)
+        render_warning = (
+            f"pdftoppm failed_exit_{rendered.returncode}; "
+            f"fitz_fallback={'ok' if images else 'failed'}; "
+            f"{((rendered.stderr or '') + ' ' + (rendered.stdout or '') + ' ' + (fitz_error or '')).strip()}"
+        ).strip()
+        if not images:
+            return OcrResult(
+                ok=False,
+                status=f"sidecar_render_failed_exit_{rendered.returncode}",
+                provider="local_sidecar",
+                elapsed_seconds=round(time.perf_counter() - started, 3),
+                error=render_warning[-2000:],
+                command=render_command,
+            )
+    else:
+        images = sorted(render_prefix.parent.glob(f"{render_prefix.name}-*.png"), key=sidecar_page_number)
+    if not images:
+        return OcrResult(
+            ok=False,
+            status="sidecar_no_images",
+            provider="local_sidecar",
+            elapsed_seconds=round(time.perf_counter() - started, 3),
+            error="pdftoppm completed but produced no page images",
+            command=render_command,
+        )
+
+    pages: list[dict[str, Any]] = []
+    tesseract_errors: list[str] = []
+    tesseract_commands: list[str] = []
+    per_page_timeout = max(30, min(config.timeout, 90))
+    for image_path in images:
+        page_number = sidecar_page_number(image_path)
+        command = [
+            env["tools"]["tesseract"],
+            image_path.name,
+            "stdout",
+            "-l",
+            lang,
+            "--psm",
+            "6",
+        ]
+        tesseract_commands.append(" ".join(command))
+        try:
+            completed = subprocess.run(
+                command,
+                text=True,
+                capture_output=True,
+                timeout=per_page_timeout,
+                check=False,
+                encoding="utf-8",
+                errors="replace",
+                cwd=str(image_path.parent),
+            )
+        except subprocess.TimeoutExpired as exc:
+            tesseract_errors.append(f"p{page_number}: timeout {(exc.stderr or exc.stdout or '')[-300:]}")
+            pages.append({"page": page_number, "text": ""})
+            continue
+        except OSError as exc:
+            tesseract_errors.append(f"p{page_number}: {exc}")
+            pages.append({"page": page_number, "text": ""})
+            continue
+
+        if completed.returncode != 0:
+            tesseract_errors.append(f"p{page_number}: {((completed.stderr or '') + ' ' + (completed.stdout or '')).strip()[-500:]}")
+            pages.append({"page": page_number, "text": ""})
+            continue
+        pages.append({"page": page_number, "text": completed.stdout or ""})
+        try:
+            image_path.unlink()
+        except OSError:
+            pass
+
+    text_chars = page_text_chars(pages)
+    sidecar_path.write_text(
+        "\n\n".join(f"--- page {page.get('page')} ---\n{page.get('text', '')}" for page in pages),
+        encoding="utf-8",
+    )
+    elapsed = round(time.perf_counter() - started, 3)
+    if text_chars <= 0:
+        return OcrResult(
+            ok=False,
+            status="sidecar_no_text",
+            sidecar_path=sidecar_path,
+            provider="local_sidecar",
+            elapsed_seconds=elapsed,
+            error=("; ".join([render_warning, *tesseract_errors]).strip("; ") or "Tesseract produced no text")[-2000:],
+            command=[render_command[0], *render_command[1:], *tesseract_commands[:2]],
+            pages=pages,
+            page_count=doc.page_count or len(pages),
+            pages_limited=bool(page_limit and doc.page_count and page_limit < doc.page_count),
+        )
+
+    return OcrResult(
+        ok=True,
+        status="sidecar_applied",
+        sidecar_path=sidecar_path,
+        provider="local_sidecar",
+        elapsed_seconds=elapsed,
+        error="; ".join([item for item in [render_warning, *tesseract_errors] if item])[-2000:] or None,
+        command=[render_command[0], *render_command[1:], *tesseract_commands[:2]],
+        pages=pages,
+        page_count=doc.page_count or len(pages),
+        pages_limited=bool(page_limit and doc.page_count and page_limit < doc.page_count),
+    )
 
 
 def run_local_ocr(doc: DownloadedDoc, ocr_dir: Path, config: OcrConfig) -> OcrResult:
@@ -552,6 +783,8 @@ def run_local_ocr(doc: DownloadedDoc, ocr_dir: Path, config: OcrConfig) -> OcrRe
             provider="local",
             error=f"Missing OCR tools: {', '.join(env['missing'])}",
         )
+    if not env.get("local_pdf_ocr_available"):
+        return run_tesseract_sidecar_ocr(doc, ocr_dir, config)
     ocr_dir.mkdir(parents=True, exist_ok=True)
     safe_title = slugify(doc.title, doc.role)
     output_path = ocr_dir / f"{safe_title}.ocr.pdf"
@@ -577,6 +810,8 @@ def run_local_ocr(doc: DownloadedDoc, ocr_dir: Path, config: OcrConfig) -> OcrRe
             capture_output=True,
             timeout=config.timeout,
             check=False,
+            encoding="utf-8",
+            errors="replace",
         )
     except subprocess.TimeoutExpired as exc:
         return OcrResult(
@@ -598,12 +833,18 @@ def run_local_ocr(doc: DownloadedDoc, ocr_dir: Path, config: OcrConfig) -> OcrRe
         )
     elapsed = round(time.perf_counter() - started, 3)
     if completed.returncode != 0 or not output_path.exists():
+        fallback = run_tesseract_sidecar_ocr(doc, ocr_dir, config)
+        if fallback.ok:
+            return fallback
         return OcrResult(
             ok=False,
             status=f"failed_exit_{completed.returncode}",
             provider="local",
             elapsed_seconds=elapsed,
-            error=((completed.stderr or "") + "\n" + (completed.stdout or "")).strip()[-1600:],
+            error=(
+                ((completed.stderr or "") + "\n" + (completed.stdout or "")).strip()
+                + (f"\nSidecar fallback: {fallback.status} {fallback.error or ''}" if fallback.status else "")
+            )[-2000:],
             command=command,
         )
     return OcrResult(
@@ -627,7 +868,7 @@ def refresh_pdf_doc_metadata(
     doc.pages_extracted = len(pages)
     doc.pages_limited = pages_limited
     doc.candidate_pages = score_candidate_pages(pages)
-    doc.text_chars = sum(len((page.get("text") or "").strip()) for page in pages)
+    doc.text_chars = page_text_chars(pages)
     doc.ocr_candidate = is_ocr_candidate(pages, doc.candidate_pages)
 
 
@@ -2848,6 +3089,9 @@ def build_premium_packet(
                 "ocr_provider": doc.ocr_provider,
                 "ocr_status": doc.ocr_status,
                 "ocr_original_path": doc.ocr_original_path,
+                "ocr_sidecar_path": doc.ocr_sidecar_path,
+                "ocr_sidecar_pages": doc.ocr_sidecar_pages,
+                "ocr_sidecar_text_chars": doc.ocr_sidecar_text_chars,
                 "ocr_error": doc.ocr_error,
                 "ocr_elapsed_seconds": doc.ocr_elapsed_seconds,
                 "candidate_pages": doc.candidate_pages,
@@ -2891,7 +3135,7 @@ def build_premium_packet(
             "ocr_candidates": sum(1 for doc in docs if doc.ocr_candidate),
             "ocr_candidate_titles": [doc.title for doc in docs if doc.ocr_candidate],
             "ocr_applied": sum(1 for doc in docs if doc.ocr_applied),
-            "ocr_failed": sum(1 for doc in docs if doc.ocr_status not in {"not_requested", "not_needed", "applied"}),
+            "ocr_failed": sum(1 for doc in docs if doc.ocr_status not in {"not_requested", "not_needed", "applied", "sidecar_applied"}),
             "sections_with_candidates": sorted(all_candidates),
         },
         "next_actions": [
@@ -3002,16 +3246,33 @@ def run_pipeline(url: str, out_dir: Path, mode: str = "premium", ocr_config: Ocr
                 continue
             refresh_pdf_doc_metadata(doc, pages, actual_page_count, pages_limited)
             doc.ocr_status = "not_needed"
+            original_text_chars = page_text_chars(pages)
 
             if doc.ocr_candidate and ocr_config.provider == "local":
                 ocr_result = run_local_ocr(doc, ocr_dir, ocr_config)
-                doc.ocr_provider = "local"
+                doc.ocr_provider = ocr_result.provider or "local"
                 doc.ocr_status = ocr_result.status
                 doc.ocr_elapsed_seconds = ocr_result.elapsed_seconds
                 doc.ocr_error = ocr_result.error
-                if ocr_result.ok and ocr_result.output_path:
+                if ocr_result.ok and ocr_result.pages:
+                    sidecar_chars = page_text_chars(ocr_result.pages)
+                    doc.ocr_original_path = str(doc.path)
+                    doc.ocr_sidecar_path = str(ocr_result.sidecar_path) if ocr_result.sidecar_path else None
+                    doc.ocr_sidecar_pages = len(ocr_result.pages)
+                    doc.ocr_sidecar_text_chars = sidecar_chars
+                    if sidecar_chars >= original_text_chars:
+                        pages = ocr_result.pages
+                        refresh_pdf_doc_metadata(doc, pages, ocr_result.page_count or actual_page_count, ocr_result.pages_limited or pages_limited)
+                        doc.ocr_applied = True
+                        doc.ocr_candidate = False
+                    else:
+                        refresh_pdf_doc_metadata(doc, pages, actual_page_count, pages_limited)
+                        doc.ocr_status = "discarded_no_text_gain"
+                        doc.ocr_applied = False
+                elif ocr_result.ok and ocr_result.output_path:
                     original_path = doc.path
                     original_sha1 = doc.sha1
+                    original_bytes = doc.bytes
                     doc.ocr_original_path = str(original_path)
                     doc.path = ocr_result.output_path
                     doc.bytes = doc.path.stat().st_size
@@ -3020,23 +3281,51 @@ def run_pipeline(url: str, out_dir: Path, mode: str = "premium", ocr_config: Ocr
                     ocr_pages, ocr_page_count, ocr_pages_limited = extract_pdf_pages(doc.path, pdf_page_limit_for_doc(doc))
                     if ocr_pages and not ocr_pages[0].get("error"):
                         refresh_pdf_doc_metadata(doc, ocr_pages, ocr_page_count, ocr_pages_limited)
-                        if doc.text_chars >= sum(len((page.get("text") or "").strip()) for page in pages):
+                        if doc.text_chars >= original_text_chars:
                             pages = ocr_pages
                             doc.ocr_applied = True
                         else:
                             doc.path = original_path
                             doc.sha1 = original_sha1
-                            doc.bytes = original_path.stat().st_size
+                            doc.bytes = original_bytes
                             refresh_pdf_doc_metadata(doc, pages, actual_page_count, pages_limited)
-                            doc.ocr_status = "discarded_no_text_gain"
-                            doc.ocr_applied = False
+                            fallback_result = run_tesseract_sidecar_ocr(doc, ocr_dir, ocr_config)
+                            doc.ocr_provider = fallback_result.provider or doc.ocr_provider
+                            doc.ocr_elapsed_seconds = (doc.ocr_elapsed_seconds or 0) + (fallback_result.elapsed_seconds or 0)
+                            doc.ocr_error = fallback_result.error or doc.ocr_error
+                            if fallback_result.ok and page_text_chars(fallback_result.pages) >= original_text_chars:
+                                pages = fallback_result.pages
+                                refresh_pdf_doc_metadata(doc, pages, fallback_result.page_count or actual_page_count, fallback_result.pages_limited or pages_limited)
+                                doc.ocr_status = fallback_result.status
+                                doc.ocr_sidecar_path = str(fallback_result.sidecar_path) if fallback_result.sidecar_path else None
+                                doc.ocr_sidecar_pages = len(fallback_result.pages)
+                                doc.ocr_sidecar_text_chars = page_text_chars(fallback_result.pages)
+                                doc.ocr_applied = True
+                                doc.ocr_candidate = False
+                            else:
+                                doc.ocr_status = "discarded_no_text_gain"
+                                doc.ocr_applied = False
                     else:
                         doc.path = original_path
                         doc.sha1 = original_sha1
-                        doc.bytes = original_path.stat().st_size
+                        doc.bytes = original_bytes
                         refresh_pdf_doc_metadata(doc, pages, actual_page_count, pages_limited)
-                        doc.ocr_status = "discarded_unreadable_output"
-                        doc.ocr_applied = False
+                        fallback_result = run_tesseract_sidecar_ocr(doc, ocr_dir, ocr_config)
+                        doc.ocr_provider = fallback_result.provider or doc.ocr_provider
+                        doc.ocr_elapsed_seconds = (doc.ocr_elapsed_seconds or 0) + (fallback_result.elapsed_seconds or 0)
+                        doc.ocr_error = fallback_result.error or doc.ocr_error
+                        if fallback_result.ok and page_text_chars(fallback_result.pages) >= original_text_chars:
+                            pages = fallback_result.pages
+                            refresh_pdf_doc_metadata(doc, pages, fallback_result.page_count or actual_page_count, fallback_result.pages_limited or pages_limited)
+                            doc.ocr_status = fallback_result.status
+                            doc.ocr_sidecar_path = str(fallback_result.sidecar_path) if fallback_result.sidecar_path else None
+                            doc.ocr_sidecar_pages = len(fallback_result.pages)
+                            doc.ocr_sidecar_text_chars = page_text_chars(fallback_result.pages)
+                            doc.ocr_applied = True
+                            doc.ocr_candidate = False
+                        else:
+                            doc.ocr_status = "discarded_unreadable_output"
+                            doc.ocr_applied = False
                 elif ocr_result.error:
                     doc.ocr_error = ocr_result.error
 
